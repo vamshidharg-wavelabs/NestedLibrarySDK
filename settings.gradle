@@ -1,3 +1,5 @@
+include ':uikit'
 include ':ExpLibraryChatSdk'
 include ':app'
+project(':uikit').projectDir = new File(rootDir, 'android-java-chat-ui-kit-master/uikit/')
 rootProject.name = "NestedLibrarySDK"
