@@ -3,15 +3,12 @@ package com.example.explibrarychatsdk;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
 import com.cometchat.pro.core.AppSettings;
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.exceptions.CometChatException;
-import com.cometchat.pro.models.User;
-import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
 import com.example.explibrarychatsdk.constants.AppConfig;
 
@@ -67,5 +64,6 @@ public class ExpLibraryChatSdkApp extends Application {
             manager.createNotificationChannel(channel1);
             manager.createNotificationChannel(channel2);
         }
+
     }
 }

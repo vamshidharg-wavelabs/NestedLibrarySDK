@@ -1,23 +1,14 @@
 package com.example.explibrarychatsdk;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
-import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.example.explibrarychatsdk.constants.AppConfig;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -28,7 +19,6 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
-
 //        username = findViewById(R.id.username);
 
         Intent intent = getIntent();
@@ -58,3 +48,4 @@ public class LaunchActivity extends AppCompatActivity {
 }
 
 //android:name=".ExpLibraryChatSdkApp"
+
