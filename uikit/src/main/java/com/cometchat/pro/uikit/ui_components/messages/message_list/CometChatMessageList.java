@@ -129,6 +129,7 @@ import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.cometchat.pro.uikit.ui_components.messages.message_information.CometChatMessageInfoScreenActivity;
 import com.cometchat.pro.uikit.ui_components.messages.thread_message_list.CometChatThreadMessageListActivity;
 
+import static android.app.Activity.RESULT_OK;
 import static android.view.View.GONE;
 
 /**
@@ -505,7 +506,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
 
                 //for toolbar elevation animation i.e stateListAnimator
-                toolbar.setSelected(rvChatListView.canScrollVertically(-1));
+//                toolbar.setSelected(rvChatListView.canScrollVertically(-1));
             }
 
             @Override
@@ -1306,69 +1307,68 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult: ");
 
-        switch (requestCode) {
-            case UIKitConstants.RequestCode.AUDIO:
-                if (data!=null) {
-                    resultIntentCode = UIKitConstants.RequestCode.AUDIO;
-                    File file = MediaUtils.getRealPath(getContext(),data.getData());
-                    ContentResolver cr = getActivity().getContentResolver();
-                    sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_AUDIO);
-                }
-                break;
-            case UIKitConstants.RequestCode.GALLERY:
-                if (data != null) {
-                    resultIntentCode = UIKitConstants.RequestCode.GALLERY;
-                    File file = MediaUtils.getRealPath(getContext(), data.getData());
-                    ContentResolver cr = getActivity().getContentResolver();
-                    String mimeType = cr.getType(data.getData());
-                    if (mimeType!=null && mimeType.contains("image")) {
-                        if (file.exists())
-                            sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_IMAGE);
-                        else
-                            Snackbar.make(rvChatListView, R.string.file_not_exist, Snackbar.LENGTH_LONG).show();
+        if(resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case UIKitConstants.RequestCode.AUDIO:
+                    if (data != null) {
+                        resultIntentCode = UIKitConstants.RequestCode.AUDIO;
+                        File file = MediaUtils.getRealPath(getContext(), data.getData());
+                        ContentResolver cr = getActivity().getContentResolver();
+                        sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_AUDIO);
                     }
-                    else {
-                        if (file.exists())
-                            sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_VIDEO);
-                        else
-                            Snackbar.make(rvChatListView, R.string.file_not_exist, Snackbar.LENGTH_LONG).show();
+                    break;
+                case UIKitConstants.RequestCode.GALLERY:
+                    if (data != null) {
+                        resultIntentCode = UIKitConstants.RequestCode.GALLERY;
+                        File file = MediaUtils.getRealPath(getContext(), data.getData());
+                        ContentResolver cr = getActivity().getContentResolver();
+                        String mimeType = cr.getType(data.getData());
+                        if (mimeType != null && mimeType.contains("image")) {
+                            if (file.exists())
+                                sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_IMAGE);
+                            else
+                                Snackbar.make(rvChatListView, R.string.file_not_exist, Snackbar.LENGTH_LONG).show();
+                        } else {
+                            if (file.exists())
+                                sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_VIDEO);
+                            else
+                                Snackbar.make(rvChatListView, R.string.file_not_exist, Snackbar.LENGTH_LONG).show();
+                        }
                     }
-                }
 
-                break;
-            case UIKitConstants.RequestCode.CAMERA:
-                File file;
-                resultIntentCode = UIKitConstants.RequestCode.CAMERA;
-                if (Build.VERSION.SDK_INT >= 29) {
-                    file = MediaUtils.getRealPath(getContext(), MediaUtils.uri);
-                } else {
-                    file = new File(MediaUtils.pictureImagePath);
-                }
-                if (file.exists())
-                    sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_IMAGE);
-                else
-                    Snackbar.make(rvChatListView,R.string.file_not_exist,Snackbar.LENGTH_LONG).show();
+                    break;
+                case UIKitConstants.RequestCode.CAMERA:
+                    File file;
+                    resultIntentCode = UIKitConstants.RequestCode.CAMERA;
+                    if (Build.VERSION.SDK_INT >= 29) {
+                        file = MediaUtils.getRealPath(getContext(), MediaUtils.uri);
+                    } else {
+                        file = new File(MediaUtils.pictureImagePath);
+                    }
+                    if (file.exists())
+                        sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_IMAGE);
+                    else
+                        Snackbar.make(rvChatListView, R.string.file_not_exist, Snackbar.LENGTH_LONG).show();
 
-                break;
-            case UIKitConstants.RequestCode.FILE:
-                if (data != null) {
-                    resultIntentCode = UIKitConstants.RequestCode.FILE;
-                    sendMediaMessage(MediaUtils.getRealPath(getActivity(), data.getData()), CometChatConstants.MESSAGE_TYPE_FILE);
-                }
-                break;
-            case UIKitConstants.RequestCode.BLOCK_USER:
-                name = data.getStringExtra("");
-                break;
-            case UIKitConstants.RequestCode.LOCATION:
-                locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-                if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-                {
-                    Toast.makeText(getContext(), getString(R.string.gps_enabled),Toast.LENGTH_SHORT).show();
-                    getLocation();
-                }
-                else {
-                    Toast.makeText(getContext(), getString(R.string.gps_disabled),Toast.LENGTH_SHORT).show();
-                }
+                    break;
+                case UIKitConstants.RequestCode.FILE:
+                    if (data != null) {
+                        resultIntentCode = UIKitConstants.RequestCode.FILE;
+                        sendMediaMessage(MediaUtils.getRealPath(getActivity(), data.getData()), CometChatConstants.MESSAGE_TYPE_FILE);
+                    }
+                    break;
+                case UIKitConstants.RequestCode.BLOCK_USER:
+                    name = data.getStringExtra("");
+                    break;
+                case UIKitConstants.RequestCode.LOCATION:
+                    locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+                    if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                        Toast.makeText(getContext(), getString(R.string.gps_enabled), Toast.LENGTH_SHORT).show();
+                        getLocation();
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.gps_disabled), Toast.LENGTH_SHORT).show();
+                    }
+            }
         }
 
     }
