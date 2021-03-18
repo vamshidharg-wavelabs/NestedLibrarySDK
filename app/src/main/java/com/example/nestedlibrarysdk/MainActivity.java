@@ -11,7 +11,7 @@ import com.example.explibrarychatsdk.create_user.CreateUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText username, user_id;
+    EditText user_id;
     public static String USERNAME = "";
     public static String USER_ID = "";
 
