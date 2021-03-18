@@ -2,10 +2,12 @@ package com.example.nestedlibrarysdk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import com.example.explibrarychatsdk.LoginClass;
+import com.example.explibrarychatsdk.create_user.CreateUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,5 +31,9 @@ public class MainActivity extends AppCompatActivity {
         }else{
             if(USER_ID.isEmpty()) user_id.setError("Please provide User ID");
         }
+    }
+
+    public void createNewUser(View view) {
+        startActivity(new Intent(MainActivity.this, CreateUser.class));
     }
 }
