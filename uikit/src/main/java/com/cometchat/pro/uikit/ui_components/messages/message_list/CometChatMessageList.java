@@ -506,7 +506,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
 
                 //for toolbar elevation animation i.e stateListAnimator
-//                toolbar.setSelected(rvChatListView.canScrollVertically(-1));
+                toolbar.setSelected(rvChatListView.canScrollVertically(-1));
             }
 
             @Override
@@ -1307,7 +1307,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult: ");
 
-        if(resultCode == RESULT_OK) {
+//        if(resultCode == RESULT_OK) {
             switch (requestCode) {
                 case UIKitConstants.RequestCode.AUDIO:
                     if (data != null) {
@@ -1369,7 +1369,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                         Toast.makeText(getContext(), getString(R.string.gps_disabled), Toast.LENGTH_SHORT).show();
                     }
             }
-        }
+//        }
 
     }
 
