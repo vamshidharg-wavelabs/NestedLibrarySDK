@@ -17,6 +17,15 @@ android {
         manifestPlaceholders = [file_provider: "com.example.explibrarychatsdk"]
     }
 
+    signingConfigs {
+        release {
+            storeFile file('../keystore/wavelabslibrary.jks')
+            storePassword 'wavelabs'
+            keyAlias 'key0'
+            keyPassword 'wavelabs'
+        }
+    }
+
     dataBinding {
         enabled = true
     }
@@ -24,12 +33,18 @@ android {
 
     buildTypes {
         release {
+            shrinkResources false
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
+            signingConfig signingConfigs.release
+        }
         debug {
-            clean
+            shrinkResources false
+            minifyEnabled true
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {

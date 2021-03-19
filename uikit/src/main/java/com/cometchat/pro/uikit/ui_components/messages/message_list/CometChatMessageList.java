@@ -1307,7 +1307,9 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult: ");
 
-//        if(resultCode == RESULT_OK) {
+        // @oneplus specific changes
+        if(resultCode == RESULT_OK) {
+
             switch (requestCode) {
                 case UIKitConstants.RequestCode.AUDIO:
                     if (data != null) {
@@ -1369,8 +1371,8 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                         Toast.makeText(getContext(), getString(R.string.gps_disabled), Toast.LENGTH_SHORT).show();
                     }
             }
-//        }
 
+        }
     }
 
     /**
