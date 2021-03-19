@@ -55,36 +55,36 @@ public class CometChatUserProfile extends Fragment {
         moreInfoScreenBinding.setUser(CometChat.getLoggedInUser());
         moreInfoScreenBinding.ivUser.setAvatar(CometChat.getLoggedInUser());
 
-        moreInfoScreenBinding.mbtnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CometChat.logout(new CometChat.CallbackListener<String>() {
-                    @SuppressLint("WrongConstant")
-                    @Override
-                    public void onSuccess(String successMessage) {
-                        Log.d(TAG, "Logout completed successfully");
-                        Toast.makeText(getContext(), "Logout Cometchat", Toast.LENGTH_SHORT).show();
-
-                        try {
-                            // to clear the activity stack
-                            Intent myIntent = new Intent(getActivity(),Class.forName("com.example.arteria.LoginActivity2"));
-                            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-                                myIntent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
-                            startActivity(myIntent);
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        getActivity().finish();
-                    }
-                    @Override
-                    public void onError(CometChatException e) {
-                        Log.d(TAG, "Logout failed with exception: " + e.getMessage());
-                    }
-                });
-            }
-        });
+//        moreInfoScreenBinding.mbtnLogout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                CometChat.logout(new CometChat.CallbackListener<String>() {
+//                    @SuppressLint("WrongConstant")
+//                    @Override
+//                    public void onSuccess(String successMessage) {
+//                        Log.d(TAG, "Logout completed successfully");
+//                        Toast.makeText(getContext(), "Logout Cometchat", Toast.LENGTH_SHORT).show();
+//
+//                        try {
+//                            // to clear the activity stack
+//                            Intent myIntent = new Intent(getActivity(),Class.forName("com.example.arteria.LoginActivity2"));
+//                            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+//                                myIntent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+//                            startActivity(myIntent);
+//                        } catch (ClassNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//                        getActivity().finish();
+//                    }
+//                    @Override
+//                    public void onError(CometChatException e) {
+//                        Log.d(TAG, "Logout failed with exception: " + e.getMessage());
+//                    }
+//                });
+//            }
+//        });
 
         moreInfoScreenBinding.tvTitle.setTypeface(FontUtils.getInstance(getActivity()).getTypeFace(FontUtils.robotoMedium));
         Log.e("onCreateView: ", CometChat.getLoggedInUser().toString());

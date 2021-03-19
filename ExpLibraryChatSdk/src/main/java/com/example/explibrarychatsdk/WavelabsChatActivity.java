@@ -15,12 +15,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-public class LoginClass {
+public class WavelabsChatActivity {
 
     public static final String TAG = "LoginClass";
     private static String token;
 
-    public static void launchCometChat(Activity MainActivity, String USERNAME, String UID) {
+    public static void launchChatScreen(Activity MainActivity, String UID) {
         CometChat.login(UID, AppConfig.AUTH_KEY, new CometChat.CallbackListener<User>(){
 
             @Override

@@ -458,8 +458,8 @@ public class CometChatUI extends AppCompatActivity implements
         unreadCount.clear();    //Clear conversation count when app pauses or goes background.
     }
 
-    @Override
-    public void onBackPressed() {
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//
+//    }
 }

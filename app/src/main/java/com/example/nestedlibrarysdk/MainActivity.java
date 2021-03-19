@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import com.example.explibrarychatsdk.LoginClass;
+import com.example.explibrarychatsdk.WavelabsChatActivity;
 import com.example.explibrarychatsdk.create_user.CreateUser;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         USER_ID = user_id.getText().toString();
 
         if(!USER_ID.isEmpty()){
-            LoginClass.launchCometChat(MainActivity.this, USERNAME, USER_ID);
+            WavelabsChatActivity.launchChatScreen(MainActivity.this, USER_ID);
         }else{
             if(USER_ID.isEmpty()) user_id.setError("Please provide User ID");
         }

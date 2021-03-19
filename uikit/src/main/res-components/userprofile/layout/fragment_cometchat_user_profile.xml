@@ -178,19 +178,19 @@
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbtnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="20dp"
-            android:padding="12dp"
-            android:textColor="@color/textColorWhite"
-            android:backgroundTint="@color/logout"
-            android:textSize="@dimen/logout"
-            android:text="@string/logout"
-            app:cornerRadius="6dp" />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/mbtnLogout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:padding="12dp"-->
+<!--            android:textColor="@color/textColorWhite"-->
+<!--            android:backgroundTint="@color/logout"-->
+<!--            android:textSize="@dimen/logout"-->
+<!--            android:text="@string/logout"-->
+<!--            app:cornerRadius="6dp" />-->
 
     </LinearLayout>
 
