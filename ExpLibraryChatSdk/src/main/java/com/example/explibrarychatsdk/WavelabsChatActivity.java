@@ -28,10 +28,6 @@ public class WavelabsChatActivity {
                 public void onSuccess(User user) {
                     Log.d(TAG, "Login Successful: " + user.toString());
 
-                    //                Intent intent = new Intent();
-                    //                intent.setClass(MainActivity, CometChatUI.class);
-                    //                MainActivity.startActivity(intent);
-
                     token = MyFirebaseMessagingService.token;
                     if (token == null)
                         fetchFirebaseToken(MainActivity, UID);
@@ -80,9 +76,5 @@ public class WavelabsChatActivity {
                 Log.e("onErrorPN: ",e.getMessage() );
             }
         });
-    }
-
-    public static User getLoggedInUser(){
-        return CometChat.getLoggedInUser();
     }
 }

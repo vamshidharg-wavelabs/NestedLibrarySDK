@@ -111,7 +111,7 @@
     <string name="has_shared_whiteboard">وقد شارك خنزير أبيض تعاوني</string>
     <string name="you_created_whiteboard">لقد قمت بإنشاء خنزير أبيض تعاوني جديد</string>
     <string name="you_created_document">لقد قمت بإنشاء وثائقي تعاوني جديد</string>
-    <string name="photo_video_library">مكتبة الصور والفيديو</string>
+    <string name="photo_library">مكتبة الصور والفيديو</string>
     <string name="take_a_photo">التقط صورة</string>
     <string name="share_location">مشاركة الموقع</string>
     <string name="edit_message">تحرير الرسالة</string>

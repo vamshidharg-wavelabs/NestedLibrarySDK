@@ -643,11 +643,19 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 }
             }
 
+            @Override
+            public void onVideoGalleryClicked() {
+                if (Utils.hasPermissions(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    startActivityForResult(MediaUtils.openGallery(getActivity(), "video"), UIKitConstants.RequestCode.VIDEO);
+                } else {
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, UIKitConstants.RequestCode.VIDEO);
+                }
+            }
 
             @Override
             public void onGalleryActionClicked() {
                 if (Utils.hasPermissions(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                    startActivityForResult(MediaUtils.openGallery(getActivity()), UIKitConstants.RequestCode.GALLERY);
+                    startActivityForResult(MediaUtils.openGallery(getActivity(), "image"), UIKitConstants.RequestCode.GALLERY);
                 } else {
                     requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, UIKitConstants.RequestCode.GALLERY);
                 }
@@ -1028,9 +1036,15 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 else
                     showPermissionSnackBar(view.findViewById(R.id.message_box), getResources().getString(R.string.grant_camera_permission));
                 break;
+            case UIKitConstants.RequestCode.VIDEO:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    startActivityForResult(MediaUtils.openGallery(getActivity(), "video"), UIKitConstants.RequestCode.VIDEO);
+                else
+                    showPermissionSnackBar(view.findViewById(R.id.message_box), getResources().getString(R.string.grant_storage_permission));
+                break;
             case UIKitConstants.RequestCode.GALLERY:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    startActivityForResult(MediaUtils.openGallery(getActivity()), UIKitConstants.RequestCode.GALLERY);
+                    startActivityForResult(MediaUtils.openGallery(getActivity(), "image"), UIKitConstants.RequestCode.GALLERY);
                 else
                     showPermissionSnackBar(view.findViewById(R.id.message_box), getResources().getString(R.string.grant_storage_permission));
                 break;
@@ -1317,6 +1331,18 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                         File file = MediaUtils.getRealPath(getContext(), data.getData());
                         ContentResolver cr = getActivity().getContentResolver();
                         sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_AUDIO);
+                    }
+                    break;
+                case UIKitConstants.RequestCode.VIDEO:
+                    if (data != null) {
+                        resultIntentCode = UIKitConstants.RequestCode.GALLERY;
+                        File file = MediaUtils.getRealPath(getContext(), data.getData());
+                        ContentResolver cr = getActivity().getContentResolver();
+                        String mimeType = cr.getType(data.getData());
+                        if (file.exists())
+                            sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_VIDEO);
+                        else
+                            Snackbar.make(rvChatListView, R.string.file_not_exist, Snackbar.LENGTH_LONG).show();
                     }
                     break;
                 case UIKitConstants.RequestCode.GALLERY:
@@ -1738,6 +1764,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             @Override
             public void onGroupMemberJoined(Action action, User joinedUser, Group joinedGroup) {
                 super.onGroupMemberJoined(action, joinedUser, joinedGroup);
+                Log.e(TAG, "onGroupMemberJoined: "+joinedUser.toString());
                 if (joinedGroup.getGuid().equals(Id))
                     tvStatus.setText(memberNames + "," + joinedUser.getName());
                 onMessageReceived(action);

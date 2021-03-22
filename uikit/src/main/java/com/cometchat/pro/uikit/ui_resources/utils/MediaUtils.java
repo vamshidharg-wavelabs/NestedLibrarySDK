@@ -166,15 +166,20 @@ public class MediaUtils {
         return intent;
     }
 
-    public static Intent openGallery(Activity a) {
+    public static Intent openGallery(Activity a, String type) {
 
         activity = a;
         List<Intent> allIntents = new ArrayList();
         PackageManager packageManager = activity.getPackageManager();
         Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/* video/*");
+
         // @oneplus specific changes
-        galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, new String[] {"image/*", "video/*"});
+//        galleryIntent.setType("image/* video/*");
+        if(type.equals("video")){
+            galleryIntent.setType("video/*");
+        }else {
+            galleryIntent.setType("image/*");
+        }
 
         List<ResolveInfo> listGallery = packageManager.queryIntentActivities(galleryIntent, 0);
         for (ResolveInfo res : listGallery) {

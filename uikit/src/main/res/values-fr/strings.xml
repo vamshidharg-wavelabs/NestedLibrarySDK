@@ -119,7 +119,7 @@
     <string name="has_shared_whiteboard">a partagé un sanglier</string>
     <string name="you_created_whiteboard">Vous avez créé un nouveau sanglier collaboratif</string>
     <string name="you_created_document">Vous avez créé un nouveau documentmen collaboratif</string>
-    <string name="photo_video_library">Photothèque et vidéo</string>
+    <string name="photo_library">Photothèque et vidéo</string>
     <string name="take_a_photo">Prendre une photo</string>
     <string name="share_location">Partager l\'emplacement</string>
     <string name="reply_message">Répondre au message</string>

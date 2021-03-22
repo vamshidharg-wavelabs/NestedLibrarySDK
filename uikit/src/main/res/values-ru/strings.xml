@@ -113,7 +113,7 @@
     <string name="has_shared_whiteboard">поделился совместным whiteboar</string>
     <string name="you_created_whiteboard">Вы создали новый совместный whiteboar</string>
     <string name="you_created_document">Вы создали новый документ для совместной работы</string>
-    <string name="photo_video_library">Фото и видео тека</string>
+    <string name="photo_library">Фото и видео тека</string>
     <string name="take_a_photo">Сфотографировать</string>
     <string name="share_location">Местоположение общего доступа</string>
     <string name="reply_message">Ответить сообщение</string>

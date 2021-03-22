@@ -114,7 +114,7 @@
     <string name="has_shared_whiteboard">共享了一個合作的白豬</string>
     <string name="you_created_whiteboard">你已經創造了一個新的合作白豬</string>
     <string name="you_created_document">您已建立新的協同合作文件</string>
-    <string name="photo_video_library">相片與影片庫</string>
+    <string name="photo_library">相片與影片庫</string>
     <string name="take_a_photo">拍攝相片</string>
     <string name="share_location">共用位置</string>
     <string name="reply_message">回覆訊息</string>

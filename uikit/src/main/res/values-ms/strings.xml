@@ -113,7 +113,7 @@
     <string name="has_shared_whiteboard">telah berkongsi whiteboar kolaboratif</string>
     <string name="you_created_whiteboard">Anda telah membuat whiteboar kolaboratif baru</string>
     <string name="you_created_document">Anda telah membuat dokumen kolaboratif baru</string>
-    <string name="photo_video_library">Pustaka Foto &amp; Video</string>
+    <string name="photo_library">Pustaka Foto &amp; Video</string>
     <string name="take_a_photo">Ambil Foto</string>
     <string name="share_location">Kongsi Lokasi</string>
     <string name="reply_message">Balas Mesej</string>

@@ -113,7 +113,7 @@
     <string name="has_shared_whiteboard">ने एक सहयोगी व्हाइटबोअर साझा किया है</string>
     <string name="you_created_whiteboard">आपने एक नया सहयोगी व्हाइटबोअर</string>
     <string name="you_created_document">आपने एक नया सहयोगी डॉक्यूमेन बनाया है</string>
-    <string name="photo_video_library">फोटो और वीडियो लाइब्रेरी</string>
+    <string name="photo_library">फोटो और वीडियो लाइब्रेरी</string>
     <string name="take_a_photo">एक फोटो लें</string>
     <string name="share_location">स्थान साझा करें</string>
     <string name="reply_message">संदेश का जवाब दें</string>

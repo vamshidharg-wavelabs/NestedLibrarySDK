@@ -140,6 +140,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
         return view;
     }
 
+
     private void checkDarkMode() {
         if(Utils.isDarkMode(getContext())) {
             tvTitle.setTextColor(getResources().getColor(R.color.textColorWhite));

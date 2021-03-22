@@ -114,7 +114,7 @@
     <string name="has_shared_whiteboard">hat einen kollaborativen Whiteboar geteilt</string>
     <string name="you_created_whiteboard">Du hast einen neuen kollaborativen Whiteboar erstellt</string>
     <string name="you_created_document">Du hast ein neues kollaboratives Dokument erstellt</string>
-    <string name="photo_video_library">Foto- und Videothek</string>
+    <string name="photo_library">Foto- und Videothek</string>
     <string name="take_a_photo">Mach ein Foto</string>
     <string name="share_location">Standort teilen</string>
     <string name="edit_message">Nachricht bearbeiten</string>

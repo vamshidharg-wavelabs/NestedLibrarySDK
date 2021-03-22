@@ -112,7 +112,7 @@
     <string name="has_shared_whiteboard">已经分享了一个合作的白猪</string>
     <string name="you_created_whiteboard">你已经创建了一个新的协作白猪</string>
     <string name="you_created_document">你创建了一个新的协作文档</string>
-    <string name="photo_video_library">照片和视频库</string>
+    <string name="photo_library">照片和视频库</string>
     <string name="take_a_photo">拍张照片</string>
     <string name="share_location">分享位置</string>
     <string name="reply_message">回复留言</string>

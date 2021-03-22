@@ -16,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 public class CometChatComposeBoxActions extends BottomSheetDialogFragment {
 
     private TextView galleryMessage;
+    private TextView videoMessage;
     private TextView cameraMessage;
     private TextView fileMessage;
     private TextView audioMessage;
@@ -27,6 +28,7 @@ public class CometChatComposeBoxActions extends BottomSheetDialogFragment {
     private TextView groupCallMessage;
 
     private boolean isGalleryVisible;
+    private boolean isVideoVisible;
     private boolean isCameraVisible;
     private boolean isAudioVisible;
     private boolean isFileVisible;
@@ -46,6 +48,7 @@ public class CometChatComposeBoxActions extends BottomSheetDialogFragment {
         super.onCreate(savedInstanceState);
         if (getArguments()!=null) {
             isGalleryVisible = getArguments().getBoolean("isGalleryVisible");
+            isVideoVisible = getArguments().getBoolean("isVideoVisible");
             isCameraVisible = getArguments().getBoolean("isCameraVisible");
             isFileVisible = getArguments().getBoolean("isFileVisible");
             isAudioVisible = getArguments().getBoolean("isAudioVisible");
@@ -77,6 +80,7 @@ public class CometChatComposeBoxActions extends BottomSheetDialogFragment {
         });
         stickerMessage = view.findViewById(R.id.sticker_message);
         pollsMessage = view.findViewById(R.id.vw_polls_message);
+        videoMessage = view.findViewById(R.id.video_message);
         galleryMessage = view.findViewById(R.id.gallery_message);
         cameraMessage = view.findViewById(R.id.camera_message);
         fileMessage = view.findViewById(R.id.file_message);
@@ -85,6 +89,11 @@ public class CometChatComposeBoxActions extends BottomSheetDialogFragment {
         whiteBoardMessage = view.findViewById(R.id.vw_whiteboard_message);
         writeBoardMessage = view.findViewById(R.id.writeboard_message);
         groupCallMessage = view.findViewById(R.id.group_call_message);
+
+        if (isVideoVisible)
+            videoMessage.setVisibility(View.VISIBLE);
+        else
+            videoMessage.setVisibility(View.GONE);
 
         if (isGroupCallVisible)
             groupCallMessage.setVisibility(View.VISIBLE);
@@ -128,6 +137,11 @@ public class CometChatComposeBoxActions extends BottomSheetDialogFragment {
         else
             locationMessage.setVisibility(View.GONE);
 
+        videoMessage.setOnClickListener(v->{
+            if (composeBoxActionListener!=null)
+                composeBoxActionListener.onVideoGalleryClick();
+            dismiss();
+        });
         groupCallMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -228,6 +242,7 @@ public class CometChatComposeBoxActions extends BottomSheetDialogFragment {
         void onWhiteBoardClick();
         void onWriteBoardClick();
         void onVideoMeetingClick();
+        void onVideoGalleryClick();
     }
 
 }

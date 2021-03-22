@@ -160,6 +160,8 @@ public class UIKitConstants {
         public static final int RECORD = 003;
 
         public static final int LOCATION = 14;
+
+        public static final int VIDEO = 4 ;
     }
     public static class MapUrl{
 

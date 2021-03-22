@@ -97,7 +97,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
 
     private Bundle bundle = new Bundle();
 
-    public boolean isGalleryVisible = true,isAudioVisible = true,isCameraVisible = true,
+    public boolean isGalleryVisible = true,isVideoVisible = true,isAudioVisible = true,isCameraVisible = true,
             isFileVisible = true,isLocationVisible = true,isPollVisible = true,isStickerVisible = true,
             isWhiteBoardVisible = true, isWriteBoardVisible = true, isGroupCallVisible = true;
 
@@ -226,6 +226,11 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             public void onVideoMeetingClick() {
                 composeActionListener.onVideoMeetingClicked();
             }
+
+            @Override
+            public void onVideoGalleryClick() {
+                composeActionListener.onVideoGalleryClicked();
+            }
         });
         etComposeBox.addTextChangedListener(new TextWatcher() {
             @Override
@@ -291,6 +296,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
         isPollVisible = UISettings.isSendPolls();
         isFileVisible = UISettings.isSendFiles();
         isGalleryVisible = UISettings.isSendPhotosVideo();
+        isVideoVisible = UISettings.isSendPhotosVideo();
         isCameraVisible = UISettings.isSendPhotosVideo();
         isAudioVisible = UISettings.isSendVoiceNotes();
         isLocationVisible = UISettings.isShareLocation();
@@ -393,6 +399,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
 //            }
             FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
             bundle.putBoolean("isGalleryVisible",isGalleryVisible);
+            bundle.putBoolean("isVideoVisible",isVideoVisible);
             bundle.putBoolean("isCameraVisible",isCameraVisible);
             bundle.putBoolean("isFileVisible",isFileVisible);
             bundle.putBoolean("isAudioVisible",isAudioVisible);

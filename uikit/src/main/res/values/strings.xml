@@ -204,7 +204,8 @@
     <string name="start_thread">Start Thread</string>
     <string name="message_information">Message Information</string>
     <string name="create_poll">Create Poll</string>
-    <string name="photo_video_library">Photo &amp; Video Library</string>
+    <string name="photo_library">Photo Library</string>
+    <string name="video_library">Video Library</string>
     <string name="share_location">Share location</string>
     <string name="create_a_poll">Create a Poll</string>
     <string name="take_a_photo">Take a Photo</string>

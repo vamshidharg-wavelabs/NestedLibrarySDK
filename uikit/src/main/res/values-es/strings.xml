@@ -43,7 +43,7 @@
     <string name="text_copied">Texto copiado al Portapapeles</string>
     <string name="today">Hoy</string>
     <string name="yesterday">Ayer</string>
-    <string name="photo_video_library">Fototeca y Videoteca</string>
+    <string name="photo_library">Fototeca y Videoteca</string>
 
     <string name="typing">escribiendo...</string>
     <string name="is_typing">está escribiendo...</string>
