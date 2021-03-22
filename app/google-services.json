@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "815258267423",
-    "project_id": "arteria-272c8",
-    "storage_bucket": "arteria-272c8.appspot.com"
+    "project_number": "919839138352",
+    "project_id": "nestedlibrarysdk",
+    "storage_bucket": "nestedlibrarysdk.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:815258267423:android:e9480d0b2a197c489cca2a",
+        "mobilesdk_app_id": "1:919839138352:android:a15160b3087ad56df003f5",
         "android_client_info": {
           "package_name": "com.example.nestedlibrarysdk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "815258267423-irvh2o9pnrrki57gjmg1ugla196274io.apps.googleusercontent.com",
+          "client_id": "919839138352-7n5ru55qq6sfbonpjqkilfgiauekn46j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDfPYqvqSL-aJVc3jCb6qbvXGfuOduSTDU"
+          "current_key": "AIzaSyCt8UAw3-w-spkfp3B8G-_Uw6TrAmpo2N4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "815258267423-irvh2o9pnrrki57gjmg1ugla196274io.apps.googleusercontent.com",
+              "client_id": "919839138352-7n5ru55qq6sfbonpjqkilfgiauekn46j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

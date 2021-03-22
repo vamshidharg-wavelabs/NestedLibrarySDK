@@ -21,28 +21,32 @@ public class WavelabsChatActivity {
     private static String token;
 
     public static void launchChatScreen(Activity MainActivity, String UID) {
-        CometChat.login(UID, AppConfig.AUTH_KEY, new CometChat.CallbackListener<User>(){
+        try {
+            CometChat.login(UID, AppConfig.AUTH_KEY, new CometChat.CallbackListener<User>() {
 
-            @Override
-            public void onSuccess(User user) {
-                Log.d(TAG, "Login Successful: " + user.toString());
+                @Override
+                public void onSuccess(User user) {
+                    Log.d(TAG, "Login Successful: " + user.toString());
 
-//                Intent intent = new Intent();
-//                intent.setClass(MainActivity, CometChatUI.class);
-//                MainActivity.startActivity(intent);
+                    //                Intent intent = new Intent();
+                    //                intent.setClass(MainActivity, CometChatUI.class);
+                    //                MainActivity.startActivity(intent);
 
-                token = MyFirebaseMessagingService.token;
-                if(token == null)
-                    fetchFirebaseToken(MainActivity, UID);
-                else
-                    registerPushNotifications(MainActivity, token, UID);
-            }
+                    token = MyFirebaseMessagingService.token;
+                    if (token == null)
+                        fetchFirebaseToken(MainActivity, UID);
+                    else
+                        registerPushNotifications(MainActivity, token, UID);
+                }
 
-            @Override
-            public void onError(CometChatException e) {
-                Log.d(TAG, "Login failed with exception: " + e.getMessage());
-            }
-        });
+                @Override
+                public void onError(CometChatException e) {
+                    Log.d(TAG, "Login failed with exception: " + e.getMessage());
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private static void fetchFirebaseToken(Activity MainActivity, String UID){

@@ -4,14 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import com.cometchat.pro.core.CometChat;
+import com.cometchat.pro.exceptions.CometChatException;
+import com.cometchat.pro.models.User;
 import com.example.explibrarychatsdk.WavelabsChatActivity;
+import com.example.explibrarychatsdk.constants.AppConfig;
 import com.example.explibrarychatsdk.create_user.CreateUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText user_id;
+    EditText _user_id;
     public static String USERNAME = "";
     public static String USER_ID = "";
 
@@ -20,16 +26,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        user_id = findViewById(R.id.user_id);
+        _user_id = findViewById(R.id.view_user_id);
     }
 
     public void arteriaLogin(View view) {
-        USER_ID = user_id.getText().toString();
+        USER_ID = _user_id.getText().toString();
 
-        if(!USER_ID.isEmpty()){
-            WavelabsChatActivity.launchChatScreen(MainActivity.this, USER_ID);
+        if(USER_ID.isEmpty()){
+            if(USER_ID.isEmpty()) _user_id.setError("Please provide User ID");
         }else{
-            if(USER_ID.isEmpty()) user_id.setError("Please provide User ID");
+            WavelabsChatActivity.launchChatScreen(MainActivity.this, USER_ID);
+//            login();
         }
     }
 
