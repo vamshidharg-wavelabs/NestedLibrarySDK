@@ -15,8 +15,8 @@ import com.example.explibrarychatsdk.constants.AppConfig;
 public class ExpLibraryChatSdkApp extends Application {
 
     private static final String TAG = "MY_TESTING_LOGS";
-    public static final String CHANNEL_1_ID = "channel1";
-    public static final String CHANNEL_2_ID = "channel2";
+//    public static final String CHANNEL_1_ID = "channel1";
+//    public static final String CHANNEL_2_ID = "channel2";
 
     @Override
     public void onCreate() {
@@ -46,14 +46,14 @@ public class ExpLibraryChatSdkApp extends Application {
     private void createNotificationChannel() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel1 = new NotificationChannel(
-                    CHANNEL_1_ID,
+                    AppConfig.CHANNEL_1_ID,
                     "channel1",
                     NotificationManager.IMPORTANCE_HIGH
             );
             channel1.setDescription("This is Channel 1");
 
             NotificationChannel channel2 = new NotificationChannel(
-                    CHANNEL_2_ID,
+                    AppConfig.CHANNEL_2_ID,
                     "channel2",
                     NotificationManager.IMPORTANCE_LOW
             );

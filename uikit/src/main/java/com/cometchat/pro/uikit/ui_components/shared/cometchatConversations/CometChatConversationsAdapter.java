@@ -159,6 +159,9 @@ public class CometChatConversationsAdapter extends RecyclerView.Adapter<CometCha
         } else {
             name = ((Group) conversation.getConversationWith()).getName();
             avatar = ((Group) conversation.getConversationWith()).getIcon();
+            if(avatar == null){
+                avatar = "https://static.thenounproject.com/png/58999-200.png";
+            }
             conversationViewHolder.conversationListRowBinding.userStatus.setVisibility(View.GONE);
         }
 
@@ -168,10 +171,15 @@ public class CometChatConversationsAdapter extends RecyclerView.Adapter<CometCha
         conversationViewHolder.conversationListRowBinding.messageCount.setCountBackground(Color.parseColor(UISettings.getColor()));
 
 
+        conversationViewHolder.conversationListRowBinding.avUser.setBackgroundResource(0);
         if (avatar != null && !avatar.isEmpty()) {
             conversationViewHolder.conversationListRowBinding.avUser.setAvatar(avatar);
         } else {
-            conversationViewHolder.conversationListRowBinding.avUser.setInitials(name);
+//            if(conversation.getConversationType().equals(CometChatConstants.RECEIVER_TYPE_GROUP)){
+//                conversationViewHolder.conversationListRowBinding.avUser.setBackgroundResource(R.drawable.ic_baseline_group_24);
+//            }else {
+                conversationViewHolder.conversationListRowBinding.avUser.setInitials(name);
+//            }
         }
 
         if(Utils.isDarkMode(context)) {

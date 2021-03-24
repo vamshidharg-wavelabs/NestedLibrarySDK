@@ -113,12 +113,13 @@ public class CometChatUserProfile extends Fragment {
             moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.light_grey));
         }
 
-        moreInfoScreenBinding.userContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateUserDialog();
-            }
-        });
+        // not required for client
+//        moreInfoScreenBinding.userContainer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                updateUserDialog();
+//            }
+//        });
         return moreInfoScreenBinding.getRoot();
     }
 

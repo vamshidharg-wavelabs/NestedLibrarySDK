@@ -18,13 +18,14 @@ public class Wavelabs extends Application {
     public static final String CHANNEL_1_ID = "channel1";
     public static final String CHANNEL_2_ID = "channel2";
 
-    public static void setAppConstants(Application application, String APP_ID, String REGION, String AUTH_KEY){
+    public static void setAppConstants(Application application, String APP_ID, String REGION, String AUTH_KEY, String CHANNEL1, String CHANNEL2){
         AppConfig.APP_ID = APP_ID;
         AppConfig.REGION = REGION;
         AppConfig.AUTH_KEY = AUTH_KEY;
+        AppConfig.CHANNEL_1_ID = CHANNEL1;
+        AppConfig.CHANNEL_2_ID = CHANNEL2;
 
         initCometChat(application);
-//        createNotificationChannel(application);
     }
 
     public static void initCometChat(Application application){
@@ -42,27 +43,4 @@ public class Wavelabs extends Application {
             }
         });
     }
-
-//    private static void createNotificationChannel(Application application) {
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-//            NotificationChannel channel1 = new NotificationChannel(
-//                    CHANNEL_1_ID,
-//                    "channel1",
-//                    NotificationManager.IMPORTANCE_HIGH
-//            );
-//            channel1.setDescription("This is Channel 1");
-//
-//            NotificationChannel channel2 = new NotificationChannel(
-//                    CHANNEL_2_ID,
-//                    "channel2",
-//                    NotificationManager.IMPORTANCE_LOW
-//            );
-//            channel1.setDescription("This is Channel 2");
-//
-//
-//            NotificationManager manager = application.getSystemService(NotificationManager.class);
-//            manager.createNotificationChannel(channel1);
-//            manager.createNotificationChannel(channel2);
-//        }
-//    }
 }

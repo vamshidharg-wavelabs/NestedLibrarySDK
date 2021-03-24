@@ -33,9 +33,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 
-import static com.example.explibrarychatsdk.ExpLibraryChatSdkApp.CHANNEL_1_ID;
-import static com.example.explibrarychatsdk.ExpLibraryChatSdkApp.CHANNEL_2_ID;
-
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseService";
@@ -148,7 +145,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
             PendingIntent messagePendingIntent = PendingIntent.getActivity(getApplicationContext(),
                     0123,messageIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this,CHANNEL_1_ID)
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this,AppConfig.CHANNEL_1_ID)
                     .setSmallIcon(R.drawable.cc)
                     .setContentTitle(json.getString("title"))
                     .setContentText(json.getString("alert"))
@@ -159,17 +156,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentIntent(messagePendingIntent)
                     .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                    .setOngoing(false)
+                    .setAutoCancel(true);
             if (baseMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_IMAGE)) {
                 builder.setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(getBitmapFromURL(((MediaMessage)baseMessage).getAttachment().getFileUrl())));
             }
-            NotificationCompat.Builder summaryBuilder = new NotificationCompat.Builder(this,CHANNEL_2_ID)
+            NotificationCompat.Builder summaryBuilder = new NotificationCompat.Builder(this,AppConfig.CHANNEL_2_ID)
                     .setContentTitle("CometChat")
                     .setContentText(count+" messages")
                     .setSmallIcon(R.drawable.cc)
                     .setGroup(GROUP_ID)
-                    .setGroupSummary(true);
+                    .setGroupSummary(true)
+                    .setAutoCancel(true);
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
             if (isCall){
