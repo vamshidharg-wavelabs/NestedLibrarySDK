@@ -180,7 +180,7 @@ public class CometChatCreateGroup extends Fragment {
     private void createGroup() {
         if (!etGroupName.getText().toString().isEmpty()) {
             if(groupType.equals(CometChatConstants.GROUP_TYPE_PUBLIC) || groupType.equals(CometChatConstants.GROUP_TYPE_PRIVATE)) {
-                Group group = new Group("group" + generateRandomString(25), etGroupName.getText().toString(), groupType, "");
+                Group group = new Group(generateRandomString(25), etGroupName.getText().toString(), groupType, "");
                 createGroup(group);
             }
             else if (groupType.equals(CometChatConstants.GROUP_TYPE_PASSWORD)) {
@@ -189,7 +189,7 @@ public class CometChatCreateGroup extends Fragment {
                 else if (etGroupCnfPassword.getText().toString().isEmpty())
                     etGroupCnfPassword.setError(getResources().getString(R.string.fill_this_field));
                 else if(etGroupPassword.getText().toString().equals(etGroupCnfPassword.getText().toString())) {
-                    Group group = new Group("group" + generateRandomString(25), etGroupName.getText().toString(), groupType, etGroupPassword.getText().toString());
+                    Group group = new Group(generateRandomString(25), etGroupName.getText().toString(), groupType, etGroupPassword.getText().toString());
                     createGroup(group);
                 }
                 else

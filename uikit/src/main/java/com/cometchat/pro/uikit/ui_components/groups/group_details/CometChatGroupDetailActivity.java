@@ -40,6 +40,7 @@ import com.cometchat.pro.models.GroupMember;
 import com.cometchat.pro.models.User;
 
 import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
+import com.cometchat.pro.uikit.ui_components.messages.message_list.CometChatMessageListActivity;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatSharedMedia.CometChatSharedMedia;
@@ -378,6 +379,23 @@ public class CometChatGroupDetailActivity extends AppCompatActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CometChatGroupDetailActivity.this, CometChatMessageListActivity.class);
+
+        intent.putExtra(UIKitConstants.IntentStrings.NAME, gName);
+        intent.putExtra(UIKitConstants.IntentStrings.TYPE, CometChatConstants.RECEIVER_TYPE_GROUP);
+        intent.putExtra(UIKitConstants.IntentStrings.GUID, guid);
+        intent.putExtra(UIKitConstants.IntentStrings.GROUP_OWNER,"");
+        intent.putExtra(UIKitConstants.IntentStrings.MEMBER_COUNT,groupMemberCount);
+        intent.putExtra(UIKitConstants.IntentStrings.GROUP_TYPE,groupType);
+        intent.putExtra(UIKitConstants.IntentStrings.GROUP_DESC,gDesc);
+        intent.putExtra(UIKitConstants.IntentStrings.GROUP_PASSWORD,"");
+
+        startActivity(intent);
+        finish();
     }
 
     @Override

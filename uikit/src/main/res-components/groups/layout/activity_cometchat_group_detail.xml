@@ -36,6 +36,15 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     tools:src="@tools:sample/avatars" />
+<!--                android:visibility="invisible"-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_group_drawable"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:tint="@color/dark_blue"-->
+<!--                    android:src="@drawable/ic_baseline_group_24"/>-->
 
                 <LinearLayout
                     android:layout_toStartOf="@id/video_callBtn_iv"

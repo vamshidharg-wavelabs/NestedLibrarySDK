@@ -28,7 +28,7 @@ public class WavelabsChatActivity {
                 public void onSuccess(User user) {
                     Log.d(TAG, "Login Successful: " + user.toString());
 
-                    token = MyFirebaseMessagingService.token;
+                    token = MyFirebaseMessagingService.token; // firebaseInstance
                     if (token == null)
                         fetchFirebaseToken(MainActivity, UID);
                     else

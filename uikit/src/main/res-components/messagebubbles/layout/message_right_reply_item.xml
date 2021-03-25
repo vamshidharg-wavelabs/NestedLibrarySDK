@@ -32,6 +32,7 @@
             android:id="@+id/reply_media"
             android:layout_marginLeft="16dp"
             tools:src="@tools:sample/avatars"
+            android:visibility="gone"
             android:layout_width="24dp"
             android:layout_height="24dp"/>
     </LinearLayout>

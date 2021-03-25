@@ -26,6 +26,7 @@ public class App extends Application {
                     NotificationManager.IMPORTANCE_HIGH
             );
             channel1.setDescription("This is Channel 1");
+            channel1.setShowBadge(true);
 
             NotificationChannel channel2 = new NotificationChannel(
                     AppConstants.CHANNEL_2_ID,
@@ -33,7 +34,7 @@ public class App extends Application {
                     NotificationManager.IMPORTANCE_LOW
             );
             channel1.setDescription("This is Channel 2");
-
+            channel1.setShowBadge(true);
 
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel1);

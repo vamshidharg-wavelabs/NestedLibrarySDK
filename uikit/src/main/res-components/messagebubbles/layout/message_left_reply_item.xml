@@ -31,6 +31,7 @@
             android:layout_toRightOf="@+id/reply_user"
             tools:src="@tools:sample/avatars"
             android:id="@+id/reply_media"
+            android:visibility="gone"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
     </LinearLayout>

@@ -27,6 +27,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
 
+import java.util.List;
+
 /**
  * CometChatStartCallActivity is activity class which is used to start a call. It takes sessionID
  * as a parameter and start call for particular sessionID.
@@ -107,6 +109,11 @@ public class CometChatStartCallActivity extends AppCompatActivity {
                     Log.e("TAG", "onCallEnded: ");
                     finish();
                 }
+
+            @Override
+            public void onUserListUpdated(List<User> list) {
+
+            }
         });
     }
 

@@ -351,6 +351,11 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
+//        try {
+//            Thread.sleep(2000);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
         conversationsRequest = null;
         searchEdit.addTextChangedListener(this);
         rvConversationList.clearList();

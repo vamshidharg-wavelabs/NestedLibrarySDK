@@ -5,6 +5,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -1685,45 +1686,45 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 textMessage = new TextMessage(Id, message, CometChatConstants.RECEIVER_TYPE_USER);
             else
                 textMessage = new TextMessage(Id, message, CometChatConstants.RECEIVER_TYPE_GROUP);
-            JSONObject jsonObject = new JSONObject();
             JSONObject replyObject = new JSONObject();
+            replyObject.put("type", "reply");
             if (baseMessage.getCategory().equals(CometChatConstants.CATEGORY_MESSAGE)) {
                 if (baseMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_TEXT)) {
-                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_TEXT);
+//                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_TEXT);
                     replyObject.put("message", ((TextMessage) baseMessage).getText());
                 } else if (baseMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_IMAGE)) {
-                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_IMAGE);
-                    replyObject.put("message", "image");
+//                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_IMAGE);
+                    replyObject.put("message", getString(R.string.shared_a_image));
                 } else if (baseMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_VIDEO)) {
-                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_VIDEO);
-                    replyObject.put("message", "video");
+//                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_VIDEO);
+                    replyObject.put("message", getString(R.string.shared_a_video));
                 } else if (baseMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_FILE)) {
-                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_FILE);
-                    replyObject.put("message", "file");
+//                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_FILE);
+                    replyObject.put("message",getString(R.string.shared_a_file));
                 } else if (baseMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_AUDIO)) {
-                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_AUDIO);
-                    replyObject.put("message", "audio");
+//                    replyObject.put("type", CometChatConstants.MESSAGE_TYPE_AUDIO);
+                    replyObject.put("message", getString(R.string.shared_a_audio));
                 }
             } else if (baseMessage.getType().equals(UIKitConstants.IntentStrings.LOCATION)) {
-                replyObject.put("type", UIKitConstants.IntentStrings.LOCATION);
-                replyObject.put("message","location");
+//                replyObject.put("type", UIKitConstants.IntentStrings.LOCATION);
+                replyObject.put("message",getString(R.string.shared_location));
             } else if (baseMessage.getType().equals(UIKitConstants.IntentStrings.POLLS)) {
-                replyObject.put("type", UIKitConstants.IntentStrings.POLLS);
-                replyObject.put("message",((CustomMessage)baseMessage).getCustomData().getString("question"));
+//                replyObject.put("type", UIKitConstants.IntentStrings.POLLS);
+                replyObject.put("message",getString(R.string.shared_a_polls));
             } else if (baseMessage.getType().equals(UIKitConstants.IntentStrings.STICKERS)) {
-                replyObject.put("type", UIKitConstants.IntentStrings.STICKERS);
-                replyObject.put("message","Sticker");
+//                replyObject.put("type", UIKitConstants.IntentStrings.STICKERS);
+                replyObject.put("message",getString(R.string.shared_a_sticker));
             } else if (baseMessage.getType().equals(UIKitConstants.IntentStrings.WHITEBOARD)) {
-                replyObject.put("type", UIKitConstants.IntentStrings.WHITEBOARD);
-                replyObject.put("message","whiteBoard");
+//                replyObject.put("type", UIKitConstants.IntentStrings.WHITEBOARD);
+                replyObject.put("message",getString(R.string.shared_a_whiteboard));
             } else if (baseMessage.getType().equals(UIKitConstants.IntentStrings.WRITEBOARD)) {
-                replyObject.put("type", UIKitConstants.IntentStrings.WRITEBOARD);
-                replyObject.put("message","writeboard");
+//                replyObject.put("type", UIKitConstants.IntentStrings.WRITEBOARD);
+                replyObject.put("message",getString(R.string.shared_a_writeboard));
             }
             replyObject.put("name",baseMessage.getSender().getName());
             replyObject.put("avatar",baseMessage.getSender().getAvatar());
-            jsonObject.put("reply",replyObject);
-            textMessage.setMetadata(jsonObject);
+//            jsonObject.put("reply",replyObject);
+            textMessage.setMetadata(replyObject);
             sendTypingIndicator(true);
             CometChat.sendMessage(textMessage, new CometChat.CallbackListener<TextMessage>() {
                 @Override
@@ -1734,7 +1735,6 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                         scrollToBottom();
                     }
                 }
-
                 @Override
                 public void onError(CometChatException e) {
                     Log.e(TAG, "onError: "+e.getMessage());
@@ -2220,6 +2220,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 intent.putExtra(UIKitConstants.IntentStrings.GROUP_DESC,groupDesc);
                 intent.putExtra(UIKitConstants.IntentStrings.GROUP_PASSWORD,groupPassword);
                 startActivity(intent);
+                getActivity().finish();
             }
         }
     }
