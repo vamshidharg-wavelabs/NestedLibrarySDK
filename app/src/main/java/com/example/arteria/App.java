@@ -20,6 +20,8 @@ public class App extends Application {
 
     private void createNotificationChannel() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+
             NotificationChannel channel1 = new NotificationChannel(
                     AppConstants.CHANNEL_1_ID,
                     "channel1",
@@ -27,6 +29,8 @@ public class App extends Application {
             );
             channel1.setDescription("This is Channel 1");
             channel1.setShowBadge(true);
+
+
 
             NotificationChannel channel2 = new NotificationChannel(
                     AppConstants.CHANNEL_2_ID,

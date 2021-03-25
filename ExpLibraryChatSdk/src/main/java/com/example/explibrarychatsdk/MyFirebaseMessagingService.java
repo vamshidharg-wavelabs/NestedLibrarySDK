@@ -207,3 +207,80 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         return callIntent;
     }
 }
+
+
+//    private void showNotifcation(BaseMessage baseMessage) {
+//
+//        try {
+//            int m = (int) ((new Date().getTime()));
+//            String GROUP_ID = "group_id";
+//            Intent messageIntent = new Intent(getApplicationContext(), CometChatMessageListActivity.class);
+//            messageIntent.putExtra(UIKitConstants.IntentStrings.TYPE,baseMessage.getReceiverType());
+//            if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.NAME,baseMessage.getSender().getName());
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.UID,baseMessage.getSender().getUid());
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.AVATAR,baseMessage.getSender().getAvatar());
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.STATUS,baseMessage.getSender().getStatus());
+//            } else if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_GROUP)) {
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.GUID,((Group)baseMessage.getReceiver()).getGuid());
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.NAME,((Group)baseMessage.getReceiver()).getName());
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.GROUP_DESC,((Group) baseMessage.getReceiver()).getDescription());
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.GROUP_TYPE,((Group) baseMessage.getReceiver()).getGroupType());
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.GROUP_OWNER,((Group) baseMessage.getReceiver()).getOwner());
+//                messageIntent.putExtra(UIKitConstants.IntentStrings.MEMBER_COUNT,((Group) baseMessage.getReceiver()).getMembersCount());
+//            }
+//            PendingIntent messagePendingIntent = PendingIntent.getActivity(getApplicationContext(),
+//                    0123,messageIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+//            NotificationCompat.Builder builder = new NotificationCompat.Builder(this,AppConfig.CHANNEL_1_ID)
+//                    .setSmallIcon(R.drawable.cc)
+//                    .setContentTitle(json.getString("title"))
+//                    .setContentText(json.getString("alert"))
+//                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+//                    .setColor(getResources().getColor(R.color.colorPrimary))
+//                    .setLargeIcon(getBitmapFromURL(baseMessage.getSender().getAvatar()))
+////                    .setNumber(messageCount)
+//                    .setGroup(GROUP_ID)
+//                    .setContentIntent(messagePendingIntent)
+//                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+//                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+//                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+////                    .setDefaults(-1)
+//                    .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000})
+//                    .setOngoing(false)
+//                    .setAutoCancel(true);
+//            if (baseMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_IMAGE)) {
+//                builder.setStyle(new NotificationCompat.BigPictureStyle()
+//                        .bigPicture(getBitmapFromURL(((MediaMessage)baseMessage).getAttachment().getFileUrl())));
+//            }
+//            NotificationCompat.Builder summaryBuilder = new NotificationCompat.Builder(this,AppConfig.CHANNEL_2_ID)
+//                    .setContentTitle("CometChat")
+//                    .setContentText(count+" messages")
+//                    .setSmallIcon(R.drawable.cc)
+//                    .setGroup(GROUP_ID)
+//                    .setGroupSummary(true)
+//                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+////                    .setDefaults(-1)
+//                    .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000})
+//                    .setAutoCancel(true);
+//            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+//
+//            if (isCall){
+//                builder.setGroup(GROUP_ID+"Call");
+//                if (json.getString("alert").equals("Incoming audio call") || json.getString("alert").equals("Incoming video call")) {
+//                    builder.setOngoing(true);
+//                    builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+//                    builder.addAction(0, "Answers", PendingIntent.getBroadcast(getApplicationContext(), REQUEST_CODE, getCallIntent("Answers"), PendingIntent.FLAG_UPDATE_CURRENT));
+//                    builder.addAction(0, "Decline", PendingIntent.getBroadcast(getApplicationContext(), 1, getCallIntent("Decline"), PendingIntent.FLAG_UPDATE_CURRENT));
+//                }
+//                notificationManager.notify(05,builder.build());
+//            }
+//            else {
+//                notificationManager.notify(baseMessage.getId(), builder.build());
+//                notificationManager.notify(0, summaryBuilder.build());
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
