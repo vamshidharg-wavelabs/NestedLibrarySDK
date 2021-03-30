@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cometchat.pro.core.CometChat;
 import com.example.explibrarychatsdk.WavelabsChatActivity;
 
 public class ChatLaunch extends AppCompatActivity {
@@ -16,6 +17,12 @@ public class ChatLaunch extends AppCompatActivity {
     }
 
     public void launchChatApp(View view) {
-        WavelabsChatActivity.launchChatScreen(ChatLaunch.this, MainActivity.USER_ID);
+        String UID = "";
+        if(CometChat.getLoggedInUser() != null){
+            UID = CometChat.getLoggedInUser().getUid();
+        }else{
+            UID = MainActivity.USER_ID;
+        }
+        WavelabsChatActivity.launchChatScreen(ChatLaunch.this, UID);
     }
 }

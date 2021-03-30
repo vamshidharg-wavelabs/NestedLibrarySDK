@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.cometchat.pro.core.CometChat;
 import com.example.explibrarychatsdk.WavelabsChatActivity;
 import com.example.explibrarychatsdk.create_user.CreateUser;
 
@@ -18,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(CometChat.getLoggedInUser() != null){
+            startActivity(new Intent(MainActivity.this, ChatLaunch.class));
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -31,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
             if(USER_ID.isEmpty()) _user_id.setError("Please provide User ID");
         }else{
             startActivity(new Intent(MainActivity.this, ChatLaunch.class));
-//            WavelabsChatActivity.launchChatScreen(MainActivity.this, USER_ID);
-//            login();
         }
     }
 

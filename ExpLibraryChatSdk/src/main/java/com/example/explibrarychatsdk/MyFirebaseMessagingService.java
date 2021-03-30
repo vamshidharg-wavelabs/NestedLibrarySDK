@@ -158,8 +158,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-//                    .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
-                    .setVibrate(new long[] { 1000, 1000})
+//                    .setVibrate(new long[] { 1000, 1000})
+                    .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000})
                     .setOngoing(false)
                     .setAutoCancel(true);
             if (baseMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_IMAGE)) {
@@ -181,8 +181,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     builder.setOngoing(true);
                     builder.setPriority(NotificationCompat.PRIORITY_HIGH);
                     builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-//                    builder.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 });
-                    builder.setVibrate(new long[] { 1000, 1000});
+//                    builder.setVibrate(new long[] { 1000, 1000});
+                    builder.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000});
                     builder.addAction(0, "Answers", PendingIntent.getBroadcast(getApplicationContext(), REQUEST_CODE, getCallIntent("Answers"), PendingIntent.FLAG_UPDATE_CURRENT));
                     builder.addAction(0, "Decline", PendingIntent.getBroadcast(getApplicationContext(), 1, getCallIntent("Decline"), PendingIntent.FLAG_UPDATE_CURRENT));
                 }

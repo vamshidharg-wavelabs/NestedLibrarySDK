@@ -1,5 +1,6 @@
 package com.cometchat.pro.uikit.ui_components.messages.forward_message;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -15,7 +16,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +29,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.cometchat.pro.constants.CometChatConstants;
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.core.ConversationsRequest;
+import com.cometchat.pro.core.UsersRequest;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.Attachment;
 import com.cometchat.pro.models.Conversation;
@@ -38,6 +39,7 @@ import com.cometchat.pro.models.MediaMessage;
 import com.cometchat.pro.models.TextMessage;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
+import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
@@ -79,6 +81,9 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
     private CometChatConversationsAdapter conversationListAdapter;
 
     private ConversationsRequest conversationsRequest;
+
+    private UsersRequest usersRequest;
+    private List<Conversation> newUsersList = new ArrayList<>();
 
     private EditText etSearch;
 
@@ -523,9 +528,24 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
         conversationsRequest.fetchNext(new CometChat.CallbackListener<List<Conversation>>() {
             @Override
             public void onSuccess(List<Conversation> conversationsList) {
+                List<Conversation> convoList = new ArrayList<>();
                 if (conversationsList.size() != 0) {
 
+                    for(Conversation conversation: conversationsList){
+                        Conversation convo = new Conversation(conversation.getConversationId(), conversation.getConversationType());
+                        convo.setConversationWith(conversation.getConversationWith());
+                        convo.setLastMessage(conversation.getLastMessage());
+                        convoList.add(convo);
+                    }
                     setAdapter(conversationsList);
+                    newUsersList.addAll(convoList);
+
+                    if(conversationsList.size() < 40){
+                        fetchUsers();
+                    }
+                }
+                else{
+                    fetchUsers();
                 }
             }
 
@@ -535,6 +555,70 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
                         rvConversationList, e.getMessage(), true);
             }
         });
+    }
+
+    private void fetchUsers() {
+
+        if (usersRequest == null) {
+            if (UISettings.getUserListing()
+                    .equalsIgnoreCase("friends"))
+                usersRequest = new UsersRequest.UsersRequestBuilder().setLimit(30)
+                        .friendsOnly(true).build();
+            else if (UISettings.getUserListing()
+                    .equalsIgnoreCase("all_users"))
+                usersRequest = new UsersRequest.UsersRequestBuilder().setLimit(30).build();
+        }
+        usersRequest.fetchNext(new CometChat.CallbackListener<List<User>>() {
+            @Override
+            public void onSuccess(List<User> users) {
+                Log.e(TAG, "onfetchSuccess: "+users.size() );
+//                userList.addAll(users);
+                convertUsersToNewConversation(users);
+            }
+
+            @Override
+            public void onError(CometChatException e) {
+                Log.e(TAG, "onError: " + e.getMessage());
+            }
+        });
+    }
+
+    private void convertUsersToNewConversation(List<User> users){
+        List<Conversation> convList = newUsersList;
+        List<Conversation> newFetchedUsers = new ArrayList<>();
+//        for(Conversation convo: convList){
+//            if(convo.getConversationType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
+//                for (User user : users) {
+//                    if(!((User) convo.getConversationWith()).getUid().equals(user.getUid())){
+//                        @SuppressLint("WrongConstant") Conversation newuser = new Conversation(user.getUid(), CometChatConstants.RECEIVER_TYPE_USER);
+//                        newuser.setConversationWith(user);
+//                        newuser.setLastMessage(null);
+//                        newFetchedUsers.add(newuser);
+//                    }
+//                }
+//            }
+//        }
+
+        for(User user: users){
+            Boolean isUserPresent = false;
+            for(Conversation convo: convList){
+                if(convo.getConversationType().equals(CometChatConstants.RECEIVER_TYPE_USER)
+                    && ((User) convo.getConversationWith()).getUid().equals(user.getUid())) {
+                    isUserPresent = true;
+                }
+            }
+            if(!isUserPresent){
+                @SuppressLint("WrongConstant") Conversation newuser = new Conversation(user.getUid(), CometChatConstants.RECEIVER_TYPE_USER);
+                newuser.setConversationWith(user);
+                newuser.setLastMessage(null);
+                newFetchedUsers.add(newuser);
+            }
+        }
+
+        if(newFetchedUsers.size() > 0){
+            setAdapter(newFetchedUsers);
+            newUsersList.addAll(newFetchedUsers);
+        }
     }
 
     private void setAdapter(List<Conversation> conversations) {
