@@ -186,7 +186,7 @@ public class CometChatConversationsAdapter extends RecyclerView.Adapter<CometCha
             conversationViewHolder.conversationListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhite));
             conversationViewHolder.conversationListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.grey));
         } else {
-            conversationViewHolder.conversationListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            conversationViewHolder.conversationListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
             conversationViewHolder.conversationListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
         }
         conversationViewHolder.conversationListRowBinding.getRoot().setTag(R.string.conversation, conversation);

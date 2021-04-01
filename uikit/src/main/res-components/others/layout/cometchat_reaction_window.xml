@@ -19,7 +19,7 @@
         android:layout_gravity="bottom"
         app:elevation="8dp"
         app:labelVisibilityMode="unlabeled"
-        app:itemTextColor="@color/colorPrimaryDark"
+        app:itemTextColor="@color/colorPrimaryDarkuikit"
         app:itemIconSize="24dp"
         app:menu="@menu/cometchat_reaction_nav" />
 

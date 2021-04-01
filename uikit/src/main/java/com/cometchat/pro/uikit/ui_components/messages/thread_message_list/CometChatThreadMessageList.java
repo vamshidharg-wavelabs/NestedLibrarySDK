@@ -474,8 +474,8 @@ public class CometChatThreadMessageList extends Fragment implements View.OnClick
                     textViewOption.setTextAppearance(context, R.style.TextAppearance_AppCompat_Medium);
                     textViewPercentage.setTextAppearance(context, R.style.TextAppearance_AppCompat_Medium);
 
-                    textViewPercentage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
-                    textViewOption.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+                    textViewPercentage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
+                    textViewOption.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
                     String optionStr = options.getString(String.valueOf(k + 1));
                     if (voteCount>0) {
@@ -690,15 +690,15 @@ public class CometChatThreadMessageList extends Fragment implements View.OnClick
             rvChatListView.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
             tvName.setTextColor(getResources().getColor(R.color.textColorWhite));
         } else {
-            ivMoreOption.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColor)));
-            ivForwardMessage.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColor)));
+            ivMoreOption.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColoruikit)));
+            ivForwardMessage.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColoruikit)));
             bottomLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
             toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
             editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
             composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
             rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            tvName.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            tvName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
 
         KeyBoardUtils.setKeyboardVisibilityListener(getActivity(),(View) rvChatListView.getParent(), keyboardVisible -> {

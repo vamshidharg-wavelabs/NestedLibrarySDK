@@ -924,7 +924,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             viewHolder.txtMessage.setText(message[0]);
             viewHolder.txtMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoRegular));
 
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
             PatternUtils.setHyperLinkSupport(context,viewHolder.txtMessage);
             showMessageTime(viewHolder, baseMessage);
@@ -978,7 +978,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             viewHolder.txtMessage.setText(context.getResources().getString(R.string.custom_message));
             viewHolder.txtMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoLight));
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
             showMessageTime(viewHolder, baseMessage);
             if (messageList.get(messageList.size()-1).equals(baseMessage))

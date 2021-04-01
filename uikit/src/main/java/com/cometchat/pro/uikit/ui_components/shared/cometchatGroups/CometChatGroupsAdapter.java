@@ -107,7 +107,7 @@ public class CometChatGroupsAdapter extends RecyclerView.Adapter<CometChatGroups
             groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.grey));
         } else {
             groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.message_bubble_grey)));
-            groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
             groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
         }
     }

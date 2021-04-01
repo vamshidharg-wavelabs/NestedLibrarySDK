@@ -10,7 +10,7 @@
         android:text="@string/users"
         android:visibility="gone"
         tools:visibility="visible"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/primaryTextColoruikit"
         android:textSize="22sp"
         android:textStyle="bold"
         android:layout_margin="16dp"

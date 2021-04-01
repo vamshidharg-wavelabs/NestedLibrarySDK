@@ -32,7 +32,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -125,7 +124,7 @@ public class CometChatUserList extends Fragment {
         if(Utils.isDarkMode(getContext())) {
             title.setTextColor(getResources().getColor(R.color.textColorWhite));
         } else {
-            title.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            title.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
 
         etSearch.addTextChangedListener(new TextWatcher() {

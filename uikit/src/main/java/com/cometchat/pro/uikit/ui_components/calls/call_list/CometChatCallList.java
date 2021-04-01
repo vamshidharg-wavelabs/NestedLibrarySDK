@@ -103,8 +103,8 @@ public class CometChatCallList extends Fragment {
             tabLayout.setSelectedTabIndicatorColor(Color.parseColor(UISettings.getColor()));
         } else {
             tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).
-                    view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-            tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
+                    view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
+            tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryuikit));
         }
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -116,7 +116,7 @@ public class CometChatCallList extends Fragment {
                     tab.view.setBackground(wrappedDrawable);
                 }
                 else
-                    tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
             }
 
             @Override
@@ -139,9 +139,9 @@ public class CometChatCallList extends Fragment {
             tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
             tabLayout.setTabTextColors(getResources().getColor(R.color.textColorWhite),getResources().getColor(R.color.light_grey));
         } else {
-            tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
             tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            tabLayout.setTabTextColors(getResources().getColor(R.color.primaryTextColor),getResources().getColor(R.color.textColorWhite));
+            tabLayout.setTabTextColors(getResources().getColor(R.color.primaryTextColoruikit),getResources().getColor(R.color.textColorWhite));
         }
 
     }

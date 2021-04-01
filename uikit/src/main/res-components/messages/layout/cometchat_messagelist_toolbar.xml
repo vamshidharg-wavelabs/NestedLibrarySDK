@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
         <ImageView
             tools:visibility="visible"
-            android:tint="@color/colorPrimary"
+            android:tint="@color/colorPrimaryuikit"
             android:visibility="gone"
             android:id="@+id/iv_close_message_action"
             android:layout_centerVertical="true"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"/>
         <ImageView
             tools:visibility="visible"
-            android:tint="@color/colorPrimary"
+            android:tint="@color/colorPrimaryuikit"
             android:visibility="gone"
             android:id="@+id/iv_copy_message_action"
             android:layout_centerVertical="true"
@@ -56,7 +56,7 @@
                 android:layout_centerHorizontal="true"
                 tools:text="@tools:sample/full_names"
                 android:layout_width="wrap_content"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/primaryTextColoruikit"
                 android:layout_height="wrap_content"/>
 
             <TextView

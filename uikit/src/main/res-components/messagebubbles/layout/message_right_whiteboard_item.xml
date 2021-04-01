@@ -15,7 +15,7 @@
         android:id="@+id/rl_message">
         <RelativeLayout
             android:background="@drawable/cc_message_bubble_right"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimaryuikit"
             android:layout_alignParentRight="true"
             android:id="@+id/cv_message_container"
             android:layout_width="250dp"
@@ -50,7 +50,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/primaryTextColoruikit"
                 app:backgroundTint="@color/textColorWhite"
                 app:cornerRadius="8dp"
                 android:id="@+id/join_whiteboard"
@@ -99,7 +99,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryuikit"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

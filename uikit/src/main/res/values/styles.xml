@@ -1,5 +1,8 @@
 <resources>
 
+    <style name="Theme.uikit" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <item name="android:textColor">@color/primaryTextColoruikit</item>
+    </style>
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
     <style name="TransparentCompat" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
@@ -7,8 +10,10 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/colorPrimaryuikit</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+
+        <item name="android:textColor">@color/primaryTextColoruikit</item>
     </style>
 
     <style name="AppTheme.DialogAnimation">

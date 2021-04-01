@@ -23,6 +23,6 @@ public class ChatLaunch extends AppCompatActivity {
         }else{
             UID = MainActivity.USER_ID;
         }
-        WavelabsChatActivity.launchChatScreen(ChatLaunch.this, UID);
+        WavelabsChatActivity.launchChatScreen(ChatLaunch.this, MainActivity.USER_ID);
     }
 }

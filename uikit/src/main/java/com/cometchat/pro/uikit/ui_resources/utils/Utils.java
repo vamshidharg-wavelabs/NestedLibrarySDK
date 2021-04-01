@@ -1,7 +1,5 @@
 package com.cometchat.pro.uikit.ui_resources.utils;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -107,7 +105,7 @@ public class Utils {
             snackbar.setDuration(Snackbar.LENGTH_LONG);
             iconImage.setImageResource(R.drawable.ic_baseline_check_circle_24);
             iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.green_600)));
-            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.primaryTextColor)));
+            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.primaryTextColoruikit)));
             dialogView.setBackgroundColor(context.getResources().getColor(R.color.textColorWhite));
         }
         closeImage.setOnClickListener(v-> {

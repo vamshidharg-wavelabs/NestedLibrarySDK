@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content" />
             <LinearLayout
                 android:background="@drawable/cc_rounded_date_button"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorPrimaryDarkuikit"
                 android:padding="5dp"
                 android:gravity="center_horizontal"
                 android:layout_toRightOf="@+id/tvFileName"
@@ -105,7 +105,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryuikit"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

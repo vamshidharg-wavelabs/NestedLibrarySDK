@@ -33,7 +33,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,7 +48,6 @@ import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -108,7 +106,7 @@ public class CometChatNewCallList extends AppCompatActivity {
                     Color.parseColor(UISettings.getColor())));
         } else
             imageView.setImageTintList(
-                    ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+                    ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
 
         imageView.setClickable(true);
         imageView.setPadding(8,8,8,8);

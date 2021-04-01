@@ -67,8 +67,6 @@ import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 
-import okhttp3.internal.Util;
-
 import static com.cometchat.pro.uikit.ui_resources.utils.Utils.UserToGroupMember;
 
 
@@ -334,8 +332,8 @@ public class CometChatGroupDetailActivity extends AppCompatActivity {
             dividerBan.setBackgroundColor(getResources().getColor(R.color.grey));
             divider2.setBackgroundColor(getResources().getColor(R.color.grey));
         } else {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.primaryTextColor));
-            tvGroupName.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            tvGroupName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
             dividerAdmin.setBackgroundColor(getResources().getColor(R.color.light_grey));
             dividerModerator.setBackgroundColor(getResources().getColor(R.color.light_grey));
             dividerBan.setBackgroundColor(getResources().getColor(R.color.light_grey));

@@ -45,7 +45,7 @@
                 android:maxWidth="240dp"
                 android:paddingLeft="8dp"
                 android:paddingTop="16dp"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/primaryTextColoruikit"
                 android:textStyle="bold"
                 tools:text="What color is rose ?" />
 
@@ -71,7 +71,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="16dp"
                 android:textStyle="italic"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/primaryTextColoruikit"
                 tools:text="2 Votes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -104,7 +104,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryuikit"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

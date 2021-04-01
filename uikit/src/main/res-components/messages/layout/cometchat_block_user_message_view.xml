@@ -13,7 +13,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <TextView
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/primaryTextColoruikit"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
         android:id="@+id/tv_blocked_user_name"

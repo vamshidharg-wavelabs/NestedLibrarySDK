@@ -155,7 +155,7 @@
                             android:textStyle="bold"
                             android:textSize="8sp"
                             android:paddingBottom="2dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorPrimaryuikit"
                             android:visibility="visible" />
                     </LinearLayout>
                 </RelativeLayout>
@@ -179,7 +179,7 @@
                         android:maxWidth="240dp"
                         android:paddingLeft="8dp"
                         android:paddingTop="16dp"
-                        android:textColor="@color/primaryTextColor"
+                        android:textColor="@color/primaryTextColoruikit"
                         android:textStyle="bold"
                         tools:text="What color is rose ?" />
 
@@ -205,7 +205,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginBottom="16dp"
                         android:textStyle="italic"
-                        android:textColor="@color/primaryTextColor"
+                        android:textColor="@color/primaryTextColoruikit"
                         tools:text="2 Votes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -245,7 +245,7 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginBottom="8dp"
                         app:backgroundTint="@color/textColorWhite"
-                        android:textColor="@color/primaryTextColor"
+                        android:textColor="@color/primaryTextColoruikit"
                         app:cornerRadius="16dp"
                         android:id="@+id/join_whiteboard"
                         android:layout_height="wrap_content"/>
@@ -331,7 +331,7 @@
                         android:id="@+id/ic_forward_option"
                         android:clickable="true"
                         android:foreground="?selectableItemBackground"
-                        android:tint="@color/primaryTextColor"
+                        android:tint="@color/primaryTextColoruikit"
                         android:src="@drawable/ic_baseline_forward_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

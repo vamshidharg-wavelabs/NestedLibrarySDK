@@ -10,7 +10,7 @@
         app:cardCornerRadius="16dp"
         android:id="@+id/incoming_call_view"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/primaryTextColor"
+        app:cardBackgroundColor="@color/primaryTextColoruikit"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:padding="16dp"
@@ -65,7 +65,7 @@
                     android:text="Answer"
                     android:id="@+id/accept_incoming"
                     android:layout_marginTop="16dp"
-                    app:backgroundTint="@color/colorPrimary"
+                    app:backgroundTint="@color/colorPrimaryuikit"
                     android:layout_marginLeft="16dp"
                     app:cornerRadius="8dp"
                     android:paddingLeft="32dp"
@@ -75,7 +75,7 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
     <RelativeLayout
-        android:background="@color/primaryTextColor"
+        android:background="@color/primaryTextColoruikit"
         android:id="@+id/outgoing_call_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

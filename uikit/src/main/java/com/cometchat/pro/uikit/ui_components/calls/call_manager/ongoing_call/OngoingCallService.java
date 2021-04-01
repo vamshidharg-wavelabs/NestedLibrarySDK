@@ -57,7 +57,7 @@ public class OngoingCallService extends Service {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,"2");
         Notification notification = notificationBuilder.setOngoing(true)
                 .setSmallIcon(R.drawable.cc)
-                .setColor(getResources().getColor(R.color.colorPrimary))
+                .setColor(getResources().getColor(R.color.colorPrimaryuikit))
                 .setContentTitle(getResources().getString(R.string.tap_to_join_call))
                 .setPriority(NotificationManager.IMPORTANCE_HIGH)
                 .setContentIntent(pendingIntent)

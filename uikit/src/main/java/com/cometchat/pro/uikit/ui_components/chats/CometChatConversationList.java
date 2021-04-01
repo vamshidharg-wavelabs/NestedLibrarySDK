@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.core.ConversationsRequest;
@@ -145,7 +144,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
         if(Utils.isDarkMode(getContext())) {
             tvTitle.setTextColor(getResources().getColor(R.color.textColorWhite));
         } else {
-            tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
     }
 

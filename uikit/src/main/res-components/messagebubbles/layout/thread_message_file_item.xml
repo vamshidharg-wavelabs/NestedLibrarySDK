@@ -18,7 +18,7 @@
             android:layout_width="50dp"
             android:id="@+id/iv_user"
             app:border_width="0.5dp"
-            app:border_color="@color/colorPrimary"
+            app:border_color="@color/colorPrimaryuikit"
             tools:src="@tools:sample/avatars"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
@@ -49,7 +49,7 @@
                 android:id="@+id/tvFileName"
                 android:layout_width="wrap_content"
                 tools:text="File Name"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/primaryTextColoruikit"
                 android:focusable="true"
                 android:ellipsize="end"
                 android:singleLine="true"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:tint="@color/primaryTextColor"
+                    android:tint="@color/primaryTextColoruikit"
                     android:id="@+id/ivIcon"
                     android:src="@drawable/ic_insert_drive_file_black_24dp"
                     android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
                     android:textStyle="bold"
                     android:textSize="8sp"
                     android:paddingBottom="2dp"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="@color/primaryTextColoruikit"
                     android:visibility="visible" />
             </LinearLayout>
         </RelativeLayout>

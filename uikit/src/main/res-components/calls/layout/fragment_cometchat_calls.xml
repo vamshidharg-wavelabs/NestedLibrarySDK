@@ -14,7 +14,7 @@
             android:text="@string/calls"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@color/primaryTextColor"
+            android:textColor="@color/primaryTextColoruikit"
             android:id="@+id/tv_title"
             android:layout_margin="16dp"
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         app:tabGravity="fill"
         app:tabIndicatorGravity="bottom"
         app:tabIndicatorFullWidth="false"
-        app:tabTextColor="@color/primaryTextColor"
+        app:tabTextColor="@color/primaryTextColoruikit"
         app:tabSelectedTextColor="@color/textColorWhite"
         app:tabMode="fixed">
     </com.google.android.material.tabs.TabLayout>

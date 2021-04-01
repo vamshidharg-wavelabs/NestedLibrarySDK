@@ -11,14 +11,14 @@
         <TextView
             android:padding="16dp"
             android:gravity="center"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryuikit"
             android:textColor="@color/textColorWhite"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="@string/update_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
-            app:border_color="@color/colorPrimary"
+            app:border_color="@color/colorPrimaryuikit"
             app:border_width="1dp"
             android:layout_marginTop="32dp"
             android:id="@+id/user_avatar"
@@ -27,7 +27,7 @@
             android:layout_height="100dp"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            app:boxStrokeColor="@color/colorPrimary"
+            app:boxStrokeColor="@color/colorPrimaryuikit"
             app:boxStrokeWidth="1dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
@@ -46,7 +46,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            app:boxStrokeColor="@color/colorPrimary"
+            app:boxStrokeColor="@color/colorPrimaryuikit"
             app:boxStrokeWidth="1dp"
             android:padding="8dp"
             android:layout_marginLeft="16dp"
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/updateUserBtn"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryuikit"
                 android:text="@string/update_user"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

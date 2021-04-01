@@ -1,11 +1,9 @@
 package com.cometchat.pro.uikit.ui_components.userprofile;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -108,7 +106,7 @@ public class CometChatUserProfile extends Fragment {
             moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.grey));
             moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.grey));
         } else {
-            moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
             moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.light_grey));
             moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.light_grey));
         }

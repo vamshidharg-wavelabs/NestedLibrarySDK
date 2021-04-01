@@ -5,7 +5,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -475,7 +474,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
             composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
             rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            tvName.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            tvName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
 
         KeyBoardUtils.setKeyboardVisibilityListener(getActivity(), (View) rvChatListView.getParent(), keyboardVisible -> {
@@ -1505,7 +1504,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                         blockUserLayout.setVisibility(GONE);
                         avatarUrl = user.getAvatar();
                         if (user.getStatus().equals(CometChatConstants.USER_STATUS_ONLINE)) {
-                            tvStatus.setTextColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                            tvStatus.setTextColor(getActivity().getResources().getColor(R.color.colorPrimaryuikit));
                         }
 
                         if (UISettings.isShowUserPresence()) {
@@ -1840,7 +1839,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                     if (user.getUid().equals(Id)) {
                         status = CometChatConstants.USER_STATUS_ONLINE;
                         tvStatus.setText(user.getStatus());
-                        tvStatus.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        tvStatus.setTextColor(getResources().getColor(R.color.colorPrimaryuikit));
                     }
                 }
 

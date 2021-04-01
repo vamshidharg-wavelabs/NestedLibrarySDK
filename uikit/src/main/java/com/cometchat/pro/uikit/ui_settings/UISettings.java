@@ -58,7 +58,7 @@ public class UISettings {
     protected static boolean liveReaction = true;
     protected static boolean allowReactionOnMessage = true;
     protected static boolean allowMessageTranslation = true;
-    protected static int emailColor = R.color.primaryTextColor;
+    protected static int emailColor = R.color.primaryTextColoruikit;
     protected static int phoneColor = R.color.purple;
     protected static int urlColor = R.color.dark_blue;
 

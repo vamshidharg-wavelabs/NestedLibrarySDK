@@ -150,7 +150,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentTitle(json.getString("title"))
                     .setContentText(json.getString("alert"))
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setColor(getResources().getColor(R.color.colorPrimary))
+                    .setColor(getResources().getColor(R.color.colorPrimaryuikit))
                     .setLargeIcon(getBitmapFromURL(baseMessage.getSender().getAvatar()))
 //                    .setNumber(messageCount)
                     .setGroup(GROUP_ID)

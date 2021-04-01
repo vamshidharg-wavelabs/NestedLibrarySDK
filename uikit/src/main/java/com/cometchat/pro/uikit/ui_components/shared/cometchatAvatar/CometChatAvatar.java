@@ -246,7 +246,7 @@ public class CometChatAvatar extends AppCompatImageView {
             paint.setColor(Color.parseColor(UISettings.getColor()));
         }
         else
-            paint.setColor(getResources().getColor(R.color.colorPrimary));
+            paint.setColor(getResources().getColor(R.color.colorPrimaryuikit));
 
         textPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextSize(16f * getResources().getDisplayMetrics().scaledDensity);
@@ -265,7 +265,7 @@ public class CometChatAvatar extends AppCompatImageView {
         if (UISettings.getColor()!=null && UISettings.getColor().isEmpty())
             color = Color.parseColor(UISettings.getColor());
         else
-            color = getResources().getColor(R.color.colorPrimary);
+            color = getResources().getColor(R.color.colorPrimaryuikit);
 
         setOutlineProvider(new OutlineProvider());
     }

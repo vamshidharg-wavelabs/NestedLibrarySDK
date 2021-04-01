@@ -8,6 +8,6 @@
 
     <!-- TabLayout background color -->
     <solid
-        android:color="@color/colorPrimary"/>
+        android:color="@color/colorPrimaryuikit"/>
 
 </shape>

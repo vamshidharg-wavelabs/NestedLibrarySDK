@@ -3,7 +3,7 @@
     android:layout_height="150dp"
     android:elevation="8dp"
     android:layout_margin="4dp"
-    tools:background="@color/colorPrimary"
+    tools:background="@color/colorPrimaryuikit"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="30dp"

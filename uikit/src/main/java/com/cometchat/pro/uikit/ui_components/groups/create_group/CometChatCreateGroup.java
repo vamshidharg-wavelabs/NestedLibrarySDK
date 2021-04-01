@@ -24,8 +24,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.security.SecureRandom;
-
 import com.cometchat.pro.uikit.ui_components.messages.message_list.CometChatMessageListActivity;
 import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
@@ -158,23 +156,23 @@ public class CometChatCreateGroup extends Fragment {
             etGroupCnfPassword.setTextColor(getResources().getColor(R.color.textColorWhite));
 
         } else {
-            des1.setTextColor(getResources().getColor(R.color.primaryTextColor));
-            des2.setTextColor(getResources().getColor(R.color.primaryTextColor));
-            groupNameLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColor)));
-            groupNameLayout.setBoxStrokeColor(getResources().getColor(R.color.primaryTextColor));
-            etGroupName.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            des1.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            des2.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            groupNameLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColoruikit)));
+            groupNameLayout.setBoxStrokeColor(getResources().getColor(R.color.primaryTextColoruikit));
+            etGroupName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
 
-            groupDescLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColor)));
-            groupDescLayout.setBoxStrokeColor(getResources().getColor(R.color.primaryTextColor));
-            etGroupDesc.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            groupDescLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColoruikit)));
+            groupDescLayout.setBoxStrokeColor(getResources().getColor(R.color.primaryTextColoruikit));
+            etGroupDesc.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
 
-            groupPasswordLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColor)));
-            groupPasswordLayout.setBoxStrokeColor(getResources().getColor(R.color.primaryTextColor));
-            etGroupPassword.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            groupPasswordLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColoruikit)));
+            groupPasswordLayout.setBoxStrokeColor(getResources().getColor(R.color.primaryTextColoruikit));
+            etGroupPassword.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
 
-            groupCnfPasswordLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColor)));
-            groupCnfPasswordLayout.setBoxStrokeColor(getResources().getColor(R.color.primaryTextColor));
-            etGroupCnfPassword.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            groupCnfPasswordLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColoruikit)));
+            groupCnfPasswordLayout.setBoxStrokeColor(getResources().getColor(R.color.primaryTextColoruikit));
+            etGroupCnfPassword.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
     }
     private void createGroup() {

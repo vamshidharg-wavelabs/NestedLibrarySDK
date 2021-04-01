@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_place_name"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/primaryTextColor"
+                        android:textColor="@color/primaryTextColoruikit"
                         android:textStyle="bold"
                         android:textSize="15sp"
                         android:padding="4dp"
@@ -74,7 +74,7 @@
                         android:paddingBottom="4dp"/>
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="match_parent"
-                        android:textColor="@color/primaryTextColor"
+                        android:textColor="@color/primaryTextColoruikit"
                         android:text="@string/navigate"
                         app:cornerRadius="8dp"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -111,7 +111,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryuikit"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

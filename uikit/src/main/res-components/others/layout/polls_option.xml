@@ -8,7 +8,7 @@
         android:id="@+id/option_txt"
         android:hint="@string/enter_your_option"
         android:ems="8"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/primaryTextColoruikit"
         android:textColorHint="@color/secondaryTextColor"
         android:layout_marginRight="8dp"
         android:layout_width="wrap_content"

@@ -45,8 +45,6 @@ import com.cometchat.pro.uikit.ui_resources.utils.audio_visualizer.AudioRecordVi
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 
-import okhttp3.internal.Util;
-
 public class CometChatComposeBox extends RelativeLayout implements View.OnClickListener {
 
     private static final String TAG = CometChatComposeBox.class.getName();
@@ -121,7 +119,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
         View view =View.inflate(context, R.layout.cometchat_compose_box,null);
 
         TypedArray a = getContext().getTheme().obtainStyledAttributes(attributeSet, R.styleable.ComposeBox, 0, 0);
-        color = a.getColor(R.styleable.ComposeBox_color,getResources().getColor(R.color.colorPrimary));
+        color = a.getColor(R.styleable.ComposeBox_color,getResources().getColor(R.color.colorPrimaryuikit));
         addView(view);
 
         this.context=context;
@@ -280,14 +278,14 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             ivFile.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
         } else {
             composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            ivAudio.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+            ivAudio.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
             ivMic.setImageDrawable(getResources().getDrawable(R.drawable.ic_mic_grey_24dp));
-            etComposeBox.setTextColor(getResources().getColor(R.color.primaryTextColor));
-            ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+            etComposeBox.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
             flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
             ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
-            ivCamera.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
-            ivFile.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+            ivCamera.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
+            ivFile.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
         }
         if (UISettings.getColor()!=null) {
             int settingsColor = Color.parseColor(UISettings.getColor());

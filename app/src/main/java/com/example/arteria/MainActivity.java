@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(CometChat.getLoggedInUser() != null){
-            startActivity(new Intent(MainActivity.this, ChatLaunch.class));
-        }
+//        if(CometChat.getLoggedInUser() != null){
+//            startActivity(new Intent(MainActivity.this, ChatLaunch.class));
+//        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         if(USER_ID.isEmpty()){
             if(USER_ID.isEmpty()) _user_id.setError("Please provide User ID");
         }else{
-            startActivity(new Intent(MainActivity.this, ChatLaunch.class));
+//            startActivity(new Intent(MainActivity.this, ChatLaunch.class));
+            WavelabsChatActivity.launchChatScreen(MainActivity.this, USER_ID);
         }
     }
 

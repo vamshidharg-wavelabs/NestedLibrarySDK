@@ -17,7 +17,6 @@ import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -25,8 +24,6 @@ import com.cometchat.pro.uikit.ui_components.users.block_users.CometChatBlockUse
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
-
-import okhttp3.internal.Util;
 
 public class CometChatMorePrivacyActivity extends AppCompatActivity {
 
@@ -63,7 +60,7 @@ public class CometChatMorePrivacyActivity extends AppCompatActivity {
              blockUserTv.setTextColor(getResources().getColor(R.color.textColorWhite));
          } else {
              divider.setBackgroundColor(getResources().getColor(R.color.light_grey));
-             blockUserTv.setTextColor(getResources().getColor(R.color.primaryTextColor));
+             blockUserTv.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
          }
          getBlockCount();
     }

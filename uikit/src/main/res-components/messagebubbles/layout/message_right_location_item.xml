@@ -20,7 +20,7 @@
             app:cardElevation="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="10dp"
-            app:cardBackgroundColor="@color/colorPrimary">
+            app:cardBackgroundColor="@color/colorPrimaryuikit">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -111,7 +111,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryuikit"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

@@ -27,7 +27,7 @@
             android:id="@+id/blocked_user_tv"
             android:text="@string/blocked_users"
             android:textSize="@dimen/name"
-            android:textColor="@color/primaryTextColor"
+            android:textColor="@color/primaryTextColoruikit"
             android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"

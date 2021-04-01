@@ -17,7 +17,7 @@
             android:layout_width="50dp"
             android:id="@+id/iv_user"
             app:border_width="0.5dp"
-            app:border_color="@color/colorPrimary"
+            app:border_color="@color/colorPrimaryuikit"
             tools:src="@tools:sample/avatars"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
@@ -39,7 +39,7 @@
             android:layout_below="@+id/tv_user"
             android:layout_margin="10dp"
             android:layout_toEndOf="@+id/iv_user"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="@color/colorPrimaryuikit"
             app:cardCornerRadius="10dp">
 
 

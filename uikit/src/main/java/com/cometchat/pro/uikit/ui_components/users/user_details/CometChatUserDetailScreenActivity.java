@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,8 +49,6 @@ import com.cometchat.pro.uikit.ui_resources.utils.CallUtils;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
-
-import okhttp3.internal.Util;
 
 public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     private CometChatAvatar userAvatar;
@@ -233,7 +230,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
             divider2.setBackgroundColor(getResources().getColor(R.color.grey));
             divider3.setBackgroundColor(getResources().getColor(R.color.grey));
         } else {
-            userName.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            userName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
             divider1.setBackgroundColor(getResources().getColor(R.color.light_grey));
             divider2.setBackgroundColor(getResources().getColor(R.color.light_grey));
             divider3.setBackgroundColor(getResources().getColor(R.color.light_grey));
@@ -321,7 +318,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
             String status = getIntent().getStringExtra(UIKitConstants.IntentStrings.STATUS);
 
             if (status != null && status.equals(CometChatConstants.USER_STATUS_ONLINE))
-                userStatus.setTextColor(getResources().getColor(R.color.colorPrimary));
+                userStatus.setTextColor(getResources().getColor(R.color.colorPrimaryuikit));
 
             userStatus.setText(status);
         }

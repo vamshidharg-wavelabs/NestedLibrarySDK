@@ -131,7 +131,7 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipe_refresh);
         cometChatReceiptsList = findViewById(R.id.rvReceipts);
         swipeRefreshLayout.setColorSchemeColors(
-                getResources().getColor(R.color.colorPrimary),
+                getResources().getColor(R.color.colorPrimaryuikit),
                 getResources().getColor(R.color.red),
                 getResources().getColor(R.color.grey));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -304,8 +304,8 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
                         textViewOption.setPadding(16, 4, 0, 4);
                         textViewOption.setTextAppearance(this, R.style.TextAppearance_AppCompat_Medium);
                         textViewPercentage.setTextAppearance(this, R.style.TextAppearance_AppCompat_Medium);
-                        textViewPercentage.setTextColor(getResources().getColor(R.color.primaryTextColor));
-                        textViewOption.setTextColor(getResources().getColor(R.color.primaryTextColor));
+                        textViewPercentage.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+                        textViewOption.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
                         String optionStr = options.getString(String.valueOf(i + 1));
                         textViewOption.setText(optionStr);
                         if (percentage > 0)

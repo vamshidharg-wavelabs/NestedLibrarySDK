@@ -75,7 +75,7 @@ public class CometChatBadgeCount extends LinearLayout {
         count = a.getInt(R.styleable.BadgeCount_count, 0);
         countSize = a.getDimension(R.styleable.BadgeCount_count_size, 12);
         countColor = a.getColor(R.styleable.BadgeCount_count_color, Color.WHITE);
-        countBackgroundColor=a.getColor(R.styleable.BadgeCount_count_background_color,getResources().getColor(R.color.colorPrimary));
+        countBackgroundColor=a.getColor(R.styleable.BadgeCount_count_background_color,getResources().getColor(R.color.colorPrimaryuikit));
 
 
         addView(view);

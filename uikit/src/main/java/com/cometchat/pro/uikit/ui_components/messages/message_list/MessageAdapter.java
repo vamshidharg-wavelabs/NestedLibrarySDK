@@ -54,7 +54,6 @@ import com.cometchat.pro.models.MessageReceipt;
 import com.cometchat.pro.models.TextMessage;
 import com.cometchat.pro.models.User;
 
-import com.cometchat.pro.uikit.ui_components.users.user_details.CometChatUserDetailScreenActivity;
 import com.cometchat.pro.uikit.ui_resources.utils.pattern_utils.PatternUtils;
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.google.android.material.button.MaterialButton;
@@ -645,8 +644,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         textViewOption.setTextAppearance(context, R.style.TextAppearance_AppCompat_Medium);
                         textViewPercentage.setTextAppearance(context, R.style.TextAppearance_AppCompat_Medium);
 
-                            textViewPercentage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
-                            textViewOption.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+                            textViewPercentage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
+                            textViewOption.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
                         String optionStr = options.getString(String.valueOf(k + 1));
                         textViewOption.setText(optionStr);
                         int voteCount = Extensions.getVoteCount(baseMessage);
@@ -1887,7 +1886,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if(Utils.isDarkMode(context))
             viewHolder.textView.setTextColor(context.getResources().getColor(R.color.textColorWhite));
         else
-            viewHolder.textView.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            viewHolder.textView.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
         viewHolder.textView.setTypeface(fontUtils.getTypeFace(FontUtils.robotoMedium));
         if (baseMessage instanceof Action) {
@@ -2272,7 +2271,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if (baseMessage.getSender().getUid().equals(loggedInUser.getUid()))
                 viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.textColorWhite));
             else
-                viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+                viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
             showMessageTime(viewHolder, baseMessage);
 //             if (messageList.get(messageList.size()-1).equals(baseMessage))
@@ -2399,7 +2398,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if (baseMessage.getSender().getUid().equals(loggedInUser.getUid()))
                 viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.textColorWhite));
             else
-                viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+                viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
             showMessageTime(viewHolder, baseMessage);
             if (messageList.get(messageList.size()-1).equals(baseMessage))
@@ -2449,7 +2448,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     UISettings.isEnableThreadedReplies() ||
                     UISettings.isEnableReplyToMessage()) {
                 if (baseMessage.getSender().equals(CometChat.getLoggedInUser()))
-                    view.getBackground().setColorFilter(context.getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_ATOP);
+                    view.getBackground().setColorFilter(context.getResources().getColor(R.color.colorPrimaryDarkuikit), PorterDuff.Mode.SRC_ATOP);
                 else
                     view.getBackground().setColorFilter(context.getResources().getColor(R.color.secondaryTextColor), PorterDuff.Mode.SRC_ATOP);
 

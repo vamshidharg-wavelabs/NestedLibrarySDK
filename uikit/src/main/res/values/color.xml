@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#03A9F4</color>
-    <color name="colorSecondary">#169CD8</color>
-    <color name="colorPrimaryDark">#2196F3</color>
-    <color name="primaryTextColor">#000000</color>
+    <color name="colorPrimaryuikit">#03A9F4</color>
+    <color name="colorSecondaryuikit">#169CD8</color>
+    <color name="colorPrimaryDarkuikit">#2196F3</color>
+    <color name="primaryTextColoruikit">#000000</color>
 
     <color name="textColorWhite">#FFFFFF</color>
     <color name="bottom">#FAFAFA</color>
@@ -28,4 +28,9 @@
     <color name="grey_200">#9E9C9C</color>
     <color name="darkModeBackground">#202124</color>
     <color name="logout">#7f49f1</color>
+
+
+
+
+    <color name="searchHintColor">#A7B7C2</color>
 </resources>
