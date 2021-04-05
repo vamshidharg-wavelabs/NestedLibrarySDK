@@ -116,11 +116,14 @@ public class Utils {
     }
     public static boolean isDarkMode(Context context)
     {
-        int nightMode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-        if (nightMode== Configuration.UI_MODE_NIGHT_YES)
-            return true;
-        else
-            return false;
+//        int nightMode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//        if (nightMode== Configuration.UI_MODE_NIGHT_YES)
+//            return true;
+//        else
+//            return false;
+
+        // Always light mode
+        return false;
     }
 
     public static final float softTransition(float $this$softTransition, float compareWith, float allowedDiff, float scaleFactor) {

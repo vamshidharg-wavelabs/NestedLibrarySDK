@@ -478,27 +478,30 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         }
 
         KeyBoardUtils.setKeyboardVisibilityListener(getActivity(), (View) rvChatListView.getParent(), keyboardVisible -> {
-            isKeyboardVisible = keyboardVisible;
-            if (keyboardVisible) {
-                scrollToBottom();
-                composeBox.ivMic.setVisibility(GONE);
-                composeBox.ivSend.setVisibility(View.VISIBLE);
-            } else {
-                if (isEdit) {
-                    composeBox.ivMic.setVisibility(GONE);
-                    composeBox.ivSend.setVisibility(View.VISIBLE);
-                }else {
-                    if (UISettings.isSendVoiceNotes()) {
-                        composeBox.ivMic.setVisibility(View.VISIBLE);
-                        composeBox.ivSend.setVisibility(GONE);
-                    } else {
-                        composeBox.ivMic.setVisibility(GONE);
-                        composeBox.ivSend.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
+//            isKeyboardVisible = keyboardVisible;
+//            if (keyboardVisible) {
+//                scrollToBottom();
+//                composeBox.ivMic.setVisibility(GONE);
+//                composeBox.ivSend.setVisibility(View.VISIBLE);
+//            } else {
+//                if (isEdit) {
+//                    composeBox.ivMic.setVisibility(GONE);
+//                    composeBox.ivSend.setVisibility(View.VISIBLE);
+//                }else {
+//                    if (UISettings.isSendVoiceNotes()) {
+//                        composeBox.ivMic.setVisibility(View.VISIBLE);
+//                        composeBox.ivSend.setVisibility(GONE);
+//                    } else {
+//                        composeBox.ivMic.setVisibility(GONE);
+//                        composeBox.ivSend.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//            }
+
+            handleSendButton();
         });
 
+        handleSendButton();
 
         // Uses to fetch next list of messages if rvChatListView (RecyclerView) is scrolled in downward direction.
         rvChatListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -537,6 +540,22 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         onGoingCallClose = view.findViewById(R.id.close_ongoing_view);
         onGoingCallTxt = view.findViewById(R.id.ongoing_call);
         checkOnGoingCall();
+    }
+
+    private void handleSendButton() {
+        scrollToBottom();
+        if (isEdit) {
+            composeBox.ivMic.setVisibility(GONE);
+            composeBox.ivSend.setVisibility(View.VISIBLE);
+        }else {
+            if (UISettings.isSendVoiceNotes()) {
+                composeBox.ivMic.setVisibility(View.VISIBLE);
+                composeBox.ivSend.setVisibility(GONE);
+            } else {
+                composeBox.ivMic.setVisibility(GONE);
+                composeBox.ivSend.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     /**

@@ -1,9 +1,9 @@
 <resources>
 
-    <style name="Theme.uikit" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+    <style name="Theme.uikit" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="android:textColor">@color/primaryTextColoruikit</item>
     </style>
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge" />
     <style name="TransparentCompat" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

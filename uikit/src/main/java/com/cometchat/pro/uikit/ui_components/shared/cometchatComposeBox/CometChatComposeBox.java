@@ -252,6 +252,14 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
                 if (composeActionListener!=null){
                     composeActionListener.afterTextChanged(editable);
                 }
+
+                if(editable.length() > 0){
+                    ivSend.setVisibility(View.VISIBLE);
+                    ivMic.setVisibility(View.GONE);
+                }else{
+                    ivSend.setVisibility(View.GONE);
+                    ivMic.setVisibility(View.VISIBLE);
+                }
             }
         });
         etComposeBox.setMediaSelected(new CometChatEditText.OnEditTextMediaListener() {
