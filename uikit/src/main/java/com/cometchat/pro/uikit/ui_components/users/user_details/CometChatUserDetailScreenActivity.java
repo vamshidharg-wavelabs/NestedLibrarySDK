@@ -1,5 +1,6 @@
 package com.cometchat.pro.uikit.ui_components.users.user_details;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -54,6 +55,8 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     private CometChatAvatar userAvatar;
 
     private TextView userStatus, userName, addBtn;
+
+    private View progressbarBG;
 
     private String name;
 
@@ -126,6 +129,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
         callBtn = findViewById(R.id.callBtn_iv);
         videoCallBtn = findViewById(R.id.video_callBtn_iv);
         addBtn = findViewById(R.id.btn_add);
+        progressbarBG = findViewById(R.id.bg_progressbar);
         tvSendMessage = findViewById(R.id.tv_send_message);
         toolbar= findViewById(R.id.user_detail_toolbar);
         divider1 = findViewById(R.id.divider_1);
@@ -404,13 +408,25 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setLoaderVisibility(boolean bool){
+        if (bool) {
+            progressbarBG.setVisibility(View.VISIBLE);
+            progressbarBG.setOnClickListener(null);
+        } else {
+            progressbarBG.setVisibility(View.GONE);
+            progressbarBG.setOnClickListener(null);
+        }
+    }
+
     private void addMember() {
         List<GroupMember> userList = new ArrayList<>();
         userList.add(new GroupMember(uid, CometChatConstants.SCOPE_PARTICIPANT));
+        setLoaderVisibility(true);
         CometChat.addMembersToGroup(guid, userList, null, new CometChat.CallbackListener<HashMap<String, String>>() {
             @Override
             public void onSuccess(HashMap<String, String> stringStringHashMap) {
                 Log.e(TAG, "onSuccess: " + uid + "Group" + guid);
+                setLoaderVisibility(false);
                 if(tvBlockUser!=null)
                     Utils.showCometChatDialog(CometChatUserDetailScreenActivity.this,
                             tvBlockUser,String.format(getResources().getString(R.string.user_added_to_group),userName.getText().toString(), groupName),
@@ -423,15 +439,19 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
             public void onError(CometChatException e) {
                 Utils.showCometChatDialog(CometChatUserDetailScreenActivity.this,
                         historyRv,e.getMessage(),true);
+                setLoaderVisibility(false);
             }
         });
     }
 
     private void kickGroupMember() {
 
+        setLoaderVisibility(true);
         CometChat.kickGroupMember(uid, guid, new CometChat.CallbackListener<String>() {
+            @SuppressLint("StringFormatInvalid")
             @Override
             public void onSuccess(String s) {
+                setLoaderVisibility(false);
                 if (tvBlockUser!=null)
                     Utils.showCometChatDialog(CometChatUserDetailScreenActivity.this,
                             tvBlockUser,
@@ -444,6 +464,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
 
             @Override
             public void onError(CometChatException e) {
+                setLoaderVisibility(false);
                 if (tvBlockUser!=null)
                     Utils.showCometChatDialog(CometChatUserDetailScreenActivity.this,
                             tvBlockUser, getResources().getString(R.string.kicked_error),
@@ -484,6 +505,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
         ArrayList<String> uids = new ArrayList<>();
         uids.add(uid);
         CometChat.blockUsers(uids, new CometChat.CallbackListener<HashMap<String, String>>() {
+            @SuppressLint("StringFormatInvalid")
             @Override
             public void onSuccess(HashMap<String, String> stringStringHashMap) {
                 if (tvBlockUser!=null)

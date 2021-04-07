@@ -1623,9 +1623,18 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 
             @Override
             public void onError(CometChatException e) {
-                textMessage.setSentAt(-1);
-                messageAdapter.updateChangedMessage(textMessage);
-                Log.d(TAG, "onError: " + e.getMessage());
+                if (e.getCode().equalsIgnoreCase("ERROR_INTERNET_UNAVAILABLE")) {
+
+                } else if (!e.getCode().equalsIgnoreCase("ERR_BLOCKED_BY_EXTENSION")) {
+                    if (messageAdapter == null) {
+                        Log.e(TAG, "onError: MessageAdapter is null");
+                    } else {
+                        textMessage.setSentAt(-1);
+                        messageAdapter.updateChangedMessage(textMessage);
+                    }
+                } else if (messageAdapter != null) {
+                    messageAdapter.remove(textMessage);
+                }
             }
         });
 

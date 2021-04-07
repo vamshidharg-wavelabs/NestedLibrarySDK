@@ -112,7 +112,7 @@ public class CometChatAddMembers extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                searchUser(etSearch.getText().toString());
             }
         });
 

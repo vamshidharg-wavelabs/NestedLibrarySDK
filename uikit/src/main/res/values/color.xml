@@ -32,5 +32,6 @@
 
 
 
+    <color name="bg_translucentuikit">#80000000</color>
     <color name="searchHintColor">#A7B7C2</color>
 </resources>

@@ -33,15 +33,6 @@
                     tools:src="@tools:sample/avatars"
                     android:layout_height="40dp" />
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_group_drawable"-->
-<!--                    android:layout_width="40dp"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:tint="@color/dark_blue"-->
-<!--                    android:src="@drawable/ic_baseline_group_24"/>-->
-
-
                 <com.cometchat.pro.uikit.ui_components.shared.cometchatUserPresence.CometChatUserPresence
                     android:layout_width="16dp"
                     android:visibility="gone"
@@ -79,15 +70,6 @@
                     android:layout_toStartOf="@+id/messageTime"
                     tools:text="@string/online"
                     android:visibility="visible" />
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_group_drawable"-->
-<!--                    android:layout_width="20dp"-->
-<!--                    android:layout_height="20dp"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:tint="@color/dark_blue"-->
-<!--                    android:layout_toStartOf="@+id/messageTime"-->
-<!--                    android:src="@drawable/ic_baseline_group_24"/>-->
 
 
                 <TextView

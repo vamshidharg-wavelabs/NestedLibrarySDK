@@ -224,7 +224,8 @@ public class Utils {
                         message = context.getString(R.string.you) +": "+ (((TextMessage) lastMessage).getText()==null
                                 ?context.getString(R.string.this_message_deleted):((TextMessage) lastMessage).getText());
                     else
-                        message = lastMessage.getSender().getName() + ": " + ((TextMessage) lastMessage).getText();
+                        message = lastMessage.getSender().getName() + ": " + (((TextMessage) lastMessage).getText()==null
+                                ?context.getString(R.string.this_message_deleted):((TextMessage) lastMessage).getText());
 
                 } else if (lastMessage instanceof MediaMessage) {
                     if (lastMessage.getDeletedAt()==0) {
