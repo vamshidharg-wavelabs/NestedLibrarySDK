@@ -404,6 +404,11 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
         } else {
 //                    // Search conversation based on text in searchEdit field.
             rvConversationList.searchConversation(s.toString().toLowerCase());
+
+//            for(Conversation convo: conversationList){
+//                if()
+//            }
+
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.cometchat.pro.uikit.ui_components.users.user_details;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -448,7 +447,6 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
 
         setLoaderVisibility(true);
         CometChat.kickGroupMember(uid, guid, new CometChat.CallbackListener<String>() {
-            @SuppressLint("StringFormatInvalid")
             @Override
             public void onSuccess(String s) {
                 setLoaderVisibility(false);
@@ -505,7 +503,6 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
         ArrayList<String> uids = new ArrayList<>();
         uids.add(uid);
         CometChat.blockUsers(uids, new CometChat.CallbackListener<HashMap<String, String>>() {
-            @SuppressLint("StringFormatInvalid")
             @Override
             public void onSuccess(HashMap<String, String> stringStringHashMap) {
                 if (tvBlockUser!=null)

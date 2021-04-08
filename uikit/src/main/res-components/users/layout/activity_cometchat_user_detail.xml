@@ -1,4 +1,4 @@
-<RelativeLayout android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,10 +9,10 @@
         android:id="@+id/bg_progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_translucentuikit"
+        android:background="@drawable/translucent_bg"
         android:clickable="false"
-        android:elevation="10dp"
         android:visibility="gone">
+<!--        android:background="@color/bg_translucentuikit"-->
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -258,4 +258,4 @@
         <!-- End of Shared Media-->
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</RelativeLayout>
+</LinearLayout>
