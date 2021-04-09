@@ -253,6 +253,8 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 
     private FontUtils fontUtils;
 
+    private MaterialButton unblockBtn;
+
     private User loggedInUser = CometChat.getLoggedInUser();
 
     String[] CAMERA_PERMISSION = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -342,6 +344,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 
         setHasOptionsMenu(true);
         bottomLayout = view.findViewById(R.id.bottom_layout);
+        unblockBtn = view.findViewById(R.id.btn_unblock_user);
         messageShimmer = view.findViewById(R.id.shimmer_layout);
         composeBox = view.findViewById(R.id.message_box);
         composeBox.usedIn(CometChatMessageListActivity.class.getName());
@@ -1451,6 +1454,53 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
      * @see CometChat#sendMediaMessage(MediaMessage, CometChat.CallbackListener)
      * @see MediaMessage
      */
+//    private void sendMediaMessage(File file, String filetype) {
+//        MediaMessage mediaMessage;
+//
+//        if (type.equalsIgnoreCase(CometChatConstants.RECEIVER_TYPE_USER))
+//            mediaMessage = new MediaMessage(Id, file, filetype, CometChatConstants.RECEIVER_TYPE_USER);
+//        else
+//            mediaMessage = new MediaMessage(Id, file, filetype, CometChatConstants.RECEIVER_TYPE_GROUP);
+//
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("path", file.getAbsolutePath());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        mediaMessage.setMetadata(jsonObject);
+//
+//        mediaMessage.setMuid(""+System.currentTimeMillis());
+//        mediaMessage.setCategory(CometChatConstants.CATEGORY_MESSAGE);
+//        mediaMessage.setSender(loggedInUser);
+//
+//        if (messageAdapter != null) {
+//            messageAdapter.addMessage(mediaMessage);
+//            scrollToBottom();
+//        }
+//        CometChat.sendMediaMessage(mediaMessage, new CometChat.CallbackListener<MediaMessage>() {
+//            @Override
+//            public void onSuccess(MediaMessage mediaMessage) {
+//                Log.d(TAG, "sendMediaMessage onSuccess: " + mediaMessage.toString());
+//                if (messageAdapter != null) {
+//                    messageAdapter.updateChangedMessage(mediaMessage);
+//                }
+//            }
+//
+//            @Override
+//            public void onError(CometChatException e) {
+//                e.printStackTrace();
+//                if (messageAdapter != null) {
+//                    mediaMessage.setSentAt(-1);
+//                    messageAdapter.updateChangedMessage(mediaMessage);
+//                }
+//                if (getActivity() != null) {
+//                    Utils.showCometChatDialog(context,rvChatListView,e.getMessage(), true);
+//                }
+//            }
+//        });
+//    }
+
     private void sendMediaMessage(File file, String filetype) {
         MediaMessage mediaMessage;
 
@@ -1492,7 +1542,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                     messageAdapter.updateChangedMessage(mediaMessage);
                 }
                 if (getActivity() != null) {
-                    Utils.showCometChatDialog(context,rvChatListView,e.getMessage(), true);
+                    //  CometChatSnackBar.show(context,rvChatListView,e.getMessage(),CometChatSnackBar.ERROR);
                 }
             }
         });
@@ -1504,42 +1554,50 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
      * @see CometChat#getUser(String, CometChat.CallbackListener)
      */
     private void getUser() {
-
         CometChat.getUser(Id, new CometChat.CallbackListener<User>() {
             @Override
             public void onSuccess(User user) {
-
                 if (getActivity() != null) {
                     if (user.isBlockedByMe()) {
                         tvStatus.setVisibility(View.GONE);
                         isBlockedByMe = true;
                         rvSmartReply.setVisibility(GONE);
                         toolbar.setSelected(false);
-                        blockedUserName.setText("You've blocked " + user.getName());
+                        blockedUserName.setText(getString(R.string.you_ve_blocked) + user.getName());
+                        unblockBtn.setVisibility(View.VISIBLE);
                         blockUserLayout.setVisibility(View.VISIBLE);
+                        rvSmartReply.setVisibility(GONE);
+                        composeBox.setVisibility(GONE);
+                    } else if (user.isHasBlockedMe()) {
+                        tvStatus.setVisibility(View.GONE);
+                        isBlockedByMe = true;
+                        rvSmartReply.setVisibility(GONE);
+                        toolbar.setSelected(false);
+                        blockedUserName.setText(getString(R.string.you_have_blocked_by) + user.getName());
+                        blockUserLayout.setVisibility(View.VISIBLE);
+                        unblockBtn.setVisibility(GONE);
+                        rvSmartReply.setVisibility(GONE);
+                        composeBox.setVisibility(GONE);
                     } else {
                         tvStatus.setVisibility(View.VISIBLE);
                         isBlockedByMe = false;
+                        composeBox.setVisibility(View.VISIBLE);
                         blockUserLayout.setVisibility(GONE);
                         avatarUrl = user.getAvatar();
                         if (user.getStatus().equals(CometChatConstants.USER_STATUS_ONLINE)) {
                             tvStatus.setTextColor(getActivity().getResources().getColor(R.color.colorPrimaryuikit));
                         }
-
                         if (UISettings.isShowUserPresence()) {
                             status = user.getStatus().toString();
                             tvStatus.setText(status);
                         }
                         setAvatar();
-
                     }
                     name = user.getName();
                     tvName.setText(name);
                     Log.d(TAG, "onSuccess: " + user.toString());
                 }
-
             }
-
             @Override
             public void onError(CometChatException e) {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -1849,6 +1907,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 if (addedTo.getGuid().equals(Id))
                     tvStatus.setText(memberNames + "," + userAdded.getName());
                 onMessageReceived(action);
+                Log.e("Member added to group", userAdded.toString());
             }
         });
     }
@@ -2159,8 +2218,8 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         checkOnGoingCall();
         if (!(resultIntentCode== UIKitConstants.RequestCode.GALLERY ||
                 resultIntentCode== UIKitConstants.RequestCode.CAMERA ||
-                resultIntentCode == UIKitConstants.RequestCode.FILE) ||
-                resultIntentCode == UIKitConstants.RequestCode.AUDIO) {
+                resultIntentCode == UIKitConstants.RequestCode.FILE ||
+                resultIntentCode == UIKitConstants.RequestCode.AUDIO)) {
             rvChatListView.removeItemDecoration(stickyHeaderDecoration);
             messagesRequest = null;
             messageAdapter = null;

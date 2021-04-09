@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">UI KIT</string>
 
     <!--User controls-->
@@ -29,6 +29,8 @@
     <string name="edit_message">Edit Message</string>
 
     <!--.Block User-->
+    <string name="you_ve_blocked" tools:ignore="MissingTranslation">You have blocked </string>
+    <string name="you_have_blocked_by" tools:ignore="MissingTranslation">You have been blocked by </string>
     <string name="unblock_user">Unblock User</string>
     <string name="block_user">Block User</string>
     <string name="blocked_users">Blocked users</string>

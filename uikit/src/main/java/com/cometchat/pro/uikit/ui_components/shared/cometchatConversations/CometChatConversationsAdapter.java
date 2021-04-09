@@ -357,17 +357,17 @@ public class CometChatConversationsAdapter extends RecyclerView.Adapter<CometCha
                     for (Conversation conversation : filterConversationList) {
 
                         if (conversation.getConversationType().equals(CometChatConstants.CONVERSATION_TYPE_USER) &&
-                                ((User) conversation.getConversationWith()).getName().toLowerCase().contains(searchKeyword)) {
+                                ((User) conversation.getConversationWith()).getName().toLowerCase().contains(searchKeyword.toLowerCase())) {
 
                             tempFilter.add(conversation);
                         } else if (conversation.getConversationType().equals(CometChatConstants.CONVERSATION_TYPE_GROUP) &&
-                                ((Group) conversation.getConversationWith()).getName().toLowerCase().contains(searchKeyword)) {
+                                ((Group) conversation.getConversationWith()).getName().toLowerCase().contains(searchKeyword.toLowerCase())) {
                             tempFilter.add(conversation);
                         } else if (conversation.getLastMessage()!=null &&
                                 conversation.getLastMessage().getCategory().equals(CometChatConstants.CATEGORY_MESSAGE) &&
                                 conversation.getLastMessage().getType().equals(CometChatConstants.MESSAGE_TYPE_TEXT)
                                 && ((TextMessage)conversation.getLastMessage()).getText()!=null
-                                && ((TextMessage)conversation.getLastMessage()).getText().contains(searchKeyword)) {
+                                && ((TextMessage)conversation.getLastMessage()).getText().toLowerCase().contains(searchKeyword.toLowerCase())) {
                             tempFilter.add(conversation);
                         }
                     }
