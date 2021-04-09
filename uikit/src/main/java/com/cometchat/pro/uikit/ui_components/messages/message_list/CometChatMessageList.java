@@ -1563,17 +1563,17 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                         isBlockedByMe = true;
                         rvSmartReply.setVisibility(GONE);
                         toolbar.setSelected(false);
-                        blockedUserName.setText(getString(R.string.you_ve_blocked) + user.getName());
+                        blockedUserName.setText(getString(R.string.you_ve_blocked) + " " + user.getName());
                         unblockBtn.setVisibility(View.VISIBLE);
                         blockUserLayout.setVisibility(View.VISIBLE);
                         rvSmartReply.setVisibility(GONE);
                         composeBox.setVisibility(GONE);
                     } else if (user.isHasBlockedMe()) {
                         tvStatus.setVisibility(View.GONE);
-                        isBlockedByMe = true;
+                        isBlockedByMe = false;
                         rvSmartReply.setVisibility(GONE);
                         toolbar.setSelected(false);
-                        blockedUserName.setText(getString(R.string.you_have_blocked_by) + user.getName());
+                        blockedUserName.setText(getString(R.string.you_have_blocked_by) + " " + user.getName());
                         blockUserLayout.setVisibility(View.VISIBLE);
                         unblockBtn.setVisibility(GONE);
                         rvSmartReply.setVisibility(GONE);
