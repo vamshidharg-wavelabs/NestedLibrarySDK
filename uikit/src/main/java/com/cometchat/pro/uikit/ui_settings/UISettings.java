@@ -32,7 +32,7 @@ public class UISettings {
     protected static boolean enableShareCopyForward = true;
     protected static boolean enableDeleteMessage = true;
     protected static boolean enableEditingMessage = true;
-    protected static boolean shareLocation = false;
+    protected static boolean shareLocation = true;
     protected static boolean sendStickers = false;
     protected static boolean sendWhiteBoard = false;
     protected static boolean sendWriteBoard = false;
