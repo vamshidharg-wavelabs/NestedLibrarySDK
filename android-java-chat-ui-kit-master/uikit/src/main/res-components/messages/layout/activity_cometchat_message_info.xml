@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     tools:visibility="visible"
                     layout="@layout/message_right_location_item"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
                 <include
                     android:visibility="gone"
                     android:layout_width="match_parent"
