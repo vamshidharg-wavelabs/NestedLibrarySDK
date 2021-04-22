@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">UI KIT</string>
 
+    <!--  Maps API key  -->
+    <string name="google_maps_api_key" translatable="false" tools:ignore="MissingTranslation">AIzaSyCV5bU09KlTDYKLiWtssT9KEkyyllOsKeI</string>
+
+
     <!--User controls-->
     <string name="logout" translatable="false">Logout</string>
 
