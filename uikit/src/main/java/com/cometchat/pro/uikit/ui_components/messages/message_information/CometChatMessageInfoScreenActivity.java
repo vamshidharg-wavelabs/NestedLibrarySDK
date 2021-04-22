@@ -268,10 +268,11 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
                     double LATITUDE = jsonObject.getDouble("latitude");
                     double LONGITUDE = jsonObject.getDouble("longitude");
                     tvPlaceName.setVisibility(View.GONE);
-                    String mapUrl = UIKitConstants.MapUrl.MAPS_URL + LATITUDE + "," + LONGITUDE + "&key=" + UIKitConstants.MapUrl.MAP_ACCESS_KEY;
-                    Glide.with(this)
-                            .load(mapUrl)
-                            .into(ivMap);
+//                    String mapUrl = UIKitConstants.MapUrl.MAPS_URL + LATITUDE + "," + LONGITUDE + "&key=" + UIKitConstants.MapUrl.MAP_ACCESS_KEY;
+//                    Glide.with(this)
+//                            .load(mapUrl)
+//                            .into(ivMap);
+                    ivMap.setImageResource(R.drawable.maps_logo);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

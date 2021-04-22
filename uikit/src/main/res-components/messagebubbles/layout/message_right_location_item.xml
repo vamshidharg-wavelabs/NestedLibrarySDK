@@ -24,16 +24,24 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageView
-                    tools:src="@tools:sample/avatars"
-                    android:layout_width="250dp"
+                <RelativeLayout
+                    android:id="@+id/rv_right_map"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/iv_map"/>
+                    android:background="@color/textColorWhite">
+                    <ImageView
+                        tools:src="@tools:sample/avatars"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/iv_map"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"/>
+                </RelativeLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/iv_map">
+                    android:layout_below="@+id/rv_right_map">
                     <TextView
                         android:textColor="@color/textColorWhite"
                         android:layout_width="wrap_content"

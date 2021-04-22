@@ -1133,10 +1133,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             LONGITUDE = ((CustomMessage) baseMessage).getCustomData().getDouble("longitude");
             viewHolder.tvAddress.setText(Utils.getAddress(context, LATITUDE, LONGITUDE));
             String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+ UIKitConstants.MapUrl.MAP_ACCESS_KEY;
-            Glide.with(context)
-                    .load(mapUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(viewHolder.ivMap);
+//            Glide.with(context)
+//                    .load(mapUrl)
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(viewHolder.ivMap);
+            viewHolder.ivMap.setImageResource(R.drawable.maps_logo);
+            viewHolder.ivMap.setAdjustViewBounds(true);
         } catch (JSONException e) {
             e.printStackTrace();
         }

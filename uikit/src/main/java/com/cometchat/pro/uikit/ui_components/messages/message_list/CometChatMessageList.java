@@ -947,12 +947,12 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         }
         TextView address = view.findViewById(R.id.address);
         address.setText("Address: "+Utils.getAddress(context,LATITUDE,LONGITUDE));
-        ImageView mapView = view.findViewById(R.id.map_vw);
-        String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+
-                UIKitConstants.MapUrl.MAP_ACCESS_KEY;
-        Glide.with(this)
-                .load(mapUrl)
-                .into(mapView);
+//        ImageView mapView = view.findViewById(R.id.map_vw);
+//        String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+
+//                UIKitConstants.MapUrl.MAP_ACCESS_KEY;
+//        Glide.with(this)
+//                .load(mapUrl)
+//                .into(mapView);
 
         builder.setPositiveButton(getString(R.string.share), new DialogInterface.OnClickListener() {
             @Override

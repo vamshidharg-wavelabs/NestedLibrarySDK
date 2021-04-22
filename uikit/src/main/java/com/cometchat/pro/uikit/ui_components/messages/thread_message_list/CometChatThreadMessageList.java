@@ -237,7 +237,7 @@ public class CometChatThreadMessageList extends Fragment implements View.OnClick
     private TextView pollQuestionTv;
     private LinearLayout pollOptionsLL;
 
-    private ImageView mapView;
+//    private ImageView mapView;
     private TextView addressView;
     private TextView fileName;
     private TextView fileSize;
@@ -360,7 +360,7 @@ public class CometChatThreadMessageList extends Fragment implements View.OnClick
         videoMessage = view.findViewById(R.id.vv_videoMessage);
         fileMessage = view.findViewById(R.id.rl_fileMessage);
         locationMessage = view.findViewById(R.id.rl_locationMessage);
-        mapView = view.findViewById(R.id.iv_mapView);
+//        mapView = view.findViewById(R.id.iv_mapView);
         addressView = view.findViewById(R.id.tv_address);
         fileName = view.findViewById(R.id.tvFileName);
         fileSize = view.findViewById(R.id.tvFileSize);
@@ -441,11 +441,11 @@ public class CometChatThreadMessageList extends Fragment implements View.OnClick
             initLocation();
             locationMessage.setVisibility(VISIBLE);
             addressView.setText(Utils.getAddress(context, parentMessageLatitude, parentMessageLongitude));
-            String mapUrl = UIKitConstants.MapUrl.MAPS_URL +parentMessageLatitude+","+parentMessageLongitude+"&key="+ UIKitConstants.MapUrl.MAP_ACCESS_KEY;
-            Glide.with(context)
-                    .load(mapUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(mapView);
+//            String mapUrl = UIKitConstants.MapUrl.MAPS_URL +parentMessageLatitude+","+parentMessageLongitude+"&key="+ UIKitConstants.MapUrl.MAP_ACCESS_KEY;
+//            Glide.with(context)
+//                    .load(mapUrl)
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(mapView);
         } else if (messageType.equals(UIKitConstants.IntentStrings.POLLS)) {
             ivForwardMessage.setVisibility(GONE);
             pollMessage.setVisibility(VISIBLE);
@@ -963,13 +963,13 @@ public class CometChatThreadMessageList extends Fragment implements View.OnClick
         }
         TextView address = view.findViewById(R.id.address);
         address.setText("Address: "+Utils.getAddress(context,LATITUDE,LONGITUDE));
-        ImageView mapView = view.findViewById(R.id.map_vw);
-        String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+
-                UIKitConstants.MapUrl.MAP_ACCESS_KEY;
-        Glide.with(this)
-                .load(mapUrl)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(mapView);
+//        ImageView mapView = view.findViewById(R.id.map_vw);
+//        String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+
+//                UIKitConstants.MapUrl.MAP_ACCESS_KEY;
+//        Glide.with(this)
+//                .load(mapUrl)
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .into(mapView);
 
         builder.setPositiveButton(getString(R.string.share), new DialogInterface.OnClickListener() {
             @Override

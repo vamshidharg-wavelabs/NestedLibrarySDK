@@ -573,7 +573,8 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
             public void onSuccess(List<User> users) {
                 Log.e(TAG, "onfetchSuccess: "+users.size() );
 //                userList.addAll(users);
-                convertUsersToNewConversation(users);
+                if(users.size() > 0)
+                    convertUsersToNewConversation(users);
             }
 
             @Override

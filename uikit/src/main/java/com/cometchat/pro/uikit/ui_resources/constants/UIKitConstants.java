@@ -167,7 +167,9 @@ public class UIKitConstants {
 
         public static final String MAPS_URL = "https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=380x220&markers=color:red|";
 
-        public static String MAP_ACCESS_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+//        public static String MAP_ACCESS_KEY = "AIzaSyAGC4HKiqnFvBLVNniNMBvjMU55V42lsSM";
+        // New API key
+        public static String MAP_ACCESS_KEY = "AIzaSyB86jLls5nE4S09IGjH-T2PEGHyEClTf6M  ";
     }
 
 

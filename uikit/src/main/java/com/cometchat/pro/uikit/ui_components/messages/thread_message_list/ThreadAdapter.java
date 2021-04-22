@@ -384,11 +384,12 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             LATITUDE = ((CustomMessage) baseMessage).getCustomData().getDouble("latitude");
             LONGITUDE = ((CustomMessage) baseMessage).getCustomData().getDouble("longitude");
             tvAddress.setText(Utils.getAddress(context, LATITUDE, LONGITUDE));
-            String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+ UIKitConstants.MapUrl.MAP_ACCESS_KEY;
-            Glide.with(context)
-                    .load(mapUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(ivMap);
+//            String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+ UIKitConstants.MapUrl.MAP_ACCESS_KEY;
+//            Glide.with(context)
+//                    .load(mapUrl)
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(ivMap);
+            ivMap.setAdjustViewBounds(true);
         } catch (JSONException e) {
             e.printStackTrace();
         }
