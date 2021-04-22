@@ -71,7 +71,8 @@ import com.cometchat.pro.uikit.ui_resources.utils.Utils;
  */
 
 
-public class CometChatForwardMessageActivity extends AppCompatActivity {
+public class
+CometChatForwardMessageActivity extends AppCompatActivity {
     private static final String TAG = "CometChatForward";
 
     private CometChatConversations rvConversationList;
@@ -100,6 +101,7 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
     private FontUtils fontUtils;
 
     private String messageType;
+    private String mediaType;//[image, video, pdf, etc..]
 
     private double lat,lon;
 
@@ -127,18 +129,45 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
             textMessage = sharedText;
         }
     }
-
     void handleSendImage(Intent intent) {
         Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (imageUri != null) {
             messageType = UIKitConstants.IntentStrings.INTENT_MEDIA_MESSAGE;
+            mediaType = CometChatConstants.MESSAGE_TYPE_IMAGE;
             mediaMessageUrl = imageUri.toString();
             Log.e(TAG, "handleSendImage: "+mediaMessageUrl);
         }
     }
-    /**
-     * This method is used to handle parameter passed to this class.
-     */
+    void handleSendVideo(Intent intent) {
+        Uri videoUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (videoUri != null) {
+            messageType = UIKitConstants.IntentStrings.INTENT_MEDIA_MESSAGE;
+            mediaType = CometChatConstants.MESSAGE_TYPE_VIDEO;
+            mediaMessageUrl = videoUri.toString();
+            Log.e(TAG, "handleSendVideo: "+mediaMessageUrl);
+        }
+    }
+    void handleSendAudio(Intent intent) {
+        Uri audioUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (audioUri != null) {
+            messageType = UIKitConstants.IntentStrings.INTENT_MEDIA_MESSAGE;
+            mediaType = CometChatConstants.MESSAGE_TYPE_AUDIO;
+            mediaMessageUrl = audioUri.toString();
+            Log.e(TAG, "handleSendAudio: "+mediaMessageUrl);
+        }
+    }
+    void handleSendFile(Intent intent) {
+        Uri fileUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (fileUri != null) {
+            messageType = UIKitConstants.IntentStrings.INTENT_MEDIA_MESSAGE;
+            mediaType = CometChatConstants.MESSAGE_TYPE_FILE;
+            mediaMessageUrl = fileUri.toString();
+            Log.e(TAG, "handleSendFile: "+mediaMessageUrl);
+        }
+    }
+        /**
+         * This method is used to handle parameter passed to this class.
+         */
     private void handleIntent() {
 
         // Get intent, action and MIME type
@@ -151,6 +180,12 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
                 handleSendText(intent); // Handle text being sent
             } else if (type.startsWith("image/")) {
                 handleSendImage(intent); // Handle single image being sent
+            } else if (type.startsWith("video/")) {
+                handleSendVideo(intent); // Handle single video being sent
+            } else if (type.startsWith("audio/")) {
+                handleSendAudio(intent); // Handle single audio being sent
+            } else if (type.startsWith("application/")) {
+                handleSendFile(intent); // Handle single file being sent
             }
         }
 
@@ -326,7 +361,8 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
                             }
 
                         }).start();
-                    } else if (messageType != null && !messageType.equals(UIKitConstants.IntentStrings.INTENT_MEDIA_MESSAGE)) {
+                    }
+                    else if (messageType != null && !messageType.equals(UIKitConstants.IntentStrings.INTENT_MEDIA_MESSAGE)) {
                         new Thread(() -> {
                             for (int i = 0; i <= userList.size() - 1; i++) {
                                 Conversation conversation = new ArrayList<>(userList.values()).get(i);
@@ -376,7 +412,7 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
                                     type = CometChatConstants.RECEIVER_TYPE_GROUP;
                                 }
                                 File file = MediaUtils.getRealPath(CometChatForwardMessageActivity.this, Uri.parse(mediaMessageUrl));
-                                message = new MediaMessage(uid, file, CometChatConstants.MESSAGE_TYPE_IMAGE, type);
+                                message = new MediaMessage(uid, file, mediaType, type);
                                 try {
                                     JSONObject jsonObject = new JSONObject();
                                     jsonObject.put("path", mediaMessageUrl);

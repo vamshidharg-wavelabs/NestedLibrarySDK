@@ -117,6 +117,7 @@ public class MediaUtils {
 
     /**
      * This method is used to open file from url.
+     *
      * @param url is Url of file.
      */
     public static void openFile(String url, Context context) {
@@ -138,13 +139,13 @@ public class MediaUtils {
         try {
             app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = app.metaData;
-            provider=bundle.getString(BuildConfig.LIBRARY_PACKAGE_NAME);
+            provider = bundle.getString(BuildConfig.LIBRARY_PACKAGE_NAME);
             Log.d("openCamera", "openCamera:  " + provider);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 
-         outputFileUri = FileProvider.getUriForFile(context, provider + ".provider", file);
+        outputFileUri = FileProvider.getUriForFile(context, provider + ".provider", file);
 
         if (Build.VERSION.SDK_INT >= 29) {
             ContentResolver resolver = context.getContentResolver();
@@ -156,9 +157,9 @@ public class MediaUtils {
             outputFileUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
             uri = outputFileUri;
 
-        }  else if (Build.VERSION.SDK_INT<=23){
-            outputFileUri=Uri.fromFile(file);
-            uri=outputFileUri;
+        } else if (Build.VERSION.SDK_INT <= 23) {
+            outputFileUri = Uri.fromFile(file);
+            uri = outputFileUri;
         }
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -175,9 +176,9 @@ public class MediaUtils {
 
         // @oneplus specific changes
 //        galleryIntent.setType("image/* video/*");
-        if(type.equals("video")){
+        if (type.equals("video")) {
             galleryIntent.setType("video/*");
-        }else {
+        } else {
             galleryIntent.setType("image/*");
         }
 
@@ -206,8 +207,7 @@ public class MediaUtils {
         return chooserIntent;
     }
 
-    public static Intent openAudio(Activity a)
-    {
+    public static Intent openAudio(Activity a) {
         activity = a;
         List<Intent> allIntents = new ArrayList();
         PackageManager packageManager = activity.getPackageManager();
@@ -237,6 +237,7 @@ public class MediaUtils {
 
         return chooserIntent;
     }
+
     private static Uri getCaptureImageOutputUri() {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = timeStamp + ".jpg";
@@ -300,7 +301,7 @@ public class MediaUtils {
         return f;
     }
 
-    public static File getRealPath(Context context, Uri fileUri) {
+    /*public static File getRealPath(Context context, Uri fileUri) {
         Log.d("", "getRealPath: " + fileUri.getPath());
         String realPath;
         if (isGoogleDrive(fileUri)) {
@@ -319,6 +320,51 @@ public class MediaUtils {
             realPath = getRealPathFromURI_API19(context, fileUri);
         }
         return new File(realPath);
+    }*/
+    public static File getRealPath(Context context, Uri fileUri) {
+        Log.d("", "getRealPath: " + fileUri.getPath());
+        String realPath;
+        if (isGoogleDrive(fileUri)) {
+            return saveDriveFile(context, fileUri);
+        } else if (
+                !isExternalStorageDocument(fileUri) &&
+                !isGoogleDrive(fileUri) &&
+                !isDownloadsDocument(fileUri) &&
+                !isMediaDocument(fileUri) &&
+                !isGooglePhotosUri(fileUri) &&
+                isThirdPartyAppMedia(fileUri)
+        ) {
+            return getThirdPartyAppMedia(context, fileUri);
+        }
+        // SDK < API11
+        else if (Build.VERSION.SDK_INT < 11) {
+            realPath = getRealPathFromURI_BelowAPI11(context, fileUri);
+        }
+        // SDK >= 11 && SDK < 19
+        else if (Build.VERSION.SDK_INT < 19) {
+            realPath = getRealPathFromURI_API11to18(context, fileUri);
+        }
+        // SDK > 19 (Android 4.4) and up
+        else {
+            realPath = getRealPathFromURI_API19(context, fileUri);
+        }
+        return new File(realPath);
+    }
+
+    public static boolean isThirdPartyAppMedia(Uri uri) {
+        return !uri.getAuthority().equals("media");//media for within chat-app; third-party app have their own (ex- com.whatsapp.provider.media)
+    }
+
+    public static File getThirdPartyAppMedia(Context context, Uri uri) {
+        // path could not be retrieved using ContentResolver, therefore copy file to accessible cache using streams
+        String fileName = getFileName(context, uri);
+        File cacheDir = getDocumentCacheDir(context);
+        File file = generateFileName(fileName, cacheDir);
+        if (file != null) {
+            String destinationPath = file.getAbsolutePath();
+            saveFileFromUri(context, uri, destinationPath);
+        }
+        return file;
     }
 
     public static File saveDriveFile(Context context, Uri uri) {
@@ -420,15 +466,15 @@ public class MediaUtils {
             // DownloadsProvider
             else if (isDownloadsDocument(uri)) {
 
-                 String id = DocumentsContract.getDocumentId(uri);
+                String id = DocumentsContract.getDocumentId(uri);
 
-                if (id != null){
-                        if(id.startsWith("raw:")) {
-                            return id.substring(4);
-                        }
-                        if (id.startsWith("msf:")){
-                            id=id.substring(4);
-                        }
+                if (id != null) {
+                    if (id.startsWith("raw:")) {
+                        return id.substring(4);
+                    }
+                    if (id.startsWith("msf:")) {
+                        id = id.substring(4);
+                    }
                 }
 
                 String[] contentUriPrefixesToTry = new String[]{
@@ -548,6 +594,8 @@ public class MediaUtils {
                 final int index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(index);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (cursor != null)
                 cursor.close();
@@ -597,21 +645,18 @@ public class MediaUtils {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
-    public static Camera openFrontCam()
-    {
-        int camCount=0;
-        Camera camera=null;
-        Camera.CameraInfo cameraInfo=new Camera.CameraInfo();
-        camCount=Camera.getNumberOfCameras();
+    public static Camera openFrontCam() {
+        int camCount = 0;
+        Camera camera = null;
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        camCount = Camera.getNumberOfCameras();
         for (int i = 0; i < camCount; i++) {
-            Camera.getCameraInfo(i,cameraInfo);
-            if (cameraInfo.facing==Camera.CameraInfo.CAMERA_FACING_FRONT)
-            {
+            Camera.getCameraInfo(i, cameraInfo);
+            if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
                 try {
-                    camera= Camera.open(i);
+                    camera = Camera.open(i);
                     camera.setDisplayOrientation(90);
-                }catch (RuntimeException re)
-                {
+                } catch (RuntimeException re) {
 
                 }
             }
@@ -619,7 +664,7 @@ public class MediaUtils {
         return camera;
     }
 
-    public static void playSendSound(Context context ,int ringId) {
+    public static void playSendSound(Context context, int ringId) {
         if (UISettings.isEnableMessageSounds()) {
             MediaPlayer mMediaPlayer = MediaPlayer.create(context, ringId);
             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -637,9 +682,9 @@ public class MediaUtils {
         }
 
     }
-    public static void vibrate(Context context)
-    {
-        Vibrator vibrator= (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
+    public static void vibrate(Context context) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(100);
 
     }
