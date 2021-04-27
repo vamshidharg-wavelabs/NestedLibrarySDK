@@ -93,7 +93,7 @@ public class UIKitConstants {
 
         public static final String CUSTOM_MESSAGE = "custom_message" ;
 
-        public static final String LOCATION = "LOCATION" ;
+        public static final String LOCATION = "location" ;
 
         public static final String LOCATION_LATITUDE = "latitude";
 
@@ -169,7 +169,7 @@ public class UIKitConstants {
 
 //        public static String MAP_ACCESS_KEY = "AIzaSyAGC4HKiqnFvBLVNniNMBvjMU55V42lsSM";
         // New API key
-        public static String MAP_ACCESS_KEY = "AIzaSyB86jLls5nE4S09IGjH-T2PEGHyEClTf6M  ";
+        public static String MAP_ACCESS_KEY = "AIzaSyB86jLls5nE4S09IGjH-T2PEGHyEClTf6M";
     }
 
 
