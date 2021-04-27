@@ -6,16 +6,19 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -78,13 +81,15 @@ CometChatForwardMessageActivity extends AppCompatActivity {
     private CometChatConversations rvConversationList;
 
     private HashMap<String,Conversation> userList = new HashMap<>();
-
+    private int pendingUploadUserListCount = 0;//count of how many users pending to send file (0=no pending, 1=one user pending) [runtime use only] [handle redirect]
     private CometChatConversationsAdapter conversationListAdapter;
 
     private ConversationsRequest conversationsRequest;
 
     private UsersRequest usersRequest;
     private List<Conversation> newUsersList = new ArrayList<>();
+
+    private RelativeLayout progressbarBG;
 
     private EditText etSearch;
 
@@ -235,6 +240,9 @@ CometChatForwardMessageActivity extends AppCompatActivity {
         if (Utils.changeToolbarFont(toolbar)!=null){
             Utils.changeToolbarFont(toolbar).setTypeface(fontUtils.getTypeFace(FontUtils.robotoMedium));
         }
+
+        progressbarBG = findViewById(R.id.bg_progressbar);
+
         selectedUsers = findViewById(R.id.selected_user);
 
         forwardBtn = findViewById(R.id.btn_forward);
@@ -334,6 +342,7 @@ CometChatForwardMessageActivity extends AppCompatActivity {
         forwardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pendingUploadUserListCount =  userList.size();
                 if (messageCategory.equals(CometChatConstants.CATEGORY_MESSAGE)) {
                     if (messageType != null && messageType.equals(CometChatConstants.MESSAGE_TYPE_TEXT)) {
                         new Thread(() -> {
@@ -399,6 +408,8 @@ CometChatForwardMessageActivity extends AppCompatActivity {
                     } else {
                         new Thread(() -> {
                             for (int i = 0; i <= userList.size() - 1; i++) {
+                                setLoaderVisibility(true);
+
                                 Conversation conversation = new ArrayList<>(userList.values()).get(i);
                                 MediaMessage message;
                                 String uid;
@@ -421,12 +432,13 @@ CometChatForwardMessageActivity extends AppCompatActivity {
                                     Log.e(TAG, "onError: " + e.getMessage());
                                 }
                                 sendMediaMessage(message);
+                                /*shifted into handleRedirect func
                                 if (i == userList.size() - 1) {
                                     Intent intent = new Intent(CometChatForwardMessageActivity.this, CometChatUI.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
-                                }
+                                }*/
                             }
 
                         }).start();
@@ -520,13 +532,38 @@ CometChatForwardMessageActivity extends AppCompatActivity {
             @Override
             public void onSuccess(MediaMessage mediaMessage) {
                 Log.d(TAG, "sendMediaMessage onSuccess: " + mediaMessage.toString());
-            }
 
+                //reduce 1 from pendingUploadUserList
+                pendingUploadUserListCount--;
+
+                //check if we can redirect now
+                handleRedirect();
+            }
             @Override
             public void onError(CometChatException e) {
                 Log.e(TAG, "onErrorMedia: "+e.getMessage());
+
+                //reduce 1 from pendingUploadUserList
+                pendingUploadUserListCount--;
+
+                //check if we can redirect now
+                handleRedirect();
             }
         });
+    }
+    private void handleRedirect(){
+        if(pendingUploadUserListCount <= 1){
+            //no more pending
+
+            //hide progressbar
+            setLoaderVisibility(false);
+
+            //redirect now
+            Intent intent = new Intent(CometChatForwardMessageActivity.this, CometChatUI.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -551,6 +588,20 @@ CometChatForwardMessageActivity extends AppCompatActivity {
         else {
             forwardBtn.setVisibility(View.GONE);
         }
+    }
+
+    private void setLoaderVisibility(boolean bool){
+        runOnUiThread(() -> {
+            if (bool) {
+                progressbarBG.setVisibility(View.VISIBLE);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            } else {
+                progressbarBG.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            }
+            progressbarBG.setOnClickListener(null);
+            progressbarBG.setClickable(false);
+        });
     }
 
     /**
