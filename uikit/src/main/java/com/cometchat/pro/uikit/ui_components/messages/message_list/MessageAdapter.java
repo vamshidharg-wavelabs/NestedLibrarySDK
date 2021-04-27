@@ -14,6 +14,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,8 +30,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.emoji.text.EmojiCompat;
 import androidx.emoji.text.EmojiSpan;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -193,6 +197,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private boolean isLocationMessageClick;
 
     private String selectedOption;
+
+    private List<String> memberAll;
 
     /**
      * It is used to initialize the adapter wherever we needed. It has parameter like messageList
@@ -2251,7 +2257,23 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             }
 
-            viewHolder.txtMessage.setText(message);
+            //highlight tagged member
+
+            if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_GROUP) && memberAll!=null) {
+                SpannableString spannableMessage = new SpannableString(message);
+                //Determine the start and end of the span i.e. which section you want colored
+                for(String eachName : memberAll) {
+                    if(message.contains(eachName)) {
+                        int start = message.indexOf(eachName);
+                        int end = start + eachName.length();
+                        //Apply color spannable to SpannableString
+                        spannableMessage.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.dark_blue)), (start - 1), (end), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+                }
+                viewHolder.txtMessage.setText(spannableMessage);
+            }else{
+                viewHolder.txtMessage.setText(message);
+            }
             viewHolder.txtMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoRegular));
 
             PatternUtils.setHyperLinkSupport(context,viewHolder.txtMessage);
@@ -2927,6 +2949,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public int getPosition(BaseMessage baseMessage){
         return messageList.indexOf(baseMessage);
+    }
+
+    public void setMemberAll(List<String> memberAll) {
+        this.memberAll = memberAll;
     }
 
     class ImageMessageViewHolder extends RecyclerView.ViewHolder {

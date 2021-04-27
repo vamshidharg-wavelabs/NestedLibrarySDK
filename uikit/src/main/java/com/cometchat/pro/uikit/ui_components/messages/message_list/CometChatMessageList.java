@@ -1278,9 +1278,13 @@ MembersAdapter.MembersAdapterListener{
 
                     //load all member for suggestions
                     new Thread(() -> {
+                        memberAll.clear();
                         for(GroupMember member : list)
                             if (!member.getUid().equals(CometChat.getLoggedInUser().getUid()))
                                 memberAll.add(member.getName());
+
+                        if(messageAdapter!=null)
+                            messageAdapter.setMemberAll(memberAll);
                     }).start();
                 }
             }
@@ -1292,6 +1296,7 @@ MembersAdapter.MembersAdapterListener{
 
         });
     }
+
 
     /**
      * Incase if user is blocked already, then this method is used to unblock the user .
@@ -1441,6 +1446,9 @@ MembersAdapter.MembersAdapterListener{
             messageAdapter.updateList(messageList);
 
         }
+
+        messageAdapter.setMemberAll(memberAll);
+
         if (!isBlockedByMe && rvSmartReply.getAdapter().getItemCount()==0) {
             BaseMessage lastMessage = messageAdapter.getLastMessage();
             checkSmartReply(lastMessage);
