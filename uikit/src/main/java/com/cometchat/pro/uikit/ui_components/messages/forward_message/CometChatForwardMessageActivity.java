@@ -608,7 +608,6 @@ CometChatForwardMessageActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<User> users) {
                 Log.e(TAG, "onfetchSuccess: "+users.size() );
-//                userList.addAll(users);
                 if(users.size() > 0)
                     convertUsersToNewConversation(users);
             }
@@ -623,18 +622,6 @@ CometChatForwardMessageActivity extends AppCompatActivity {
     private void convertUsersToNewConversation(List<User> users){
         List<Conversation> convList = newUsersList;
         List<Conversation> newFetchedUsers = new ArrayList<>();
-//        for(Conversation convo: convList){
-//            if(convo.getConversationType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
-//                for (User user : users) {
-//                    if(!((User) convo.getConversationWith()).getUid().equals(user.getUid())){
-//                        @SuppressLint("WrongConstant") Conversation newuser = new Conversation(user.getUid(), CometChatConstants.RECEIVER_TYPE_USER);
-//                        newuser.setConversationWith(user);
-//                        newuser.setLastMessage(null);
-//                        newFetchedUsers.add(newuser);
-//                    }
-//                }
-//            }
-//        }
 
         for(User user: users){
             Boolean isUserPresent = false;

@@ -200,52 +200,11 @@ public class CometChatGroupList extends Fragment  {
 
             @Override
             public void OnItemLongClick(Group var, int position) {
-                Toast.makeText(getContext(), "Pin item no: "+position, Toast.LENGTH_SHORT).show();
 
                 if(!isItemPinned(view, position))
                     alertDialogForPin(view, position, PIN);
                 else
                     alertDialogForPin(view, position, UNPIN);
-//                if(!isEnable){
-//                    // When action mode is not enabled
-//                    // initiate action mode
-//                    ActionMode.Callback callback = new ActionMode.Callback(){
-//
-//                        @Override
-//                        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-//                            // Initialize menu inflator
-//                            MenuInflater menuInflater = mode.getMenuInflater();
-//                            // Inflate menu
-//                            menuInflater.inflate(R.menu.menu, menu);
-////                           // return true
-//                            return true;
-//                        }
-//
-//                        @Override
-//                        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-//                            // When action mode is prepare
-//                            // Set isEnable true
-//                            isEnable = true;
-//                            // Create method
-//                            clickItem(view, position);
-//                            return true;
-//                        }
-//
-//                        @Override
-//                        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-//                            int id = item.getItemId();
-//                            switch (id){
-//                                case R.id.menu_pin:
-//
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onDestroyActionMode(ActionMode mode) {
-//
-//                        }
-//                    }
-//                }
             }
         });
         return view;
@@ -279,7 +238,6 @@ public class CometChatGroupList extends Fragment  {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int which) {
-                        Toast.makeText(getContext(),"Pin Group Action",Toast.LENGTH_LONG).show();
                         if(action.equals(PIN))
                             pinGroup(view, position);
                         else
@@ -289,7 +247,7 @@ public class CometChatGroupList extends Fragment  {
         dialog.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getContext(),"cancel is clicked",Toast.LENGTH_LONG).show();
+                // custom code
             }
         });
         AlertDialog alertDialog=dialog.create();
@@ -325,25 +283,24 @@ public class CometChatGroupList extends Fragment  {
             @Override
             public void onSuccess(User user) {
                 if (getContext()!=null)
-                    Toast.makeText(getContext(),"Unpin Group successful",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Unpin Group successful",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(CometChatException e) {
                 if (getContext()!=null)
-                    Toast.makeText(getContext(),"Error unpinning the group",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Error unpinning the group",Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public void pinGroup(View view, int position){
-        Group group = groupList.get(position);
-
         User user = CometChat.getLoggedInUser();
 
         JSONObject userMetadataObject = null;
         try {
-            if(user.getMetadata() == null){
+            if(user.getMetadata() == null){ // Has no metadata at all
+
                     try {
                         JSONArray pinnedGroups = new JSONArray();
                         pinnedGroups.put(groupList.get(position).getGuid());
@@ -353,23 +310,25 @@ public class CometChatGroupList extends Fragment  {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-            }else if(!user.getMetadata().has(PINNED_GROUPS)) {
-                    // Has metadata but no pinned groups key
+            }else if(!user.getMetadata().has(PINNED_GROUPS)) { // Has metadata but no pinned groups key-value pair
+
                     userMetadataObject = user.getMetadata();
                     // Create pinned groups list
                     JSONArray pinnedGroups = new JSONArray();
                     pinnedGroups.put(groupList.get(position).getGuid());
                     // add list to metaadata
                     userMetadataObject.put(PINNED_GROUPS, pinnedGroups);
-            }else{
-                    // Has metadata and pinned groups
-                if(user.getMetadata().getJSONArray(PINNED_GROUPS).length() < PINNED_GROUPS_MAX_LIMIT)
-                    user.getMetadata().getJSONArray(PINNED_GROUPS).put(groupList.get(position).getGuid());
-                else{
+            }else{ // Has metadata and pinned groups
+
+                if(user.getMetadata().getJSONArray(PINNED_GROUPS).length() < PINNED_GROUPS_MAX_LIMIT) {
+                    userMetadataObject = user.getMetadata();
+                    userMetadataObject.getJSONArray(PINNED_GROUPS).put(groupList.get(position).getGuid());
+                }else{
                     Toast.makeText(getContext(),
                             "Max limit for pinning groups is " + PINNED_GROUPS_MAX_LIMIT,
                             Toast.LENGTH_SHORT
                     ).show();
+                    return;
                 }
             }
 
@@ -383,24 +342,16 @@ public class CometChatGroupList extends Fragment  {
             @Override
             public void onSuccess(User user) {
                 if (getContext()!=null)
-                    Toast.makeText(getContext(),"Pin Group successful",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Pin Group successful",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(CometChatException e) {
                 if (getContext()!=null)
-                    Toast.makeText(getContext(),"Error pinning the group",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Error pinning the group",Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-//    @SuppressLint("ResourceAsColor")
-//    public void clickItem(View view, int position){
-//        // GEt selected item value
-//        String s = String.valueOf(position);
-//        view.setBackgroundColor(R.color.grey);
-//        view.getId();
-//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
