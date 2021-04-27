@@ -1,6 +1,9 @@
 package com.cometchat.pro.uikit.ui_components.groups.group_list;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -14,8 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -24,11 +31,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cometchat.pro.constants.CometChatConstants;
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.core.GroupsRequest;
 import com.cometchat.pro.exceptions.CometChatException;
+import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.models.Group;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatGroups.CometChatGroups;
@@ -36,11 +45,19 @@ import com.cometchat.pro.uikit.ui_components.shared.cometchatGroups.CometChatGro
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
 import com.cometchat.pro.uikit.ui_resources.utils.item_clickListener.OnItemClickListener;
 import com.cometchat.pro.uikit.ui_components.groups.create_group.CometChatCreateGroupActivity;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants.IntentStrings.PINNED_GROUPS;
+import static com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants.IntentStrings.PINNED_GROUPS_MAX_LIMIT;
 
 /*
 
@@ -72,6 +89,11 @@ public class CometChatGroupList extends Fragment  {
     private List<Group> groupList = new ArrayList<>();
 
     private static final String TAG = "CometChatGroupListScreen";
+
+    private boolean isEnable = false;
+
+    private static String PIN = "Pin";
+    private static String UNPIN = "Un pin";
 
     public CometChatGroupList() {
         // Required empty public constructor
@@ -175,9 +197,210 @@ public class CometChatGroupList extends Fragment  {
                 if (event!=null)
                     event.OnItemClick(group,position);
             }
+
+            @Override
+            public void OnItemLongClick(Group var, int position) {
+                Toast.makeText(getContext(), "Pin item no: "+position, Toast.LENGTH_SHORT).show();
+
+                if(!isItemPinned(view, position))
+                    alertDialogForPin(view, position, PIN);
+                else
+                    alertDialogForPin(view, position, UNPIN);
+//                if(!isEnable){
+//                    // When action mode is not enabled
+//                    // initiate action mode
+//                    ActionMode.Callback callback = new ActionMode.Callback(){
+//
+//                        @Override
+//                        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+//                            // Initialize menu inflator
+//                            MenuInflater menuInflater = mode.getMenuInflater();
+//                            // Inflate menu
+//                            menuInflater.inflate(R.menu.menu, menu);
+////                           // return true
+//                            return true;
+//                        }
+//
+//                        @Override
+//                        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+//                            // When action mode is prepare
+//                            // Set isEnable true
+//                            isEnable = true;
+//                            // Create method
+//                            clickItem(view, position);
+//                            return true;
+//                        }
+//
+//                        @Override
+//                        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+//                            int id = item.getItemId();
+//                            switch (id){
+//                                case R.id.menu_pin:
+//
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onDestroyActionMode(ActionMode mode) {
+//
+//                        }
+//                    }
+//                }
+            }
         });
         return view;
     }
+
+    public boolean isItemPinned(View view, int position){
+        JSONObject metadata = CometChat.getLoggedInUser().getMetadata();
+
+        try {
+            if (metadata != null) {
+                if(metadata.has(PINNED_GROUPS) && metadata.getJSONArray(PINNED_GROUPS).length() > 0){
+                    JSONArray pinnedGroupIDs = metadata.getJSONArray(PINNED_GROUPS);
+                    for (int i = 0; i < pinnedGroupIDs.length(); i++)
+                        if (pinnedGroupIDs.getString(i).equals(groupList.get(position).getGuid()))
+                            return true;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public void alertDialogForPin(View view, int position, String action){
+        String groupName = groupList.get(position).getName();
+        AlertDialog.Builder dialog=new AlertDialog.Builder(getContext());
+        dialog.setMessage("Do you want to pin "+groupName+"?");
+        dialog.setTitle(action + " Group");
+        dialog.setPositiveButton(action,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        Toast.makeText(getContext(),"Pin Group Action",Toast.LENGTH_LONG).show();
+                        if(action.equals(PIN))
+                            pinGroup(view, position);
+                        else
+                            unPinGroup(view, position);
+                    }
+                });
+        dialog.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getContext(),"cancel is clicked",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog=dialog.create();
+        alertDialog.show();
+    }
+
+    public void unPinGroup(View view, int position){
+        User user = CometChat.getLoggedInUser();
+        JSONArray pinnedGroups = null;
+
+        try {
+            pinnedGroups = user.getMetadata().getJSONArray(PINNED_GROUPS);
+            String groupToUnpin = groupList.get(position).getGuid();
+            int indexToRemove = -1;
+
+            for (int i = 0; i < pinnedGroups.length(); i++){
+                if(pinnedGroups.get(i).equals(groupToUnpin)){
+                    indexToRemove = i;
+                    break;
+                }
+            }
+
+            if(indexToRemove >= 0) {
+                pinnedGroups.remove(indexToRemove);
+                user.getMetadata().put(PINNED_GROUPS, pinnedGroups);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CometChat.updateUser(user, UIKitConstants.AppInfo.AUTH_KEY, new CometChat.CallbackListener<User>() {
+            @Override
+            public void onSuccess(User user) {
+                if (getContext()!=null)
+                    Toast.makeText(getContext(),"Unpin Group successful",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(CometChatException e) {
+                if (getContext()!=null)
+                    Toast.makeText(getContext(),"Error unpinning the group",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void pinGroup(View view, int position){
+        Group group = groupList.get(position);
+
+        User user = CometChat.getLoggedInUser();
+
+        JSONObject userMetadataObject = null;
+        try {
+            if(user.getMetadata() == null){
+                    try {
+                        JSONArray pinnedGroups = new JSONArray();
+                        pinnedGroups.put(groupList.get(position).getGuid());
+                        // create metadata and add the list to it
+                        userMetadataObject = new JSONObject();
+                        userMetadataObject.put(PINNED_GROUPS, pinnedGroups);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+            }else if(!user.getMetadata().has(PINNED_GROUPS)) {
+                    // Has metadata but no pinned groups key
+                    userMetadataObject = user.getMetadata();
+                    // Create pinned groups list
+                    JSONArray pinnedGroups = new JSONArray();
+                    pinnedGroups.put(groupList.get(position).getGuid());
+                    // add list to metaadata
+                    userMetadataObject.put(PINNED_GROUPS, pinnedGroups);
+            }else{
+                    // Has metadata and pinned groups
+                if(user.getMetadata().getJSONArray(PINNED_GROUPS).length() < PINNED_GROUPS_MAX_LIMIT)
+                    user.getMetadata().getJSONArray(PINNED_GROUPS).put(groupList.get(position).getGuid());
+                else{
+                    Toast.makeText(getContext(),
+                            "Max limit for pinning groups is " + PINNED_GROUPS_MAX_LIMIT,
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            }
+
+        } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        user.setMetadata(userMetadataObject);
+
+        CometChat.updateUser(user, UIKitConstants.AppInfo.AUTH_KEY, new CometChat.CallbackListener<User>() {
+            @Override
+            public void onSuccess(User user) {
+                if (getContext()!=null)
+                    Toast.makeText(getContext(),"Pin Group successful",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(CometChatException e) {
+                if (getContext()!=null)
+                    Toast.makeText(getContext(),"Error pinning the group",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+//    @SuppressLint("ResourceAsColor")
+//    public void clickItem(View view, int position){
+//        // GEt selected item value
+//        String s = String.valueOf(position);
+//        view.setBackgroundColor(R.color.grey);
+//        view.getId();
+//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
