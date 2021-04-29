@@ -2258,19 +2258,31 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
 
             //highlight tagged member
-
-            if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_GROUP) && memberAll!=null) {
-                SpannableString spannableMessage = new SpannableString(message);
-                //Determine the start and end of the span i.e. which section you want colored
-                for(String eachName : memberAll) {
-                    if(message.contains(eachName)) {
-                        int start = message.indexOf(eachName);
-                        int end = start + eachName.length();
+            if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_GROUP) && memberAll!=null && message.contains("@")) {
+                try {
+                    SpannableString spannableMessage = new SpannableString(message);
+                    //Determine the start and end of the span i.e. which section you want colored
+                    //for myself
+                    if (message.toLowerCase().contains("@" + loggedInUser.getName().toLowerCase())) {
+                        int start_self = message.toLowerCase().indexOf(loggedInUser.getName().toLowerCase());
+                        int end_self = start_self + loggedInUser.getName().length();
                         //Apply color spannable to SpannableString
-                        spannableMessage.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.dark_blue)), (start - 1), (end), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        spannableMessage.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.dark_blue)), (start_self - 1), (end_self), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
+                    //for others
+                    for (String eachName : memberAll) {
+                        if (message.toLowerCase().contains("@" + eachName.toLowerCase())) {
+                            int start_others = message.toLowerCase().indexOf(eachName.toLowerCase());
+                            int end_others = start_others + eachName.length();
+                            //Apply color spannable to SpannableString
+                            spannableMessage.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.dark_blue)), (start_others - 1), (end_others), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        }
+                    }
+                    viewHolder.txtMessage.setText(spannableMessage);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    viewHolder.txtMessage.setText(message);
                 }
-                viewHolder.txtMessage.setText(spannableMessage);
             }else{
                 viewHolder.txtMessage.setText(message);
             }
@@ -2953,6 +2965,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public void setMemberAll(List<String> memberAll) {
         this.memberAll = memberAll;
+        //notifyDataSetChanged();
     }
 
     class ImageMessageViewHolder extends RecyclerView.ViewHolder {
