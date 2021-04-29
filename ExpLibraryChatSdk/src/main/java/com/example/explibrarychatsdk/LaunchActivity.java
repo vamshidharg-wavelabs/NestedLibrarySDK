@@ -19,7 +19,6 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
-//        username = findViewById(R.id.username);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();

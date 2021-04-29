@@ -60,14 +60,14 @@
                     android:id="@+id/txt_user_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
                     android:textSize="@dimen/fourteen"
                     android:layout_marginStart="8dp"
                     android:layout_below="@id/txt_user_name"
                     android:layout_toEndOf="@id/av_user"
                     android:maxLines="1"
-                    android:layout_marginRight="8dp"
-                    android:layout_toStartOf="@+id/messageTime"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_toStartOf="@+id/footer"
                     tools:text="@string/online"
                     android:visibility="visible" />
 
@@ -92,10 +92,15 @@
                     tools:text="11:50"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <com.cometchat.pro.uikit.ui_components.shared.cometchatBadgeCount.CometChatBadgeCount
+                <LinearLayout
+                    android:id="@+id/footer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/messageTime"
+                    android:orientation="horizontal">
+                    <com.cometchat.pro.uikit.ui_components.shared.cometchatBadgeCount.CometChatBadgeCount
                         tools:visibility="visible"
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@id/messageTime"
                         android:id="@+id/messageCount"
                         android:layout_width="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -103,6 +108,16 @@
                         app:count="@{conversation.unreadMessageCount}"
                         android:textColor="@color/textColorWhite"
                         android:layout_height="wrap_content"/>
+                    <ImageView
+                        tools:visibility="gone"
+                        android:id="@+id/ivPin"
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="4dp"
+                        android:gravity="top"
+                        android:src="@drawable/pin_red" />
+                </LinearLayout>
 
             </RelativeLayout>
 

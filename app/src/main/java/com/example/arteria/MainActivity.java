@@ -19,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        if(CometChat.getLoggedInUser() != null){
-//            startActivity(new Intent(MainActivity.this, ChatLaunch.class));
-//        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

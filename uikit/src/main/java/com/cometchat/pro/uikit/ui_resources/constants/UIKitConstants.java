@@ -132,6 +132,12 @@ public class UIKitConstants {
         public static String POLL_ID = "poll_id";
 
         public static final String MEDIA_SIZE = "media_size" ;
+
+        public static final String PIN_GROUP = "pin_group";
+
+        public static final String PINNED_GROUPS = "pinned_groups";
+
+        public static final int PINNED_GROUPS_MAX_LIMIT = 3;
     }
 
     public static class Tab {

@@ -15,7 +15,7 @@ public class App extends Application {
         super.onCreate();
         Log.d("CUSTOM_APP_LOG", "app module");
         Wavelabs.setAppConstants(this, AppConstants.APP_ID, AppConstants.REGION, AppConstants.AUTH_KEY, AppConstants.CHANNEL_1_ID, AppConstants.CHANNEL_2_ID);
-//        createNotificationChannel();
+        createNotificationChannel();
     }
 
     private void createNotificationChannel() {
@@ -46,5 +46,3 @@ public class App extends Application {
         }
     }
 }
-
-// AAAA1iqvYjA:APA91bEtrjFF64e-NtCf1tbLAN8qBl7JrMI3Mc5GgNZSaNh8gVQqGVz2er_V-gTIjuAHY8XQR-4Dcx32nNSWogcamS-_Q_nt54SE3V70UNkp1ff5PG4SKWsyq1Na6NykPp9_RlEd0y6B

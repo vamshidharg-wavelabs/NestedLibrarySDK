@@ -12,7 +12,6 @@
         android:background="@drawable/translucent_bg"
         android:clickable="false"
         android:visibility="gone">
-<!--        android:background="@color/bg_translucentuikit"-->
 
         <ProgressBar
             android:id="@+id/progress_bar"
