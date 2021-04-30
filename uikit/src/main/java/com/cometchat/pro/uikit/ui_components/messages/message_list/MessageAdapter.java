@@ -2965,7 +2965,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public void setMemberAll(List<String> memberAll) {
         this.memberAll = memberAll;
-        //notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     class ImageMessageViewHolder extends RecyclerView.ViewHolder {
