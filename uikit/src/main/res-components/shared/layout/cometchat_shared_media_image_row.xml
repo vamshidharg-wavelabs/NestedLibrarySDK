@@ -16,12 +16,12 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:gravity="center"
-        android:background="@color/grey"
+        android:background="@color/greyUikit"
         android:layout_width="150dp"
         android:layout_height="150dp">
         <ImageView
             android:layout_centerInParent="true"
-            android:tint="@color/textColorWhite"
+            android:tint="@color/textColorWhiteuikit"
             android:src="@drawable/ic_hand"
             android:layout_width="wrap_content"
             android:layout_marginBottom="8dp"
@@ -31,7 +31,7 @@
             android:id="@+id/sensitive_desc"
             android:layout_centerInParent="true"
             android:textSize="14dp"
-            android:textColor="@color/textColorWhite"
+            android:textColor="@color/textColorWhiteuikit"
             android:text="@string/sensitive_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

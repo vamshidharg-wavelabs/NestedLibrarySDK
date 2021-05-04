@@ -127,13 +127,13 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
 
         if (Utils.isDarkMode(context))
         {
-            groupMemberViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhite));
-            groupMemberViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.grey));
-            groupMemberViewHolder.userListRowBinding.txtUserScope.setTextColor(context.getResources().getColor(R.color.textColorWhite));
+            groupMemberViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
+            groupMemberViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.greyUikit));
+            groupMemberViewHolder.userListRowBinding.txtUserScope.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
         } else {
             groupMemberViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
-            groupMemberViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
-            groupMemberViewHolder.userListRowBinding.txtUserScope.setTextColor(context.getResources().getColor(R.color.secondaryTextColor));
+            groupMemberViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_greyuikit));
+            groupMemberViewHolder.userListRowBinding.txtUserScope.setTextColor(context.getResources().getColor(R.color.secondaryTextColoruikit));
         }
 
         if (i == getItemCount() - 1)

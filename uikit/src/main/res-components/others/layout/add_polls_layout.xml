@@ -40,7 +40,7 @@
                 android:id="@+id/seperator"
                 android:layout_below="@+id/topBar"
                 android:layout_marginBottom="8dp"
-                android:background="@color/grey"
+                android:background="@color/greyUikit"
                 android:alpha="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
@@ -63,7 +63,7 @@
                     android:layout_marginLeft="8dp"
                     android:padding="8dp"
                     android:textColor="@color/primaryTextColoruikit"
-                    android:textColorHint="@color/secondaryTextColor"
+                    android:textColorHint="@color/secondaryTextColoruikit"
                     android:background="@android:color/transparent"
                     android:id="@+id/question_edt"
                     android:layout_width="match_parent"
@@ -94,10 +94,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 app:cardElevation="8dp"
-                app:cardBackgroundColor="@color/textColorWhite"
+                app:cardBackgroundColor="@color/textColorWhiteuikit"
                 android:id="@+id/add_options"
                 android:layout_below="@+id/poll_layout"
-                app:rippleColor="@color/light_grey"
+                app:rippleColor="@color/light_greyuikit"
                 android:layout_margin="8dp"
                 android:clickable="true"
                 android:layout_height="wrap_content">
@@ -126,7 +126,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
         android:id="@+id/add_poll"
         android:layout_margin="8dp"
-        android:textColor="@color/textColorWhite"
+        android:textColor="@color/textColorWhiteuikit"
         app:backgroundTint="@color/colorPrimaryuikit"
         android:text="@string/create_poll"
         android:layout_height="wrap_content"/>

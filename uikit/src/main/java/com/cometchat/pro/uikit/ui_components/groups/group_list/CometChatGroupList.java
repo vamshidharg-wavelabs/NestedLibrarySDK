@@ -1,6 +1,5 @@
 package com.cometchat.pro.uikit.ui_components.groups.group_list;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,12 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -120,7 +115,7 @@ public class CometChatGroupList extends Fragment  {
             ivCreateGroup.setVisibility(View.GONE);
 
         if(Utils.isDarkMode(getContext())) {
-            title.setTextColor(getResources().getColor(R.color.textColorWhite));
+            title.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
             title.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }

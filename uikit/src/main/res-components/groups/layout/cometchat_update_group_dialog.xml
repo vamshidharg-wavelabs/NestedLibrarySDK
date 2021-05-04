@@ -13,7 +13,7 @@
             android:padding="16dp"
             android:gravity="center"
             android:background="@color/colorPrimaryuikit"
-            android:textColor="@color/textColorWhite"
+            android:textColor="@color/textColorWhiteuikit"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="@string/update_group"
             android:layout_width="match_parent"
@@ -101,12 +101,12 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:hint="@string/enter_old_group_pwd"
-            android:textColorHint="@color/secondaryTextColor"
+            android:textColorHint="@color/secondaryTextColoruikit"
             app:boxCornerRadiusBottomEnd="24dp"
             app:boxCornerRadiusBottomStart="24dp"
             app:boxCornerRadiusTopEnd="24dp"
             app:boxCornerRadiusTopStart="24dp"
-            app:boxStrokeColor="@color/secondaryTextColor"
+            app:boxStrokeColor="@color/secondaryTextColoruikit"
             app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -133,12 +133,12 @@
             app:passwordToggleEnabled="true"
             tools:visibility="visible"
             android:hint="@string/enter_new_password"
-            android:textColorHint="@color/secondaryTextColor"
+            android:textColorHint="@color/secondaryTextColoruikit"
             app:boxCornerRadiusBottomEnd="24dp"
             app:boxCornerRadiusBottomStart="24dp"
             app:boxCornerRadiusTopEnd="24dp"
             app:boxCornerRadiusTopStart="24dp"
-            app:boxStrokeColor="@color/secondaryTextColor"
+            app:boxStrokeColor="@color/secondaryTextColoruikit"
             app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText

@@ -28,7 +28,7 @@
                     android:id="@+id/rv_right_map"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/textColorWhite">
+                    android:background="@color/textColorWhiteuikit">
                     <ImageView
                         tools:src="@tools:sample/avatars"
                         android:layout_width="250dp"
@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rv_right_map">
                     <TextView
-                        android:textColor="@color/textColorWhite"
+                        android:textColor="@color/textColorWhiteuikit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_place_name"
@@ -55,7 +55,7 @@
                         tools:text="Address"/>
                     <TextView
                         android:id="@+id/sender_location_txt"
-                        android:textColor="@color/textColorWhite"
+                        android:textColor="@color/textColorWhiteuikit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="italic"
@@ -67,7 +67,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="match_parent"
                         android:id="@+id/navigate_btn"
-                        android:textColor="@color/textColorWhite"
+                        android:textColor="@color/textColorWhiteuikit"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:text="@string/navigate"
                         app:cornerRadius="8dp"
@@ -87,7 +87,7 @@
             android:layout_alignBottom="@+id/cv_message_container"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
             tools:visibility="visible"
             android:visibility="gone"/>

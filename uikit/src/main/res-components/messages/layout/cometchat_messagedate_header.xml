@@ -20,7 +20,7 @@
         android:maxWidth="300dp"
         android:paddingLeft="10dp"
         android:paddingBottom="4dp"
-        android:textColor="@color/secondaryTextColor"
+        android:textColor="@color/secondaryTextColoruikit"
         android:textStyle="bold"
         android:id="@+id/txt_message_date"/>
 

@@ -29,13 +29,13 @@
                     android:padding="8dp"
                     android:id="@+id/icon"
                     android:src="@drawable/ic_whiteboard_24dp"
-                    android:tint="@color/textColorWhite"
+                    android:tint="@color/textColorWhiteuikit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_toRightOf="@+id/icon"
                     android:id="@+id/whiteboard_message"
-                    android:textColor="@color/textColorWhite"
+                    android:textColor="@color/textColorWhiteuikit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Someone has shared whiteboard. Click below join button to check whiteboard"
@@ -51,7 +51,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="16dp"
                 android:textColor="@color/primaryTextColoruikit"
-                app:backgroundTint="@color/textColorWhite"
+                app:backgroundTint="@color/textColorWhiteuikit"
                 app:cornerRadius="8dp"
                 android:id="@+id/join_whiteboard"
                 android:layout_height="wrap_content"/>
@@ -67,7 +67,7 @@
             android:layout_alignBottom="@+id/cv_message_container"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
             tools:visibility="visible"
             android:visibility="gone"/>

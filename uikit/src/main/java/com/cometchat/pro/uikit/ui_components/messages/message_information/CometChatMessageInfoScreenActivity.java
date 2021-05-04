@@ -132,8 +132,8 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
         cometChatReceiptsList = findViewById(R.id.rvReceipts);
         swipeRefreshLayout.setColorSchemeColors(
                 getResources().getColor(R.color.colorPrimaryuikit),
-                getResources().getColor(R.color.red),
-                getResources().getColor(R.color.grey));
+                getResources().getColor(R.color.redUikit),
+                getResources().getColor(R.color.greyUikit));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -146,11 +146,11 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
         fetchReceipts();
         backIcon.setOnClickListener(view -> onBackPressed());
         if(Utils.isDarkMode(this)) {
-            toolbar.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            messageLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            messageLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
         } else {
-            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            messageLayout.setBackgroundColor(getResources().getColor(R.color.light_grey));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
+            messageLayout.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
         }
     }
 
@@ -298,7 +298,7 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
                         linearLayout.setBackground(getResources()
                                 .getDrawable(R.drawable.cc_message_bubble_right));
                         linearLayout.setBackgroundTintList(ColorStateList.valueOf(getResources()
-                                .getColor(R.color.textColorWhite)));
+                                .getColor(R.color.textColorWhiteuikit)));
                         TextView textViewPercentage = new TextView(this);
                         TextView textViewOption = new TextView(this);
                         textViewPercentage.setPadding(16, 4, 0, 4);

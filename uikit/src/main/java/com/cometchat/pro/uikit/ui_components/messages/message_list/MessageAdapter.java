@@ -53,7 +53,6 @@ import com.cometchat.pro.models.MessageReceipt;
 import com.cometchat.pro.models.TextMessage;
 import com.cometchat.pro.models.User;
 
-import com.cometchat.pro.uikit.ui_components.users.user_details.CometChatUserDetailScreenActivity;
 import com.cometchat.pro.uikit.ui_resources.utils.pattern_utils.PatternUtils;
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.google.android.material.button.MaterialButton;
@@ -633,7 +632,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 linearLayout.setPadding(8,8,8,8);
                 linearLayout.setBackgroundColor(Color.parseColor(UISettings.getColor()));
                 linearLayout.setBackgroundTintList(ColorStateList.valueOf(context.getResources()
-                        .getColor(R.color.textColorWhite)));
+                        .getColor(R.color.textColorWhiteuikit)));
                 layoutParams.bottomMargin = (int) Utils.dpToPx(context, 8);
                 linearLayout.setLayoutParams(layoutParams);
 
@@ -1217,7 +1216,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         BaseMessage baseMessage = messageList.get(i);
         if (baseMessage!=null&&baseMessage.getDeletedAt()==0) {
             if (!baseMessage.getSender().getUid().equals(loggedInUser.getUid())) {
-                viewHolder.playBtn.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
+                viewHolder.playBtn.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
                 if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
                     viewHolder.tvUser.setVisibility(View.GONE);
                     viewHolder.ivUser.setVisibility(View.GONE);
@@ -1856,7 +1855,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (baseMessage.getDeletedAt()!=0) {
             viewHolder.tvThreadReplyCount.setVisibility(View.GONE);
             viewHolder.txtMessage.setText(R.string.this_message_deleted);
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.secondaryTextColor));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.secondaryTextColoruikit));
             viewHolder.txtMessage.setTypeface(null, Typeface.ITALIC);
         }
         showMessageTime(viewHolder, baseMessage);
@@ -1886,7 +1885,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private void setActionData(ActionMessageViewHolder viewHolder, int i) {
         BaseMessage baseMessage = messageList.get(i);
         if(Utils.isDarkMode(context))
-            viewHolder.textView.setTextColor(context.getResources().getColor(R.color.textColorWhite));
+            viewHolder.textView.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
         else
             viewHolder.textView.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
@@ -2270,7 +2269,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             });
             if (baseMessage.getSender().getUid().equals(loggedInUser.getUid()))
-                viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.textColorWhite));
+                viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
             else
                 viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
@@ -2397,7 +2396,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             viewHolder.txtMessage.setText(context.getResources().getString(R.string.custom_message));
             viewHolder.txtMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoLight));
             if (baseMessage.getSender().getUid().equals(loggedInUser.getUid()))
-                viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.textColorWhite));
+                viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
             else
                 viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
@@ -2437,9 +2436,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             } else {
                 if (!(view instanceof CardView)) {
                     if (Build.VERSION.SDK_INT >= 29)
-                        view.getBackground().setColorFilter(new PorterDuffColorFilter(context.getColor(R.color.message_bubble_grey), PorterDuff.Mode.SRC_ATOP));
+                        view.getBackground().setColorFilter(new PorterDuffColorFilter(context.getColor(R.color.message_bubble_greyuikit), PorterDuff.Mode.SRC_ATOP));
                     else
-                        view.getBackground().setColorFilter(context.getResources().getColor(R.color.message_bubble_grey), PorterDuff.Mode.SRC_ATOP);
+                        view.getBackground().setColorFilter(context.getResources().getColor(R.color.message_bubble_greyuikit), PorterDuff.Mode.SRC_ATOP);
                 }
             }
         } else {
@@ -2451,7 +2450,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 if (baseMessage.getSender().equals(CometChat.getLoggedInUser()))
                     view.getBackground().setColorFilter(context.getResources().getColor(R.color.colorPrimaryDarkuikit), PorterDuff.Mode.SRC_ATOP);
                 else
-                    view.getBackground().setColorFilter(context.getResources().getColor(R.color.secondaryTextColor), PorterDuff.Mode.SRC_ATOP);
+                    view.getBackground().setColorFilter(context.getResources().getColor(R.color.secondaryTextColoruikit), PorterDuff.Mode.SRC_ATOP);
 
             }
         }

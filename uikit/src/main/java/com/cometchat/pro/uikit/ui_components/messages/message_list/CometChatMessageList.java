@@ -463,20 +463,20 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (Utils.isDarkMode(context)) {
-            bottomLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.grey));
+            bottomLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.greyUikit));
             editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
-            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            rvChatListView.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            tvName.setTextColor(getResources().getColor(R.color.textColorWhite));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            rvChatListView.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            tvName.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
-            bottomLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            bottomLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
             editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
-            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
+            rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
             tvName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
 
@@ -1935,7 +1935,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                     Log.d(TAG, "onUserOffline: " + user.toString());
                     if (user.getUid().equals(Id)) {
                         if (Utils.isDarkMode(getContext()))
-                            tvStatus.setTextColor(getResources().getColor(R.color.textColorWhite));
+                            tvStatus.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
                         else
                             tvStatus.setTextColor(getResources().getColor(android.R.color.black));
                         tvStatus.setText(user.getStatus());

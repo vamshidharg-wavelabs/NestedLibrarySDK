@@ -54,7 +54,7 @@
             android:layout_marginLeft="8dp"
             android:layout_below="@+id/title"
             tools:text="125 KB"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/secondaryTextColoruikit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </RelativeLayout>

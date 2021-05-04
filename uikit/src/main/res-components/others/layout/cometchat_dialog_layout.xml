@@ -9,7 +9,7 @@
     <RelativeLayout
         android:padding="8dp"
         android:layout_width="match_parent"
-        tools:background="@color/red"
+        tools:background="@color/redUikit"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/iv_icon"

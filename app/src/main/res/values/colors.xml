@@ -15,7 +15,7 @@
     <color name="secondaryDarkColor">#005a87</color>
     <color name="button_primary_color">@color/primaryColor</color>
     <color name="dialogBoxBackgroundColor">#ffffff</color>
-    <color name="searchHintColor">#A7B7C2</color>
+    <color name="searchHintColorUikit">#A7B7C2</color>
     <item name="WHITE" type="color">#FFFFFF</item>
     <item name="light_black" type="color">#C6000000</item>
     <color name="primaryTextColor">#ffffff</color>
