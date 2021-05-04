@@ -274,24 +274,24 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
 
 
         if (Utils.isDarkMode(context)) {
-            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            ivAudio.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            ivAudio.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
             ivMic.setImageDrawable(getResources().getDrawable(R.drawable.ic_mic_white_24dp));
-            flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            etComposeBox.setTextColor(getResources().getColor(R.color.textColorWhite));
-            ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            ivCamera.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            ivGallery.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            ivFile.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
+            flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            etComposeBox.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            ivCamera.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            ivGallery.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            ivFile.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
         } else {
-            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
             ivAudio.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
             ivMic.setImageDrawable(getResources().getDrawable(R.drawable.ic_mic_grey_24dp));
             etComposeBox.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
             ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
-            flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
-            ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
+            flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.greyUikit)));
+            ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.greyUikit)));
             ivCamera.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
             ivFile.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
         }

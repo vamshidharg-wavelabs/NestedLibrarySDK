@@ -98,8 +98,8 @@
                     <TextView
                         android:padding="16dp"
                         android:id="@+id/tv_address"
-                        android:textColor="@color/textColorWhite"
-                        android:background="@color/grey"
+                        android:textColor="@color/textColorWhiteuikit"
+                        android:background="@color/greyUikit"
                         android:layout_alignParentBottom="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -246,7 +246,7 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginLeft="4dp"
                         android:layout_marginBottom="8dp"
-                        app:backgroundTint="@color/textColorWhite"
+                        app:backgroundTint="@color/textColorWhiteuikit"
                         android:textColor="@color/primaryTextColoruikit"
                         app:cornerRadius="16dp"
                         android:id="@+id/join_whiteboard"

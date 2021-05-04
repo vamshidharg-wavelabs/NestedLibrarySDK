@@ -4,7 +4,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -97,16 +96,16 @@ public class Utils {
         ImageView iconImage = dialogView.findViewById(R.id.iv_icon);
         if (isError) {
             iconImage.setImageResource(R.drawable.ic_info);
-            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            dialogView.setBackgroundColor(context.getResources().getColor(R.color.red));
+            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            dialogView.setBackgroundColor(context.getResources().getColor(R.color.redUikit));
         } else {
             snackbar.setDuration(Snackbar.LENGTH_LONG);
             iconImage.setImageResource(R.drawable.ic_baseline_check_circle_24);
             iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.green_600)));
             messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.primaryTextColoruikit)));
-            dialogView.setBackgroundColor(context.getResources().getColor(R.color.textColorWhite));
+            dialogView.setBackgroundColor(context.getResources().getColor(R.color.textColorWhiteuikit));
         }
         closeImage.setOnClickListener(v-> {
             snackbar.dismiss();

@@ -55,7 +55,7 @@
     </style>
     <style name="AutoCompleteTextView.SearchView" parent="Widget.AppCompat.AutoCompleteTextView">
         <item name="android:textColor">@color/primaryTextColor</item>
-        <item name="android:textColorHint">@color/searchHintColor</item>
+        <item name="android:textColorHint">@color/searchHintColorUikit</item>
     </style>
     <style name="UtilsDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <!-- buttons color -->

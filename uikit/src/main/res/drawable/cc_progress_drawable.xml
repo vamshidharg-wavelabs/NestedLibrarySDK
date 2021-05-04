@@ -18,7 +18,7 @@
         <gradient
             android:type="sweep"
             android:useLevel="false"
-            android:startColor="@color/message_bubble_grey"
+            android:startColor="@color/message_bubble_greyuikit"
             android:endColor="#00ffffff"
             android:angle="0"/>
 

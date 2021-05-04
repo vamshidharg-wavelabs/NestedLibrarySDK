@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:id="@+id/call_view"
     android:layout_height="match_parent"
-    android:background="@color/darkModeBackground"
+    android:background="@color/darkModeBackgroundUikit"
     tools:context="com.cometchat.pro.uikit.ui_components.calls.call_manager.CometChatStartCallActivity">
     <LinearLayout
         android:id="@+id/connecting_to_call"
@@ -20,7 +20,7 @@
             android:layout_marginLeft="16dp"
             android:layout_gravity="center"
             style="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/textColorWhite"
+            android:textColor="@color/textColorWhiteuikit"
             android:text="@string/connecting_to_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

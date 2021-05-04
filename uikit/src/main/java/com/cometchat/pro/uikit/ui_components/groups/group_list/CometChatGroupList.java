@@ -115,7 +115,7 @@ public class CometChatGroupList extends Fragment  {
             ivCreateGroup.setVisibility(View.GONE);
 
         if(Utils.isDarkMode(getContext())) {
-            title.setTextColor(getResources().getColor(R.color.textColorWhite));
+            title.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
             title.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }

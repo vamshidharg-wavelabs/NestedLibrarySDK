@@ -4,7 +4,7 @@
     tools:visibility="visible"
     android:id="@+id/blocked_user_layout"
     android:padding="16dp"
-    android:background="@color/bottom"
+    android:background="@color/bottomuikit"
     android:layout_alignParentBottom="true"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:layout_margin="16dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="@color/secondaryTextColor"
+        android:textColor="@color/secondaryTextColoruikit"
         android:text="@string/you_wont_be_able_send_or_receive_messages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

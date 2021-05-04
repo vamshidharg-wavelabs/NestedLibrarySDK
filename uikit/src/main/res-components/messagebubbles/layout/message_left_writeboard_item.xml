@@ -67,7 +67,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="16dp"
-                app:backgroundTint="@color/textColorWhite"
+                app:backgroundTint="@color/textColorWhiteuikit"
                 android:textColor="@color/primaryTextColoruikit"
                 app:cornerRadius="8dp"
                 android:id="@+id/join_whiteboard"

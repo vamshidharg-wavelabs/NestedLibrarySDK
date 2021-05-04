@@ -38,7 +38,7 @@
         app:tabIndicatorGravity="bottom"
         app:tabIndicatorFullWidth="false"
         app:tabTextColor="@color/primaryTextColoruikit"
-        app:tabSelectedTextColor="@color/textColorWhite"
+        app:tabSelectedTextColor="@color/textColorWhiteuikit"
         app:tabMode="fixed">
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager
