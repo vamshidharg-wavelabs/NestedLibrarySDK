@@ -38,7 +38,7 @@
     <TextView
         android:layout_below="@+id/reply_user_info"
         android:textStyle="italic"
-        android:textColor="@color/secondaryTextColor"
+        android:textColor="@color/secondaryTextColoruikit"
         android:maxLines="3"
         android:maxWidth="200dp"
         android:ellipsize="end"

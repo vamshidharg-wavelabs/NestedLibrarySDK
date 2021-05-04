@@ -185,7 +185,7 @@ public class CometChatAddMembers extends Fragment {
 
     private void checkDarkMode() {
         if(Utils.isDarkMode(getContext())) {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorWhite));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
             toolbar.setTitleTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }

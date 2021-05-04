@@ -30,7 +30,7 @@
         android:layout_marginEnd="16dp"
         android:textSize="@dimen/name"
         android:maxLines="1"
-        android:background="@color/shimmer"
+        android:background="@color/shimmerUikit"
         android:textStyle="bold" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_marginEnd="16dp"
         android:textSize="@dimen/fourteen"
         android:layout_marginStart="8dp"
-        android:background="@color/shimmer"
+        android:background="@color/shimmerUikit"
         android:layout_below="@id/txt_user_name"
         android:layout_toEndOf="@id/av_user"
         android:maxLines="1"
@@ -61,7 +61,7 @@
         android:layout_marginEnd="16dp"
         android:textSize="@dimen/name"
         android:maxLines="1"
-        android:background="@color/shimmer"
+        android:background="@color/shimmerUikit"
         android:textStyle="bold" />
 
     <TextView
@@ -72,7 +72,7 @@
         android:layout_marginEnd="16dp"
         android:textSize="@dimen/fourteen"
         android:layout_marginStart="8dp"
-        android:background="@color/shimmer"
+        android:background="@color/shimmerUikit"
         android:layout_below="@id/txt_user_name2"
         android:layout_alignParentEnd="true"
         android:maxLines="1"

@@ -102,13 +102,13 @@ public class CometChatUserProfile extends Fragment {
             moreInfoScreenBinding.ivSecurity.setImageDrawable(wrappedDrawable);
         }
         if(Utils.isDarkMode(getContext())) {
-            moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.textColorWhite));
-            moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.grey));
-            moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.grey));
+            moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.greyUikit));
         } else {
             moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
-            moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.light_grey));
+            moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
         }
 
         // not required for client

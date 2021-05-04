@@ -27,7 +27,7 @@
                 <ImageView
                     android:id="@+id/icon"
                     android:src="@drawable/ic_videocam_24dp"
-                    android:tint="@color/textColorWhite"
+                    android:tint="@color/textColorWhiteuikit"
                     android:layout_width="32dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="12dp"
@@ -35,7 +35,7 @@
                 <TextView
                     android:layout_toRightOf="@+id/icon"
                     android:id="@+id/group_call_message"
-                    android:textColor="@color/textColorWhite"
+                    android:textColor="@color/textColorWhiteuikit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/you_created_group_call"
@@ -50,7 +50,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="16dp"
                 android:textColor="@color/primaryTextColoruikit"
-                app:backgroundTint="@color/textColorWhite"
+                app:backgroundTint="@color/textColorWhiteuikit"
                 app:cornerRadius="8dp"
                 android:id="@+id/join_call"
                 android:layout_height="wrap_content"/>
@@ -66,7 +66,7 @@
             android:layout_alignBottom="@+id/cv_message_container"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
             tools:visibility="visible"
             android:visibility="gone"/>

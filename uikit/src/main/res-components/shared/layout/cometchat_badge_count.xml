@@ -14,7 +14,7 @@
         android:textSize="12sp"
         android:gravity="center"
         android:background="@drawable/count_background"
-        android:textColor="@color/textColorWhite"
+        android:textColor="@color/textColorWhiteuikit"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>

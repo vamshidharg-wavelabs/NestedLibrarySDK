@@ -228,15 +228,15 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
 
     private void checkDarkMode() {
         if (Utils.isDarkMode(this)) {
-            userName.setTextColor(getResources().getColor(R.color.textColorWhite));
-            divider1.setBackgroundColor(getResources().getColor(R.color.grey));
-            divider2.setBackgroundColor(getResources().getColor(R.color.grey));
-            divider3.setBackgroundColor(getResources().getColor(R.color.grey));
+            userName.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            divider1.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            divider2.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            divider3.setBackgroundColor(getResources().getColor(R.color.greyUikit));
         } else {
             userName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
-            divider1.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            divider2.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            divider3.setBackgroundColor(getResources().getColor(R.color.light_grey));
+            divider1.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            divider2.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            divider3.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
         }
     }
 
@@ -385,11 +385,11 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
 
     private void setBlockUnblock() {
         if (isBlocked) {
-            tvBlockUser.setTextColor(getResources().getColor(R.color.online_green));
+            tvBlockUser.setTextColor(getResources().getColor(R.color.online_greenuikit));
             tvBlockUser.setText(getResources().getString(R.string.unblock_user));
         } else{
             tvBlockUser.setText(getResources().getString(R.string.block_user));
-            tvBlockUser.setTextColor(getResources().getColor(R.color.red));
+            tvBlockUser.setTextColor(getResources().getColor(R.color.redUikit));
         }
     }
 

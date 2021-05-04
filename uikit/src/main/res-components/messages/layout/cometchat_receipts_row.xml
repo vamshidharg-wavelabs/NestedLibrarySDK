@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"/>
     <TextView
         android:drawableStart="@drawable/ic_done_all_black_24dp"
-        android:drawableTint="@color/grey"
+        android:drawableTint="@color/greyUikit"
         android:drawablePadding="4dp"
         android:layout_alignTop="@id/ivAvatar"
         android:text="Delivered"

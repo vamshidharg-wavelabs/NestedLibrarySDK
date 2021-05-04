@@ -133,27 +133,27 @@ public class CometChatCreateGroup extends Fragment {
 
     private void checkDarkMode() {
         if (Utils.isDarkMode(getContext())) {
-            des1.setTextColor(getResources().getColor(R.color.textColorWhite));
-            des2.setTextColor(getResources().getColor(R.color.textColorWhite));
-            groupNameLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            groupNameLayout.setBoxStrokeColor(getResources().getColor(R.color.textColorWhite));
-            groupNameLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            etGroupName.setTextColor(getResources().getColor(R.color.textColorWhite));
+            des1.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            des2.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            groupNameLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            groupNameLayout.setBoxStrokeColor(getResources().getColor(R.color.textColorWhiteuikit));
+            groupNameLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            etGroupName.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
 
-            groupDescLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            groupDescLayout.setBoxStrokeColor(getResources().getColor(R.color.textColorWhite));
-            groupDescLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            etGroupDesc.setTextColor(getResources().getColor(R.color.textColorWhite));
+            groupDescLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            groupDescLayout.setBoxStrokeColor(getResources().getColor(R.color.textColorWhiteuikit));
+            groupDescLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            etGroupDesc.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
 
-            groupPasswordLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            groupPasswordLayout.setBoxStrokeColor(getResources().getColor(R.color.textColorWhite));
-            groupPasswordLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            etGroupPassword.setTextColor(getResources().getColor(R.color.textColorWhite));
+            groupPasswordLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            groupPasswordLayout.setBoxStrokeColor(getResources().getColor(R.color.textColorWhiteuikit));
+            groupPasswordLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            etGroupPassword.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
 
-            groupCnfPasswordLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            groupCnfPasswordLayout.setBoxStrokeColor(getResources().getColor(R.color.textColorWhite));
-            groupCnfPasswordLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            etGroupCnfPassword.setTextColor(getResources().getColor(R.color.textColorWhite));
+            groupCnfPasswordLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            groupCnfPasswordLayout.setBoxStrokeColor(getResources().getColor(R.color.textColorWhiteuikit));
+            groupCnfPasswordLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            etGroupCnfPassword.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
 
         } else {
             des1.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));

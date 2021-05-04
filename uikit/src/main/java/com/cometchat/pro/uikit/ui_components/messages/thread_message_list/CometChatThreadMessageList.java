@@ -58,7 +58,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.cometchat.pro.constants.CometChatConstants;
@@ -463,7 +462,7 @@ public class CometChatThreadMessageList extends Fragment implements View.OnClick
                     linearLayout.setBackground(context.getResources()
                             .getDrawable(R.drawable.cc_message_bubble_right));
                     linearLayout.setBackgroundTintList(ColorStateList.valueOf(context.getResources()
-                            .getColor(R.color.textColorWhite)));
+                            .getColor(R.color.textColorWhiteuikit)));
                     layoutParams.bottomMargin = (int) Utils.dpToPx(context, 8);
                     linearLayout.setLayoutParams(layoutParams);
 
@@ -680,24 +679,24 @@ public class CometChatThreadMessageList extends Fragment implements View.OnClick
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (Utils.isDarkMode(context)) {
-            ivMoreOption.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            ivForwardMessage.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            bottomLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.grey));
+            ivMoreOption.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            ivForwardMessage.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            bottomLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.greyUikit));
             editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
-            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            rvChatListView.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            tvName.setTextColor(getResources().getColor(R.color.textColorWhite));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            rvChatListView.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            tvName.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
             ivMoreOption.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColoruikit)));
             ivForwardMessage.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.primaryTextColoruikit)));
-            bottomLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            bottomLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
             editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
-            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
+            rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
             tvName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
 

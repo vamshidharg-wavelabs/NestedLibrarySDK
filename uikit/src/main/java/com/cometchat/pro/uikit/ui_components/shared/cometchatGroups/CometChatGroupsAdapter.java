@@ -111,13 +111,13 @@ public class CometChatGroupsAdapter extends RecyclerView.Adapter<CometChatGroups
         groupViewHolder.groupListRowBinding.txtUserName.setTypeface(fontUtils.getTypeFace(FontUtils.robotoMedium));
 
         if(Utils.isDarkMode(context)) {
-            groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.grey)));
-            groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhite));
-            groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.grey));
+            groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.greyUikit)));
+            groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
+            groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.greyUikit));
         } else {
-            groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.message_bubble_grey)));
+            groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.message_bubble_greyuikit)));
             groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
-            groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
+            groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_greyuikit));
         }
 
         //pinned groups

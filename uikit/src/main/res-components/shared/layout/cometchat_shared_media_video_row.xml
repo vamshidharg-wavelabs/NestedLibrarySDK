@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/ic_defaulf_image"
-        android:background="@color/textColorWhite"
+        android:background="@color/textColorWhiteuikit"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true" />
     <ImageView

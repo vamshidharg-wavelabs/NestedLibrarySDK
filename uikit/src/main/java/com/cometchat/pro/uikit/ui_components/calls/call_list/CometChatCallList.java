@@ -135,13 +135,13 @@ public class CometChatCallList extends Fragment {
 
     private void checkDarkMode() {
         if(Utils.isDarkMode(getContext())) {
-            tvTitle.setTextColor(getResources().getColor(R.color.textColorWhite));
-            tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
-            tabLayout.setTabTextColors(getResources().getColor(R.color.textColorWhite),getResources().getColor(R.color.light_grey));
+            tvTitle.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.greyUikit)));
+            tabLayout.setTabTextColors(getResources().getColor(R.color.textColorWhiteuikit),getResources().getColor(R.color.light_greyuikit));
         } else {
             tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
-            tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            tabLayout.setTabTextColors(getResources().getColor(R.color.primaryTextColoruikit),getResources().getColor(R.color.textColorWhite));
+            tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            tabLayout.setTabTextColors(getResources().getColor(R.color.primaryTextColoruikit),getResources().getColor(R.color.textColorWhiteuikit));
         }
 
     }

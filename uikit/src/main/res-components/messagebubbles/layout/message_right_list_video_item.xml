@@ -30,7 +30,7 @@
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:src="@drawable/ic_defaulf_image"
-                    android:background="@color/textColorWhite"
+                    android:background="@color/textColorWhiteuikit"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true" />
                 <ImageView
@@ -47,7 +47,7 @@
                 android:layout_gravity="center"
                 android:visibility="gone"
                 tools:visibility="visible"
-                android:indeterminateTint="@color/grey"
+                android:indeterminateTint="@color/greyUikit"
                 android:indeterminateDrawable="@drawable/cc_progress_drawable" />
 
         </androidx.cardview.widget.CardView>
@@ -97,7 +97,7 @@
             android:layout_toLeftOf="@id/cv_image_message_container"
             android:layout_gravity="center"
             android:layout_alignBottom="@id/cv_image_message_container"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
             tools:visibility="visible"
             android:visibility="gone" />

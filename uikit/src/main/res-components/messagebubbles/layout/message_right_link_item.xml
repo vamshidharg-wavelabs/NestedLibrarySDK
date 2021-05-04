@@ -34,7 +34,7 @@
                 android:layout_width="250dp"
                 android:layout_height="100dp"
                 android:src="@drawable/ic_defaulf_image"
-                android:background="@color/textColorWhite"
+                android:background="@color/textColorWhiteuikit"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true" />
                 <ImageView
@@ -53,7 +53,7 @@
                 android:paddingStart="16dp"
                 android:paddingBottom="8dp"
                 android:id="@+id/link_title"
-                android:textColor="@color/textColorWhite"
+                android:textColor="@color/textColorWhiteuikit"
                 android:layout_below="@+id/image_view"
                 tools:text="SecondHand Shoes"
                 android:textStyle="bold"
@@ -63,7 +63,7 @@
                 android:paddingBottom="8dp"
                 android:paddingStart="16dp"
                 android:textStyle="italic"
-                android:textColor="@color/textColorWhite"
+                android:textColor="@color/textColorWhiteuikit"
                 tools:text="Lorium Espium wet twe serew fae daq ruqa"
                 android:id="@+id/link_subtitle"
                 android:layout_below="@+id/link_title"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:paddingLeft="16dp"
-                android:textColor="@color/textColorWhite"
+                android:textColor="@color/textColorWhiteuikit"
                 android:id="@+id/message"
                 android:layout_marginTop="8dp"
                 android:layout_below="@id/link_subtitle"
@@ -82,13 +82,13 @@
                 android:layout_height="wrap_content"/>
             <View
                 android:layout_marginTop="16dp"
-                android:background="@color/light_grey"
+                android:background="@color/light_greyuikit"
                 android:id="@+id/linkSeperator"
                 android:layout_below="@+id/message"
                 android:layout_width="250dp"
                 android:layout_height="1dp"/>
             <TextView
-                android:background="@color/textColorWhite"
+                android:background="@color/textColorWhiteuikit"
                 android:id="@+id/visitLink"
                 android:textColor="@color/colorPrimaryuikit"
                 android:textStyle="bold"
