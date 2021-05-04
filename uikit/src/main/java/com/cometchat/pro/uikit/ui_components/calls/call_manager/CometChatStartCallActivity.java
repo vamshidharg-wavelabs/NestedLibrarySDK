@@ -20,6 +20,7 @@ import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.repo.SettingsRepo;
+import com.cometchat.pro.rtc.model.AudioMode;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.uikit.ui_components.calls.call_manager.ongoing_call.OngoingCallService;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
@@ -83,6 +84,10 @@ public class CometChatStartCallActivity extends AppCompatActivity {
         Log.e( "startCallActivity: ",sessionID+" "+type);
 
         CometChat.startCall(callSettings, new CometChat.OngoingCallListener() {
+                @Override
+                public void onAudioModesUpdated(List<AudioMode> list) {
+                    Log.e( "onAudioModeUpdated: ",list.toString() );
+                }
                 @Override
                 public void onUserJoined(User user) {
                     connectingLayout.setVisibility(View.GONE);

@@ -498,8 +498,10 @@ MembersAdapter.MembersAdapterListener{
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
             composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
             rvChatListView.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            rvMemberSuggestions.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
             tvName.setTextColor(getResources().getColor(R.color.textColorWhite));
+            if (rvMemberSuggestions != null) {
+                rvMemberSuggestions.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
+            }
         } else {
             bottomLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
             toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
@@ -507,10 +509,11 @@ MembersAdapter.MembersAdapterListener{
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
             composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
             rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            rvMemberSuggestions.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
             tvName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            if (rvMemberSuggestions != null) {
+                rvMemberSuggestions.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            }
         }
-
         KeyBoardUtils.setKeyboardVisibilityListener(getActivity(), (View) rvChatListView.getParent(), keyboardVisible -> {
 //            isKeyboardVisible = keyboardVisible;
 //            if (keyboardVisible) {
@@ -880,17 +883,19 @@ MembersAdapter.MembersAdapterListener{
 
     private void showMemberSuggestions(){
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
-            rvMemberSuggestions.setVisibility(View.VISIBLE);
+            if (rvMemberSuggestions != null) {
+                rvMemberSuggestions.setVisibility(View.VISIBLE);
 
-            if(memberAll.size() > 4){
-                ViewGroup.LayoutParams params=rvMemberSuggestions.getLayoutParams();
-                params.height=550;
-                rvMemberSuggestions.setLayoutParams(params);
+                if (memberAll.size() > 4) {
+                    ViewGroup.LayoutParams params = rvMemberSuggestions.getLayoutParams();
+                    params.height = 550;
+                    rvMemberSuggestions.setLayoutParams(params);
+                }
+
+                membersAdapter = new MembersAdapter(getActivity(), memberAll, this);
+                rvMemberSuggestions.setAdapter(membersAdapter);
+                membersAdapter.notifyDataSetChanged();
             }
-
-            membersAdapter = new MembersAdapter(getActivity(), memberAll, this);
-            rvMemberSuggestions.setAdapter(membersAdapter);
-            membersAdapter.notifyDataSetChanged();
         });
     }
     private void filterMemberSuggestions(CharSequence query){
@@ -903,7 +908,9 @@ MembersAdapter.MembersAdapterListener{
         startPosition = 0;
         endPosition = 0;
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
-            rvMemberSuggestions.setVisibility(View.GONE);
+            if (rvMemberSuggestions != null) {
+                rvMemberSuggestions.setVisibility(View.GONE);
+            }
         });
     }
     @Override
