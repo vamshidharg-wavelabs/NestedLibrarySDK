@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cometchat.pro.constants.CometChatConstants;
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.core.ConversationsRequest;
 import com.cometchat.pro.exceptions.CometChatException;
@@ -42,6 +43,11 @@ import java.util.List;
 import com.cometchat.pro.uikit.ui_resources.utils.item_clickListener.OnItemClickListener;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import static com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants.IntentStrings.PINNED_GROUPS;
 
 /*
 
@@ -79,6 +85,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
     private View view;
 
     private List<Conversation> conversationList = new ArrayList<>();
+    private List<Group> groupPinnedList = new ArrayList<>();
 
     public CometChatConversationList() {
         // Required empty public constructor
@@ -121,7 +128,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    makeConversationList();
+                    makeConversationList(false);
                 }
 
             }
@@ -157,9 +164,45 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
      * For more detail please visit our official documentation {@link "https://prodocs.cometchat.com/docs/android-messaging-retrieve-conversations" }
      *
      * @see ConversationsRequest
+     * @param isInitial
      */
-    private void makeConversationList() {
+    private void makeConversationList(boolean isInitial) {
+        if(isInitial){
+            //get user metadata of pinned groups
+            User user = CometChat.getLoggedInUser();
+            try {
+                if((user.getMetadata()!= null) && (user.getMetadata().has(PINNED_GROUPS)) && (user.getMetadata().getJSONArray(PINNED_GROUPS).length() > 0)) {
+                    fetchGroupPinned(user.getMetadata().getJSONArray(PINNED_GROUPS));
+                }else
+                    fetchConversations();
+            } catch (JSONException e) {
+                e.printStackTrace();
+                fetchConversations();
+            }
+        } else {
+            fetchConversations();
+        }
 
+    }
+    private void fetchGroupPinned(JSONArray pinnedGroupIDs) throws JSONException {
+        for (int i = 0; i < pinnedGroupIDs.length(); i++) {
+            CometChat.getGroup(pinnedGroupIDs.getString(i), new CometChat.CallbackListener<Group>() {
+                @Override
+                public void onSuccess(Group group) {
+                    groupPinnedList.add(group);
+                    if (groupPinnedList.size()==pinnedGroupIDs.length()) {
+                        fetchConversations();
+                    }
+                }
+                @Override
+                public void onError(CometChatException e) {
+                    Log.d("CometChatGroupList", "Pinned Group fetching failed with exception: " + e.getMessage());
+                    fetchConversations();
+                }
+            });
+        }
+    }
+    private void fetchConversations() {
         if (conversationsRequest == null) {
             conversationsRequest = new ConversationsRequest.ConversationsRequestBuilder().setLimit(50).build();
             if (conversationListType!=null)
@@ -169,16 +212,19 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
         conversationsRequest.fetchNext(new CometChat.CallbackListener<List<Conversation>>() {
             @Override
             public void onSuccess(List<Conversation> conversations) {
-                conversationList.addAll(conversations);
-                if (conversationList.size() != 0) {
+                if (conversations.size() != 0) {
+
+                    List<Conversation> filteredList = filterConversations(conversations);
+
+                    conversationList.addAll(filteredList);
+
                     stopHideShimmer();
                     noConversationView.setVisibility(View.GONE);
-                    rvConversationList.setConversationList(conversations);
+                    rvConversationList.setConversationList(conversationList);
                 } else {
                     checkNoConverstaion();
                 }
             }
-
             @Override
             public void onError(CometChatException e) {
                 stopHideShimmer();
@@ -187,6 +233,31 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
                 Log.d(TAG, "onError: "+e.getMessage());
             }
         });
+    }
+    private List<Conversation> filterConversations(List<Conversation> conversations) {
+        if(groupPinnedList.size() == 0)
+            return conversations;
+
+        List<Conversation> resultList = new ArrayList<>();
+
+        //pick pinnedGroups done chatting from conversations
+        for(Group group : groupPinnedList){
+            for(Conversation conversation : conversations){
+                if(conversation.getConversationType().equals(CometChatConstants.CONVERSATION_TYPE_GROUP) &&
+                        ((Group) conversation.getConversationWith()).getGuid().equals(group.getGuid())){
+                    resultList.add(conversation);
+                    break;
+                }
+            }//loop conversations
+        }//loop groups
+
+        //remove pinnedGroup's conversation from conversations
+        conversations.removeAll(resultList);
+
+        //append remaining conversations into resultList
+        resultList.addAll(conversations);
+
+        return resultList;
     }
 
     private void checkNoConverstaion() {
@@ -357,8 +428,11 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
         }
         conversationsRequest = null;
         searchEdit.addTextChangedListener(this);
+
         rvConversationList.clearList();
-        makeConversationList();
+        groupPinnedList.clear();
+        makeConversationList(true);
+
         addConversationListener();
     }
 
@@ -397,10 +471,11 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
         if (s.length() == 0) {
-//                    // if searchEdit is empty then fetch all conversations.
+            // if searchEdit is empty then fetch all conversations.
             conversationsRequest = null;
             rvConversationList.clearList();
-            makeConversationList();
+            groupPinnedList.clear();
+            makeConversationList(true);
         } else {
 //                    // Search conversation based on text in searchEdit field.
             rvConversationList.searchConversation(s.toString().toLowerCase());

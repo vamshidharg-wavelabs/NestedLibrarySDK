@@ -33,6 +33,12 @@ import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import static com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants.IntentStrings.PINNED_GROUPS;
+import static com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants.IntentStrings.PINNED_GROUPS_MAX_LIMIT;
+
 /**
  * Purpose - ConversationListAdapter is a subclass of RecyclerView Adapter which is used to display
  * the list of conversations. It helps to organize the list data in recyclerView.
@@ -190,6 +196,24 @@ public class CometChatConversationsAdapter extends RecyclerView.Adapter<CometCha
             conversationViewHolder.conversationListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_greyuikit));
         }
         conversationViewHolder.conversationListRowBinding.getRoot().setTag(R.string.conversation, conversation);
+
+        //pinned groups
+        User user = CometChat.getLoggedInUser();
+        if((conversation.getConversationType().equals(CometChatConstants.CONVERSATION_TYPE_GROUP)) && (user.getMetadata()!= null) && (user.getMetadata().has(PINNED_GROUPS))) {
+            try {
+                JSONArray pinnedGroupIDs = user.getMetadata().getJSONArray(PINNED_GROUPS);
+                if(pinnedGroupIDs.toString().contains(((Group) conversation.getConversationWith()).getGuid())){
+                    conversationViewHolder.conversationListRowBinding.ivPin.setVisibility(View.VISIBLE);
+                } else {
+                    conversationViewHolder.conversationListRowBinding.ivPin.setVisibility(View.GONE);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                conversationViewHolder.conversationListRowBinding.ivPin.setVisibility(View.GONE);
+            }
+        } else {
+            conversationViewHolder.conversationListRowBinding.ivPin.setVisibility(View.GONE);
+        }
 
     }
 

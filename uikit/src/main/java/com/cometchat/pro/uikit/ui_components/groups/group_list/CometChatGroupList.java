@@ -140,7 +140,8 @@ public class CometChatGroupList extends Fragment  {
                     // if etSearch is empty then fetch all groups.
                     groupsRequest=null;
                     rvGroupList.clear();
-                    fetchGroup();
+                    groupList.clear();
+                    fetchGroup(true);
                 }
                 else {
                     // Search group based on text in etSearch field.
@@ -179,7 +180,7 @@ public class CometChatGroupList extends Fragment  {
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    fetchGroup();
+                    fetchGroup(false);
                 }
 
             }
@@ -203,6 +204,13 @@ public class CometChatGroupList extends Fragment  {
             }
         });
         return view;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        fetchGroup(true);
     }
 
     public boolean isItemPinned(View view, int position){
@@ -279,6 +287,12 @@ public class CometChatGroupList extends Fragment  {
             public void onSuccess(User user) {
                 if (getContext()!=null)
                     Toast.makeText(getContext(),"Unpin Group successful",Toast.LENGTH_SHORT).show();
+
+                // if group pinned then fetch all groups.
+                groupsRequest=null;
+                rvGroupList.clear();
+                groupList.clear();
+                fetchGroup(true);
             }
 
             @Override
@@ -338,6 +352,12 @@ public class CometChatGroupList extends Fragment  {
             public void onSuccess(User user) {
                 if (getContext()!=null)
                     Toast.makeText(getContext(),"Pin Group successful",Toast.LENGTH_SHORT).show();
+
+                // if group pinned then fetch all groups.
+                groupsRequest=null;
+                rvGroupList.clear();
+                groupList.clear();
+                fetchGroup(true);
             }
 
             @Override
@@ -348,28 +368,64 @@ public class CometChatGroupList extends Fragment  {
         });
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        fetchGroup();
-    }
 
     /**
      *  This method is used to retrieve list of groups present in your App_ID.
      *  For more detail please visit our official documentation {@link "https://prodocs.cometchat.com/docs/android-groups-retrieve-groups" }
      *
      * @see GroupsRequest
+     * @param isInitial
      */
-    private void fetchGroup(){
+    private void fetchGroup(boolean isInitial){
+        if(isInitial){
+            //get user metadata of pinned groups
+            User user = CometChat.getLoggedInUser();
+            try {
+                if((user.getMetadata()!= null) && (user.getMetadata().has(PINNED_GROUPS)) && (user.getMetadata().getJSONArray(PINNED_GROUPS).length() > 0)) {
+                    fetchGroupPinned(user.getMetadata().getJSONArray(PINNED_GROUPS));
+                }else
+                    fetchGroupUnPinned();
+            } catch (JSONException e) {
+                e.printStackTrace();
+                fetchGroupUnPinned();
+            }
+        } else {
+            fetchGroupUnPinned();
+        }
+    }
+    private void fetchGroupPinned(JSONArray pinnedGroupIDs) throws JSONException {
+        for (int i = 0; i < pinnedGroupIDs.length(); i++) {
+            CometChat.getGroup(pinnedGroupIDs.getString(i), new CometChat.CallbackListener<Group>() {
+                @Override
+                public void onSuccess(Group group) {
+                    groupList.add(group);
+                    if (groupList.size()==pinnedGroupIDs.length()) {
+                        fetchGroupUnPinned();
+                    }
+                }
+                @Override
+                public void onError(CometChatException e) {
+                    Log.d("CometChatGroupList", "Pinned Group fetching failed with exception: " + e.getMessage());
+                }
+            });
+        }
+    }
+    private void fetchGroupUnPinned(){
         if (groupsRequest==null){
             groupsRequest=new GroupsRequest.GroupsRequestBuilder().setLimit(30).build();
         }
         groupsRequest.fetchNext(new CometChat.CallbackListener<List<Group>>() {
             @Override
             public void onSuccess(List<Group> groups) {
+//                List<Group> filteredList = filterGroup(groups);
+//                rvGroupList.setGroupList(filteredList); // sets the groups in rvGroupList i.e CometChatGroupList Component.
+//                groupList.addAll(groups);
+
                 List<Group> filteredList = filterGroup(groups);
-                rvGroupList.setGroupList(filteredList); // sets the groups in rvGroupList i.e CometChatGroupList Component.
-                groupList.addAll(groups);
+
+                groupList.addAll(filteredList);
+                rvGroupList.setGroupList(groupList);
+
                 if (groupList.size()==0) {
                     noGroupLayout.setVisibility(View.VISIBLE);
                     rvGroupList.setVisibility(View.GONE);
@@ -387,6 +443,14 @@ public class CometChatGroupList extends Fragment  {
         });
     }
     private List<Group> filterGroup(List<Group> groups) {
+        if(groupList.size() == 0)
+            return groups;
+
+        groups.removeAll(groupList);
+
+        return groups;
+    }
+    /*private List<Group> filterGroup(List<Group> groups) {
         List<Group> resultList = new ArrayList<>();
         for (Group group : groups) {
             if (group.isJoined()) {
@@ -406,7 +470,7 @@ public class CometChatGroupList extends Fragment  {
             }
         }
         return resultList;
-    }
+    }*/
 
     /**
      *  This method is used to search groups present in your App_ID.

@@ -31,6 +31,19 @@
     <include layout="@layout/cometchat_edit_message_view"/>
 
     <include layout="@layout/cometchat_reply_message_view"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMemberSuggestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="5dp"
+        android:background="@android:color/white"
+        android:layout_above="@+id/bottom_layout"
+        android:orientation="vertical"
+        android:visibility="gone"/>
+
     <FrameLayout
         android:id="@+id/reactions_container"
         android:layout_width="match_parent"
@@ -41,6 +54,7 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.cometchat.pro.uikit.ui_components.shared.cometchatSmartReplies.CometChatSmartReplies
             android:layout_width="match_parent"
             android:elevation="16dp"
