@@ -68,4 +68,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/bg_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/translucent_bg"
+        android:clickable="false"
+        android:visibility="gone"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        >
+        <!--        android:background="@color/bg_translucentuikit"-->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Inverse"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 </RelativeLayout>

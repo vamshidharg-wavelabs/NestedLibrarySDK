@@ -49,6 +49,8 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
     private RelativeLayout audioMessage;
     private String TAG = CometChatMediaViewActivity.class.getName();
 
+    private RelativeLayout progressbarBG;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,9 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
         toolbar.getNavigationIcon().setTint(getResources().getColor(R.color.textColorWhiteuikit));
         toolbar.setTitle(senderName);
         toolbar.setSubtitle(Utils.getLastMessageDate(sentAt));
+
+        progressbarBG = findViewById(R.id.bg_progressbar);
+
         imageMessage = findViewById(R.id.image_message);
         videoMessage = findViewById(R.id.video_message);
         audioMessage = findViewById(R.id.audio_message);
@@ -79,11 +84,16 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
             });
             imageMessage.setVisibility(View.VISIBLE);
         } else if (mediaType.equals(CometChatConstants.MESSAGE_TYPE_VIDEO)) {
+            progressbarBG.setVisibility(View.VISIBLE);
             MediaController mediacontroller = new MediaController(this);
             mediacontroller.setAnchorView(videoMessage);
             videoMessage.setMediaController(mediacontroller);
             videoMessage.setVideoURI(Uri.parse(mediaUrl));
             videoMessage.setVisibility(View.VISIBLE);
+            videoMessage.setOnPreparedListener(arg0 -> {
+                progressbarBG.setVisibility(View.GONE);
+                videoMessage.start();
+            });
         } else if (mediaType.equals(CometChatConstants.MESSAGE_TYPE_AUDIO)) {
             mediaPlayer.reset();
             mediaSize.setText(Utils.getFileSize(mSize));
