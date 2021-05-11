@@ -431,6 +431,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
 
         rvConversationList.clearList();
         groupPinnedList.clear();
+        conversationList.clear();
         makeConversationList(true);
 
         addConversationListener();
@@ -475,6 +476,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher {
             conversationsRequest = null;
             rvConversationList.clearList();
             groupPinnedList.clear();
+            conversationList.clear();
             makeConversationList(true);
         } else {
 //                    // Search conversation based on text in searchEdit field.
