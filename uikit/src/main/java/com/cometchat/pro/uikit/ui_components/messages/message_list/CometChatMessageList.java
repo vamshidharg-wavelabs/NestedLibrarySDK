@@ -1124,6 +1124,20 @@ MembersAdapter.MembersAdapterListener{
         else
             customMessage = new CustomMessage(Id, CometChatConstants.RECEIVER_TYPE_GROUP, customType, customData);
 
+        JSONObject metadata = null;
+        if(customMessage.getMetadata() == null){
+            metadata = new JSONObject();
+        }else{
+            metadata = customMessage.getMetadata();
+        }
+
+        try {
+            metadata.put("incrementUnreadCount", true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        customMessage.setMetadata(metadata);
+
         CometChat.sendCustomMessage(customMessage, new CometChat.CallbackListener<CustomMessage>() {
             @Override
             public void onSuccess(CustomMessage customMessage) {

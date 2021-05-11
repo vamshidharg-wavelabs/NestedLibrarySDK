@@ -29,6 +29,7 @@ import java.util.List;
 
 import com.cometchat.pro.uikit.databinding.CometchatConversationListRowBinding;
 import com.cometchat.pro.uikit.ui_components.messages.extensions.Extensions;
+import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_settings.UISettings;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
@@ -328,10 +329,21 @@ public class CometChatConversationsAdapter extends RecyclerView.Adapter<CometCha
      */
     public void update(Conversation conversation) {
 
+//        if (filterConversationList.contains(conversation)) {
+//            Conversation oldConversation = filterConversationList.get(filterConversationList.indexOf(conversation));
+//            filterConversationList.remove(oldConversation);
+//            if (conversation.getLastMessage().getCategory().equalsIgnoreCase(CometChatConstants.CATEGORY_MESSAGE))
+//                conversation.setUnreadMessageCount(oldConversation.getUnreadMessageCount() + 1);
+//            filterConversationList.add(0, conversation);
+//        } else {
+//            filterConversationList.add(0, conversation);
+//        }
+//        notifyDataSetChanged();
+
         if (filterConversationList.contains(conversation)) {
             Conversation oldConversation = filterConversationList.get(filterConversationList.indexOf(conversation));
             filterConversationList.remove(oldConversation);
-            if (conversation.getLastMessage().getCategory().equalsIgnoreCase(CometChatConstants.CATEGORY_MESSAGE))
+            if (conversation.getLastMessage().getType().equalsIgnoreCase(UIKitConstants.IntentStrings.LOCATION) || conversation.getLastMessage().getCategory().equalsIgnoreCase(CometChatConstants.CATEGORY_MESSAGE))
                 conversation.setUnreadMessageCount(oldConversation.getUnreadMessageCount() + 1);
             filterConversationList.add(0, conversation);
         } else {
