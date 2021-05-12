@@ -100,25 +100,34 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
             playBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        mediaPlayer.setDataSource(mediaUrl);
-                        mediaPlayer.prepare();
-                        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mp) {
+                    progressbarBG.setVisibility(View.VISIBLE);
+                    new Thread(() -> {
+                        try {
+                            mediaPlayer.setDataSource(mediaUrl);
+                            mediaPlayer.prepare();
+                            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mp) {
+                                    runOnUiThread(() -> {
+                                        playBtn.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                                        progressbarBG.setVisibility(View.GONE);
+                                    });
+                                }
+                            });
+                        } catch (Exception e) {
+                            Log.e(TAG, "MediaPlayerError: "+e.getMessage());
+                        }
+                        runOnUiThread(() -> {
+                            progressbarBG.setVisibility(View.GONE);
+                            if (!mediaPlayer.isPlaying()) {
+                                mediaPlayer.start();
+                                playBtn.setImageResource(R.drawable.ic_pause_24dp);
+                            } else {
+                                mediaPlayer.pause();
                                 playBtn.setImageResource(R.drawable.ic_play_arrow_black_24dp);
                             }
                         });
-                    } catch (Exception e) {
-                        Log.e(TAG, "MediaPlayerError: "+e.getMessage());
-                    }
-                    if (!mediaPlayer.isPlaying()) {
-                        mediaPlayer.start();
-                        playBtn.setImageResource(R.drawable.ic_pause_24dp);
-                    } else {
-                        mediaPlayer.pause();
-                        playBtn.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-                    }
+                    }).start();
                 }
             });
             audioMessage.setVisibility(View.VISIBLE);

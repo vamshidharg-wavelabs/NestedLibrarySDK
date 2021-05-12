@@ -398,69 +398,83 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
 //           composeActionListener.onFileActionClicked(ivFile);
         }
         if(view.getId()==R.id.ivArrow) {
+            try {
+                ivArrow.setEnabled(false);
+                ivArrow.setFocusable(false);
+                ivArrow.setClickable(false);
+
 //            if (isOpen) {
 //               closeActionContainer();
 //            } else {
 //                openActionContainer();
 //            }
-            FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-            bundle.putBoolean("isGalleryVisible",isGalleryVisible);
-            bundle.putBoolean("isVideoVisible",isVideoVisible);
-            bundle.putBoolean("isCameraVisible",isCameraVisible);
-            bundle.putBoolean("isFileVisible",isFileVisible);
-            bundle.putBoolean("isAudioVisible",isAudioVisible);
-            bundle.putBoolean("isLocationVisible",isLocationVisible);
-            bundle.putBoolean("isGroupCallVisible",isGroupCallVisible);
-            CometChat.isExtensionEnabled("document", new CometChat.CallbackListener<Boolean>() {
-                @Override
-                public void onSuccess(Boolean aBoolean) {
-                    if (aBoolean)
-                        bundle.putBoolean("isWriteBoardVisible",isWriteBoardVisible);
-                }
+                FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+                bundle.putBoolean("isGalleryVisible", isGalleryVisible);
+                bundle.putBoolean("isVideoVisible", isVideoVisible);
+                bundle.putBoolean("isCameraVisible", isCameraVisible);
+                bundle.putBoolean("isFileVisible", isFileVisible);
+                bundle.putBoolean("isAudioVisible", isAudioVisible);
+                bundle.putBoolean("isLocationVisible", isLocationVisible);
+                bundle.putBoolean("isGroupCallVisible", isGroupCallVisible);
+                CometChat.isExtensionEnabled("document", new CometChat.CallbackListener<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean aBoolean) {
+                        if (aBoolean)
+                            bundle.putBoolean("isWriteBoardVisible", isWriteBoardVisible);
+                    }
 
-                @Override
-                public void onError(CometChatException e) {
-                    e.printStackTrace();
-                }
-            });
-            CometChat.isExtensionEnabled("whiteboard", new CometChat.CallbackListener<Boolean>() {
-                @Override
-                public void onSuccess(Boolean aBoolean) {
-                    if (aBoolean)
-                        bundle.putBoolean("isWhiteBoardVisible",isWhiteBoardVisible);
-                }
+                    @Override
+                    public void onError(CometChatException e) {
+                        e.printStackTrace();
+                    }
+                });
+                CometChat.isExtensionEnabled("whiteboard", new CometChat.CallbackListener<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean aBoolean) {
+                        if (aBoolean)
+                            bundle.putBoolean("isWhiteBoardVisible", isWhiteBoardVisible);
+                    }
 
-                @Override
-                public void onError(CometChatException e) {
-                    e.printStackTrace();
-                }
-            });
-            CometChat.isExtensionEnabled("stickers", new CometChat.CallbackListener<Boolean>() {
-                @Override
-                public void onSuccess(Boolean aBoolean) {
-                    if (aBoolean)
-                       bundle.putBoolean("isStickerVisible",isStickerVisible);
-                }
+                    @Override
+                    public void onError(CometChatException e) {
+                        e.printStackTrace();
+                    }
+                });
+                CometChat.isExtensionEnabled("stickers", new CometChat.CallbackListener<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean aBoolean) {
+                        if (aBoolean)
+                            bundle.putBoolean("isStickerVisible", isStickerVisible);
+                    }
 
-                @Override
-                public void onError(CometChatException e) {
-                    e.printStackTrace();
-                }
-            });
-            CometChat.isExtensionEnabled("polls", new CometChat.CallbackListener<Boolean>() {
-                @Override
-                public void onSuccess(Boolean aBoolean) {
-                    if (aBoolean)
-                        bundle.putBoolean("isPollsVisible",isPollVisible);
-                }
+                    @Override
+                    public void onError(CometChatException e) {
+                        e.printStackTrace();
+                    }
+                });
+                CometChat.isExtensionEnabled("polls", new CometChat.CallbackListener<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean aBoolean) {
+                        if (aBoolean)
+                            bundle.putBoolean("isPollsVisible", isPollVisible);
+                    }
 
-                @Override
-                public void onError(CometChatException e) {
-                    e.printStackTrace();
-                }
-            });
-            composeBoxActionFragment.setArguments(bundle);
-            composeBoxActionFragment.show(fm,composeBoxActionFragment.getTag());
+                    @Override
+                    public void onError(CometChatException e) {
+                        e.printStackTrace();
+                    }
+                });
+                composeBoxActionFragment.setArguments(bundle);
+                composeBoxActionFragment.show(fm, composeBoxActionFragment.getTag());
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                new Handler().postDelayed(() -> {
+                    ivArrow.setEnabled(true);
+                    ivArrow.setFocusable(true);
+                    ivArrow.setClickable(true);
+                }, 1000);
+            }
         }
         if (view.getId()==R.id.ivMic) {
             if (Utils.hasPermissions(context, new String[]{Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE})) {

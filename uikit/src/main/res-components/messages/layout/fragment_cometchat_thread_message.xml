@@ -391,9 +391,8 @@
 
     <include layout="@layout/cometchat_reply_message_view"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <!--<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMemberSuggestions"
-        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -402,7 +401,7 @@
         android:background="@android:color/white"
         android:layout_above="@+id/bottom_layout"
         android:orientation="vertical"
-        android:visibility="gone"/>
+        android:visibility="gone"/>-->
 
     <FrameLayout
         android:id="@+id/reactions_container"

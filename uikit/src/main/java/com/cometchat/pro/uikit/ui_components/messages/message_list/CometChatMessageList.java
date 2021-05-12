@@ -1335,6 +1335,8 @@ MembersAdapter.MembersAdapterListener{
                 blockUserLayout.setVisibility(GONE);
                 isBlockedByMe = false;
                 messagesRequest=null;
+
+                new Thread(() -> getUser()).start();
             }
 
             @Override
