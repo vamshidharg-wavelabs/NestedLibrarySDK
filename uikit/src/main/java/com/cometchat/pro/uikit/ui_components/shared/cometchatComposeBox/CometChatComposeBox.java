@@ -376,6 +376,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             if (!voiceMessage) {
                 composeActionListener.onSendActionClicked(etComposeBox);
             } else {
+                mediaPlayer.stop();
                 composeActionListener.onVoiceNoteComplete(audioFileNameWithPath);
                 audioFileNameWithPath = "";
                 voiceMessageLayout.setVisibility(GONE);

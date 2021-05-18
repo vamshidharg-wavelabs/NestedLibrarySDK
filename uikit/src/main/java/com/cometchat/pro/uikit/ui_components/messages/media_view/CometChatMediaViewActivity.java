@@ -163,4 +163,10 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
         if (getIntent().hasExtra(UIKitConstants.IntentStrings.MESSAGE_TYPE))
             mediaType = getIntent().getStringExtra(UIKitConstants.IntentStrings.MESSAGE_TYPE);
     }
+
+    @Override
+    public void onBackPressed() {
+        mediaPlayer.reset();
+        super.onBackPressed();
+    }
 }
