@@ -1133,9 +1133,16 @@ MembersAdapter.MembersAdapterListener{
 
         try {
             metadata.put("incrementUnreadCount", true);
+
+            if(customType.toLowerCase().equals("location")){
+                String name = CometChat.getLoggedInUser().getName();
+                metadata.put("title", name);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
         customMessage.setMetadata(metadata);
 
         CometChat.sendCustomMessage(customMessage, new CometChat.CallbackListener<CustomMessage>() {
@@ -2429,6 +2436,13 @@ MembersAdapter.MembersAdapterListener{
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onStop() {
+        Log.d("Recording stopp", "OnStop");
+        composeBox.stopRecord();
+        super.onStop();
     }
 
     @Override

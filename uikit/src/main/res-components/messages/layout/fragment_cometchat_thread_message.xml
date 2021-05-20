@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="250dp"/>
                 <RelativeLayout
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:id="@+id/rl_locationMessage"
                     android:layout_width="match_parent"
                     android:layout_height="200dp">

@@ -202,6 +202,7 @@ public class CometChatCreateGroup extends Fragment {
     }
 
     private void createGroup(Group group) {
+        createGroupBtn.setClickable(false);
         CometChat.createGroup(group, new CometChat.CallbackListener<Group>() {
             @Override
             public void onSuccess(Group group) {
@@ -218,6 +219,7 @@ public class CometChatCreateGroup extends Fragment {
                 if (getActivity()!=null)
                     getActivity().finish();
 
+                createGroupBtn.setClickable(true);
                 startActivity(intent);
             }
 
