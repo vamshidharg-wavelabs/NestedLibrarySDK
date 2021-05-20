@@ -918,7 +918,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                         message[0] = message[0] + "\n(" + translatedMessage + ")";
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(context, context.getString(R.string.no_translation_available), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, context.getString(R.string.no_translation_available), Toast.LENGTH_SHORT).show();
                 }
             }
 

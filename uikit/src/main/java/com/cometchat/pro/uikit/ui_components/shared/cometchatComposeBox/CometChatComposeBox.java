@@ -546,6 +546,11 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             startRecording();
     }
 
+    public void stopRecord(){
+        Log.d("Recording stopp", "inside the function");
+        mediaPlayer.stop();
+    }
+
     private void startPlayingAudio(String path) {
         try {
 
@@ -645,14 +650,17 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
     private void stopRecording(boolean isCancel) {
         try {
             if (mediaRecorder != null) {
+                Log.d("Recording stopp", "inside the function");
                 mediaRecorder.stop();
                 mediaRecorder.release();
                 mediaRecorder = null;
                 if (isCancel) {
                     new File(audioFileNameWithPath).delete();
+                    Log.d("Recording stopp", "stopped");
                 }
             }
         } catch (Exception e) {
+            Log.d("Recording stopp", "Error caught");
             e.printStackTrace();
         }
     }
