@@ -32,6 +32,8 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.ActionMode;
+import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -641,6 +643,19 @@ MembersAdapter.MembersAdapterListener{
     }
 
     private void setComposeBoxListener() {
+        composeBox.etComposeBox.setOnCreateContextMenuListener((menu, v, menuInfo) -> menu.clear());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            composeBox.etComposeBox.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
+                @Override
+                public boolean onCreateActionMode(ActionMode mode, Menu menu) { return false; }
+                @Override
+                public boolean onPrepareActionMode(ActionMode mode, Menu menu) { return false; }
+                @Override
+                public boolean onActionItemClicked(ActionMode mode, MenuItem item) { return false; }
+                @Override
+                public void onDestroyActionMode(ActionMode mode) { }
+            });
+        }
 
         composeBox.setComposeBoxListener(new ComposeActionListener() {
             @Override

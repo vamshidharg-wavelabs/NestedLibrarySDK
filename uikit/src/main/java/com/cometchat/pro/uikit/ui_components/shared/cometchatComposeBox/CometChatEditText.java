@@ -44,27 +44,31 @@ public class CometChatEditText extends AppCompatEditText {
                     @Override
                     public boolean onCommitContent(InputContentInfoCompat inputContentInfo,
                                                    int flags, Bundle opts) {
-                        // read and display inputContentInfo asynchronously
-                        if (BuildCompat.isAtLeastNMR1() && (flags &
-                                InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
-                            try {
-                                inputContentInfo.requestPermission();
+                        try {
+                            // read and display inputContentInfo asynchronously
+                            if (BuildCompat.isAtLeastNMR1() && (flags &
+                                    InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
+                                try {
+                                    inputContentInfo.requestPermission();
+                                } catch (Exception e) {
+                                    return false; // return false if failed
+                                }
                             }
-                            catch (Exception e) {
-                                return false; // return false if failed
-                            }
+                            ContentResolver cr = getContext().getContentResolver();
+                            String mimeType = cr.getType(inputContentInfo.getLinkUri());
+
+                            Log.e(TAG, "onCommitContent: " + inputContentInfo.getLinkUri().getPath()
+                                    + "\n" + inputContentInfo.getContentUri() + "\n" +
+                                    mimeType);
+                            onEditTextMediaListener.OnMediaSelected(inputContentInfo);
+                            // read and display inputContentInfo asynchronously.
+                            // call inputContentInfo.releasePermission() as needed.
+
+                            return true;  // return true if succeeded
+                        }catch (Exception e){
+                            e.printStackTrace();
                         }
-                        ContentResolver cr = getContext().getContentResolver();
-                        String mimeType = cr.getType(inputContentInfo.getLinkUri());
-
-                        Log.e(TAG, "onCommitContent: "+inputContentInfo.getLinkUri().getPath()
-                                +"\n"+inputContentInfo.getContentUri()+"\n"+
-                                mimeType);
-                        onEditTextMediaListener.OnMediaSelected(inputContentInfo);
-                        // read and display inputContentInfo asynchronously.
-                        // call inputContentInfo.releasePermission() as needed.
-
-                        return true;  // return true if succeeded
+                        return false;
                     }
                 };
         return InputConnectionCompat.createWrapper(ic, outAttrs, callback);
