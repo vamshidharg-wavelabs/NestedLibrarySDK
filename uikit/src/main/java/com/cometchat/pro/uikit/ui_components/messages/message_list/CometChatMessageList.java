@@ -643,15 +643,20 @@ MembersAdapter.MembersAdapterListener{
     }
 
     private void setComposeBoxListener() {
-        composeBox.etComposeBox.setOnCreateContextMenuListener((menu, v, menuInfo) -> menu.clear());
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             composeBox.etComposeBox.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
                 @Override
-                public boolean onCreateActionMode(ActionMode mode, Menu menu) { return false; }
+                public boolean onCreateActionMode(ActionMode mode, Menu menu) { return true; }
                 @Override
-                public boolean onPrepareActionMode(ActionMode mode, Menu menu) { return false; }
+                public boolean onPrepareActionMode(ActionMode mode, Menu menu) { return true; }
                 @Override
-                public boolean onActionItemClicked(ActionMode mode, MenuItem item) { return false; }
+                public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                    if(item.getTitle().toString().toLowerCase().contains("clipboard"))
+                        return true;
+                    else
+                        return false;
+                }
                 @Override
                 public void onDestroyActionMode(ActionMode mode) { }
             });
