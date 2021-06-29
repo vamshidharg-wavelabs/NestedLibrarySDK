@@ -45,7 +45,7 @@
                     android:id="@+id/txt_user_name"
                     android:layout_width="match_parent"
                     android:layout_alignTop="@id/av_user"
-                    android:layout_toStartOf="@+id/messageTime"
+                    android:layout_toStartOf="@+id/endContainer"
                     android:layout_marginStart="8dp"
                     android:layout_toEndOf="@id/av_user"
                     android:layout_height="wrap_content"
@@ -81,42 +81,47 @@
                     android:layout_marginEnd="16dp"
                     android:layout_height="0.8dp"/>
 
-                <TextView
-                    android:visibility="visible"
-                    tools:visibility="visible"
-                    android:id="@+id/messageTime"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="16dp"
-                    android:textSize="12sp"
-                    android:layout_alignTop="@id/txt_user_name"
-                    tools:text="11:50"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
                 <LinearLayout
-                    android:id="@+id/footer"
+                    android:id="@+id/endContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@id/messageTime"
-                    android:orientation="horizontal">
-                    <com.cometchat.pro.uikit.ui_components.shared.cometchatBadgeCount.CometChatBadgeCount
+                    android:layout_alignTop="@id/txt_user_name"
+                    android:gravity="end"
+                    android:orientation="vertical">
+                    <TextView
+                        android:visibility="visible"
                         tools:visibility="visible"
-                        android:id="@+id/messageCount"
+                        android:id="@+id/messageTime"
+                        android:layout_marginEnd="16dp"
+                        android:textSize="12sp"
+                        tools:text="11:50"
                         android:layout_width="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="4dp"
-                        app:count="@{conversation.unreadMessageCount}"
-                        android:textColor="@color/textColorWhiteuikit"
                         android:layout_height="wrap_content"/>
-                    <ImageView
-                        tools:visibility="gone"
-                        android:id="@+id/ivPin"
-                        android:layout_width="16dp"
+                    <LinearLayout
+                        android:id="@+id/footer"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="4dp"
-                        android:gravity="top"
-                        android:src="@drawable/pin_red" />
+                        android:orientation="horizontal">
+                        <com.cometchat.pro.uikit.ui_components.shared.cometchatBadgeCount.CometChatBadgeCount
+                            tools:visibility="visible"
+                            android:id="@+id/messageCount"
+                            android:layout_width="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginTop="4dp"
+                            app:count="@{conversation.unreadMessageCount}"
+                            android:textColor="@color/textColorWhiteuikit"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            tools:visibility="gone"
+                            android:id="@+id/ivPin"
+                            android:layout_width="16dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginTop="4dp"
+                            android:gravity="top"
+                            android:src="@drawable/pin_red" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </RelativeLayout>

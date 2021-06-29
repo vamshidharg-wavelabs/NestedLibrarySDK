@@ -1904,8 +1904,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 actionMessage = ((User)((Action) baseMessage).getActioBy()).getName()+" "
                         +context.getString(R.string.added)+" "+((User)((Action) baseMessage).getActionOn()).getName();
             else if (((Action) baseMessage).getAction().equals(CometChatConstants.ActionKeys.ACTION_KICKED))
-                actionMessage = ((User)((Action) baseMessage).getActioBy()).getName()+" "
-                        +context.getString(R.string.kicked_by)+" "+((User)((Action) baseMessage).getActionOn()).getName();
+                actionMessage = ((User)((Action) baseMessage).getActioBy()).getName()+" nudged "+((User)((Action) baseMessage).getActionOn()).getName();
             else if (((Action) baseMessage).getAction().equals(CometChatConstants.ActionKeys.ACTION_BANNED))
                 actionMessage = ((User)((Action) baseMessage).getActioBy()).getName()+" "
                         +context.getString(R.string.ban)+" "+((User)((Action) baseMessage).getActionOn()).getName();
