@@ -30,7 +30,7 @@
         android:layout_marginTop="20dp"
         android:autofillHints="Username"
         android:hint="User ID"
-        android:text="vam1"
+        android:text="superhero5"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
