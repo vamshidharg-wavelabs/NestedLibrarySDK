@@ -52,10 +52,11 @@ public class WavelabsChatActivity extends AppCompatActivity {
         String uid = getIntent().getStringExtra("USER_ID");
         if(uid != null) {
             launchChatScreen(this, uid);
+        } else {
+            Intent intent = new Intent();
+            intent.setClass(this, CometChatUI.class);
+            startActivity(intent);
         }
-        Intent intent = new Intent();
-        intent.setClass(this, CometChatUI.class);
-        startActivity(intent);
     }
 
     public static void launchChatScreen(Activity MainActivity, String UID) {
