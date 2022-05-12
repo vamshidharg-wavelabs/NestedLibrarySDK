@@ -88,6 +88,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        Log.e(TAG, "onMessageReceieved");
         try {
             count++;
             json = new JSONObject(remoteMessage.getData());
@@ -193,7 +194,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private Intent getCallIntent(String title){
