@@ -7,9 +7,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -32,12 +35,28 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-public class WavelabsChatActivity {
+public class WavelabsChatActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginClass";
     private static String token;
     private static int count = 0;
     private static Context context = null;
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Log.e(TAG, "I am getting called");
+
+        String uid = getIntent().getStringExtra("USER_ID");
+        if(uid != null) {
+            launchChatScreen(this, uid);
+        }
+        Intent intent = new Intent();
+        intent.setClass(this, CometChatUI.class);
+        startActivity(intent);
+    }
 
     public static void launchChatScreen(Activity MainActivity, String UID) {
         context = MainActivity.getBaseContext();
@@ -96,8 +115,7 @@ public class WavelabsChatActivity {
                 Log.e("onErrorPN: ", e.getMessage());
             }
         });
-
-        registerMessageListener();
+        // registerMessageListener();
     }
 
     private static void registerMessageListener() {

@@ -106,7 +106,8 @@
         <activity
             android:name=".ui_components.messages.message_list.CometChatMessageListActivity"
             android:parentActivityName=".ui_components.cometchat_ui.CometChatUI"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
 
         <receiver
             android:name=".ui_components.calls.call_manager.ongoing_call.OngoingCallBroadcast"
