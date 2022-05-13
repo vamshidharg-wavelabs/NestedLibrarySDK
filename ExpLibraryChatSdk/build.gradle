@@ -51,5 +51,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.cometchat:pro-android-chat-sdk:2.3.1'
+    implementation 'com.cometchat:pro-android-chat-sdk:2.2.2-beta1'
 }
