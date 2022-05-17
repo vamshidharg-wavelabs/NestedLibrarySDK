@@ -10,17 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.cometchat.pro.constants.CometChatConstants;
 import com.cometchat.pro.core.Call;
-import com.cometchat.pro.core.CallManager;
 import com.cometchat.pro.core.CallSettings;
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
-import com.cometchat.pro.repo.SettingsRepo;
-import com.cometchat.pro.rtc.model.AudioMode;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.uikit.ui_components.calls.call_manager.ongoing_call.OngoingCallService;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
@@ -83,43 +79,42 @@ public class CometChatStartCallActivity extends AppCompatActivity {
                     .build();
         Log.e( "startCallActivity: ",sessionID+" "+type);
 
-        CometChat.startCall(callSettings, new CometChat.OngoingCallListener() {
-                @Override
-                public void onAudioModesUpdated(List<AudioMode> list) {
-                    Log.e( "onAudioModeUpdated: ",list.toString() );
-                }
-                @Override
-                public void onUserJoined(User user) {
-                    connectingLayout.setVisibility(View.GONE);
-                    Log.e("onUserJoined: ", user.getUid());
-                }
-
-                @Override
-                public void onUserLeft(User user) {
-                    Snackbar.make(mainView, "User Left: " + user.getName(), Snackbar.LENGTH_LONG).show();
-                    Log.e("onUserLeft: ", user.getUid());
-                }
-
-                @Override
-                public void onError(CometChatException e) {
-                    stopService(mServiceIntent);
-                    Log.e("onstartcallError: ", e.getMessage());
-                    Utils.showCometChatDialog(CometChatStartCallActivity.this,
-                            mainView,e.getCode()+" "+e.getMessage(), true);
-                }
-
-                @Override
-                public void onCallEnded(Call call) {
-                    stopService(mServiceIntent);
-                    Log.e("TAG", "onCallEnded: ");
-                    finish();
-                }
-
-            @Override
-            public void onUserListUpdated(List<User> list) {
-
-            }
-        });
+//        CometChat.startCall(callSettings, new CometChat.OngoingCallListener() {
+//                public void onAudioModesUpdated(List<AudioMode> list) {
+//                    Log.e( "onAudioModeUpdated: ",list.toString() );
+//                }
+//                @Override
+//                public void onUserJoined(User user) {
+//                    connectingLayout.setVisibility(View.GONE);
+//                    Log.e("onUserJoined: ", user.getUid());
+//                }
+//
+//                @Override
+//                public void onUserLeft(User user) {
+//                    Snackbar.make(mainView, "User Left: " + user.getName(), Snackbar.LENGTH_LONG).show();
+//                    Log.e("onUserLeft: ", user.getUid());
+//                }
+//
+//                @Override
+//                public void onError(CometChatException e) {
+//                    stopService(mServiceIntent);
+//                    Log.e("onstartcallError: ", e.getMessage());
+//                    Utils.showCometChatDialog(CometChatStartCallActivity.this,
+//                            mainView,e.getCode()+" "+e.getMessage(), true);
+//                }
+//
+//                @Override
+//                public void onCallEnded(Call call) {
+//                    stopService(mServiceIntent);
+//                    Log.e("TAG", "onCallEnded: ");
+//                    finish();
+//                }
+//
+//            @Override
+//            public void onUserListUpdated(List<User> list) {
+//
+//            }
+//        });
     }
 
     private boolean isMyServiceRunning(Class<? extends OngoingCallService> serviceClass) {
