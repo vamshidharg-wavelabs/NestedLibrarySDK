@@ -50,6 +50,7 @@ public class WavelabsChatActivity extends AppCompatActivity {
         Log.e(TAG, "I am getting called");
 
         String uid = getIntent().getStringExtra("USER_ID");
+
         if(uid != null) {
             launchChatScreen(this, uid);
         } else {

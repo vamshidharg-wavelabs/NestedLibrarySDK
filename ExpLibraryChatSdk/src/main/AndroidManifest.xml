@@ -13,7 +13,8 @@
 
             </activity>
             <activity android:name=".create_user.CreateUser"></activity>
-        <activity android:name=".WavelabsChatActivity" >
+        <activity
+            android:name=".WavelabsChatActivity" >
             <intent-filter>
                 <action android:name="FCM_PLUGIN_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
