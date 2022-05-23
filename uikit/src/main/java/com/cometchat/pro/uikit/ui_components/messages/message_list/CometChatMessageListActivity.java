@@ -93,7 +93,6 @@ public class CometChatMessageListActivity extends AppCompatActivity implements M
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
         Log.d(TAG, "onActivityResult: ");
-
     }
 
     @Override

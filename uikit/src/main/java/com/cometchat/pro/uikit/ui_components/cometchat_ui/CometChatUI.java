@@ -272,11 +272,7 @@ public class CometChatUI extends AppCompatActivity implements
                 unreadCount.addAll(stringHashMapHashMap.get("user").keySet());    //Add users whose messages are unread.
                 unreadCount.addAll(stringHashMapHashMap.get("group").keySet());    //Add groups whose messages are unread.
 
-                if (unreadCount.size() == 0) {
-                    badgeDrawable.setVisible(false);
-                } else {
-                    badgeDrawable.setVisible(true);
-                }
+                badgeDrawable.setVisible(unreadCount.size() != 0);
                 if (unreadCount.size() != 0) {
                     badgeDrawable.setNumber(unreadCount.size());  //add total count of users and groups whose messages are unread in BadgeDrawable
                 }
@@ -359,6 +355,7 @@ public class CometChatUI extends AppCompatActivity implements
         intent.putExtra(UIKitConstants.IntentStrings.STATUS, user.getStatus());
         intent.putExtra(UIKitConstants.IntentStrings.NAME, user.getName());
         intent.putExtra(UIKitConstants.IntentStrings.TYPE, CometChatConstants.RECEIVER_TYPE_USER);
+        getUnreadConversationCount();
         startActivity(intent);
     }
 

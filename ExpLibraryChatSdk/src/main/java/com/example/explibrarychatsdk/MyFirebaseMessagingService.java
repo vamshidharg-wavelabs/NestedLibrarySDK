@@ -140,8 +140,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         try {
             int m = (int) ((new Date().getTime()));
             String GROUP_ID = "group_id";
+
             Intent messageIntent = new Intent(getApplicationContext(), CometChatMessageListActivity.class);
             messageIntent.putExtra(UIKitConstants.IntentStrings.TYPE, baseMessage.getReceiverType());
+
             if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
                 messageIntent.putExtra(UIKitConstants.IntentStrings.NAME, baseMessage.getSender().getName());
                 messageIntent.putExtra(UIKitConstants.IntentStrings.UID, baseMessage.getSender().getUid());
@@ -155,8 +157,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 messageIntent.putExtra(UIKitConstants.IntentStrings.GROUP_OWNER, ((Group) baseMessage.getReceiver()).getOwner());
                 messageIntent.putExtra(UIKitConstants.IntentStrings.MEMBER_COUNT, ((Group) baseMessage.getReceiver()).getMembersCount());
             }
-            PendingIntent messagePendingIntent = PendingIntent.getActivity(getApplicationContext(),
-                    0123,messageIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+            PendingIntent messagePendingIntent = PendingIntent.getActivity(
+                    getApplicationContext(),
+                    0123,
+                    messageIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+            );
+
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, AppConfig.CHANNEL_1_ID)
                     .setSmallIcon(R.drawable.cc)
                     .setContentTitle(json.getString("title"))
@@ -185,7 +193,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setAutoCancel(true);
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
-            //notificationManager.notify(baseMessage.getId(), builder.build());
+            notificationManager.notify(
+                    baseMessage.getId(),
+                    builder.build()
+            );
+
             notificationManager.notify(
                     0,
                     summaryBuilder.build()

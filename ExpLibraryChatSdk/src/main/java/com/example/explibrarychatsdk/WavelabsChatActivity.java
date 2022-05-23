@@ -16,16 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.cometchat.pro.constants.CometChatConstants;
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.exceptions.CometChatException;
-import com.cometchat.pro.models.BaseMessage;
-import com.cometchat.pro.models.CustomMessage;
-import com.cometchat.pro.models.Group;
-import com.cometchat.pro.models.MediaMessage;
-import com.cometchat.pro.models.MessageReceipt;
-import com.cometchat.pro.models.TextMessage;
-import com.cometchat.pro.models.TypingIndicator;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.messages.message_list.CometChatMessageListActivity;
@@ -39,7 +31,7 @@ public class WavelabsChatActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginClass";
     private static String token;
-    private static int count = 0;
+//    private static int count = 0;
     private static Context context = null;
 
 
@@ -50,7 +42,7 @@ public class WavelabsChatActivity extends AppCompatActivity {
         Log.e(TAG, "I am getting called");
 
         String uid = getIntent().getStringExtra("USER_ID");
-        if(uid != null) {
+        if (uid != null) {
             launchChatScreen(this, uid);
         } else {
             Intent intent = new Intent();

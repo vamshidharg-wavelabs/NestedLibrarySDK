@@ -14,7 +14,14 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         Log.d("CUSTOM_APP_LOG", "app module");
-        Wavelabs.setAppConstants(this, AppConstants.APP_ID, AppConstants.REGION, AppConstants.AUTH_KEY, AppConstants.CHANNEL_1_ID, AppConstants.CHANNEL_2_ID);
+        Wavelabs.setAppConstants(
+                this,
+                AppConstants.APP_ID,
+                AppConstants.REGION,
+                AppConstants.AUTH_KEY,
+                AppConstants.CHANNEL_1_ID,
+                AppConstants.CHANNEL_2_ID
+        );
         createNotificationChannel();
     }
 
