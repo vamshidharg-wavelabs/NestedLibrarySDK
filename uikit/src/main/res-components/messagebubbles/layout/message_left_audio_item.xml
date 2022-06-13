@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:layoutDirection="ltr"
     android:layout_height="wrap_content">
     <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
         android:layout_width="24dp"
         android:id="@+id/iv_user"
+        app:corner_radius="12dp"
         tools:src="@tools:sample/avatars"
         android:layout_alignTop="@id/cv_message_container"
         android:layout_marginBottom="4dp"
@@ -37,7 +39,7 @@
             android:gravity="center_vertical"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="Audio File"
-            android:textColor="@color/primaryTextColoruikit"
+            android:textColor="@color/primaryTextColor"
             android:layout_toLeftOf="@+id/playBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -54,7 +56,7 @@
             android:layout_marginLeft="8dp"
             android:layout_below="@+id/title"
             tools:text="125 KB"
-            android:textColor="@color/secondaryTextColoruikit"
+            android:textColor="@color/secondaryTextColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
@@ -88,7 +90,7 @@
             android:clickable="true"
             android:foreground="?selectableItemBackground"
             android:id="@+id/thread_reply_count"
-            android:textColor="@color/colorPrimaryuikit"
+            android:textColor="@color/colorPrimary"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="16dp"
             tools:text="2 replies"

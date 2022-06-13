@@ -17,8 +17,6 @@ public abstract class ComposeActionListener {
 
     public void onGalleryActionClicked() {}
 
-    public void onVideoGalleryClicked() {}
-
     public void onAudioActionClicked() {}
 
     public void onFileActionClicked() {}

@@ -10,7 +10,7 @@
         android:layout_width="50dp"
         android:id="@+id/iv_user"
         app:border_width="0.5dp"
-        app:border_color="@color/colorPrimaryuikit"
+        app:border_color="@color/colorPrimary"
         tools:src="@tools:sample/avatars"
         android:layout_marginBottom="4dp"
         android:layout_marginStart="4dp"
@@ -31,7 +31,7 @@
         android:layout_toEndOf="@id/iv_user"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="10dp"
-        android:background="@color/message_bubble_greyuikit"
+        android:background="@color/message_bubble_grey"
         android:layout_marginStart="4dp"
         android:padding="8dp"
         android:layout_marginBottom="1dp">
@@ -41,7 +41,7 @@
             android:gravity="center_vertical"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="Audio File"
-            android:textColor="@color/primaryTextColoruikit"
+            android:textColor="@color/primaryTextColor"
             android:layout_toLeftOf="@+id/playBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -58,7 +58,7 @@
             android:layout_marginLeft="8dp"
             android:layout_below="@+id/title"
             tools:text="125 KB"
-            android:textColor="@color/secondaryTextColoruikit"
+            android:textColor="@color/secondaryTextColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </RelativeLayout>

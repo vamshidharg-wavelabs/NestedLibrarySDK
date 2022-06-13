@@ -37,12 +37,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.core.UsersRequest;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.models.User;
+import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
+import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
+import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
+import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
+import com.cometchat.pro.uikit.ui_settings.enums.UserMode;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
@@ -52,7 +58,7 @@ import com.cometchat.pro.uikit.ui_components.shared.cometchatUsers.CometChatUser
 import com.cometchat.pro.uikit.ui_components.shared.cometchatUsers.CometChatUsersAdapter;
 import com.cometchat.pro.uikit.ui_resources.utils.item_clickListener.OnItemClickListener;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
-import com.cometchat.pro.uikit.ui_settings.UISettings;
+import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 
 /*
@@ -102,6 +108,8 @@ public class CometChatUserList extends Fragment {
 
     private List<User> userList = new ArrayList<>();
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     public CometChatUserList() {
         // Required empty public constructor
     }
@@ -119,14 +127,35 @@ public class CometChatUserList extends Fragment {
         clearSearch = view.findViewById(R.id.clear_search);
         rlSearchBox=view.findViewById(R.id.rl_search_box);
 
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                usersRequest= null;
+                rvUserList.clear();
+                fetchUsers();
+            }
+        });
+        CometChatError.init(getContext());
         shimmerFrameLayout=view.findViewById(R.id.shimmer_layout);
 
         if(Utils.isDarkMode(getContext())) {
-            title.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            title.setTextColor(getResources().getColor(R.color.textColorWhite));
         } else {
-            title.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            title.setTextColor(getResources().getColor(R.color.primaryTextColor));
         }
 
+        FeatureRestriction.isUserSearchEnabled(new FeatureRestriction.OnSuccessListener() {
+            @Override
+            public void onSuccess(Boolean booleanVal) {
+                if (booleanVal)
+                    etSearch.setVisibility(View.VISIBLE);
+                else
+                    etSearch.setVisibility(View.GONE);
+            }
+        });
+
+        isTitleVisible();
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
@@ -160,6 +189,8 @@ public class CometChatUserList extends Fragment {
                 return false;
             }
         });
+
+
 
         clearSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,12 +229,26 @@ public class CometChatUserList extends Fragment {
         return view;
     }
 
+    private void isTitleVisible() {
+        if (getArguments()!=null) {
+            boolean isVisible = getArguments().getBoolean(UIKitConstants.IntentStrings.IS_TITLE_VISIBLE,true);
+            if (isVisible)
+                title.setVisibility(View.VISIBLE);
+            else
+                title.setVisibility(View.GONE);
+        }
+    }
+
     private void stopHideShimmer() {
         shimmerFrameLayout.stopShimmer();
         shimmerFrameLayout.setVisibility(View.GONE);
-        title.setVisibility(View.VISIBLE);
         rlSearchBox.setVisibility(View.VISIBLE);
 
+    }
+    public void setTitleVisible(boolean isVisible) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(UIKitConstants.IntentStrings.IS_TITLE_VISIBLE,isVisible);
+        setArguments(bundle);
     }
 
     @Override
@@ -222,12 +267,10 @@ public class CometChatUserList extends Fragment {
     private void fetchUsers() {
 
         if (usersRequest == null) {
-            if (UISettings.getUserListing()
-                    .equalsIgnoreCase("friends"))
+            if (UIKitSettings.getUsersMode()==UserMode.FRIENDS)
                 usersRequest = new UsersRequest.UsersRequestBuilder().setLimit(30)
                         .friendsOnly(true).build();
-            else if (UISettings.getUserListing()
-                    .equalsIgnoreCase("all_users"))
+            else if (UIKitSettings.getUsersMode()==UserMode.ALL_USER)
                 usersRequest = new UsersRequest.UsersRequestBuilder().setLimit(30).build();
         }
         usersRequest.fetchNext(new CometChat.CallbackListener<List<User>>() {
@@ -237,6 +280,8 @@ public class CometChatUserList extends Fragment {
                 userList.addAll(users);
                 stopHideShimmer();
                 rvUserList.setUserList(users); // set the users to rvUserList i.e CometChatUserList Component.
+                if (swipeRefreshLayout.isRefreshing())
+                    swipeRefreshLayout.setRefreshing(false);
 
                 if (userList.size()==0) {
                     noUserLayout.setVisibility(View.VISIBLE);
@@ -252,7 +297,8 @@ public class CometChatUserList extends Fragment {
                 Log.e(TAG, "onError: " + e.getMessage());
                 stopHideShimmer();
                 if (getActivity()!=null)
-                    Utils.showCometChatDialog(context,rvUserList,e.getMessage(), true);
+                    CometChatSnackBar.show(context,rvUserList,CometChatError.localized(e),
+                            CometChatSnackBar.ERROR);
             }
         });
     }
@@ -274,7 +320,8 @@ public class CometChatUserList extends Fragment {
 
             @Override
             public void onError(CometChatException e) {
-                Utils.showCometChatDialog(context,rlSearchBox, e.getMessage(), true);
+                CometChatSnackBar.show(context,rlSearchBox, CometChatError.localized(e)
+                        , CometChatSnackBar.ERROR);
             }
         });
     }

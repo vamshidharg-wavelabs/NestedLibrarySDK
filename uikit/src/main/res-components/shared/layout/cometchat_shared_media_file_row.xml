@@ -3,7 +3,7 @@
     android:layout_height="150dp"
     android:elevation="8dp"
     android:layout_margin="4dp"
-    tools:background="@color/colorPrimaryuikit"
+    tools:background="@color/colorPrimary"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="30dp"
@@ -19,12 +19,12 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_insert_drive_file_black_24dp"
+                android:src="@drawable/ic_file_upload"
                 android:layout_width="70dp"
-                android:tint="@color/secondaryTextColoruikit"
+                android:tint="@color/secondaryTextColor"
                 android:layout_height="70dp"/>
             <TextView
-                android:textColor="@color/textColorWhiteuikit"
+                android:textColor="@color/textColorWhite"
                 android:layout_centerInParent="true"
                 tools:text="PDF"
                 android:gravity="center"

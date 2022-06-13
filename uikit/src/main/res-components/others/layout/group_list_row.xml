@@ -18,29 +18,19 @@
 
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
             android:id="@+id/av_group"
-            android:layout_width="40dp"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             tools:src="@tools:sample/avatars"
             app:avatar="@{group}"
-            android:layout_height="40dp" />
-
-        <com.cometchat.pro.uikit.ui_components.shared.cometchatUserPresence.CometChatUserPresence
-            android:id="@+id/statusIndicator"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:visibility="gone"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="-32dp"
-            android:layout_toEndOf="@id/av_group"
-            android:layout_alignBottom="@id/av_group" />
-
+            android:layout_width="36dp"
+            app:corner_radius="18dp"
+            android:layout_height="36dp"/>
 
             <TextView
                 android:drawablePadding="8dp"
-                android:drawableTint="@color/greyUikit"
+                android:drawableTint="@color/grey"
                 tools:drawableRight="@drawable/ic_lock_24dp"
                 android:id="@+id/txt_user_name"
                 android:layout_width="wrap_content"
@@ -48,7 +38,7 @@
                 tools:text="@tools:sample/full_names"
                 android:layout_marginEnd="16dp"
                 android:textSize="@dimen/name"
-                android:textColor="@color/primaryTextColoruikit"
+                android:textColor="@color/primaryTextColor"
                 android:layout_toEndOf="@id/av_group"
                 android:layout_alignTop="@id/av_group"
                 android:text="@{group.name}"
@@ -74,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_toEndOf="@id/av_group"
             android:layout_alignParentBottom="true"
-            android:background="@color/light_greyuikit"
+            android:background="@color/light_grey"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_height="1dp"/>
@@ -91,19 +81,7 @@
             android:gravity="center"
             tools:text="9:45"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-        <ImageView
-            android:id="@+id/ivPin"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
-            android:layout_width="16dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pin_red"/>
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 

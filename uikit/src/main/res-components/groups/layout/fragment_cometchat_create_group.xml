@@ -19,7 +19,7 @@
             android:layout_marginTop="16dp"
             android:id="@+id/tvDes1"
             android:layout_marginStart="16dp"
-            android:textColor="@color/primaryTextColoruikit"
+            android:textColor="@color/primaryTextColor"
             android:padding="4dp"
             android:text="@string/create_group"
             android:textSize="32sp"
@@ -35,13 +35,12 @@
             android:layout_marginEnd="16dp"
             android:padding="4dp"
             android:text="@string/kindly_enter_group_details_to_proceed"
-            android:textColor="@color/primaryTextColoruikit"
+            android:textColor="@color/primaryTextColor"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:orientation="vertical"
-            android:id="@+id/inputLayout"
             android:animateLayoutChanges="true"
             android:layout_below="@id/tvDes2"
             android:layout_marginStart="32dp"
@@ -56,12 +55,12 @@
                 android:layout_height="wrap_content"
                 android:focusedByDefault="false"
                 android:hint="@string/enter_group_name"
-                android:textColorHint="@color/secondaryTextColoruikit"
+                android:textColorHint="@color/secondaryTextColor"
                 app:boxCornerRadiusBottomEnd="24dp"
                 app:boxCornerRadiusBottomStart="24dp"
                 app:boxCornerRadiusTopEnd="24dp"
                 app:boxCornerRadiusTopStart="24dp"
-                app:boxStrokeColor="@color/secondaryTextColoruikit"
+                app:boxStrokeColor="@color/secondaryTextColor"
                 app:boxStrokeWidth="1dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -73,7 +72,7 @@
                     android:maxLines="1"
                     android:inputType="text"
                     android:imeOptions="actionDone"
-                    android:textColor="@color/primaryTextColoruikit" />
+                    android:textColor="@color/primaryTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_group_desc"
@@ -83,12 +82,12 @@
                 android:focusedByDefault="false"
                 android:layout_marginTop="16dp"
                 android:hint="@string/enter_group_desc"
-                android:textColorHint="@color/secondaryTextColoruikit"
+                android:textColorHint="@color/secondaryTextColor"
                 app:boxCornerRadiusBottomEnd="24dp"
                 app:boxCornerRadiusBottomStart="24dp"
                 app:boxCornerRadiusTopEnd="24dp"
                 app:boxCornerRadiusTopStart="24dp"
-                app:boxStrokeColor="@color/secondaryTextColoruikit"
+                app:boxStrokeColor="@color/secondaryTextColor"
                 app:boxStrokeWidth="1dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -100,7 +99,7 @@
                     android:maxLines="1"
                     android:inputType="text"
                     android:imeOptions="actionDone"
-                    android:textColor="@color/primaryTextColoruikit" />
+                    android:textColor="@color/primaryTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:id="@+id/grouptype_spinner"
@@ -120,12 +119,12 @@
                 android:focusedByDefault="false"
                 android:layout_marginTop="16dp"
                 android:hint="@string/enter_group_password"
-                android:textColorHint="@color/secondaryTextColoruikit"
+                android:textColorHint="@color/secondaryTextColor"
                 app:boxCornerRadiusBottomEnd="24dp"
                 app:boxCornerRadiusBottomStart="24dp"
                 app:boxCornerRadiusTopEnd="24dp"
                 app:boxCornerRadiusTopStart="24dp"
-                app:boxStrokeColor="@color/secondaryTextColoruikit"
+                app:boxStrokeColor="@color/secondaryTextColor"
                 app:boxStrokeWidth="1dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -137,7 +136,7 @@
                     android:maxLines="1"
                     android:inputType="text"
                     android:imeOptions="actionDone"
-                    android:textColor="@color/primaryTextColoruikit" />
+                    android:textColor="@color/primaryTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_group_cnf_pwd"
@@ -149,12 +148,12 @@
                 android:layout_marginTop="16dp"
                 app:passwordToggleEnabled="true"
                 android:hint="@string/enter_group_cnf_pwd"
-                android:textColorHint="@color/secondaryTextColoruikit"
+                android:textColorHint="@color/secondaryTextColor"
                 app:boxCornerRadiusBottomEnd="24dp"
                 app:boxCornerRadiusBottomStart="24dp"
                 app:boxCornerRadiusTopEnd="24dp"
                 app:boxCornerRadiusTopStart="24dp"
-                app:boxStrokeColor="@color/secondaryTextColoruikit"
+                app:boxStrokeColor="@color/secondaryTextColor"
                 app:boxStrokeWidth="1dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -166,7 +165,7 @@
                     android:maxLines="1"
                     android:inputType="text"
                     android:imeOptions="actionDone"
-                    android:textColor="@color/primaryTextColoruikit" />
+                    android:textColor="@color/primaryTextColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

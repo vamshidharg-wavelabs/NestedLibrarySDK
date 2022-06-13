@@ -5,27 +5,11 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:id="@+id/bg_progressbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/translucent_bg"
-        android:clickable="false"
-        android:visibility="gone">
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@android:style/Widget.ProgressBar.Inverse"
-            android:layout_centerInParent="true" />
-
-    </RelativeLayout>
-
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
         android:id="@+id/user_detail_toolbar"
         app:title="@string/user_title"
+        app:navigationIcon="@drawable/ic_back_arrow_selected"
         android:layout_height="wrap_content"/>
 
     <androidx.core.widget.NestedScrollView
@@ -45,16 +29,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="72dp">
                 <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
-                    android:layout_width="40dp"
+                    android:layout_width="36dp"
                     tools:src="@tools:sample/avatars"
+                    app:corner_radius="18dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:id="@+id/iv_user"
-                    android:layout_height="40dp"/>
+                    android:layout_height="36dp"/>
                 <LinearLayout
                     android:layout_marginStart="16dp"
                     android:layout_toEndOf="@id/iv_user"
-                    android:layout_toStartOf="@+id/video_callBtn_iv"
                     android:orientation="vertical"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
@@ -63,7 +47,7 @@
                         android:id="@+id/tv_name"
                         tools:text="@tools:sample/full_names"
                         android:textSize="@dimen/name"
-                        android:textColor="@color/primaryTextColoruikit"
+                        android:textColor="@color/primaryTextColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
@@ -72,30 +56,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
-                <ImageView
-                    android:padding="8dp"
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:id="@+id/video_callBtn_iv"
-                    android:tint="@color/colorPrimaryuikit"
-                    android:layout_marginEnd="24dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/callBtn_iv"
-                    android:src="@drawable/ic_videocam_green_24dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <ImageView
-                    android:padding="8dp"
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:id="@+id/callBtn_iv"
-                    android:tint="@color/colorPrimaryuikit"
-                    android:layout_marginEnd="24dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_call_24dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
             </RelativeLayout>
 
     <!--End of User_Detail_Layout-->
@@ -104,7 +64,7 @@
                 android:id="@+id/divider_1"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:background="@color/light_greyuikit"
+                android:background="@color/light_grey"
                 android:layout_marginBottom="4dp"
                 android:layout_marginEnd="16dp"
                 android:layout_height="1dp"/>
@@ -135,7 +95,7 @@
                     android:id="@+id/divider_2"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
-                    android:background="@color/light_greyuikit"
+                    android:background="@color/light_grey"
                     android:layout_marginBottom="4dp"
                     android:layout_marginEnd="16dp"
                     android:layout_height="1dp"/>
@@ -160,17 +120,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/tv_send_message"
+                    android:id="@+id/tv_view_profile"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    android:textColor="@color/colorPrimaryuikit"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:onClick="openChatScreen"
-                    android:text="@string/send_message"
+                    android:text="@string/view_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -178,7 +137,7 @@
                     android:id="@+id/btn_add"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
-                    android:textColor="@color/colorPrimaryuikit"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
@@ -188,7 +147,7 @@
                 <View
                     android:id="@+id/divider_3"
                     android:layout_width="match_parent"
-                    android:background="@color/light_greyuikit"
+                    android:background="@color/light_grey"
                     android:layout_marginBottom="4dp"
                     android:layout_marginEnd="16dp"
                     android:layout_height="1dp"/>
@@ -224,7 +183,7 @@
                     android:layout_marginTop="8dp"
                     android:paddingBottom="16dp"
                     android:textSize="18sp"
-                    android:textColor="@color/redUikit"
+                    android:textColor="@color/red"
                     android:text="@string/block_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>

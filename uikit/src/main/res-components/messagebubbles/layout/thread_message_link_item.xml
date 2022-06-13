@@ -17,7 +17,7 @@
             android:layout_width="50dp"
             android:id="@+id/iv_user"
             app:border_width="0.5dp"
-            app:border_color="@color/colorPrimaryuikit"
+            app:border_color="@color/colorPrimary"
             tools:src="@tools:sample/avatars"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
@@ -53,7 +53,7 @@
                         android:layout_width="250dp"
                         android:layout_height="100dp"
                         android:src="@drawable/ic_defaulf_image"
-                        android:background="@color/textColorWhiteuikit"
+                        android:background="@color/textColorWhite"
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true" />
                     <ImageView
@@ -99,14 +99,14 @@
                     android:layout_height="wrap_content"/>
                 <View
                     android:layout_marginTop="16dp"
-                    android:background="@color/light_greyuikit"
+                    android:background="@color/light_grey"
                     android:id="@+id/linkSeperator"
                     android:layout_below="@+id/message"
                     android:layout_width="250dp"
                     android:layout_height="1dp"/>
                 <TextView
                     android:id="@+id/visitLink"
-                    android:textColor="@color/colorPrimaryuikit"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
                     android:padding="8dp"
                     android:gravity="center"

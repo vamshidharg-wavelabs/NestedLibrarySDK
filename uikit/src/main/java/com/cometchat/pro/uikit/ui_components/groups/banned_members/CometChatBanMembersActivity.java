@@ -10,10 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.cometchat.pro.uikit.R;
+import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
-import com.cometchat.pro.uikit.ui_settings.UISettings;
+import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 
 public class CometChatBanMembersActivity extends AppCompatActivity {
 
@@ -32,8 +33,8 @@ public class CometChatBanMembersActivity extends AppCompatActivity {
             }
         });
         handleIntent();
-        if (UISettings.getColor()!=null)
-            getWindow().setStatusBarColor(Color.parseColor(UISettings.getColor()));
+        if (UIKitSettings.getColor()!=null)
+            getWindow().setStatusBarColor(Color.parseColor(UIKitSettings.getColor()));
         CometChatBanMembers banFragment = new CometChatBanMembers();
         Bundle bundle = new Bundle();
         bundle.putString(UIKitConstants.IntentStrings.GUID,guid);

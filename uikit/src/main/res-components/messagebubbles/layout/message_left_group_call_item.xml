@@ -8,6 +8,7 @@
     android:layout_marginBottom="16dp">
 
     <RelativeLayout
+        android:layoutDirection="ltr"
         android:id="@+id/rl_message"
         android:animateLayoutChanges="true"
         android:layout_width="wrap_content"
@@ -17,6 +18,7 @@
             android:id="@+id/iv_user"
             tools:src="@tools:sample/avatars"
             android:layout_marginBottom="4dp"
+            app:corner_radius="12dp"
             android:layout_marginStart="4dp"
             android:layout_height="24dp"/>
         <TextView
@@ -45,14 +47,13 @@
                 <ImageView
                     android:layout_marginTop="8dp"
                     android:id="@+id/icon"
-                    android:src="@drawable/ic_videocam_24dp"
-                    android:tint="@color/grey_200"
+                    android:src="@drawable/ic_video_call_selected"
                     android:layout_width="32dp"
                     android:layout_marginLeft="8dp"
                     android:layout_centerVertical="true"
                     android:layout_height="32dp"/>
                 <TextView
-                    android:layout_toRightOf="@+id/icon"
+                    android:layout_toEndOf="@+id/icon"
                     android:id="@+id/group_call_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,8 +69,9 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="16dp"
-                app:backgroundTint="@color/textColorWhiteuikit"
-                android:textColor="@color/primaryTextColoruikit"
+                android:background="@color/textColorWhite"
+                app:backgroundTint="@color/textColorWhite"
+                android:textColor="@color/colorPrimary"
                 app:cornerRadius="8dp"
                 android:id="@+id/join_call"
                 android:layout_height="wrap_content"/>
@@ -102,7 +104,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

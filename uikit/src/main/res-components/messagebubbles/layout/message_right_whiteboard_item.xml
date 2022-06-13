@@ -5,6 +5,7 @@
     android:gravity="end"
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
+    android:layoutDirection="ltr"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp">
@@ -15,7 +16,7 @@
         android:id="@+id/rl_message">
         <RelativeLayout
             android:background="@drawable/cc_message_bubble_right"
-            android:backgroundTint="@color/colorPrimaryuikit"
+            android:backgroundTint="@color/colorPrimary"
             android:layout_alignParentRight="true"
             android:id="@+id/cv_message_container"
             android:layout_width="250dp"
@@ -28,14 +29,14 @@
                     android:layout_centerVertical="true"
                     android:padding="8dp"
                     android:id="@+id/icon"
-                    android:src="@drawable/ic_whiteboard_24dp"
-                    android:tint="@color/textColorWhiteuikit"
+                    android:src="@drawable/ic_collaborative_whiteboard"
+                    android:tint="@color/textColorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_toRightOf="@+id/icon"
                     android:id="@+id/whiteboard_message"
-                    android:textColor="@color/textColorWhiteuikit"
+                    android:textColor="@color/textColorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Someone has shared whiteboard. Click below join button to check whiteboard"
@@ -50,27 +51,27 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/primaryTextColoruikit"
-                app:backgroundTint="@color/textColorWhiteuikit"
+                android:textColor="@color/primaryTextColor"
+                app:backgroundTint="@color/textColorWhite"
                 app:cornerRadius="8dp"
                 android:id="@+id/join_whiteboard"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
+
         <TextView
             android:id="@+id/txt_time"
-            android:gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="11:00 PM"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/cv_message_container"
             android:layout_alignBottom="@+id/cv_message_container"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_toLeftOf="@+id/cv_message_container"
+            android:gravity="center_vertical"
             android:textSize="12sp"
-            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
-            tools:visibility="visible"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:text="11:00 PM"
+            tools:visibility="visible" />
         <HorizontalScrollView
             android:layout_alignEnd="@id/cv_message_container"
             android:layout_below="@+id/cv_message_container"
@@ -99,7 +100,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

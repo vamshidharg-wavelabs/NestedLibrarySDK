@@ -46,7 +46,9 @@ import com.cometchat.pro.core.UsersRequest;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
-import com.cometchat.pro.uikit.ui_resources.utils.Utils;
+import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
+import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
+import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
@@ -55,7 +57,7 @@ import com.cometchat.pro.uikit.ui_components.shared.cometchatUsers.CometChatUser
 import com.cometchat.pro.uikit.ui_resources.utils.CallUtils;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_resources.utils.item_clickListener.OnItemClickListener;
-import com.cometchat.pro.uikit.ui_settings.UISettings;
+import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 
 /**
 
@@ -89,6 +91,9 @@ public class CometChatNewCallList extends AppCompatActivity {
 
     private RelativeLayout rlSearchBox;
 
+    private boolean audioCallEnabled;
+    private boolean videoCallEnabled;
+
     public CometChatNewCallList() {
         // Required empty public constructor
     }
@@ -97,16 +102,18 @@ public class CometChatNewCallList extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_cometchat_userlist);
+        fetchSettings();
         title = findViewById(R.id.tv_title);
+        CometChatError.init(this);
         ImageView imageView = new ImageView(this);
-        imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_close_24dp));
-        if (UISettings.getColor()!=null) {
-            getWindow().setStatusBarColor(Color.parseColor(UISettings.getColor()));
+        imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_back_arrow_selected));
+        if (UIKitSettings.getColor()!=null) {
+            getWindow().setStatusBarColor(Color.parseColor(UIKitSettings.getColor()));
             imageView.setImageTintList(ColorStateList.valueOf(
-                    Color.parseColor(UISettings.getColor())));
+                    Color.parseColor(UIKitSettings.getColor())));
         } else
             imageView.setImageTintList(
-                    ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
+                    ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
 
         imageView.setClickable(true);
         imageView.setPadding(8,8,8,8);
@@ -122,11 +129,11 @@ public class CometChatNewCallList extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        title.setTypeface(FontUtils.getInstance(this).getTypeFace(FontUtils.robotoMedium));
         RelativeLayout.LayoutParams titleLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         titleLayoutParams.setMargins(16,32,16,48);
         titleLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         title.setLayoutParams(titleLayoutParams);
+        title.setTextAppearance(R.style.TextAppearance_AppCompat_Large);
         title.setText(getResources().getString(R.string.new_call));
         rvUserList = findViewById(R.id.rv_user_list);
         etSearch = findViewById(R.id.search_bar);
@@ -195,29 +202,33 @@ public class CometChatNewCallList extends AppCompatActivity {
             }
         });
 
-        // Used to trigger event on click of user item in rvUserList (RecyclerView)
         rvUserList.setItemClickListener(new OnItemClickListener<User>() {
-            @Override
-            public void OnItemClick(User var, int position) {
-                User user = var;
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(CometChatNewCallList.this);
-                alertDialog.setMessage(getString(R.string.initiate_a_call));
-                alertDialog.setPositiveButton(getString(R.string.audio_call), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        initiateCall(user.getUid(), CometChatConstants.RECEIVER_TYPE_USER,CometChatConstants.CALL_TYPE_AUDIO);
+                @Override
+                public void OnItemClick(User var, int position) {
+                    User user = var;
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(CometChatNewCallList.this);
+                    alertDialog.setMessage(getString(R.string.initiate_a_call));
+                    if (audioCallEnabled) {
+                        alertDialog.setPositiveButton(getString(R.string.audio_call), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                initiateCall(user.getUid(), CometChatConstants.RECEIVER_TYPE_USER, CometChatConstants.CALL_TYPE_AUDIO);
+                            }
+                        });
                     }
-                });
-                alertDialog.setNegativeButton(getString(R.string.video_call), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        initiateCall(user.getUid(), CometChatConstants.RECEIVER_TYPE_USER,CometChatConstants.CALL_TYPE_VIDEO);
+                    if (videoCallEnabled) {
+                        alertDialog.setNegativeButton(getString(R.string.video_call), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                initiateCall(user.getUid(), CometChatConstants.RECEIVER_TYPE_USER, CometChatConstants.CALL_TYPE_VIDEO);
+                            }
+                        });
                     }
-                });
-                alertDialog.create();
-                alertDialog.show();
-            }
-        });
+                    alertDialog.create();
+                    alertDialog.show();
+                }
+            });
+
         fetchUsers();
     }
 
@@ -252,7 +263,8 @@ public class CometChatNewCallList extends AppCompatActivity {
             public void onError(CometChatException e) {
                 Log.e(TAG, "onError: " + e.getMessage());
                 stopHideShimmer();
-                Utils.showCometChatDialog(CometChatNewCallList.this,rvUserList,e.getMessage(),true);
+                CometChatSnackBar.show(CometChatNewCallList.this,rvUserList,
+                        CometChatError.localized(e),CometChatSnackBar.ERROR);
             }
         });
     }
@@ -275,7 +287,8 @@ public class CometChatNewCallList extends AppCompatActivity {
             @Override
             public void onError(CometChatException e) {
                 if (rvUserList!=null)
-                    Utils.showCometChatDialog(CometChatNewCallList.this,rvUserList,e.getMessage(),true);
+                    CometChatSnackBar.show(CometChatNewCallList.this,rvUserList,
+                            CometChatError.localized(e),CometChatSnackBar.ERROR);
             }
         });
     }
@@ -283,5 +296,20 @@ public class CometChatNewCallList extends AppCompatActivity {
     public void initiateCall(String receiverID, String receiverType, String callType)
     {
         CallUtils.initiateCall(CometChatNewCallList.this,receiverID,receiverType,callType);
+    }
+
+    private void fetchSettings() {
+        FeatureRestriction.isOneOnOneVideoCallEnabled(new FeatureRestriction.OnSuccessListener() {
+            @Override
+            public void onSuccess(Boolean booleanVal) {
+                videoCallEnabled = booleanVal;
+            }
+        });
+        FeatureRestriction.isOneOnOneAudioCallEnabled(new FeatureRestriction.OnSuccessListener() {
+            @Override
+            public void onSuccess(Boolean booleanVal) {
+                audioCallEnabled = booleanVal;
+            }
+        });
     }
 }

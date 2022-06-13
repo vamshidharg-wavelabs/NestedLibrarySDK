@@ -21,6 +21,8 @@ import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.MessageReceipt;
 import com.cometchat.pro.uikit.ui_components.messages.message_information.Message_Receipts.CometChatReceiptsList;
 import com.cometchat.pro.uikit.R;
+import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
+import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
 import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
@@ -30,7 +32,7 @@ import java.util.List;
 
 import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
-import com.cometchat.pro.uikit.ui_components.messages.extensions.Collaborative.CometChatCollaborativeActivity;
+import com.cometchat.pro.uikit.ui_components.messages.extensions.Collaborative.CometChatWebViewActivity;
 
 public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
 
@@ -131,9 +133,9 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipe_refresh);
         cometChatReceiptsList = findViewById(R.id.rvReceipts);
         swipeRefreshLayout.setColorSchemeColors(
-                getResources().getColor(R.color.colorPrimaryuikit),
-                getResources().getColor(R.color.redUikit),
-                getResources().getColor(R.color.greyUikit));
+                getResources().getColor(R.color.colorPrimary),
+                getResources().getColor(R.color.red),
+                getResources().getColor(R.color.grey));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -146,11 +148,11 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
         fetchReceipts();
         backIcon.setOnClickListener(view -> onBackPressed());
         if(Utils.isDarkMode(this)) {
-            toolbar.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
-            messageLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
+            messageLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
         } else {
-            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
-            messageLayout.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            messageLayout.setBackgroundColor(getResources().getColor(R.color.light_grey));
         }
     }
 
@@ -166,8 +168,8 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(CometChatException e) {
-                    Utils.showCometChatDialog(CometChatMessageInfoScreenActivity.this,
-                            cometChatReceiptsList,e.getMessage(),true);
+                   CometChatSnackBar.show(CometChatMessageInfoScreenActivity.this,
+                            cometChatReceiptsList, CometChatError.localized(e), CometChatSnackBar.ERROR);
                 }
         });
     }
@@ -244,7 +246,7 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         String boardUrl = getIntent().getStringExtra(UIKitConstants.IntentStrings.TEXTMESSAGE);
-                        Intent intent = new Intent(CometChatMessageInfoScreenActivity.this, CometChatCollaborativeActivity.class);
+                        Intent intent = new Intent(CometChatMessageInfoScreenActivity.this, CometChatWebViewActivity.class);
                         intent.putExtra(UIKitConstants.IntentStrings.URL, boardUrl);
                         startActivity(intent);
                   }
@@ -256,7 +258,7 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         String boardUrl = getIntent().getStringExtra(UIKitConstants.IntentStrings.TEXTMESSAGE);
-                        Intent intent = new Intent(CometChatMessageInfoScreenActivity.this, CometChatCollaborativeActivity.class);
+                        Intent intent = new Intent(CometChatMessageInfoScreenActivity.this, CometChatWebViewActivity.class);
                         intent.putExtra(UIKitConstants.IntentStrings.URL, boardUrl);
                         startActivity(intent);
                     }
@@ -268,11 +270,10 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
                     double LATITUDE = jsonObject.getDouble("latitude");
                     double LONGITUDE = jsonObject.getDouble("longitude");
                     tvPlaceName.setVisibility(View.GONE);
-//                    String mapUrl = UIKitConstants.MapUrl.MAPS_URL + LATITUDE + "," + LONGITUDE + "&key=" + UIKitConstants.MapUrl.MAP_ACCESS_KEY;
-//                    Glide.with(this)
-//                            .load(mapUrl)
-//                            .into(ivMap);
-                    ivMap.setImageResource(R.drawable.maps_logo);
+                    String mapUrl = UIKitConstants.MapUrl.MAPS_URL + LATITUDE + "," + LONGITUDE + "&key=" + UIKitConstants.MapUrl.MAP_ACCESS_KEY;
+                    Glide.with(this)
+                            .load(mapUrl)
+                            .into(ivMap);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -298,15 +299,15 @@ public class CometChatMessageInfoScreenActivity extends AppCompatActivity {
                         linearLayout.setBackground(getResources()
                                 .getDrawable(R.drawable.cc_message_bubble_right));
                         linearLayout.setBackgroundTintList(ColorStateList.valueOf(getResources()
-                                .getColor(R.color.textColorWhiteuikit)));
+                                .getColor(R.color.textColorWhite)));
                         TextView textViewPercentage = new TextView(this);
                         TextView textViewOption = new TextView(this);
                         textViewPercentage.setPadding(16, 4, 0, 4);
                         textViewOption.setPadding(16, 4, 0, 4);
                         textViewOption.setTextAppearance(this, R.style.TextAppearance_AppCompat_Medium);
                         textViewPercentage.setTextAppearance(this, R.style.TextAppearance_AppCompat_Medium);
-                        textViewPercentage.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
-                        textViewOption.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+                        textViewPercentage.setTextColor(getResources().getColor(R.color.primaryTextColor));
+                        textViewOption.setTextColor(getResources().getColor(R.color.primaryTextColor));
                         String optionStr = options.getString(String.valueOf(i + 1));
                         textViewOption.setText(optionStr);
                         if (percentage > 0)

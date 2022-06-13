@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,10 +11,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cometchat.pro.constants.CometChatConstants;
-import com.cometchat.pro.core.CometChat;
-import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
-import com.cometchat.pro.uikit.ui_settings.UISettings;
+import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 import com.cometchat.pro.uikit.databinding.GroupListRowBinding;
 import com.cometchat.pro.models.Group;
 
@@ -24,12 +21,7 @@ import java.util.List;
 
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import static com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants.IntentStrings.PINNED_GROUPS;
-import static com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants.IntentStrings.PINNED_GROUPS_MAX_LIMIT;
+import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
 
 /**
  * Purpose - GroupListAdapter is a subclass of RecyclerView Adapter which is used to display
@@ -105,37 +97,19 @@ public class CometChatGroupsAdapter extends RecyclerView.Adapter<CometChatGroups
             groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
 
         groupViewHolder.groupListRowBinding.executePendingBindings();
-        groupViewHolder.groupListRowBinding.avGroup.setBackgroundColor(Color.parseColor(UISettings.getColor()));
+        groupViewHolder.groupListRowBinding.avGroup.setBackgroundColor(Color.parseColor(UIKitSettings.getColor()));
         groupViewHolder.groupListRowBinding.getRoot().setTag(R.string.group, group);
         groupViewHolder.groupListRowBinding.txtUserMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoRegular));
         groupViewHolder.groupListRowBinding.txtUserName.setTypeface(fontUtils.getTypeFace(FontUtils.robotoMedium));
 
         if(Utils.isDarkMode(context)) {
-            groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.greyUikit)));
-            groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
-            groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.greyUikit));
+            groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.grey)));
+            groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhite));
+            groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.grey));
         } else {
-            groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.message_bubble_greyuikit)));
-            groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
-            groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_greyuikit));
-        }
-
-        //pinned groups
-        User user = CometChat.getLoggedInUser();
-        if((position < PINNED_GROUPS_MAX_LIMIT) && (user.getMetadata()!= null) && (user.getMetadata().has(PINNED_GROUPS))) {
-            try {
-                JSONArray pinnedGroupIDs = user.getMetadata().getJSONArray(PINNED_GROUPS);
-                if(pinnedGroupIDs.toString().contains(group.getGuid())){
-                    groupViewHolder.groupListRowBinding.ivPin.setVisibility(View.VISIBLE);
-                } else {
-                    groupViewHolder.groupListRowBinding.ivPin.setVisibility(View.GONE);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-                groupViewHolder.groupListRowBinding.ivPin.setVisibility(View.GONE);
-            }
-        } else {
-            groupViewHolder.groupListRowBinding.ivPin.setVisibility(View.GONE);
+            groupViewHolder.groupListRowBinding.txtUserName.setCompoundDrawableTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.message_bubble_grey)));
+            groupViewHolder.groupListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            groupViewHolder.groupListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
         }
     }
 

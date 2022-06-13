@@ -20,6 +20,8 @@ import com.cometchat.pro.core.Call;
 import com.cometchat.pro.core.MessagesRequest;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatCalls.CometChatCalls;
+import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
+import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,7 +30,7 @@ import java.util.List;
 
 import com.cometchat.pro.uikit.ui_resources.utils.item_clickListener.OnItemClickListener;
 
-import com.cometchat.pro.uikit.ui_settings.UISettings;
+import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 
@@ -68,6 +70,10 @@ public class CometChatCallList extends Fragment {
 
     private ImageView phoneAddIv;
 
+    private boolean oneOnoneCallEnabled;
+
+    private boolean oneOnoneVideoCallEnabled;
+
     public CometChatCallList() {
         // Required empty public constructor
     }
@@ -78,6 +84,7 @@ public class CometChatCallList extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_cometchat_calls, container, false);
         tvTitle = view.findViewById(R.id.tv_title);
+        CometChatError.init(getContext());
         phoneAddIv = view.findViewById(R.id.add_phone_iv);
         phoneAddIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +92,9 @@ public class CometChatCallList extends Fragment {
                 openUserListScreen();
             }
         });
+
+        fetchSettings();
+
         viewPager = view.findViewById(R.id.viewPager);
         tabLayout = view.findViewById(R.id.tabLayout);
         if (getActivity() != null) {
@@ -94,29 +104,29 @@ public class CometChatCallList extends Fragment {
             viewPager.setAdapter(tabAdapter);
         }
         tabLayout.setupWithViewPager(viewPager);
-        if (UISettings.getColor()!=null) {
-            phoneAddIv.setImageTintList(ColorStateList.valueOf(Color.parseColor(UISettings.getColor())));
+        if (UIKitSettings.getColor()!=null) {
+            phoneAddIv.setImageTintList(ColorStateList.valueOf(Color.parseColor(UIKitSettings.getColor())));
             Drawable wrappedDrawable = DrawableCompat.wrap(getResources().
                     getDrawable(R.drawable.tab_layout_background_active));
-            DrawableCompat.setTint(wrappedDrawable, Color.parseColor(UISettings.getColor()));
+            DrawableCompat.setTint(wrappedDrawable, Color.parseColor(UIKitSettings.getColor()));
             tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).view.setBackground(wrappedDrawable);
-            tabLayout.setSelectedTabIndicatorColor(Color.parseColor(UISettings.getColor()));
+            tabLayout.setSelectedTabIndicatorColor(Color.parseColor(UIKitSettings.getColor()));
         } else {
             tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).
-                    view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
-            tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryuikit));
+                    view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
         }
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if (UISettings.getColor()!=null) {
+                if (UIKitSettings.getColor()!=null) {
                     Drawable wrappedDrawable = DrawableCompat.wrap(getResources().
                             getDrawable(R.drawable.tab_layout_background_active));
-                    DrawableCompat.setTint(wrappedDrawable, Color.parseColor(UISettings.getColor()));
+                    DrawableCompat.setTint(wrappedDrawable, Color.parseColor(UIKitSettings.getColor()));
                     tab.view.setBackground(wrappedDrawable);
                 }
                 else
-                    tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
+                    tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             }
 
             @Override
@@ -133,15 +143,32 @@ public class CometChatCallList extends Fragment {
         return view;
     }
 
+    private void fetchSettings() {
+        FeatureRestriction.isOneOnOneAudioCallEnabled(new FeatureRestriction.OnSuccessListener() {
+            @Override
+            public void onSuccess(Boolean booleanVal) {
+                if (booleanVal)
+                    phoneAddIv.setVisibility(View.VISIBLE);
+            }
+        });
+        FeatureRestriction.isOneOnOneVideoCallEnabled(new FeatureRestriction.OnSuccessListener() {
+            @Override
+            public void onSuccess(Boolean booleanVal) {
+                if (booleanVal)
+                    phoneAddIv.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
     private void checkDarkMode() {
         if(Utils.isDarkMode(getContext())) {
-            tvTitle.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
-            tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.greyUikit)));
-            tabLayout.setTabTextColors(getResources().getColor(R.color.textColorWhiteuikit),getResources().getColor(R.color.light_greyuikit));
+            tvTitle.setTextColor(getResources().getColor(R.color.textColorWhite));
+            tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
+            tabLayout.setTabTextColors(getResources().getColor(R.color.textColorWhite),getResources().getColor(R.color.light_grey));
         } else {
-            tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
-            tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
-            tabLayout.setTabTextColors(getResources().getColor(R.color.primaryTextColoruikit),getResources().getColor(R.color.textColorWhiteuikit));
+            tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
+            tabLayout.setTabTextColors(getResources().getColor(R.color.primaryTextColor),getResources().getColor(R.color.textColorWhite));
         }
 
     }

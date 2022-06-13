@@ -8,6 +8,7 @@
     android:animateLayoutChanges="true">
 
     <RelativeLayout
+        android:layoutDirection="ltr"
         android:id="@+id/rl_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -16,6 +17,7 @@
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
             android:layout_width="24dp"
             android:id="@+id/iv_user"
+            app:corner_radius="12dp"
             tools:src="@tools:sample/avatars"
             android:layout_alignTop="@id/cv_message_container"
             android:layout_marginBottom="4dp"
@@ -46,7 +48,7 @@
                 android:id="@+id/tvFileName"
                 android:layout_width="wrap_content"
                 tools:text="File Name"
-                android:textColor="@color/primaryTextColoruikit"
+                android:textColor="@color/primaryTextColor"
                 android:focusable="true"
                 android:ellipsize="end"
                 android:singleLine="true"
@@ -75,9 +77,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:tint="@color/primaryTextColoruikit"
-                    android:id="@+id/ivIcon"
-                    android:src="@drawable/ic_insert_drive_file_black_24dp"
+                    android:tint="@color/primaryTextColor"
+                    android:src="@drawable/ic_file_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -88,7 +89,7 @@
                     android:textStyle="bold"
                     android:textSize="8sp"
                     android:paddingBottom="2dp"
-                    android:textColor="@color/primaryTextColoruikit"
+                    android:textColor="@color/primaryTextColor"
                     android:visibility="visible" />
             </LinearLayout>
         </RelativeLayout>
@@ -120,7 +121,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"
@@ -139,7 +140,6 @@
             android:layout_alignBottom="@id/cv_message_container"
             android:layout_gravity="center"
             android:layout_toRightOf="@id/cv_message_container"
-            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
             tools:visibility="visible"
             android:visibility="gone" />

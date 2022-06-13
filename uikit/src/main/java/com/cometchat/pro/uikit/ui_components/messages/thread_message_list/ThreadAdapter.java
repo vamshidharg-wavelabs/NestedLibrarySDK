@@ -50,8 +50,10 @@ import com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAva
 import com.cometchat.pro.uikit.R;
 
 import com.cometchat.pro.uikit.ui_resources.utils.pattern_utils.PatternUtils;
-import com.cometchat.pro.uikit.ui_settings.UISettings;
+import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
+import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -384,12 +386,11 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             LATITUDE = ((CustomMessage) baseMessage).getCustomData().getDouble("latitude");
             LONGITUDE = ((CustomMessage) baseMessage).getCustomData().getDouble("longitude");
             tvAddress.setText(Utils.getAddress(context, LATITUDE, LONGITUDE));
-//            String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+ UIKitConstants.MapUrl.MAP_ACCESS_KEY;
-//            Glide.with(context)
-//                    .load(mapUrl)
-//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                    .into(ivMap);
-            ivMap.setAdjustViewBounds(true);
+            String mapUrl = UIKitConstants.MapUrl.MAPS_URL +LATITUDE+","+LONGITUDE+"&key="+ UIKitConstants.MapUrl.MAP_ACCESS_KEY;
+            Glide.with(context)
+                    .load(mapUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(ivMap);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -398,7 +399,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private void setAudioData(AudioMessageViewHolder viewHolder, int i) {
         BaseMessage baseMessage = messageList.get(i);
         if (baseMessage!=null&&baseMessage.getDeletedAt()==0) {
-            viewHolder.playBtn.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            viewHolder.playBtn.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
             setAvatar(viewHolder.ivUser, baseMessage.getSender().getAvatar(), baseMessage.getSender().getName());
             viewHolder.tvUser.setText(baseMessage.getSender().getName());
 
@@ -730,7 +731,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         if (baseMessage.getDeletedAt()!=0) {
             viewHolder.txtMessage.setText(R.string.this_message_deleted);
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.secondaryTextColoruikit));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.secondaryTextColor));
             viewHolder.txtMessage.setTypeface(null, Typeface.ITALIC);
         }
         showMessageTime(viewHolder, baseMessage);
@@ -790,15 +791,15 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 progressBar.setVisibility(View.GONE);
             if (baseMessage.getReadAt() != 0) {
                 txtTime.setText(Utils.getHeaderDate(baseMessage.getReadAt() * 1000));
-                txtTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_double_tick, 0);
+                txtTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_message_read, 0);
                 txtTime.setCompoundDrawablePadding(10);
             } else if (baseMessage.getDeliveredAt() != 0) {
                 txtTime.setText(Utils.getHeaderDate(baseMessage.getDeliveredAt() * 1000));
-                txtTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_done_all_black_24dp, 0);
+                txtTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_message_delivered, 0);
                 txtTime.setCompoundDrawablePadding(10);
             } else if (baseMessage.getSentAt()>0){
                 txtTime.setText(Utils.getHeaderDate(baseMessage.getSentAt() * 1000));
-                txtTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_check_black_24dp, 0);
+                txtTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_message_sent, 0);
                 txtTime.setCompoundDrawablePadding(10);
             } else if (baseMessage.getSentAt()==-1) {
                 txtTime.setText("");
@@ -883,49 +884,30 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     }
                 }
             }
-            final String[] message = {txtMessage};
-            CometChat.isExtensionEnabled("profanity-filter", new CometChat.CallbackListener<Boolean>() {
-                @Override
-                public void onSuccess(Boolean aBoolean) {
-                    message[0] = Extensions.checkProfanityMessage(context,baseMessage);
-                }
+            String message = txtMessage;
+            if(CometChat.isExtensionEnabled("profanity-filter")) {
+                message = Extensions.checkProfanityMessage(context,baseMessage);
+            }
 
-                @Override
-                public void onError(CometChatException e) {
-                    e.printStackTrace();
-                    Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            CometChat.isExtensionEnabled("data-masking", new CometChat.CallbackListener<Boolean>() {
-                @Override
-                public void onSuccess(Boolean aBoolean) {
-                    if (aBoolean)
-                        message[0] = Extensions.checkDataMasking(context,baseMessage);
-                }
-
-                @Override
-                public void onError(CometChatException e) {
-                    e.printStackTrace();
-                    Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            });
+            if(CometChat.isExtensionEnabled("data-masking")) {
+                message = Extensions.checkDataMasking(context,baseMessage);
+            }
 
             if (baseMessage.getMetadata()!=null && baseMessage.getMetadata().has("values")) {
                 try {
                     if (Extensions.isMessageTranslated(baseMessage.getMetadata().getJSONObject("values"), ((TextMessage) baseMessage).getText())) {
                         String translatedMessage = Extensions.getTranslatedMessage(baseMessage);
-                        message[0] = message[0] + "\n(" + translatedMessage + ")";
+                        message = message + "\n(" + translatedMessage + ")";
                     }
                 } catch (JSONException e) {
-//                    Toast.makeText(context, context.getString(R.string.no_translation_available), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, context.getString(R.string.no_translation_available), Toast.LENGTH_SHORT).show();
                 }
             }
 
-            viewHolder.txtMessage.setText(message[0]);
+            viewHolder.txtMessage.setText(message);
             viewHolder.txtMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoRegular));
 
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
 
             PatternUtils.setHyperLinkSupport(context,viewHolder.txtMessage);
             showMessageTime(viewHolder, baseMessage);
@@ -979,7 +961,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             viewHolder.txtMessage.setText(context.getResources().getString(R.string.custom_message));
             viewHolder.txtMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoLight));
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
 
             showMessageTime(viewHolder, baseMessage);
             if (messageList.get(messageList.size()-1).equals(baseMessage))
@@ -1010,7 +992,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 Chip chip = new Chip(context);
                 chip.setChipStrokeWidth(2f);
                 chip.setChipBackgroundColor(ColorStateList.valueOf(context.getResources().getColor(android.R.color.transparent)));
-                chip.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor(UISettings.getColor())));
+                chip.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor(UIKitSettings.getColor())));
                 chip.setText(str + " " + reactionOnMessage.get(str));
                 reactionLayout.addView(chip);
                 chip.setOnLongClickListener(new View.OnLongClickListener() {
@@ -1055,9 +1037,9 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         if (!longselectedItemList.contains(baseMessage))
         {
-            view.getBackground().setColorFilter(context.getResources().getColor(R.color.message_bubble_greyuikit), PorterDuff.Mode.SRC_ATOP);
+            view.getBackground().setColorFilter(context.getResources().getColor(R.color.message_bubble_grey), PorterDuff.Mode.SRC_ATOP);
         } else {
-            view.getBackground().setColorFilter(context.getResources().getColor(R.color.secondaryTextColoruikit), PorterDuff.Mode.SRC_ATOP);
+            view.getBackground().setColorFilter(context.getResources().getColor(R.color.secondaryTextColor), PorterDuff.Mode.SRC_ATOP);
         }
 
     }
@@ -1189,7 +1171,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private void setAvatar(CometChatAvatar avatar, String avatarUrl, String name) {
 
         if (avatarUrl != null && !avatarUrl.isEmpty())
-            Glide.with(context).load(avatarUrl).into(avatar);
+            avatar.setAvatar(avatarUrl);
         else
             avatar.setInitials(name);
 
@@ -1201,29 +1183,11 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return messageList.size();
     }
 
-//    @Override
-//    public long getHeaderId(int var1) {
-//
-//        BaseMessage baseMessage = messageList.get(var1);
-//        return Long.parseLong(Utils.getDateId(baseMessage.getSentAt() * 1000));
-//    }
-//
-//    @Override
-//    public DateItemHolder onCreateHeaderViewHolder(ViewGroup var1) {
-//        View view = LayoutInflater.from(var1.getContext()).inflate(R.layout.cc_message_list_header,
-//                var1, false);
-//
-//        return new DateItemHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindHeaderViewHolder(DateItemHolder var1, int var2, long var3) {
-//        BaseMessage baseMessage = messageList.get(var2);
-//        Date date = new Date(baseMessage.getSentAt() * 1000L);
-//        String formattedDate = Utils.getDate(date.getTime());
-//        var1.txtMessageDate.setBackground(context.getResources().getDrawable(R.drawable.cc_rounded_date_button));
-//        var1.txtMessageDate.setText(formattedDate);
-//    }
+    public void remove(BaseMessage baseMessage) {
+        int index = messageList.indexOf(baseMessage);
+        messageList.remove(baseMessage);
+        notifyItemRemoved(index);
+    }
 
     /**
      * This method is used to maintain different viewType based on message category and type and
@@ -1523,7 +1487,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         private int type;
         private CometChatAvatar ivUser;
         private RelativeLayout rlMessageBubble;
-        private RelativeLayout replyLayout;
+        private MaterialCardView replyLayout;
         private TextView replyUser;
         private TextView replyMessage;
         private RelativeLayout sentimentVw;

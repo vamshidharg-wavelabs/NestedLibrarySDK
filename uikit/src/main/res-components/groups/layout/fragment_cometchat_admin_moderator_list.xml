@@ -40,7 +40,7 @@
             android:layout_marginLeft="16dp"
             android:text="@string/assign_as_admin"
             android:layout_centerVertical="true"
-            android:textColor="@color/colorPrimaryuikit"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

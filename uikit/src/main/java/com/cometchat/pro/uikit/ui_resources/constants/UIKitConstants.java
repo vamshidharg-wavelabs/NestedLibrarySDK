@@ -67,6 +67,8 @@ public class UIKitConstants {
 
         public static final String MESSAGE_TYPE_IMAGE_SIZE = "file_size";
 
+        public static final String MESSAGE = "message";
+
         public static final String SHOW_MODERATORLIST = "is_moderator";
 
         public static final String GROUP_DESC = "group_description";
@@ -109,7 +111,7 @@ public class UIKitConstants {
 
         public static final String TRANSFER_OWNERSHIP = "transfer_ownership";
 
-        public static final String STICKERS = "Sticker";
+        public static final String STICKERS = "extension_sticker";
 
         public static final String REACTION_INFO = "reaction_info";
 
@@ -123,6 +125,22 @@ public class UIKitConstants {
 
         public static final String GROUP_CALL_TYPE = "group_call_type";
 
+        public static final String IS_DEFAULT_CALL = "is_default_call";
+
+        public static final String INTENT_MEDIA_IMAGE_MESSAGE = "intent_media_image_message";
+
+        public static final String INTENT_MEDIA_VIDEO_MESSAGE = "intent_media_video_message";
+
+        public static final String INTENT_MEDIA_AUDIO_MESSAGE = "intent_media_audio_message";
+
+        public static final String INTENT_MEDIA_FILE_MESSAGE = "intent_media_file_message";
+
+        public static final String LINK = "link";
+
+        public static final String IS_TITLE_VISIBLE = "IS_TITLE_VISIBLE";
+
+        public static final String CREATE_GROUP_VISIBLE = "IS_CREATE_GROUP_VISIBLE";
+
         public static String POLL_QUESTION = "poll_question";
 
         public static String POLL_OPTION = "poll_option";
@@ -132,12 +150,6 @@ public class UIKitConstants {
         public static String POLL_ID = "poll_id";
 
         public static final String MEDIA_SIZE = "media_size" ;
-
-        public static final String PIN_GROUP = "pin_group";
-
-        public static final String PINNED_GROUPS = "pinned_groups";
-
-        public static final int PINNED_GROUPS_MAX_LIMIT = 3;
     }
 
     public static class Tab {
@@ -166,16 +178,12 @@ public class UIKitConstants {
         public static final int RECORD = 003;
 
         public static final int LOCATION = 14;
-
-        public static final int VIDEO = 4 ;
     }
     public static class MapUrl{
 
         public static final String MAPS_URL = "https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=380x220&markers=color:red|";
 
-//        public static String MAP_ACCESS_KEY = "AIzaSyAGC4HKiqnFvBLVNniNMBvjMU55V42lsSM";
-        // New API key
-        public static String MAP_ACCESS_KEY = "AIzaSyB86jLls5nE4S09IGjH-T2PEGHyEClTf6M";
+        public static String MAP_ACCESS_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
     }
 
 

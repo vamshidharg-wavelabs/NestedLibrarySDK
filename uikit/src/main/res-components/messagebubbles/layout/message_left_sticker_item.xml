@@ -7,6 +7,7 @@
 
 
     <RelativeLayout
+        android:layoutDirection="ltr"
         android:id="@+id/rl_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -14,6 +15,7 @@
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
             android:id="@+id/iv_user"
             android:layout_width="24dp"
+            app:corner_radius="12dp"
             android:layout_height="24dp"
             android:layout_alignTop="@id/sticker_view"
             android:layout_marginStart="4dp"
@@ -48,7 +50,7 @@
             android:layout_alignBottom="@id/sticker_view"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            tools:drawableStart="@drawable/ic_double_tick"
+            tools:drawableStart="@drawable/ic_message_read"
             android:textSize="12sp"
             android:textStyle="bold"
             android:visibility="gone"
@@ -82,7 +84,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

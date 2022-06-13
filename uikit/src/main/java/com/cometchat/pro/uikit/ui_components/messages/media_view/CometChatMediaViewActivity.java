@@ -33,7 +33,7 @@ import com.cometchat.pro.uikit.ui_resources.utils.zoom_imageView.ZoomImageView;
 
 public class CometChatMediaViewActivity extends AppCompatActivity {
 
-    private ZoomImageView imageMessage;
+    private ImageView imageMessage;
     private VideoView videoMessage;
     private Toolbar toolbar;
     private String senderName;
@@ -49,8 +49,6 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
     private RelativeLayout audioMessage;
     private String TAG = CometChatMediaViewActivity.class.getName();
 
-    private RelativeLayout progressbarBG;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +56,9 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
         handleIntent();
         mediaPlayer = new MediaPlayer();
         toolbar = findViewById(R.id.toolbar);
-        toolbar.getNavigationIcon().setTint(getResources().getColor(R.color.textColorWhiteuikit));
+        toolbar.getNavigationIcon().setTint(getResources().getColor(R.color.textColorWhite));
         toolbar.setTitle(senderName);
-        toolbar.setSubtitle(Utils.getLastMessageDate(sentAt));
-
-        progressbarBG = findViewById(R.id.bg_progressbar);
-
+        toolbar.setSubtitle(Utils.getLastMessageDate(this,sentAt));
         imageMessage = findViewById(R.id.image_message);
         videoMessage = findViewById(R.id.video_message);
         audioMessage = findViewById(R.id.audio_message);
@@ -71,63 +66,39 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
         playBtn = findViewById(R.id.playBtn);
         if (mediaType.equals(CometChatConstants.MESSAGE_TYPE_IMAGE)) {
             Glide.with(this).asBitmap().load(mediaUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE).into(new CustomTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    imageMessage.setImageBitmap(resource);
-                }
-
-                @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                }
-            });
+                    .diskCacheStrategy(DiskCacheStrategy.NONE).into(imageMessage);
             imageMessage.setVisibility(View.VISIBLE);
         } else if (mediaType.equals(CometChatConstants.MESSAGE_TYPE_VIDEO)) {
-            progressbarBG.setVisibility(View.VISIBLE);
             MediaController mediacontroller = new MediaController(this);
             mediacontroller.setAnchorView(videoMessage);
             videoMessage.setMediaController(mediacontroller);
             videoMessage.setVideoURI(Uri.parse(mediaUrl));
             videoMessage.setVisibility(View.VISIBLE);
-            videoMessage.setOnPreparedListener(arg0 -> {
-                progressbarBG.setVisibility(View.GONE);
-                videoMessage.start();
-            });
         } else if (mediaType.equals(CometChatConstants.MESSAGE_TYPE_AUDIO)) {
             mediaPlayer.reset();
             mediaSize.setText(Utils.getFileSize(mSize));
             playBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    progressbarBG.setVisibility(View.VISIBLE);
-                    new Thread(() -> {
-                        try {
-                            mediaPlayer.setDataSource(mediaUrl);
-                            mediaPlayer.prepare();
-                            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mp) {
-                                    runOnUiThread(() -> {
-                                        playBtn.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-                                        progressbarBG.setVisibility(View.GONE);
-                                    });
-                                }
-                            });
-                        } catch (Exception e) {
-                            Log.e(TAG, "MediaPlayerError: "+e.getMessage());
-                        }
-                        runOnUiThread(() -> {
-                            progressbarBG.setVisibility(View.GONE);
-                            if (!mediaPlayer.isPlaying()) {
-                                mediaPlayer.start();
-                                playBtn.setImageResource(R.drawable.ic_pause_24dp);
-                            } else {
-                                mediaPlayer.pause();
+                    try {
+                        mediaPlayer.setDataSource(mediaUrl);
+                        mediaPlayer.prepare();
+                        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
                                 playBtn.setImageResource(R.drawable.ic_play_arrow_black_24dp);
                             }
                         });
-                    }).start();
+                    } catch (Exception e) {
+                        Log.e(TAG, "MediaPlayerError: "+e.getMessage());
+                    }
+                    if (!mediaPlayer.isPlaying()) {
+                        mediaPlayer.start();
+                        playBtn.setImageResource(R.drawable.ic_pause_24dp);
+                    } else {
+                        mediaPlayer.pause();
+                        playBtn.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                    }
                 }
             });
             audioMessage.setVisibility(View.VISIBLE);
@@ -162,11 +133,5 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
             mediaUrl = getIntent().getStringExtra(UIKitConstants.IntentStrings.INTENT_MEDIA_MESSAGE);
         if (getIntent().hasExtra(UIKitConstants.IntentStrings.MESSAGE_TYPE))
             mediaType = getIntent().getStringExtra(UIKitConstants.IntentStrings.MESSAGE_TYPE);
-    }
-
-    @Override
-    public void onBackPressed() {
-        mediaPlayer.reset();
-        super.onBackPressed();
     }
 }

@@ -8,6 +8,7 @@
     android:layout_marginBottom="16dp">
 
     <RelativeLayout
+        android:layoutDirection="ltr"
         android:id="@+id/rl_message"
         android:animateLayoutChanges="true"
         android:layout_width="wrap_content"
@@ -18,6 +19,7 @@
             tools:src="@tools:sample/avatars"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
+            app:corner_radius="12dp"
             android:layout_height="24dp"/>
         <TextView
             android:id="@+id/tv_user"
@@ -47,7 +49,7 @@
                     android:padding="8dp"
                     android:id="@+id/icon"
                     android:tint="@color/grey_200"
-                    android:src="@drawable/ic_writeboard_24dp"
+                    android:src="@drawable/ic_collaborative_document"
                     android:layout_width="36dp"
                     android:layout_height="36dp"/>
                 <TextView
@@ -67,8 +69,8 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="16dp"
-                app:backgroundTint="@color/textColorWhiteuikit"
-                android:textColor="@color/primaryTextColoruikit"
+                app:backgroundTint="@color/textColorWhite"
+                android:textColor="@color/primaryTextColor"
                 app:cornerRadius="8dp"
                 android:id="@+id/join_whiteboard"
                 android:layout_height="wrap_content"/>
@@ -101,7 +103,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

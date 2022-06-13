@@ -20,23 +20,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
+                android:layout_alignParentStart="true"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:id="@+id/user_detail_vw"
-                android:layout_toLeftOf="@id/call_iv"
+                android:layout_toStartOf="@id/call_iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
                     android:id="@+id/call_sender_avatar"
-                    android:layout_width="40dp"
+                    android:layout_width="36dp"
+                    app:corner_radius="18dp"
+                    android:layout_height="36dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
-                    tools:src="@tools:sample/avatars"
-                    android:layout_height="40dp" />
-
+                    tools:src="@tools:sample/avatars"/>
                 <TextView
+                    android:textDirection="locale"
                     android:ellipsize="end"
                     android:id="@+id/call_sender_name"
                     android:layout_width="match_parent"
@@ -53,6 +55,7 @@
 
                 <TextView
                     android:drawablePadding="8dp"
+                    android:textDirection="locale"
                     android:gravity="center_vertical"
                     android:id="@+id/call_message"
                     android:layout_width="wrap_content"
@@ -65,7 +68,6 @@
                     android:maxLines="1"
                     android:layout_marginRight="8dp"
                     android:layout_toStartOf="@+id/calltime_tv"
-                    tools:text="@string/online"
                     android:visibility="visible" />
 
 
@@ -73,7 +75,7 @@
                     android:id="@+id/tvSeprator"
                     android:layout_width="match_parent"
                     android:layout_toEndOf="@id/call_sender_avatar"
-                    android:background="@color/light_greyuikit"
+                    android:background="@color/light_grey"
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="16dp"
                     android:layout_height="0.8dp"/>
@@ -95,8 +97,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_call_24dp"
-                android:tint="@color/colorPrimaryuikit"
+                android:src="@drawable/ic_audiocall"
+                android:tint="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>

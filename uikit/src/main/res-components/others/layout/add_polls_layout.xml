@@ -21,7 +21,7 @@
                     android:drawablePadding="16dp"
                     style="@style/TextAppearance.MaterialComponents.Headline5"
                     android:padding="16dp"
-                    android:textColor="@color/primaryTextColoruikit"
+                    android:textColor="@color/primaryTextColor"
                     android:textStyle="bold"
                     android:layout_toLeftOf="@+id/close_poll"
                     android:text="@string/create_a_poll"
@@ -40,7 +40,7 @@
                 android:id="@+id/seperator"
                 android:layout_below="@+id/topBar"
                 android:layout_marginBottom="8dp"
-                android:background="@color/greyUikit"
+                android:background="@color/grey"
                 android:alpha="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
@@ -54,7 +54,7 @@
                 <TextView
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:textStyle="bold"
-                    android:textColor="@color/primaryTextColoruikit"
+                    android:textColor="@color/primaryTextColor"
                     android:layout_marginLeft="8dp"
                     android:text="@string/question"
                     android:layout_width="wrap_content"
@@ -62,8 +62,8 @@
                 <EditText
                     android:layout_marginLeft="8dp"
                     android:padding="8dp"
-                    android:textColor="@color/primaryTextColoruikit"
-                    android:textColorHint="@color/secondaryTextColoruikit"
+                    android:textColor="@color/primaryTextColor"
+                    android:textColorHint="@color/secondaryTextColor"
                     android:background="@android:color/transparent"
                     android:id="@+id/question_edt"
                     android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_marginTop="16dp"
-                    android:textColor="@color/primaryTextColoruikit"
+                    android:textColor="@color/primaryTextColor"
                     android:layout_marginLeft="8dp"
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:textStyle="bold"
@@ -94,10 +94,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 app:cardElevation="8dp"
-                app:cardBackgroundColor="@color/textColorWhiteuikit"
+                app:cardBackgroundColor="@color/textColorWhite"
                 android:id="@+id/add_options"
                 android:layout_below="@+id/poll_layout"
-                app:rippleColor="@color/light_greyuikit"
+                app:rippleColor="@color/light_grey"
                 android:layout_margin="8dp"
                 android:clickable="true"
                 android:layout_height="wrap_content">
@@ -106,14 +106,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textColor="@color/colorPrimaryuikit"
+                    android:textColor="@color/colorPrimary"
                     android:layout_centerInParent="true"
                     android:text="@string/add_a_new_option"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <ImageView
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_add_circle_grey_32dp"
+                    android:src="@drawable/ic_add_circle_grey"
                     android:layout_width="24dp"
                     android:layout_height="24dp"/>
             </RelativeLayout>
@@ -126,8 +126,8 @@
         style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
         android:id="@+id/add_poll"
         android:layout_margin="8dp"
-        android:textColor="@color/textColorWhiteuikit"
-        app:backgroundTint="@color/colorPrimaryuikit"
+        android:textColor="@color/textColorWhite"
+        app:backgroundTint="@color/colorPrimary"
         android:text="@string/create_poll"
         android:layout_height="wrap_content"/>
 </RelativeLayout>

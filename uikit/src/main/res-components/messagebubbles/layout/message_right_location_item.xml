@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="end"
+    android:layoutDirection="ltr"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp">
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rl_message">
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_alignParentRight="true"
             android:id="@+id/cv_message_container"
             android:layout_width="wrap_content"
@@ -20,30 +21,23 @@
             app:cardElevation="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="10dp"
-            app:cardBackgroundColor="@color/colorPrimaryuikit">
+            app:cardBackgroundColor="@color/colorPrimary">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:id="@+id/rv_right_map"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/textColorWhiteuikit">
-                    <ImageView
-                        tools:src="@tools:sample/avatars"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/iv_map"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="10dp"/>
-                </RelativeLayout>
+                <ImageView
+                    android:scaleType="center"
+                    android:src="@drawable/default_map"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/iv_map"/>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_right_map">
+                    android:layout_below="@+id/iv_map">
                     <TextView
-                        android:textColor="@color/textColorWhiteuikit"
+                        android:textColor="@color/textColorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_place_name"
@@ -55,7 +49,7 @@
                         tools:text="Address"/>
                     <TextView
                         android:id="@+id/sender_location_txt"
-                        android:textColor="@color/textColorWhiteuikit"
+                        android:textColor="@color/textColorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="italic"
@@ -64,18 +58,10 @@
                         android:layout_below="@+id/tv_place_name"
                         android:paddingLeft="4dp"
                         android:paddingBottom="4dp"/>
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="match_parent"
-                        android:id="@+id/navigate_btn"
-                        android:textColor="@color/textColorWhiteuikit"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:text="@string/navigate"
-                        app:cornerRadius="8dp"
-                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/txt_time"
@@ -87,7 +73,6 @@
             android:layout_alignBottom="@+id/cv_message_container"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
-            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
             tools:visibility="visible"
             android:visibility="gone"/>
@@ -119,7 +104,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

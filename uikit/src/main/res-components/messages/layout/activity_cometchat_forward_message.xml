@@ -28,6 +28,7 @@
         <RelativeLayout
             android:id="@+id/searchbar_view"
             android:layout_below="@id/forward_toolbar"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
@@ -40,10 +41,9 @@
                 android:imeOptions="actionSearch"
                 android:maxLines="1"
                 android:inputType="text"
-                android:drawableStart="@drawable/ic_search_24dp"
+                android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="5dp"
                 android:padding="8dp"
-                android:visibility="gone"
                 android:background="@drawable/search_box"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -100,27 +100,5 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:layout_height="wrap_content"/>
-
-
-
-        <RelativeLayout
-            android:id="@+id/bg_progressbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/translucent_bg"
-            android:clickable="false"
-            android:visibility="gone"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            >
-            <!--        android:background="@color/bg_translucentuikit"-->
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@android:style/Widget.ProgressBar.Inverse"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
-
     </RelativeLayout>
 </layout>

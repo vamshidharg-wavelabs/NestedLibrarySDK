@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:layoutDirection="ltr"
     android:gravity="end"
     android:animateLayoutChanges="true">
 
@@ -27,7 +28,7 @@
                 android:id="@+id/tvFileName"
                 android:layout_width="wrap_content"
                 tools:text="File Name"
-                android:textColor="@color/textColorWhiteuikit"
+                android:textColor="@color/textColorWhite"
                 android:singleLine="true"
                 android:maxLength="15"
                 android:ellipsize="end"
@@ -44,7 +45,7 @@
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 tools:text="File Size"
-                android:textColor="@color/textColorWhiteuikit"
+                android:textColor="@color/textColorWhite"
                 android:layout_marginStart="10dp"
                 android:focusable="true"
                 android:layout_below="@+id/tvFileName"
@@ -52,7 +53,7 @@
                 android:layout_height="wrap_content" />
             <LinearLayout
                 android:background="@drawable/cc_rounded_date_button"
-                android:backgroundTint="@color/colorPrimaryDarkuikit"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:padding="5dp"
                 android:gravity="center_horizontal"
                 android:layout_toRightOf="@+id/tvFileName"
@@ -60,9 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/ivIcon"
-                android:tint="@color/textColorWhiteuikit"
-                android:src="@drawable/ic_insert_drive_file_black_24dp"
+                android:tint="@color/textColorWhite"
+                android:src="@drawable/ic_file_upload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -72,7 +72,7 @@
                 tools:text="PDF"
                 android:textStyle="bold"
                 android:textSize="8sp"
-                android:textColor="@color/textColorWhiteuikit"
+                android:textColor="@color/textColorWhite"
                 android:visibility="visible" />
             </LinearLayout>
 
@@ -105,7 +105,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"
@@ -130,7 +130,6 @@
             android:layout_alignBottom="@+id/cv_message_container"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
-            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
             tools:visibility="visible"
             android:visibility="gone" />

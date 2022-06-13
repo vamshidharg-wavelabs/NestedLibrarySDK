@@ -90,16 +90,14 @@
                     android:layout_height="200dp">
                     <ImageView
                         android:id="@+id/iv_mapView"
-                        android:src="@drawable/maps_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="10dp"/>
+                        tools:src="@tools:sample/avatars"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
                     <TextView
                         android:padding="16dp"
                         android:id="@+id/tv_address"
-                        android:textColor="@color/textColorWhiteuikit"
-                        android:background="@color/greyUikit"
+                        android:textColor="@color/textColorWhite"
+                        android:background="@color/grey"
                         android:layout_alignParentBottom="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -145,8 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <ImageView
-                            android:id="@+id/ivIcon"
-                            android:src="@drawable/ic_insert_drive_file_black_24dp"
+                            android:src="@drawable/ic_file_upload"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -157,16 +154,14 @@
                             android:textStyle="bold"
                             android:textSize="8sp"
                             android:paddingBottom="2dp"
-                            android:textColor="@color/colorPrimaryuikit"
+                            android:textColor="@color/colorPrimary"
                             android:visibility="visible" />
                     </LinearLayout>
                 </RelativeLayout>
                 <LinearLayout
                     android:visibility="gone"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/iv_user"
-                    android:layout_below="@+id/iv_user"
-                    android:background="@drawable/cc_message_bubble_left"
+                    android:background="@drawable/cc_message_bubble_right"
                     android:orientation="vertical"
                     android:id="@+id/poll_message"
                     android:layout_width="250dp"
@@ -181,7 +176,7 @@
                         android:maxWidth="240dp"
                         android:paddingLeft="8dp"
                         android:paddingTop="16dp"
-                        android:textColor="@color/primaryTextColoruikit"
+                        android:textColor="@color/primaryTextColor"
                         android:textStyle="bold"
                         tools:text="What color is rose ?" />
 
@@ -207,7 +202,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginBottom="16dp"
                         android:textStyle="italic"
-                        android:textColor="@color/primaryTextColoruikit"
+                        android:textColor="@color/primaryTextColor"
                         tools:text="2 Votes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -216,18 +211,15 @@
                     android:id="@+id/whiteboard_vw"
                     android:visibility="gone"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/iv_user"
-                    android:layout_below="@+id/iv_user"
-                    android:background="@drawable/cc_message_bubble_left"
+                    android:background="@drawable/cc_message_bubble_right"
                     android:orientation="vertical"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:padding="8dp"
                         android:id="@+id/whiteboard_icon"
-                        android:background="@drawable/cc_message_bubble_right"
-                        android:backgroundTint="@color/grey_200"
-                        android:src="@drawable/ic_whiteboard_24dp"
+                        android:tint="@color/textColorWhite"
+                        android:src="@drawable/ic_collaborative_whiteboard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
@@ -246,8 +238,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginLeft="4dp"
                         android:layout_marginBottom="8dp"
-                        app:backgroundTint="@color/textColorWhiteuikit"
-                        android:textColor="@color/primaryTextColoruikit"
+                        app:backgroundTint="@color/textColorWhite"
+                        android:textColor="@color/primaryTextColor"
                         app:cornerRadius="16dp"
                         android:id="@+id/join_whiteboard"
                         android:layout_height="wrap_content"/>
@@ -256,18 +248,15 @@
                     android:id="@+id/writeboard_vw"
                     android:visibility="gone"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/iv_user"
-                    android:layout_below="@+id/iv_user"
-                    android:background="@drawable/cc_message_bubble_left"
+                    android:background="@drawable/cc_message_bubble_right"
                     android:orientation="vertical"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:padding="8dp"
                         android:id="@+id/writeboard_icon"
-                        android:background="@drawable/cc_message_bubble_right"
-                        android:backgroundTint="@color/grey_200"
-                        android:src="@drawable/ic_whiteboard_24dp"
+                        android:src="@drawable/ic_collaborative_whiteboard"
+                        android:tint="@color/textColorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
@@ -288,7 +277,6 @@
                         android:layout_marginBottom="8dp"
                         app:backgroundTint="@color/grey_100"
                         app:cornerRadius="16dp"
-                        android:id="@+id/join_writeboard"
                         android:layout_height="wrap_content"/>
                 </RelativeLayout>
             </RelativeLayout>
@@ -323,7 +311,7 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:id="@+id/add_reaction"
-                        android:src="@drawable/add_emoji"
+                        android:src="@drawable/ic_reactions"
                         android:clickable="true"
                         android:layout_marginRight="16dp"
                         android:foreground="?selectableItemBackground"
@@ -333,8 +321,7 @@
                         android:id="@+id/ic_forward_option"
                         android:clickable="true"
                         android:foreground="?selectableItemBackground"
-                        android:tint="@color/primaryTextColoruikit"
-                        android:src="@drawable/ic_baseline_forward_24"
+                        android:src="@drawable/ic_forward"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <ImageView
@@ -359,7 +346,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:src="@drawable/ic_chat"
+                    android:src="@drawable/ic_chats"
                     android:alpha="0.7"
                     android:layout_width="64dp"
                     android:layout_height="64dp"/>
@@ -390,19 +377,6 @@
     <include layout="@layout/cometchat_edit_message_view"/>
 
     <include layout="@layout/cometchat_reply_message_view"/>
-
-    <!--<androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMemberSuggestions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:padding="5dp"
-        android:background="@android:color/white"
-        android:layout_above="@+id/bottom_layout"
-        android:orientation="vertical"
-        android:visibility="gone"/>-->
-
     <FrameLayout
         android:id="@+id/reactions_container"
         android:layout_width="match_parent"

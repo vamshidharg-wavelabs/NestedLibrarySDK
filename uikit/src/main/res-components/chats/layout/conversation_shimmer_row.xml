@@ -30,7 +30,7 @@
             android:layout_marginEnd="16dp"
             android:textSize="@dimen/name"
             android:maxLines="1"
-            android:background="@color/shimmerUikit"
+            android:background="@color/shimmer"
             android:textStyle="bold" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:layout_marginEnd="16dp"
             android:textSize="@dimen/fourteen"
             android:layout_marginStart="8dp"
-            android:background="@color/shimmerUikit"
+            android:background="@color/shimmer"
             android:layout_below="@id/txt_user_name"
             android:layout_toEndOf="@id/av_user"
             android:maxLines="1"
@@ -54,13 +54,13 @@
             android:id="@+id/tvSeprator"
             android:layout_width="match_parent"
             android:layout_toEndOf="@id/av_user"
-            android:background="@color/shimmerUikit"
+            android:background="@color/shimmer"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="16dp"
             android:layout_height="1dp"/>
 
         <TextView
-            android:background="@color/shimmerUikit"
+            android:background="@color/shimmer"
             android:id="@+id/messageTime"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
@@ -76,11 +76,11 @@
             android:layout_width="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="4dp"
-            app:count_background_color="@color/shimmerUikit"
-            app:count_color="@color/shimmerUikit"
+            app:count_background_color="@color/shimmer"
+            app:count_color="@color/shimmer"
             android:layout_below="@id/messageTime"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/textColorWhiteuikit"
+            android:textColor="@color/textColorWhite"
             android:layout_height="wrap_content"/>
 
 

@@ -32,7 +32,7 @@ public class CustomAlertDialogHelper implements View.OnClickListener {
 
         //todo get color from cc Sdk
 //		cometChat = cc.getInstance(context_menu);
-        colorPrimary = context.getResources().getColor(R.color.colorPrimaryDarkuikit);
+        colorPrimary = context.getResources().getColor(R.color.colorPrimaryDark);
 //		colorPrimary = (int) cometChat.getCCSetting(new CCSettingMapper(SettingType.UI_SETTINGS, SettingSubType.COLOR_PRIMARY));
         builder.setView(view);
         builder.setCancelable(isCancelable);

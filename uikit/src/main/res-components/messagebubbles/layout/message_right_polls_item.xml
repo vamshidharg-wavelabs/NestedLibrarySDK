@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:layoutDirection="ltr"
     android:gravity="end"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
                android:maxWidth="240dp"
                android:layout_marginLeft="2dp"
                style="@style/TextAppearance.AppCompat.Medium"
-               android:textColor="@color/textColorWhiteuikit"
+               android:textColor="@color/textColorWhite"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:id="@+id/tv_question"
@@ -56,7 +57,7 @@
                android:layout_marginLeft="16dp"
                android:layout_marginBottom="16dp"
                android:textStyle="italic"
-               android:textColor="@color/textColorWhiteuikit"
+               android:textColor="@color/textColorWhite"
                tools:text="2 Votes"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"/>
@@ -71,7 +72,6 @@
             android:layout_alignBottom="@+id/cv_message_container"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
-            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"/>
         <HorizontalScrollView
             android:layout_alignEnd="@id/cv_message_container"
@@ -101,7 +101,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"

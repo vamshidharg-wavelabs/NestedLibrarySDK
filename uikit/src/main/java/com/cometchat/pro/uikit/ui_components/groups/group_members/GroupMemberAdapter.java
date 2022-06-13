@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cometchat.pro.uikit.databinding.CometchatGroupMemberRowBinding;
+import com.cometchat.pro.uikit.databinding.CometchatGroupMemberRowBindingImpl;
+import com.cometchat.pro.uikit.databinding.CometchatUserListRowBinding;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 
@@ -94,7 +96,7 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
 
         GroupMember groupMember = groupMemberList.get(i);
 
-        groupMemberViewHolder.userListRowBinding.avUser.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryuikit));
+        groupMemberViewHolder.userListRowBinding.avUser.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
         groupMemberViewHolder.userListRowBinding.getRoot().setTag(R.string.user, groupMember);
 
 
@@ -111,7 +113,7 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
         } else if (groupMember.getScope().equals(CometChatConstants.SCOPE_MODERATOR)){
             groupMemberViewHolder.userListRowBinding.txtUserScope.setText(R.string.moderator);
         } else {
-            groupMemberViewHolder.userListRowBinding.txtUserScope.setText("");
+            groupMemberViewHolder.userListRowBinding.txtUserScope.setText(R.string.participant);
         }
 
         groupMemberViewHolder.userListRowBinding.txtUserName.setTypeface(fontUtils.getTypeFace(FontUtils.robotoMedium));
@@ -127,13 +129,13 @@ public class GroupMemberAdapter extends RecyclerView.Adapter<GroupMemberAdapter.
 
         if (Utils.isDarkMode(context))
         {
-            groupMemberViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
-            groupMemberViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.greyUikit));
-            groupMemberViewHolder.userListRowBinding.txtUserScope.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
+            groupMemberViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhite));
+            groupMemberViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.grey));
+            groupMemberViewHolder.userListRowBinding.txtUserScope.setTextColor(context.getResources().getColor(R.color.textColorWhite));
         } else {
-            groupMemberViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
-            groupMemberViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_greyuikit));
-            groupMemberViewHolder.userListRowBinding.txtUserScope.setTextColor(context.getResources().getColor(R.color.secondaryTextColoruikit));
+            groupMemberViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            groupMemberViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
+            groupMemberViewHolder.userListRowBinding.txtUserScope.setTextColor(context.getResources().getColor(R.color.secondaryTextColor));
         }
 
         if (i == getItemCount() - 1)

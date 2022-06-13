@@ -9,11 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/ic_defaulf_image"
-        android:background="@color/textColorWhiteuikit"
+        android:background="@color/textColorWhite"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true" />
     <ImageView
-        android:id="@+id/videoBtn"
         android:layout_gravity="center"
         android:src="@drawable/ic_play_button"
         android:layout_width="30dp"

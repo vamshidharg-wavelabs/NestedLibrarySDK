@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layoutDirection="ltr"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -18,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="@color/colorPrimaryuikit"
+            app:cardBackgroundColor="@color/colorPrimary"
             android:layout_margin="8dp">
 
 
@@ -30,7 +31,7 @@
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:src="@drawable/ic_defaulf_image"
-                    android:background="@color/textColorWhiteuikit"
+                    android:background="@color/textColorWhite"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true" />
                 <ImageView
@@ -47,7 +48,7 @@
                 android:layout_gravity="center"
                 android:visibility="gone"
                 tools:visibility="visible"
-                android:indeterminateTint="@color/greyUikit"
+                android:indeterminateTint="@color/grey"
                 android:indeterminateDrawable="@drawable/cc_progress_drawable" />
 
         </androidx.cardview.widget.CardView>
@@ -79,7 +80,7 @@
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 tools:text="2 replies"
@@ -92,12 +93,11 @@
             android:layout_height="wrap_content"
             tools:text="11:00 PM"
             android:layout_marginBottom="16dp"
-            tools:drawableEnd="@drawable/ic_double_tick"
+            tools:drawableEnd="@drawable/ic_message_read"
             android:textSize="12sp"
             android:layout_toLeftOf="@id/cv_image_message_container"
             android:layout_gravity="center"
             android:layout_alignBottom="@id/cv_image_message_container"
-            android:textColor="@color/secondaryTextColoruikit"
             android:textStyle="bold"
             tools:visibility="visible"
             android:visibility="gone" />

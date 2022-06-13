@@ -1,14 +1,20 @@
 package com.cometchat.pro.uikit.ui_resources.utils;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.media.AudioManager;
@@ -21,9 +27,11 @@ import android.provider.OpenableColumns;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +43,7 @@ import androidx.renderscript.Element;
 import androidx.renderscript.RenderScript;
 import androidx.renderscript.ScriptIntrinsicBlur;
 
+import com.cometchat.pro.constants.CometChatConstants;
 import com.cometchat.pro.core.Call;
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.helpers.Logger;
@@ -71,58 +80,19 @@ import com.google.android.material.snackbar.Snackbar;
 
 import kotlin.ranges.RangesKt;
 
+import static android.os.Environment.DIRECTORY_DOCUMENTS;
+
 public class Utils {
 
     private static final String TAG = "Utils";
 
-
-    public static void showCometChatDialog(Context context,View parentLayout,String message,boolean isError) {
-        customSnackBar(context,parentLayout,message,isError);
-    }
-
-    private static void customSnackBar(Context context,View parentLayout,String message, boolean isError) {
-        Snackbar snackbar = Snackbar.make(parentLayout, "", Snackbar.LENGTH_INDEFINITE);
-        // Get the Snackbar's layout view
-        Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
-        snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        View dialogView = LayoutInflater.from(context).inflate(R.layout.cometchat_dialog_layout, null, false);
-//        builder.setView(dialogView);
-        TextView messageTv = dialogView.findViewById(R.id.tv_message);
-        messageTv.setText(message);
-//        Dialog alertDialog = builder.create();
-//        alertDialog.getWindow().setWindowAnimations(R.style.AppTheme_DialogAnimation);
-        ImageView closeImage = dialogView.findViewById(R.id.iv_close);
-        ImageView iconImage = dialogView.findViewById(R.id.iv_icon);
-        if (isError) {
-            iconImage.setImageResource(R.drawable.ic_info);
-            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
-            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
-            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
-            dialogView.setBackgroundColor(context.getResources().getColor(R.color.redUikit));
-        } else {
-            snackbar.setDuration(Snackbar.LENGTH_LONG);
-            iconImage.setImageResource(R.drawable.ic_baseline_check_circle_24);
-            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.green_600)));
-            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.primaryTextColoruikit)));
-            dialogView.setBackgroundColor(context.getResources().getColor(R.color.textColorWhiteuikit));
-        }
-        closeImage.setOnClickListener(v-> {
-            snackbar.dismiss();
-        });
-        layout.addView(dialogView);
-        snackbar.show();
-    }
     public static boolean isDarkMode(Context context)
     {
-//        int nightMode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-//        if (nightMode== Configuration.UI_MODE_NIGHT_YES)
-//            return true;
-//        else
-//            return false;
-
-        // Always light mode
-        return false;
+        int nightMode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if (nightMode== Configuration.UI_MODE_NIGHT_YES)
+            return true;
+        else
+            return false;
     }
 
     public static final float softTransition(float $this$softTransition, float compareWith, float allowedDiff, float scaleFactor) {
@@ -175,10 +145,21 @@ public class Utils {
         return DateFormat.format("dd MMM yy", var2).toString();
     }
 
-    public static String getDate(long var0) {
+    public static String getDate(Context context,long var0) {
         Calendar var2 = Calendar.getInstance(Locale.ENGLISH);
-        var2.setTimeInMillis(var0);
-        return DateFormat.format("dd MMMM yyyy", var2).toString();
+        var2.setTimeInMillis(var0*1000L);
+
+        long currentTimeStamp = System.currentTimeMillis();
+
+        long diffTimeStamp = currentTimeStamp - var0 * 1000;
+        if (diffTimeStamp < 24 * 60 * 60 * 1000) {
+            return context.getString(R.string.today);
+
+        } else if (diffTimeStamp < 48 * 60 * 60 * 1000) {
+
+            return context.getString(R.string.yesterday);
+        } else
+            return DateFormat.format("dd MMMM yyyy", var2).toString();
     }
 
     public static List<User> userSort(List<User> userList) {
@@ -215,7 +196,7 @@ public class Utils {
 
         switch (lastMessage.getCategory()) {
 
-            case com.cometchat.pro.constants.CometChatConstants.CATEGORY_MESSAGE:
+            case CometChatConstants.CATEGORY_MESSAGE:
 
                 if (lastMessage instanceof TextMessage) {
 
@@ -228,13 +209,13 @@ public class Utils {
 
                 } else if (lastMessage instanceof MediaMessage) {
                     if (lastMessage.getDeletedAt()==0) {
-                        if (lastMessage.getType().equals(com.cometchat.pro.constants.CometChatConstants.MESSAGE_TYPE_IMAGE))
+                        if (lastMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_IMAGE))
                             message = context.getString(R.string.message_image);
-                        else if (lastMessage.getType().equals(com.cometchat.pro.constants.CometChatConstants.MESSAGE_TYPE_VIDEO))
+                        else if (lastMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_VIDEO))
                             message = context.getString(R.string.message_video);
-                        else if (lastMessage.getType().equals(com.cometchat.pro.constants.CometChatConstants.MESSAGE_TYPE_FILE))
+                        else if (lastMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_FILE))
                             message = context.getString(R.string.message_file);
-                        else if (lastMessage.getType().equals(com.cometchat.pro.constants.CometChatConstants.MESSAGE_TYPE_AUDIO))
+                        else if (lastMessage.getType().equals(CometChatConstants.MESSAGE_TYPE_AUDIO))
                             message = context.getString(R.string.message_audio);
                     } else
                         message = context.getString(R.string.this_message_deleted);
@@ -248,7 +229,7 @@ public class Utils {
 //                    }
                 }
             break;
-            case com.cometchat.pro.constants.CometChatConstants.CATEGORY_CUSTOM:
+            case CometChatConstants.CATEGORY_CUSTOM:
                 if (lastMessage.getDeletedAt()==0) {
                     if (lastMessage.getType().equals(UIKitConstants.IntentStrings.LOCATION))
                         message = context.getString(R.string.custom_message_location);
@@ -268,23 +249,23 @@ public class Utils {
                     message = context.getString(R.string.this_message_deleted);
 
                 break;
-            case com.cometchat.pro.constants.CometChatConstants.CATEGORY_ACTION:
+            case CometChatConstants.CATEGORY_ACTION:
                 message = ((Action) lastMessage).getMessage();
                 break;
 
-            case com.cometchat.pro.constants.CometChatConstants.CATEGORY_CALL:
-                if (((Call)lastMessage).getCallStatus().equalsIgnoreCase(com.cometchat.pro.constants.CometChatConstants.CALL_STATUS_ENDED) ||
-                        ((Call) lastMessage).getCallStatus().equalsIgnoreCase(com.cometchat.pro.constants.CometChatConstants.CALL_STATUS_CANCELLED)) {
-                    if (lastMessage.getType().equalsIgnoreCase(com.cometchat.pro.constants.CometChatConstants.CALL_TYPE_AUDIO))
+            case CometChatConstants.CATEGORY_CALL:
+                if (((Call)lastMessage).getCallStatus().equalsIgnoreCase(CometChatConstants.CALL_STATUS_ENDED) ||
+                        ((Call) lastMessage).getCallStatus().equalsIgnoreCase(CometChatConstants.CALL_STATUS_CANCELLED)) {
+                    if (lastMessage.getType().equalsIgnoreCase(CometChatConstants.CALL_TYPE_AUDIO))
                         message = context.getString(R.string.incoming_audio_call);
                     else
                         message = context.getString(R.string.incoming_video_call);
-                } else if (((Call)lastMessage).getCallStatus().equalsIgnoreCase(com.cometchat.pro.constants.CometChatConstants.CALL_STATUS_ONGOING)) {
+                } else if (((Call)lastMessage).getCallStatus().equalsIgnoreCase(CometChatConstants.CALL_STATUS_ONGOING)) {
                     message = context.getString(R.string.ongoing_call);
-                } else if (((Call) lastMessage).getCallStatus().equalsIgnoreCase(com.cometchat.pro.constants.CometChatConstants.CALL_STATUS_CANCELLED) ||
-                        ((Call) lastMessage).getCallStatus().equalsIgnoreCase(com.cometchat.pro.constants.CometChatConstants.CALL_STATUS_UNANSWERED) ||
-                        ((Call) lastMessage).getCallStatus().equalsIgnoreCase(com.cometchat.pro.constants.CometChatConstants.CALL_STATUS_BUSY)) {
-                    if (lastMessage.getType().equalsIgnoreCase(com.cometchat.pro.constants.CometChatConstants.CALL_TYPE_AUDIO))
+                } else if (((Call) lastMessage).getCallStatus().equalsIgnoreCase(CometChatConstants.CALL_STATUS_CANCELLED) ||
+                        ((Call) lastMessage).getCallStatus().equalsIgnoreCase(CometChatConstants.CALL_STATUS_UNANSWERED) ||
+                        ((Call) lastMessage).getCallStatus().equalsIgnoreCase(CometChatConstants.CALL_STATUS_BUSY)) {
+                    if (lastMessage.getType().equalsIgnoreCase(CometChatConstants.CALL_TYPE_AUDIO))
                         message = context.getString(R.string.missed_voice_call);
                     else
                         message = context.getString(R.string.missed_video_call);
@@ -317,7 +298,7 @@ public class Utils {
         if (isScopeUpdate)
             groupMember = new GroupMember(user.getUid(), newScope);
         else
-            groupMember = new GroupMember(user.getUid(), com.cometchat.pro.constants.CometChatConstants.SCOPE_PARTICIPANT);
+            groupMember = new GroupMember(user.getUid(), CometChatConstants.SCOPE_PARTICIPANT);
 
         groupMember.setAvatar(user.getAvatar());
         groupMember.setName(user.getName());
@@ -336,7 +317,7 @@ public class Utils {
 //        }
     }
 
-    public static String getLastMessageDate(long timestamp) {
+    public static String getLastMessageDate(Context context,long timestamp) {
         String lastMessageTime = new SimpleDateFormat("h:mm a").format(new java.util.Date(timestamp * 1000));
         String lastMessageDate = new SimpleDateFormat("dd MMM yyyy").format(new java.util.Date(timestamp * 1000));
         String lastMessageWeek = new SimpleDateFormat("EEE").format(new java.util.Date(timestamp * 1000));
@@ -350,7 +331,7 @@ public class Utils {
 
         } else if (diffTimeStamp < 48 * 60 * 60 * 1000) {
 
-            return "Yesterday";
+            return context.getString(R.string.yesterday);
         } else if (diffTimeStamp < 7 * 24 * 60 * 60 * 1000) {
             return lastMessageWeek;
         } else {
@@ -386,7 +367,7 @@ public class Utils {
         return sb.toString();
     }
 
-    public static String getReceiptDate(long timestamp) {
+    public static String getReceiptDate(Context context,long timestamp) {
         String lastMessageTime = new SimpleDateFormat("h:mm a").format(new java.util.Date(timestamp * 1000));
         String lastMessageDate = new SimpleDateFormat("dd MMMM h:mm a").format(new java.util.Date(timestamp * 1000));
         String lastMessageWeek = new SimpleDateFormat("EEE h:mm a").format(new java.util.Date(timestamp * 1000));
@@ -400,7 +381,7 @@ public class Utils {
 
         } else if (diffTimeStamp < 48 * 60 * 60 * 1000) {
 
-            return "Yesterday";
+            return context.getString(R.string.yesterday);
         } else if (diffTimeStamp < 7 * 24 * 60 * 60 * 1000) {
             return lastMessageWeek;
         } else {
@@ -613,12 +594,6 @@ public class Utils {
         return dir;
     }
 
-    public static String  getPath(Context context, String folder) {
-
-        return Environment.getExternalStorageDirectory().toString() + "/" +
-                context.getResources().getString(R.string.app_name) + "/" + folder + "/";
-    }
-
     public static String getPath(final Context context, final Uri uri) {
         String absolutePath = getImagePathFromUri(context, uri);
         return absolutePath != null ? absolutePath : uri.toString();
@@ -687,10 +662,21 @@ public class Utils {
         if (!var0.exists() && !var0.mkdirs()) {
             return null;
         } else {
-            String var1 = Environment.getExternalStorageDirectory() + "/" + context.getResources().getString(R.string.app_name) + "/"
-                    + "audio/";
-            createDirectory(var1);
-            return var1 + (new SimpleDateFormat("yyyyMMddHHmmss")).format(new Date()) + ".mp3";
+            String dir;
+
+            dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath()+"/"+context.getResources().getString(R.string.app_name) + "/"
+                        + "audio/";
+//            if (Build.VERSION_CODES.R > Build.VERSION.SDK_INT) {
+//                dir = Environment.getExternalStorageDirectory()+"/"+context.getResources().getString(R.string.app_name) + "/"
+//                        + "audio/";
+//            } else {
+//                dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath()+"/"+context.getResources().getString(R.string.app_name) + "/"
+//                        + "audio/";
+//            }
+//            String var1 = Environment.getExternalStorageDirectory() + "/" + context.getResources().getString(R.string.app_name) + "/"
+//                    + "audio/";
+            createDirectory(dir);
+            return dir + (new SimpleDateFormat("yyyyMMddHHmmss")).format(new Date()) + ".mp3";
         }
     }
 
@@ -739,6 +725,19 @@ public class Utils {
         }
     }
 
+    public static Bitmap drawableToBitmap (Drawable drawable) {
+
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable)drawable).getBitmap();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
     public static String getAddress(Context context, double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         try {
@@ -765,7 +764,7 @@ public class Utils {
 
     public static Call getDirectCallData(BaseMessage baseMessage) {
         Call call = null;
-        String callType = com.cometchat.pro.constants.CometChatConstants.CALL_TYPE_VIDEO;
+        String callType = CometChatConstants.CALL_TYPE_VIDEO;
         try {
             if (((CustomMessage)baseMessage).getCustomData() != null) {
                 JSONObject customObject = ((CustomMessage)baseMessage).getCustomData();

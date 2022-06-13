@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cometchat.pro.core.CometChat;
@@ -24,13 +23,16 @@ import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.uikit.databinding.FragmentCometchatUserProfileBinding;
+import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar;
+import com.cometchat.pro.uikit.ui_components.users.block_users.CometChatBlockUserListActivity;
+import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
-import com.cometchat.pro.uikit.ui_settings.UISettings;
+import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 import com.cometchat.pro.uikit.ui_components.userprofile.privacy_security.CometChatMorePrivacyActivity;
 
@@ -39,7 +41,6 @@ public class CometChatUserProfile extends Fragment {
     private CometChatAvatar notificationIv;
     private AlertDialog.Builder dialog;
     FragmentCometchatUserProfileBinding moreInfoScreenBinding;
-    private static final String TAG = "Action Logout";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,75 +50,37 @@ public class CometChatUserProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+        CometChatError.init(getContext());
         moreInfoScreenBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_cometchat_user_profile, container, false);
         moreInfoScreenBinding.setUser(CometChat.getLoggedInUser());
         moreInfoScreenBinding.ivUser.setAvatar(CometChat.getLoggedInUser());
-
-//        moreInfoScreenBinding.mbtnLogout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                CometChat.logout(new CometChat.CallbackListener<String>() {
-//                    @SuppressLint("WrongConstant")
-//                    @Override
-//                    public void onSuccess(String successMessage) {
-//                        Log.d(TAG, "Logout completed successfully");
-//                        Toast.makeText(getContext(), "Logout Cometchat", Toast.LENGTH_SHORT).show();
-//
-//                        try {
-//                            // to clear the activity stack
-//                            Intent myIntent = new Intent(getActivity(),Class.forName("com.example.arteria.LoginActivity2"));
-//                            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-//                                myIntent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
-//                            startActivity(myIntent);
-//                        } catch (ClassNotFoundException e) {
-//                            e.printStackTrace();
-//                        }
-//                        getActivity().finish();
-//                    }
-//                    @Override
-//                    public void onError(CometChatException e) {
-//                        Log.d(TAG, "Logout failed with exception: " + e.getMessage());
-//                    }
-//                });
-//            }
-//        });
 
         moreInfoScreenBinding.tvTitle.setTypeface(FontUtils.getInstance(getActivity()).getTypeFace(FontUtils.robotoMedium));
         Log.e("onCreateView: ", CometChat.getLoggedInUser().toString());
         moreInfoScreenBinding.privacyAndSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), CometChatMorePrivacyActivity.class));
+                startActivity(new Intent(getContext(), CometChatBlockUserListActivity.class));
             }
         });
 
-        if (UISettings.getColor()!=null) {
-            int widgetColor = Color.parseColor(UISettings.getColor());
-            Drawable wrappedDrawable = DrawableCompat.wrap(getResources().
-                    getDrawable(R.drawable.ic_security_24dp));
-            wrappedDrawable.setTint(widgetColor);
-            DrawableCompat.setTint(wrappedDrawable, widgetColor);
-            moreInfoScreenBinding.ivSecurity.setImageDrawable(wrappedDrawable);
-        }
         if(Utils.isDarkMode(getContext())) {
-            moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
-            moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.greyUikit));
-            moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.textColorWhite));
+            moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.grey));
+            moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.grey));
         } else {
-            moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
-            moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
-            moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            moreInfoScreenBinding.tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            moreInfoScreenBinding.tvSeperator.setBackgroundColor(getResources().getColor(R.color.light_grey));
+            moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.light_grey));
         }
 
-        // not required for client
-//        moreInfoScreenBinding.userContainer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                updateUserDialog();
-//            }
-//        });
+        moreInfoScreenBinding.editUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateUserDialog();
+            }
+        });
         return moreInfoScreenBinding.getRoot();
     }
 
@@ -139,7 +102,7 @@ public class CometChatUserProfile extends Fragment {
         }
         else {
             avatar.setVisibility(View.VISIBLE);
-            avatar_url.setVisibility(View.GONE);
+            avatar_url.setVisibility(View.VISIBLE);
         }
         avatar_url.addTextChangedListener(new TextWatcher() {
             @Override
@@ -157,7 +120,7 @@ public class CometChatUserProfile extends Fragment {
                 if(!s.toString().isEmpty())
                 {
                     avatar.setVisibility(View.VISIBLE);
-                    Glide.with(getContext()).load(s.toString()).into(avatar);
+                    avatar.setAvatar(s.toString());
                 } else
                     avatar.setVisibility(View.GONE);
             }
@@ -193,14 +156,15 @@ public class CometChatUserProfile extends Fragment {
             @Override
             public void onSuccess(User user) {
                 if (getContext()!=null)
-                    Toast.makeText(getContext(),"Updated User Successfull",Toast.LENGTH_LONG).show();
+                    CometChatSnackBar.show(getContext(),moreInfoScreenBinding.getRoot(),
+                            getString(R.string.updated_user_successfully),CometChatSnackBar.SUCCESS);
                 moreInfoScreenBinding.setUser(user);
             }
 
             @Override
             public void onError(CometChatException e) {
                 if (getContext()!=null)
-                    Utils.showCometChatDialog(getContext(),moreInfoScreenBinding.tvTitle,e.getMessage(),true);
+                   CometChatSnackBar.show(getContext(),moreInfoScreenBinding.tvTitle, CometChatError.localized(e), CometChatSnackBar.ERROR);
             }
         });
     }

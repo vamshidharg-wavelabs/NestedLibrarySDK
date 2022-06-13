@@ -12,14 +12,12 @@
         <TextView
             android:padding="16dp"
             android:gravity="center"
-            android:background="@color/colorPrimaryuikit"
-            android:textColor="@color/textColorWhiteuikit"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="@string/update_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
-            app:border_color="@color/colorPrimaryuikit"
+            app:border_color="@color/colorPrimary"
             app:border_width="1dp"
             android:layout_marginTop="32dp"
             android:id="@+id/group_icon"
@@ -28,14 +26,14 @@
             android:layout_height="100dp"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            app:boxStrokeColor="@color/colorPrimaryuikit"
+            android:visibility="gone"
+            app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidth="1dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:padding="8dp"
             android:hint="@string/enter_group_icon_url"
-            android:id="@+id/groupicon_url_tl"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
@@ -47,14 +45,13 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            app:boxStrokeColor="@color/colorPrimaryuikit"
+            app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidth="1dp"
             android:padding="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/enter_group_name"
-            android:id="@+id/group_name_tl"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
@@ -65,14 +62,13 @@
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            app:boxStrokeColor="@color/colorPrimaryuikit"
+            app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidth="1dp"
             android:padding="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/enter_group_desc"
-            android:id="@+id/group_desc_tl"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
@@ -101,12 +97,12 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:hint="@string/enter_old_group_pwd"
-            android:textColorHint="@color/secondaryTextColoruikit"
+            android:textColorHint="@color/secondaryTextColor"
             app:boxCornerRadiusBottomEnd="24dp"
             app:boxCornerRadiusBottomStart="24dp"
             app:boxCornerRadiusTopEnd="24dp"
             app:boxCornerRadiusTopStart="24dp"
-            app:boxStrokeColor="@color/secondaryTextColoruikit"
+            app:boxStrokeColor="@color/secondaryTextColor"
             app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -118,7 +114,7 @@
                 android:maxLines="1"
                 android:inputType="textPassword"
                 android:imeOptions="actionDone"
-                android:textColor="@color/primaryTextColoruikit" />
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_group_new_pwd"
@@ -133,12 +129,12 @@
             app:passwordToggleEnabled="true"
             tools:visibility="visible"
             android:hint="@string/enter_new_password"
-            android:textColorHint="@color/secondaryTextColoruikit"
+            android:textColorHint="@color/secondaryTextColor"
             app:boxCornerRadiusBottomEnd="24dp"
             app:boxCornerRadiusBottomStart="24dp"
             app:boxCornerRadiusTopEnd="24dp"
             app:boxCornerRadiusTopStart="24dp"
-            app:boxStrokeColor="@color/secondaryTextColoruikit"
+            app:boxStrokeColor="@color/secondaryTextColor"
             app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -150,7 +146,7 @@
                 android:maxLines="1"
                 android:inputType="textPassword"
                 android:imeOptions="actionDone"
-                android:textColor="@color/primaryTextColoruikit" />
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -159,18 +155,19 @@
             android:weightSum="2"
             android:layout_height="wrap_content">
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/cancel"
+                android:textColor="@color/red"
                 android:id="@+id/cancelBtn"
                 android:layout_height="wrap_content"/>
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_weight="1"
                 android:id="@+id/updateGroupBtn"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:text="@string/update_group"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

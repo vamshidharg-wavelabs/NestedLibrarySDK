@@ -11,14 +11,12 @@
         <TextView
             android:padding="16dp"
             android:gravity="center"
-            android:background="@color/colorPrimaryuikit"
-            android:textColor="@color/textColorWhiteuikit"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="@string/update_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
-            app:border_color="@color/colorPrimaryuikit"
+            app:border_color="@color/colorPrimary"
             app:border_width="1dp"
             android:layout_marginTop="32dp"
             android:id="@+id/user_avatar"
@@ -27,14 +25,13 @@
             android:layout_height="100dp"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            app:boxStrokeColor="@color/colorPrimaryuikit"
+            app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidth="1dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:padding="8dp"
             android:hint="@string/enter_avatar_url"
-            android:id="@+id/avatar_url_tl"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
@@ -46,14 +43,13 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            app:boxStrokeColor="@color/colorPrimaryuikit"
+            app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidth="1dp"
             android:padding="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/enter_user_name"
-            android:id="@+id/user_name_tl"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
@@ -69,18 +65,19 @@
             android:weightSum="2"
             android:layout_height="wrap_content">
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/cancel"
+                android:textColor="@color/red"
                 android:id="@+id/cancelBtn"
                 android:layout_height="wrap_content"/>
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/updateUserBtn"
-                android:textColor="@color/colorPrimaryuikit"
+                android:textColor="@color/colorPrimary"
                 android:text="@string/update_user"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

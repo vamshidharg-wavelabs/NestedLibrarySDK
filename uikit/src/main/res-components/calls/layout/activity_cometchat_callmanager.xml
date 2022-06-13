@@ -10,7 +10,7 @@
         app:cardCornerRadius="16dp"
         android:id="@+id/incoming_call_view"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/primaryTextColoruikit"
+        app:cardBackgroundColor="@color/primaryTextColor"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:padding="16dp"
@@ -20,7 +20,7 @@
                 android:id="@+id/caller_name"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/textColorWhiteuikit"
+                android:textColor="@color/textColorWhite"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 tools:text="@tools:sample/full_names"
                 android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_below="@+id/caller_name"
                 android:layout_marginLeft="16dp"
-                android:textColor="@color/light_greyuikit"
+                android:textColor="@color/light_grey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 tools:text="@tools:sample/full_names"
                 android:layout_width="wrap_content"
@@ -40,6 +40,7 @@
                 android:layout_width="48dp"
                 android:id="@+id/caller_av"
                 android:layout_margin="16dp"
+                app:corner_radius="24dp"
                 android:layout_alignParentEnd="true"
                 tools:src="@tools:sample/avatars"
                 android:layout_height="48dp"/>
@@ -51,10 +52,10 @@
                 android:layout_height="wrap_content">
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
-                    android:text="Decline"
+                    android:text="@string/decline"
                     android:id="@+id/decline_incoming"
                     android:layout_marginTop="16dp"
-                    app:backgroundTint="@color/redUikit"
+                    app:backgroundTint="@color/red"
                     android:layout_marginLeft="16dp"
                     app:cornerRadius="8dp"
                     android:paddingLeft="32dp"
@@ -62,10 +63,10 @@
                     android:layout_height="wrap_content"/>
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
-                    android:text="Answer"
+                    android:text="@string/accept"
                     android:id="@+id/accept_incoming"
                     android:layout_marginTop="16dp"
-                    app:backgroundTint="@color/colorPrimaryuikit"
+                    app:backgroundTint="@color/colorPrimary"
                     android:layout_marginLeft="16dp"
                     app:cornerRadius="8dp"
                     android:paddingLeft="32dp"
@@ -75,7 +76,7 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
     <RelativeLayout
-        android:background="@color/primaryTextColoruikit"
+        android:background="@color/primaryTextColor"
         android:id="@+id/outgoing_call_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -87,7 +88,7 @@
         </FrameLayout>
         <TextView
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/textColorWhiteuikit"
+            android:textColor="@color/textColorWhite"
             android:textStyle="bold"
             android:id="@+id/calling_tv"
             android:layout_marginTop="36dp"
@@ -100,13 +101,14 @@
             android:id="@+id/tv_dots"
             android:layout_toEndOf="@id/calling_tv"
             android:text="..."
-            android:textColor="@color/textColorWhiteuikit"
+            android:textColor="@color/textColorWhite"
             android:layout_alignBaseline="@id/calling_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
-            app:border_color="@color/textColorWhiteuikit"
+            app:border_color="@color/textColorWhite"
             app:border_width="16dp"
+            app:corner_radius="100dp"
             android:layout_below="@+id/calling_tv"
             tools:src="@tools:sample/avatars"
             android:layout_width="200dp"
@@ -117,7 +119,7 @@
         <TextView
             android:id="@+id/user_tv"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/textColorWhiteuikit"
+            android:textColor="@color/textColorWhite"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/user_av"

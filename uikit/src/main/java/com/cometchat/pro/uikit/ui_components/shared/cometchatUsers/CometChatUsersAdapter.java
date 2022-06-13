@@ -101,7 +101,7 @@ public class CometChatUsersAdapter extends RecyclerView.Adapter<CometChatUsersAd
         userViewHolder.userListRowBinding.statusIndicator.setUserStatus(user.getStatus());
         userViewHolder.userListRowBinding.txtUserName.setText(user.getName());
         userViewHolder.userListRowBinding.executePendingBindings();
-        userViewHolder.userListRowBinding.avUser.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryuikit));
+        userViewHolder.userListRowBinding.avUser.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
         userViewHolder.userListRowBinding.getRoot().setTag(R.string.user, user);
 
         userViewHolder.userListRowBinding.txtUserName.setTypeface(fontUtils.getTypeFace(FontUtils.robotoMedium));
@@ -112,11 +112,11 @@ public class CometChatUsersAdapter extends RecyclerView.Adapter<CometChatUsersAd
             userViewHolder.userListRowBinding.avUser.setAvatar(user.getAvatar());
         }
         if(Utils.isDarkMode(context)) {
-            userViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
-            userViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.greyUikit));
+            userViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhite));
+            userViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.grey));
         } else {
-            userViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
-            userViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_greyuikit));
+            userViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            userViewHolder.userListRowBinding.tvSeprator.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
         }
     }
 

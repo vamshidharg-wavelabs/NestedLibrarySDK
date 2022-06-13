@@ -17,9 +17,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.cometchat.pro.uikit.R;
-import com.cometchat.pro.uikit.ui_settings.UISettings;
+import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatStickers.listener.StickerClickListener;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatStickers.model.Sticker;
+import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -98,28 +99,28 @@ public class StickerView extends RelativeLayout implements StickerClickListener 
             for (int i=0;i<tabLayout.getTabCount();i++) {
                 tabLayout.getTabAt(i).setCustomView(createTabItemView(adapter.getPageIcon(i)));
             }
-            if (UISettings.getColor()!=null) {
+            if (UIKitSettings.getColor()!=null) {
                 Drawable wrappedDrawable = DrawableCompat.wrap(getResources().
                         getDrawable(R.drawable.tab_layout_background_active));
-                DrawableCompat.setTint(wrappedDrawable, Color.parseColor(UISettings.getColor()));
+                DrawableCompat.setTint(wrappedDrawable, Color.parseColor(UIKitSettings.getColor()));
                 tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).view.setBackground(wrappedDrawable);
-                tabLayout.setSelectedTabIndicatorColor(Color.parseColor(UISettings.getColor()));
+                tabLayout.setSelectedTabIndicatorColor(Color.parseColor(UIKitSettings.getColor()));
             } else {
                 tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).
-                        view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
-                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryuikit));
+                        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
             }
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
-                    if (UISettings.getColor()!=null) {
+                    if (UIKitSettings.getColor()!=null) {
                         Drawable wrappedDrawable = DrawableCompat.wrap(getResources().
                                 getDrawable(R.drawable.tab_layout_background_active));
-                        DrawableCompat.setTint(wrappedDrawable, Color.parseColor(UISettings.getColor()));
+                        DrawableCompat.setTint(wrappedDrawable, Color.parseColor(UIKitSettings.getColor()));
                         tab.view.setBackground(wrappedDrawable);
                     }
                     else
-                        tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
+                        tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 }
 
                 @Override

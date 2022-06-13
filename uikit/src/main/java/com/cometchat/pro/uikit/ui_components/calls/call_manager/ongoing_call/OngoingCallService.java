@@ -33,7 +33,7 @@ public class OngoingCallService extends Service {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O)
             startMyOwnForeground();
         else
-            startForeground(1,new Notification());
+            this.startForeground(1,new Notification());
     }
 
     @Nullable
@@ -57,13 +57,13 @@ public class OngoingCallService extends Service {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,"2");
         Notification notification = notificationBuilder.setOngoing(true)
                 .setSmallIcon(R.drawable.cc)
-                .setColor(getResources().getColor(R.color.colorPrimaryuikit))
+                .setColor(getResources().getColor(R.color.colorPrimary))
                 .setContentTitle(getResources().getString(R.string.tap_to_join_call))
                 .setPriority(NotificationManager.IMPORTANCE_HIGH)
                 .setContentIntent(pendingIntent)
                 .setCategory(Notification.CATEGORY_CALL)
                 .build();
-        startForeground(2,notification);
+        startForeground(1,notification);
     }
 
     private Intent getCallIntent(String title) {
@@ -96,9 +96,9 @@ public class OngoingCallService extends Service {
         super.onDestroy();
         stopTimer();
 
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction("restartservice");
-        this.sendBroadcast(broadcastIntent);
+//        Intent broadcastIntent = new Intent();
+//        broadcastIntent.setAction("restartservice");
+//        this.sendBroadcast(broadcastIntent);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class OngoingCallService extends Service {
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                Log.e("run: ","Count:"+ counter++ );
+                Log.d("AppInBackground: ",""+ counter++ );
             }
         };
         timer.schedule(timerTask, 1000, 1000);
