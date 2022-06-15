@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Arteria" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+    <style name="Theme.Arteria" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
@@ -23,23 +23,23 @@
 
 
 
-    <style name="ArteriaTheme" parent="_Custom.Themes">
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/secondaryDarkColor</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <!--         <item name="android:fontFamily">@string/sans_serif_font</item> -->
-        <item name="android:windowBackground">@color/WHITE</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:textViewStyle">@style/RobotoFont</item>
-        <item name="android:buttonStyle">@style/RobotoFontButton</item>
-        <item name="android:editTextStyle">@style/RobotoFontEditText</item>
-        <item name="android:spinnerStyle">@style/RobotoFontSpinner</item>
-        <item name="android:textColor">@color/light_black</item>
-        <item name="android:windowActivityTransitions">false</item>
-        <!--  specify enter and exit transitions  -->
-    </style>
+<!--    <style name="ArteriaTheme" parent="_Custom.Themes">-->
+<!--        <item name="colorPrimary">@color/primaryColor</item>-->
+<!--        <item name="colorPrimaryDark">@color/primaryDarkColor</item>-->
+<!--        <item name="colorAccent">@color/secondaryDarkColor</item>-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        &lt;!&ndash;         <item name="android:fontFamily">@string/sans_serif_font</item> &ndash;&gt;-->
+<!--        <item name="android:windowBackground">@color/WHITE</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="android:textViewStyle">@style/RobotoFont</item>-->
+<!--        <item name="android:buttonStyle">@style/RobotoFontButton</item>-->
+<!--        <item name="android:editTextStyle">@style/RobotoFontEditText</item>-->
+<!--        <item name="android:spinnerStyle">@style/RobotoFontSpinner</item>-->
+<!--        <item name="android:textColor">@color/light_black</item>-->
+<!--        <item name="android:windowActivityTransitions">false</item>-->
+<!--        &lt;!&ndash;  specify enter and exit transitions  &ndash;&gt;-->
+<!--    </style>-->
     <style name="_Custom.Themes" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="buttonStyle">@style/ButtonDefault</item>
         <item name="editTextStyle">@style/EditTextDefault</item>

@@ -557,7 +557,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
             editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
             replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
-            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.primaryTextColor));
             rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
             tvName.setTextColor(getResources().getColor(R.color.primaryTextColor));
         }
@@ -858,7 +858,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             public void onLocationActionClicked() {
                 if (Utils.hasPermissions(getContext(), Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                    initLocation();
+                    initLocation();;
 //                    locationManager = (LocationManager) Objects.requireNonNull(getContext()).getSystemService(Context.LOCATION_SERVICE);
                     boolean gpsprovider = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
                     if (!gpsprovider) {

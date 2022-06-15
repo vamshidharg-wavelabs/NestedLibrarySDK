@@ -24,19 +24,20 @@
         android:layout_toEndOf="@id/ivArrow"
         android:layout_toStartOf="@+id/boxEndLayout"
         android:layout_height="wrap_content">
+
         <com.cometchat.pro.uikit.ui_components.shared.cometchatComposeBox.CometChatEditText
-            android:background="@android:color/transparent"
-            android:layout_width="match_parent"
             android:id="@+id/etComposeBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:hint="@string/message"
+            android:imeOptions="actionSend"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:padding="8dp"
             android:paddingStart="16dp"
             android:singleLine="false"
-            android:inputType="textMultiLine"
-            android:textColor="@android:color/black"
-            android:padding="8dp"
-            android:maxLines="3"
-            android:imeOptions="actionSend"
-            android:layout_height="wrap_content"/>
+            android:textColor="@android:color/black" />
     </RelativeLayout>
     <RelativeLayout
         android:visibility="gone"
