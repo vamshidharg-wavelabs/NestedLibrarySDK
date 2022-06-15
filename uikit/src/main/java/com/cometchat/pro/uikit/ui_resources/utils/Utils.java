@@ -663,9 +663,8 @@ public class Utils {
             return null;
         } else {
             String dir;
-
             dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath()+"/"+context.getResources().getString(R.string.app_name) + "/"
-                        + "audio/";
+                    + "audio/";
 //            if (Build.VERSION_CODES.R > Build.VERSION.SDK_INT) {
 //                dir = Environment.getExternalStorageDirectory()+"/"+context.getResources().getString(R.string.app_name) + "/"
 //                        + "audio/";

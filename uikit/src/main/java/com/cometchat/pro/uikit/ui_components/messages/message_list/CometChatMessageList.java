@@ -867,6 +867,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                         getLocation();
                     }
                 } else {
+                    //todo 2
 //                    requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, UIKitConstants.RequestCode.LOCATION);
 //                    if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) {
 //                        checkBackgroundLocationPermissionAPI30(UIKitConstants.RequestCode.LOCATION);

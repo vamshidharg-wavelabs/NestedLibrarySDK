@@ -12,6 +12,7 @@
 
     <color name="primaryColor">#183d8e</color>
     <color name="primaryDarkColor">#001860</color>
+    <color name="colorPrimaryDarkuikit">#001860</color>
     <color name="secondaryDarkColor">#005a87</color>
     <color name="button_primary_color">@color/primaryColor</color>
     <color name="dialogBoxBackgroundColor">#ffffff</color>
