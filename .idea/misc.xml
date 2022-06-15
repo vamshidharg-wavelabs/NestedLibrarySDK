@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/FlutterProjects/New/NestedLibrarySDK/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/fragment_cometchat_messagelist.xml" value="0.2" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/shared/layout/cometchat_compose_box.xml" value="0.25" />
       </map>
     </option>
   </component>
