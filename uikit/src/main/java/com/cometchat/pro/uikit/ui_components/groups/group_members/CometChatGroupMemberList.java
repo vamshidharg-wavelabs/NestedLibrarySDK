@@ -270,7 +270,6 @@ public class CometChatGroupMemberList extends Fragment {
                 groupMembersRequest = new GroupMembersRequest.GroupMembersRequestBuilder(guid)
                         .setScopes(Arrays.asList(CometChatConstants.SCOPE_PARTICIPANT))
                         .setLimit(10).build();
-
             else if (transferOwnerShip)
                 groupMembersRequest = new GroupMembersRequest.GroupMembersRequestBuilder(guid)
                         .setScopes(Arrays.asList(
@@ -278,8 +277,7 @@ public class CometChatGroupMemberList extends Fragment {
                                 CometChatConstants.SCOPE_MODERATOR,
                                 CometChatConstants.SCOPE_ADMIN
                                 )
-                        )
-                        .setLimit(10).build();
+                        ).setLimit(10).build();
             else
                 groupMembersRequest = new GroupMembersRequest.GroupMembersRequestBuilder(guid)
                         .setScopes(Arrays.asList(CometChatConstants.SCOPE_PARTICIPANT,

@@ -3025,7 +3025,8 @@ MembersAdapter.MembersAdapterListener{
                 String message = "";
                 for (BaseMessage bMessage : baseMessages) {
                     if (bMessage.getDeletedAt() == 0 && bMessage instanceof TextMessage) {
-                        message = message + "[" + Utils.getLastMessageDate(bMessage.getSentAt()) + "] " + bMessage.getSender().getName() + ": " + ((TextMessage) bMessage).getText();
+                        //message = message + "[" + Utils.getLastMessageDate(bMessage.getSentAt()) + "] " + bMessage.getSender().getName() + ": " + ((TextMessage) bMessage).getText();
+                        message = message + ((TextMessage) bMessage).getText();
                     }
                 }
                 Log.e(TAG, "onCopy: " + message);
