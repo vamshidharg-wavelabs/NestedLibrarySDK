@@ -33,7 +33,6 @@ import com.cometchat.pro.uikit.ui_components.messages.thread_message_list.CometC
 /**
  * MessageActions is a BottomSheetDialogFragment which is being used in MessageList & ThreadList.
  * It is used to show message actions such as edit,delete,copy,share,etc for a particular message.
- *
  */
 public class CometChatMessageActions extends BottomSheetDialogFragment {
 
@@ -83,7 +82,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
     }
 
     private void fetchArguments() {
-        if (getArguments()!=null) {
+        if (getArguments() != null) {
             isPrivateReplyVisible = getArguments().getBoolean("privateReplyVisible");
             isCopyVisible = getArguments().getBoolean("copyVisible");
             isThreadVisible = getArguments().getBoolean("threadVisible");
@@ -121,8 +120,8 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
 
         reactionsList = view.findViewById(R.id.initial_reactions);
         List<Reaction> reactions = Extensions.getInitialReactions(INITIAL_REACTION_COUNT);
-        for(Reaction reaction : reactions) {
-            View vw = LayoutInflater.from(getContext()).inflate(R.layout.reaction_list_row,null);
+        for (Reaction reaction : reactions) {
+            View vw = LayoutInflater.from(getContext()).inflate(R.layout.reaction_list_row, null);
             TextView textView = vw.findViewById(R.id.reaction);
             LinearLayout.LayoutParams params = new LinearLayout.
                     LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -136,7 +135,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (messageActionListener!=null)
+                    if (messageActionListener != null)
                         messageActionListener.onReactionClick(reaction);
                     dismiss();
                 }
@@ -145,7 +144,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         ImageView addEmojiView = new ImageView(getContext());
         addEmojiView.setImageDrawable(getResources().getDrawable(R.drawable.ic_reactions));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                (int)Utils.dpToPx(getContext(),36),(int)Utils.dpToPx(getContext(),36));
+                (int) Utils.dpToPx(getContext(), 36), (int) Utils.dpToPx(getContext(), 36));
         layoutParams.topMargin = 8;
         layoutParams.leftMargin = 16;
         addEmojiView.setLayoutParams(layoutParams);
@@ -153,8 +152,8 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         addEmojiView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (messageActionListener!=null)
-                    messageActionListener.onReactionClick(new Reaction("add_emoji",0));
+                if (messageActionListener != null)
+                    messageActionListener.onReactionClick(new Reaction("add_emoji", 0));
                 dismiss();
             }
         });
@@ -236,17 +235,17 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         else
             messageInfo.setVisibility(View.GONE);
 
-        if (type!=null && type.equals(CometChatThreadMessageListActivity.class.getName())) {
+        if (type != null && type.equals(CometChatThreadMessageListActivity.class.getName())) {
             threadMessage.setVisibility(View.GONE);
         }
 
-        replyMessagePrivately.setOnClickListener(v-> {
-            if (messageActionListener!=null)
+        replyMessagePrivately.setOnClickListener(v -> {
+            if (messageActionListener != null)
                 messageActionListener.onReplyMessagePrivately();
             dismiss();
         });
-        messagePrivately.setOnClickListener(v-> {
-            if (messageActionListener!=null) {
+        messagePrivately.setOnClickListener(v -> {
+            if (messageActionListener != null) {
                 messageActionListener.onPrivateReplyToUser();
                 dismiss();
             }
@@ -255,7 +254,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         retryMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onRetryClick();
                 dismiss();
             }
@@ -264,7 +263,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         translateMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onTranslateMessageClick();
                 dismiss();
             }
@@ -272,7 +271,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         threadMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onThreadMessageClick();
                 dismiss();
             }
@@ -280,7 +279,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         copyMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onCopyMessageClick();
                 dismiss();
             }
@@ -288,7 +287,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         editMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onEditMessageClick();
                 dismiss();
             }
@@ -296,7 +295,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         deleteMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onDeleteMessageClick();
                 dismiss();
             }
@@ -304,7 +303,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         replyMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onReplyMessageClick();
                 dismiss();
             }
@@ -312,7 +311,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         forwardMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onForwardMessageClick();
                 dismiss();
             }
@@ -320,7 +319,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         shareMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onShareMessageClick();
                 dismiss();
             }
@@ -328,7 +327,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         messageInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageActionListener!=null)
+                if (messageActionListener != null)
                     messageActionListener.onMessageInfoClick();
                 dismiss();
             }
@@ -345,18 +344,27 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
 
     public interface MessageActionListener {
         void onThreadMessageClick();
+
         void onEditMessageClick();
+
         void onReplyMessageClick();
+
         void onForwardMessageClick();
+
         void onDeleteMessageClick();
+
         void onCopyMessageClick();
+
         void onShareMessageClick();
+
         void onMessageInfoClick();
 
         void onReactionClick(Reaction reaction);
 
         void onTranslateMessageClick();
+
         void onRetryClick();
+
         void onPrivateReplyToUser();
 
         void onReplyMessagePrivately();
@@ -366,21 +374,21 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
         Activity activity = getActivity();
-        if (activity!=null)
-            if (type!=null && type== CometChatMessageListActivity.class.getName())
-                ((CometChatMessageListActivity)activity).handleDialogClose(dialog);
+        if (activity != null)
+            if (type != null && type.equals(CometChatMessageListActivity.class.getName()))
+                ((CometChatMessageListActivity) activity).handleDialogClose(dialog);
             else
-                ((CometChatThreadMessageListActivity)activity).handleDialogClose(dialog);
+                ((CometChatThreadMessageListActivity) activity).handleDialogClose(dialog);
     }
 
     @Override
     public void onCancel(@NonNull DialogInterface dialog) {
         super.onCancel(dialog);
         Activity activity = getActivity();
-        if (activity!=null)
-            if (type!=null && type== CometChatMessageListActivity.class.getName())
-                ((CometChatMessageListActivity)activity).handleDialogClose(dialog);
+        if (activity != null)
+            if (type != null && type.equals(CometChatMessageListActivity.class.getName()))
+                ((CometChatMessageListActivity) activity).handleDialogClose(dialog);
             else
-                ((CometChatThreadMessageListActivity)activity).handleDialogClose(dialog);
+                ((CometChatThreadMessageListActivity) activity).handleDialogClose(dialog);
     }
 }
