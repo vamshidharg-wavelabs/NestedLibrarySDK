@@ -5,8 +5,24 @@
       <map>
         <entry key="..\:/FlutterProjects/New/NestedLibrarySDK/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/chats/layout/conversation_shimmer.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/chats/layout/conversation_shimmer_row.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/chats/layout/fragment_cometchat_conversationlist.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/cometchatui/layout/activity_cometchat_unified.xml" value="0.13903985507246377" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/message_action_item.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/message_left_text_item.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/message_right_text_item.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/thread_message_item.xml" value="0.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/activity_cometchat_message_info.xml" value="0.1766304347826087" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/activity_cometchat_message_list.xml" value="0.1766304347826087" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/cometchat_edit_message_view.xml" value="0.1766304347826087" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/cometchat_join_ongoing_call_view.xml" value="0.1766304347826087" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/cometchat_messagelist_toolbar.xml" value="0.1766304347826087" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/cometchat_reply_message_view.xml" value="0.1766304347826087" />
         <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/fragment_cometchat_messagelist.xml" value="0.2" />
-        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/shared/layout/cometchat_compose_box.xml" value="0.5" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/fragment_cometchat_thread_message.xml" value="1.1" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/shared/layout/cometchat_compose_box.xml" value="0.25" />
+        <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res/layout/new_message_layout.xml" value="0.1766304347826087" />
       </map>
     </option>
   </component>

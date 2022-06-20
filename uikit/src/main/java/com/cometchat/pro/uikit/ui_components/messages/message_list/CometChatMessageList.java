@@ -2037,10 +2037,11 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 public void onUserOffline(User user) {
                     Log.d(TAG, "onUserOffline: " + user.toString());
                     if (user.getUid().equals(Id)) {
-                        if (Utils.isDarkMode(getContext()))
-                            tvStatus.setTextColor(getResources().getColor(R.color.textColorWhite));
-                        else
-                            tvStatus.setTextColor(getResources().getColor(android.R.color.black));
+//                        if (Utils.isDarkMode(getContext()))
+//                            tvStatus.setTextColor(getResources().getColor(R.color.textColorWhite));
+//                        else
+//                            tvStatus.setTextColor(getResources().getColor(android.R.color.black));
+//
                         tvStatus.setText(getString(R.string.offline));
                         status = CometChatConstants.USER_STATUS_OFFLINE;
                     }
@@ -3146,7 +3147,8 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 String message = "";
                 for (BaseMessage bMessage : baseMessages) {
                     if (bMessage.getDeletedAt() == 0 && bMessage instanceof TextMessage) {
-                        message = message + "[" + Utils.getLastMessageDate(context,bMessage.getSentAt()) + "] " + bMessage.getSender().getName() + ": " + ((TextMessage) bMessage).getText();
+                        message = message + ((TextMessage) bMessage).getText();
+                        //message = message + "[" + Utils.getLastMessageDate(context,bMessage.getSentAt()) + "] " + bMessage.getSender().getName() + ": " + ((TextMessage) bMessage).getText();
                     }
                 }
                 Log.e(TAG, "onCopy: " + message);

@@ -19,5 +19,5 @@
     <color name="searchHintColorUikit">#A7B7C2</color>
     <item name="WHITE" type="color">#FFFFFF</item>
     <item name="light_black" type="color">#C6000000</item>
-    <color name="primaryTextColor">#ffffff</color>
+    <color name="primaryTextColor">#000000</color>
 </resources>
