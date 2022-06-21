@@ -1364,7 +1364,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
      * @see MessagesRequest#fetchPrevious(CometChat.CallbackListener)
      */
     private void fetchMessage() {
-
+        infoAction.setVisibility(GONE);
         if (messagesRequest == null) {
             if (type != null) {
 
@@ -1385,6 +1385,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             @Override
             public void onSuccess(List<BaseMessage> baseMessages) {
                 isInProgress = false;
+                infoAction.setVisibility(View.VISIBLE);
 //                List<BaseMessage> filteredMessageList = filterBaseMessages(baseMessages);
 //                initMessageAdapter(filteredMessageList);
                 Log.e(TAG, "onSuccess:fetchMessage " + baseMessages);
@@ -1403,6 +1404,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 
             @Override
             public void onError(CometChatException e) {
+                infoAction.setVisibility(View.VISIBLE);
                 Log.d(TAG, "onError: " + e.getMessage());
             }
         });
