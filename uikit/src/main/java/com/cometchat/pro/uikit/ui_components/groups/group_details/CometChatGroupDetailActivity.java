@@ -55,6 +55,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import com.cometchat.pro.uikit.ui_components.groups.group_members.GroupMemberAdapter;
 import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
@@ -235,13 +236,15 @@ public class CometChatGroupDetailActivity extends AppCompatActivity {
 
         handleIntent();
 
-        if (loggedInUserScope != null || !loggedInUserScope.isEmpty()) {
-            if (loggedInUserScope.equalsIgnoreCase(CometChatConstants.SCOPE_ADMIN))
-                editGroup.setVisibility(View.VISIBLE);
-            else
-                editGroup.setVisibility(View.GONE);
-        }
+        if (loggedInUserScope != null) {
 
+            if(!loggedInUserScope.isEmpty()) {
+                if (loggedInUserScope.equalsIgnoreCase(CometChatConstants.SCOPE_ADMIN))
+                    editGroup.setVisibility(View.VISIBLE);
+                else
+                    editGroup.setVisibility(View.GONE);
+            }
+        }
 
         checkDarkMode();
 
