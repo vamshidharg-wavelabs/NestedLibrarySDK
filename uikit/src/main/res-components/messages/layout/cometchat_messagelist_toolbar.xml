@@ -62,25 +62,26 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageView
-                android:layout_gravity="center"
-                android:padding="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/video_call_action"
-                android:tint="@color/colorPrimary"
-                android:src="@drawable/ic_videocall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:padding="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/audio_call_action"
-                android:tint="@color/colorPrimary"
-                android:src="@drawable/ic_audiocall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+<!--            <ImageView-->
+<!--                android:visibility="gone"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:padding="8dp"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true"-->
+<!--                android:id="@+id/video_call_action"-->
+<!--                android:tint="@color/colorPrimary"-->
+<!--                android:src="@drawable/ic_videocall"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--            <ImageView-->
+<!--                android:padding="8dp"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true"-->
+<!--                android:id="@+id/audio_call_action"-->
+<!--                android:tint="@color/colorPrimary"-->
+<!--                android:src="@drawable/ic_audiocall"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
             <ImageView
                 android:clickable="true"
                 android:focusable="true"

@@ -237,14 +237,14 @@ public class CometChatUI extends AppCompatActivity implements
             }
         });
 
-        FeatureRestriction.isCallListEnabled(new FeatureRestriction.OnSuccessListener() {
-            @Override
-            public void onSuccess(Boolean booleanVal) {
-                isCallsListVisible = booleanVal;
-                activityCometChatUnifiedBinding.bottomNavigation.getMenu().findItem(R.id.menu_call)
-                        .setVisible(booleanVal);
-            }
-        });
+//        FeatureRestriction.isCallListEnabled(new FeatureRestriction.OnSuccessListener() {
+//            @Override
+//            public void onSuccess(Boolean booleanVal) {
+//                isCallsListVisible = booleanVal;
+//                activityCometChatUnifiedBinding.bottomNavigation.getMenu().findItem(R.id.menu_call)
+//                        .setVisible(booleanVal);
+//            }
+//        });
 
         FeatureRestriction.isUserSettingsEnabled(new FeatureRestriction.OnSuccessListener() {
             @Override
@@ -473,9 +473,10 @@ public class CometChatUI extends AppCompatActivity implements
           fragment = new CometChatConversationList();
         } else if (itemId == R.id.menu_more) {
             fragment = new CometChatUserProfile();
-        } else if (itemId == R.id.menu_call) {
-            fragment = new CometChatCallList();
         }
+//        else if (itemId == R.id.menu_call) {
+//            fragment = new CometChatCallList();
+//        }
 
         return loadFragment(fragment);
     }
