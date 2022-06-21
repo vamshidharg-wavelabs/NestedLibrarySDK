@@ -96,7 +96,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
 
     private List<Conversation> conversationList = new ArrayList<>();
 
-    private ImageView startConversation;
+    //private ImageView startConversation;
 
     public CometChatConversationList() {
         // Required empty public constructor
@@ -127,23 +127,23 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
 
         CometChatError.init(getContext());
 
-        startConversation = view.findViewById(R.id.start_conversation);
-        FeatureRestriction.isStartConversationEnabled(new FeatureRestriction.OnSuccessListener() {
-            @Override
-            public void onSuccess(Boolean booleanVal) {
-                if (booleanVal)
-                    startConversation.setVisibility(View.VISIBLE);
-                else
-                    startConversation.setVisibility(View.GONE);
-            }
-        });
-
-        startConversation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CometChatStartConversation.launch(getContext());
-            }
-        });
+        //startConversation = view.findViewById(R.id.start_conversation);
+//        FeatureRestriction.isStartConversationEnabled(new FeatureRestriction.OnSuccessListener() {
+//            @Override
+//            public void onSuccess(Boolean booleanVal) {
+//                if (booleanVal)
+//                    startConversation.setVisibility(View.VISIBLE);
+//                else
+//                    startConversation.setVisibility(View.GONE);
+//            }
+//        });
+//
+//        startConversation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                CometChatStartConversation.launch(getContext());
+//            }
+//        });
         searchEdit.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_SEARCH) {
                 if (!textView.getText().toString().isEmpty()) {
