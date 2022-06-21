@@ -378,6 +378,29 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
         }
     }
 
+    public void searchConversation(String searchString) {
+        List<Conversation> new_conversation = new ArrayList<>();
+        if (conversationList != null && conversationList.size() > 0) {
+            for (Conversation conversation : conversationList) {
+                if (conversation.getConversationType().equals(CometChatConstants.CONVERSATION_TYPE_USER) &&
+                        ((User) conversation.getConversationWith()).getName().toLowerCase().contains(searchString)) {
+
+                    new_conversation.add(conversation);
+                } else if (conversation.getConversationType().equals(CometChatConstants.CONVERSATION_TYPE_GROUP) &&
+                        ((Group) conversation.getConversationWith()).getName().toLowerCase().contains(searchString)) {
+                    new_conversation.add(conversation);
+                } else if (conversation.getLastMessage() != null &&
+                        conversation.getLastMessage().getCategory().equals(CometChatConstants.CATEGORY_MESSAGE) &&
+                        conversation.getLastMessage().getType().equals(CometChatConstants.MESSAGE_TYPE_TEXT)
+                        && ((TextMessage) conversation.getLastMessage()).getText() != null
+                        && ((TextMessage) conversation.getLastMessage()).getText().contains(searchString)) {
+                    new_conversation.add(conversation);
+                }
+                //conversationViewModel.searchConversations(new_conversation);
+            }
+        }
+    }
+
     /**
      * This method is used to hide shimmer effect if the list is loaded.
      */
