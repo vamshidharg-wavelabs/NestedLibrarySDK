@@ -52,6 +52,9 @@ import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     private CometChatAvatar userAvatar;
 
@@ -108,6 +111,9 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     private LinearLayout preferenceLayout;
 
     private List<BaseMessage> callList = new ArrayList<>();
+
+    private TextView tv_email;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -213,6 +219,26 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
             else
                 blockUser();
         });
+
+        tv_email = findViewById(R.id.tv_email);
+        CometChat.getUser(
+                uid,
+                new CometChat.CallbackListener<User>() {
+                    @Override
+                    public void onSuccess(User user) {
+                        if (!(user.getMetadata() == null)) {
+                            JSONObject jsonObject = user.getMetadata();
+                            try {
+                                tv_email.setText(jsonObject.getString("email"));
+                            }
+                            catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } @Override public void onError(CometChatException e) {
+                        tv_email.setText("");
+                    }
+                });
     }
 
     private void checkDarkMode() {

@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -96,6 +97,8 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
 
     private List<Conversation> conversationList = new ArrayList<>();
 
+    private ImageView iv_home;
+
     //private ImageView startConversation;
 
     public CometChatConversationList() {
@@ -126,6 +129,10 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
         checkDarkMode();
 
         CometChatError.init(getContext());
+
+        iv_home = view.findViewById(R.id.iv_home);
+        iv_home.setOnClickListener(view ->
+                ActivityCompat.finishAffinity(getActivity()));
 
         //startConversation = view.findViewById(R.id.start_conversation);
 //        FeatureRestriction.isStartConversationEnabled(new FeatureRestriction.OnSuccessListener() {
