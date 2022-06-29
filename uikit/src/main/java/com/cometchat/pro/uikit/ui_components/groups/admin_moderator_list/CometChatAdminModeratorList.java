@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ import com.cometchat.pro.models.Group;
 import com.cometchat.pro.models.GroupMember;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -79,6 +81,8 @@ public class CometChatAdminModeratorList extends Fragment {
     private FontUtils fontUtils;
 
     private TextView addAs;
+
+    private ImageView iv_home;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -203,6 +207,22 @@ public class CometChatAdminModeratorList extends Fragment {
                 }
             }
         }));
+        iv_home = view.findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
         return view;
     }
 

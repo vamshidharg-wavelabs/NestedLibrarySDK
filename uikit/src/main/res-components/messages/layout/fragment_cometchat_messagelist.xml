@@ -25,10 +25,11 @@
         android:layout_above="@id/bottom_layout"
         android:id="@+id/new_message_layout"/>
 
-    <include layout="@layout/cometchat_messagelist_toolbar"
+    <include
         android:id="@+id/chatList_toolbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        layout="@layout/cometchat_messagelist_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <include layout="@layout/messages_shimmer"
         android:layout_above="@+id/bottom_layout"

@@ -148,7 +148,7 @@ public class CometChatGroupDetailActivity extends AppCompatActivity {
     private BannedGroupMembersRequest banMemberRequest;
 
     private MaterialToolbar toolbar;
-
+    private ImageView iv_home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -348,6 +348,22 @@ public class CometChatGroupDetailActivity extends AppCompatActivity {
             public void onSuccess(Boolean booleanVal) {
                 if (!booleanVal)
                     rlBanMembers.setVisibility(View.GONE);
+            }
+        });
+        iv_home = findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(CometChatGroupDetailActivity.this, CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
             }
         });
     }

@@ -16,28 +16,44 @@
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_toLeftOf="@+id/create_group"
             android:text="@string/groups"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/primaryTextColor"
             android:textDirection="locale"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/create_group"
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/toolbar_controls"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:tint="@color/colorPrimary"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:src="@drawable/ic_create" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/create_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:tint="@color/colorPrimary"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:src="@drawable/ic_create" />
+
+            <include layout="@layout/layout_toolbar"/>
+
+        </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/searchBar_vw"

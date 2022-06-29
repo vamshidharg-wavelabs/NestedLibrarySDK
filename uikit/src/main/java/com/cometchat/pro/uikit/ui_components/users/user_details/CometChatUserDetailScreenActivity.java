@@ -32,6 +32,7 @@ import com.cometchat.pro.models.Group;
 import com.cometchat.pro.models.GroupMember;
 import com.cometchat.pro.models.User;
 
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.messages.extensions.Collaborative.CometChatWebViewActivity;
 import com.cometchat.pro.uikit.ui_components.messages.message_list.CometChatMessageListActivity;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
@@ -111,7 +112,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     private LinearLayout preferenceLayout;
 
     private List<BaseMessage> callList = new ArrayList<>();
-
+    private ImageView iv_home;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -216,6 +217,22 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
                unblockUser();
             else
                 blockUser();
+        });
+        iv_home = findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(CometChatUserDetailScreenActivity.this, CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            }
         });
         CometChat.getUser(uid, new CometChat.CallbackListener<User>() {
             @Override

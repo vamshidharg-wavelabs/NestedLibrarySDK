@@ -31,6 +31,7 @@ import com.cometchat.pro.core.UsersRequest;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -69,6 +70,8 @@ public class CometChatAddMembers extends Fragment {
     private FontUtils fontUtils;
 
     private MaterialToolbar toolbar;
+
+    private ImageView iv_home;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -184,6 +187,22 @@ public class CometChatAddMembers extends Fragment {
 
             }
         }));
+        iv_home = view.findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
     }
 
     private void checkDarkMode() {
