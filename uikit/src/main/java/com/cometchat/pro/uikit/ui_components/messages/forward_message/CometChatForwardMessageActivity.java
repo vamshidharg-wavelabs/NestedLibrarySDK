@@ -543,6 +543,8 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
 
             @Override
             public void onError(CometChatException e) {
+                if (progressDialog!=null)
+                    progressDialog.dismiss();
                 Log.e(TAG, "onErrorMedia: "+e.getMessage());
             }
         });

@@ -292,6 +292,8 @@ public class CometChatCreateGroup extends Fragment {
             public void onError(CometChatException e) {
                 CometChatSnackBar.show(getContext(),etGroupName.getRootView(),
                         CometChatError.localized(e), CometChatSnackBar.ERROR);
+                if (progressDialog!=null)
+                    progressDialog.dismiss();
                 Log.e(TAG, "onError: "+e.getMessage() );
             }
         });
