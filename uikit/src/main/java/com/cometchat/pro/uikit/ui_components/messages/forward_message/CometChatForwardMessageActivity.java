@@ -501,11 +501,18 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
         CometChat.sendCustomMessage(message, new CometChat.CallbackListener<CustomMessage>() {
             @Override
             public void onSuccess(CustomMessage customMessage) {
+                if(progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+
                 Log.e(TAG, "onSuccess: "+customMessage.getReceiverUid());
             }
 
             @Override
             public void onError(CometChatException e) {
+                if(progressDialog != null) {
+                    progressDialog.dismiss();
+                }
                 Log.e(TAG, "onErrorCustom: "+e.getMessage());
             }
         });
