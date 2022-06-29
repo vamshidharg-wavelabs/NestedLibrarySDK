@@ -405,6 +405,9 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         messageShimmer = view.findViewById(R.id.shimmer_layout);
         composeBox = view.findViewById(R.id.message_box);
         composeBox.usedIn(CometChatMessageListActivity.class.getName());
+
+        iv_home = view.findViewById(R.id.iv_home);
+
         if (type.equalsIgnoreCase(CometChatConstants.RECEIVER_TYPE_USER))
             composeBox.hideGroupCallOption(true);
 
@@ -431,16 +434,16 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             });
         }
 
-        iv_home = view.findViewById(R.id.iv_home);
-        if(CometChatUI.isEnableHomeScreen){
+
+        if (CometChatUI.isEnableHomeScreen) {
             iv_home.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             iv_home.setVisibility(View.GONE);
         }
         iv_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(CometChatUI.activityHomeScren!=null) {
+                if (CometChatUI.activityHomeScren != null) {
                     Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     getActivity().startActivity(intent);
@@ -664,13 +667,13 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                             CallUtils.joinOnGoingCall(context, CometChat.getActiveCall());
                         }
                     }).setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    //audioCallAction.setClickable(true);
-                    //videoCallAction.setClickable(true);
-                }
-            }).create().show();
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            //audioCallAction.setClickable(true);
+                            //videoCallAction.setClickable(true);
+                        }
+                    }).create().show();
         } else {
             Call call = null;
             if (type.equalsIgnoreCase(CometChatConstants.RECEIVER_TYPE_GROUP))

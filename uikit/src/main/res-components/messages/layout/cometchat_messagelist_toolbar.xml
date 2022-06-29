@@ -77,17 +77,20 @@
 <!--                android:padding="8dp"-->
 <!--                android:clickable="true"-->
 <!--                android:focusable="true"-->
-<!--                android:id="@+id/audio_call_action"-->
-<!--                android:tint="@color/colorPrimary"-->
-<!--                android:src="@drawable/ic_audiocall"-->
+<!--                android:id="@+id/ic_home"-->
+<!--                app:tint="@color/colorPrimary"-->
+<!--                android:src="@drawable/homeic"-->
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="wrap_content"/>-->
+
+            <include layout="@layout/layout_toolbar"/>
+
             <ImageView
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="8dp"
                 android:id="@+id/info_action"
-                android:tint="@color/colorPrimary"
+                app:tint="@color/colorPrimary"
                 android:src="@drawable/ic_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
