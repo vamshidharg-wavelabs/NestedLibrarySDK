@@ -79,6 +79,7 @@ import com.cometchat.pro.models.TextMessage;
 import com.cometchat.pro.models.TypingIndicator;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.groups.group_details.CometChatGroupDetailActivity;
 import com.cometchat.pro.uikit.ui_components.messages.extensions.ExtensionResponseListener;
 import com.cometchat.pro.uikit.ui_components.messages.extensions.Extensions;
@@ -181,6 +182,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
     private CometChatSmartReplies rvSmartReply;
 
     private ShimmerFrameLayout messageShimmer;
+    private ImageView iv_home;
 
     /**
      * <b>Avatar</b> is a UI Kit Component which is used to display user and group avatars.
@@ -429,6 +431,23 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             });
         }
 
+        iv_home = view.findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
+
         container = view.findViewById(R.id.reactions_container);
         composeBox.liveReactionBtn.setOnTouchListener(new LiveReactionListener(700, 1000, new ReactionClickListener() {
             @Override
@@ -544,23 +563,23 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 
         rvChatListView.setLayoutManager(linearLayoutManager);
 
-        if (Utils.isDarkMode(context)) {
-            bottomLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.grey));
-            editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
-            replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
-            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            rvChatListView.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
-            tvName.setTextColor(getResources().getColor(R.color.textColorWhite));
-        } else {
-            bottomLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
-            replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
-            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
-            tvName.setTextColor(getResources().getColor(R.color.primaryTextColor));
-        }
+//        if (Utils.isDarkMode(context)) {
+//            bottomLayout.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
+//            toolbar.setBackgroundColor(getResources().getColor(R.color.grey));
+//            editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
+//            replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border_dark));
+//            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
+//            rvChatListView.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
+//            tvName.setTextColor(getResources().getColor(R.color.textColorWhite));
+//        } else {
+//            bottomLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
+//            toolbar.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+//            editMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
+//            replyMessageLayout.setBackground(getResources().getDrawable(R.drawable.left_border));
+//            composeBox.setBackgroundColor(getResources().getColor(R.color.primaryTextColor));
+//            rvChatListView.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+//            tvName.setTextColor(getResources().getColor(R.color.primaryTextColor));
+//        }
 
         KeyBoardUtils.setKeyboardVisibilityListener(getActivity(), (View) rvChatListView.getParent(), keyboardVisible -> {
             isKeyboardVisible = keyboardVisible;

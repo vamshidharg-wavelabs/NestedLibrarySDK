@@ -108,9 +108,12 @@ public class CometChatUI extends AppCompatActivity implements
     private boolean isSettingsVisible;
     private boolean isCallsListVisible;
     private boolean isGroupsListVisible;
+    public static boolean isEnableHomeScreen=false;
 
     @VisibleForTesting
     public static AppCompatActivity activity;
+    public static Class activityHomeScren=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -536,6 +539,11 @@ public class CometChatUI extends AppCompatActivity implements
     @VisibleForTesting
     public static AppCompatActivity getCometChatUIActivity() {
         return activity;
+    }
+
+    public static void setHomeActivity(Class homeActivity,boolean isHomeScreenEnable){
+        activityHomeScren = homeActivity;
+        isEnableHomeScreen = isHomeScreenEnable;
     }
 
     public static void setLocale(Activity activity, String languageCode) {

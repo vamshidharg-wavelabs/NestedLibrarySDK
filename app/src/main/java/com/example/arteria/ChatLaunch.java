@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cometchat.pro.core.CometChat;
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.example.explibrarychatsdk.WavelabsChatActivity;
 
 public class ChatLaunch extends AppCompatActivity {
@@ -27,7 +28,12 @@ public class ChatLaunch extends AppCompatActivity {
 
         if (requestCode == 0) {
             Log.e(TAG, "onActvityResult");
-            WavelabsChatActivity.launchChatScreen(ChatLaunch.this, MainActivity.USER_ID);
+            WavelabsChatActivity.launchChatScreen(
+                    ChatLaunch.this,
+                    MainActivity.USER_ID,
+                    true,
+                    CometChatUI.class
+            );
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -40,6 +46,11 @@ public class ChatLaunch extends AppCompatActivity {
         } else {
             UID = MainActivity.USER_ID;
         }
-        WavelabsChatActivity.launchChatScreen(ChatLaunch.this, MainActivity.USER_ID);
+        WavelabsChatActivity.launchChatScreen(
+                ChatLaunch.this,
+                MainActivity.USER_ID,
+                true,
+                CometChatUI.class
+        );
     }
 }

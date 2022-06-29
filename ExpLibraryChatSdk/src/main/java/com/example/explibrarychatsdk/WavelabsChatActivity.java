@@ -34,6 +34,9 @@ public class WavelabsChatActivity extends AppCompatActivity {
 //    private static int count = 0;
     private static Context context = null;
 
+    private static Class homeScreenActivities = null;
+    private static boolean isHomeScreenEnable = false;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class WavelabsChatActivity extends AppCompatActivity {
 
         String uid = getIntent().getStringExtra("USER_ID");
         if (uid != null) {
-            launchChatScreen(this, uid);
+            launchChatScreen(this, uid, true, CometChatUI.class);
         } else {
             Intent intent = new Intent();
             intent.setClass(this, CometChatUI.class);
@@ -51,8 +54,16 @@ public class WavelabsChatActivity extends AppCompatActivity {
         }
     }
 
-    public static void launchChatScreen(Activity MainActivity, String UID) {
+    public static void launchChatScreen(
+            Activity MainActivity,
+            String UID,
+            boolean isEnableHomeScreen,
+            Class homeScreenActivity
+    ) {
+        isHomeScreenEnable = isEnableHomeScreen;
+        homeScreenActivities = homeScreenActivity;
         context = MainActivity.getBaseContext();
+        CometChatUI.setHomeActivity(homeScreenActivity,isEnableHomeScreen);
         try {
             CometChat.login(UID, AppConfig.AUTH_KEY, new CometChat.CallbackListener<User>() {
 

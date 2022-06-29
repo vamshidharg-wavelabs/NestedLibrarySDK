@@ -3,6 +3,7 @@ package com.cometchat.pro.uikit.ui_components.chats;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import com.cometchat.pro.models.Group;
 import com.cometchat.pro.models.MessageReceipt;
 import com.cometchat.pro.models.TypingIndicator;
 import com.cometchat.pro.models.User;
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatConversations.CometChatConversations;
 import com.cometchat.pro.uikit.R;
@@ -120,6 +122,22 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
 
         tvTitle = view.findViewById(R.id.tv_title);
 
+        iv_home = view.findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
         tvTitle.setTypeface(FontUtils.getInstance(getActivity()).getTypeFace(FontUtils.robotoMedium));
 
         rlSearchBox = view.findViewById(R.id.rl_search_box);
@@ -129,10 +147,6 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
         checkDarkMode();
 
         CometChatError.init(getContext());
-
-        iv_home = view.findViewById(R.id.iv_home);
-        iv_home.setOnClickListener(view ->
-                ActivityCompat.finishAffinity(getActivity()));
 
         //startConversation = view.findViewById(R.id.start_conversation);
 //        FeatureRestriction.isStartConversationEnabled(new FeatureRestriction.OnSuccessListener() {

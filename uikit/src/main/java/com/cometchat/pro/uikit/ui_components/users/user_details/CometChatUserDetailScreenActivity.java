@@ -98,7 +98,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
 
     private LinearLayout sharedMediaLayout;
 
-    private TextView viewProfile;
+    private TextView viewProfile,tv_email;
 
     private String profileLink = "";
 
@@ -111,9 +111,6 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     private LinearLayout preferenceLayout;
 
     private List<BaseMessage> callList = new ArrayList<>();
-
-    private TextView tv_email;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -137,6 +134,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
         divider1 = findViewById(R.id.divider_1);
         divider2 = findViewById(R.id.divider_2);
         divider3 = findViewById(R.id.divider_3);
+        tv_email = findViewById(R.id.tv_email);
 
         CometChatError.init(this);
         viewProfile = findViewById(R.id.tv_view_profile);
@@ -219,26 +217,25 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
             else
                 blockUser();
         });
+        CometChat.getUser(uid, new CometChat.CallbackListener<User>() {
+            @Override
+            public void onSuccess(User user) {
+                if (!(user.getMetadata() == null)) {
+                    JSONObject jsonObject = user.getMetadata();
+                    try {
+                        tv_email.setText(jsonObject.getString("email"));
 
-        tv_email = findViewById(R.id.tv_email);
-        CometChat.getUser(
-                uid,
-                new CometChat.CallbackListener<User>() {
-                    @Override
-                    public void onSuccess(User user) {
-                        if (!(user.getMetadata() == null)) {
-                            JSONObject jsonObject = user.getMetadata();
-                            try {
-                                tv_email.setText(jsonObject.getString("email"));
-                            }
-                            catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    } @Override public void onError(CometChatException e) {
-                        tv_email.setText("");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                });
+                }
+            }
+
+            @Override
+            public void onError(CometChatException e) {
+                tv_email.setText("");
+            }
+        });
     }
 
     private void checkDarkMode() {
