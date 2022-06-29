@@ -59,6 +59,7 @@
             android:layout_centerVertical="true"
             android:id="@+id/toolbar_controls"
             android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -83,17 +84,19 @@
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="wrap_content"/>-->
 
-            <include layout="@layout/layout_toolbar"/>
-
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="8dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
                 android:id="@+id/info_action"
                 app:tint="@color/colorPrimary"
                 android:src="@drawable/ic_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <include layout="@layout/layout_toolbar"/>
+
         </LinearLayout>
     </RelativeLayout>
 
