@@ -71,6 +71,5 @@ dependencies {
     api project(path: ':ExpLibraryChatSdk')
 //    implementation project(path: ':uikit')
     implementation 'com.cometchat:pro-android-chat-sdk:2.4.1'
-    //implementation 'com.cometchat:pro-android-chat-sdk:2.2.2-beta1'
 
 }
