@@ -141,8 +141,8 @@ public class FeatureRestriction {
                 if (!aBoolean)
                     UIKitSettings.sendFiles(false);
                 onSuccessListener.onSuccess(UIKitSettings.isSendFiles());
-            }
 
+            }
             @Override
             public void onError(CometChatException e) {
                 e.printStackTrace();

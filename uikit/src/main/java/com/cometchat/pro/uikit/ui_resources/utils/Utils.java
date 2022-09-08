@@ -228,7 +228,7 @@ public class Utils {
 //                        message = String.format(context.getString(R.string.you_received), lastMessage.getType());
 //                    }
                 }
-            break;
+                break;
             case CometChatConstants.CATEGORY_CUSTOM:
                 if (lastMessage.getDeletedAt()==0) {
                     if (lastMessage.getType().equals(UIKitConstants.IntentStrings.LOCATION))
@@ -658,25 +658,25 @@ public class Utils {
     }
 
     public static String getOutputMediaFile(Context context) {
-        File var0 = new File(Environment.getExternalStorageDirectory(), context.getResources().getString(R.string.app_name));
-        if (!var0.exists() && !var0.mkdirs()) {
-            return null;
-        } else {
-            String dir;
-            dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath()+"/"+context.getResources().getString(R.string.app_name) + "/"
-                    + "audio/";
-//            if (Build.VERSION_CODES.R > Build.VERSION.SDK_INT) {
-//                dir = Environment.getExternalStorageDirectory()+"/"+context.getResources().getString(R.string.app_name) + "/"
+        String dir = "newDir";
+        //Todo:
+//        if (Build.VERSION_CODES.R > Build.VERSION.SDK_INT) {
+//            dir = Environment.getExternalStorageDirectory()+"/"+context.getResources().getString(R.string.app_name) + "/"
+//                    + "audio/";
+//        } else {
+//            if (Environment.isExternalStorageManager()) {
+//                dir = Environment.getExternalStorageState() + "/" + context.getResources().getString(R.string.app_name) + "/"
 //                        + "audio/";
 //            } else {
-//                dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath()+"/"+context.getResources().getString(R.string.app_name) + "/"
+//                dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath() + "/" + context.getResources().getString(R.string.app_name) + "/"
 //                        + "audio/";
 //            }
-//            String var1 = Environment.getExternalStorageDirectory() + "/" + context.getResources().getString(R.string.app_name) + "/"
-//                    + "audio/";
-            createDirectory(dir);
-            return dir + (new SimpleDateFormat("yyyyMMddHHmmss")).format(new Date()) + ".mp3";
-        }
+//        }
+////            String var1 = Environment.getExternalStorageDirectory() + "/" + context.getResources().getString(R.string.app_name) + "/"
+////                    + "audio/";
+//        createDirectory(dir);
+        return dir + (new SimpleDateFormat("yyyyMMddHHmmss")).format(new Date()) + ".mp3";
+
     }
 
     public static void createDirectory(String var0) {

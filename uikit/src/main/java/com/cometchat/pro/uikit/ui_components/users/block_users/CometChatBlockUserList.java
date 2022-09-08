@@ -2,14 +2,12 @@ package com.cometchat.pro.uikit.ui_components.users.block_users;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +21,6 @@ import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
-import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -65,11 +62,11 @@ public class CometChatBlockUserList extends Fragment {
     private TextView noBlockUserLayout;
 
     private List<User> userList = new ArrayList<>();
-    private ImageView iv_home;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         fontUtils=FontUtils.getInstance(getActivity());
+        fontUtils=FontUtils.getInstance(getActivity());
     }
 
     @Override
@@ -123,22 +120,7 @@ public class CometChatBlockUserList extends Fragment {
                 }
             }
         }));
-        iv_home = view.findViewById(R.id.iv_home);
-        if(CometChatUI.isEnableHomeScreen){
-            iv_home.setVisibility(View.VISIBLE);
-        }else {
-            iv_home.setVisibility(View.GONE);
-        }
-        iv_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(CometChatUI.activityHomeScren!=null) {
-                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    getActivity().startActivity(intent);
-                }
-            }
-        });
+
         fetchBlockedUser();
 
         return view;
@@ -178,7 +160,7 @@ public class CometChatBlockUserList extends Fragment {
             public void onError(CometChatException e) {
                 progressDialog.dismiss();
                 CometChatSnackBar.show(getContext(),var1,
-                       CometChatError.localized(e),CometChatSnackBar.ERROR);
+                        CometChatError.localized(e),CometChatSnackBar.ERROR);
                 Log.e(TAG, "onError: "+e.getMessage());
             }
         });
@@ -208,7 +190,7 @@ public class CometChatBlockUserList extends Fragment {
                 Log.e(TAG, "onError: "+e.getMessage());
                 CometChatSnackBar.show(getContext(),
                         rvUserList,getResources().getString(R.string.block_user_list_error)+", "+
-                        CometChatError.localized(e), CometChatSnackBar.ERROR);
+                                CometChatError.localized(e), CometChatSnackBar.ERROR);
             }
         });
     }

@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.cometchat.pro.core.CometChat;
@@ -24,7 +23,6 @@ import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.uikit.databinding.FragmentCometchatUserProfileBinding;
-import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar;
 import com.cometchat.pro.uikit.ui_components.users.block_users.CometChatBlockUserListActivity;
@@ -43,7 +41,6 @@ public class CometChatUserProfile extends Fragment {
     private CometChatAvatar notificationIv;
     private AlertDialog.Builder dialog;
     FragmentCometchatUserProfileBinding moreInfoScreenBinding;
-    private ImageView iv_home;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,24 +75,10 @@ public class CometChatUserProfile extends Fragment {
             moreInfoScreenBinding.tvSeperator1.setBackgroundColor(getResources().getColor(R.color.light_grey));
         }
 
-//        moreInfoScreenBinding.editUserProfile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                updateUserDialog();
-//            }
-//        });
-
-        if(CometChatUI.isEnableHomeScreen){
-            moreInfoScreenBinding.home.findViewById(R.id.iv_home).setVisibility(View.VISIBLE);
-        }else {
-            moreInfoScreenBinding.home.findViewById(R.id.iv_home).setVisibility(View.GONE);
-        }
-
-        moreInfoScreenBinding.home.findViewById(R.id.iv_home).setOnClickListener(view -> {
-            if(CometChatUI.activityHomeScren!=null) {
-                Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                getActivity().startActivity(intent);
+        moreInfoScreenBinding.editUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateUserDialog();
             }
         });
         return moreInfoScreenBinding.getRoot();

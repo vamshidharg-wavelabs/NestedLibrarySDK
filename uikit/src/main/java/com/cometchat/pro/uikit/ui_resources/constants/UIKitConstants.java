@@ -2,11 +2,13 @@ package com.cometchat.pro.uikit.ui_resources.constants;
 
 import com.cometchat.pro.constants.CometChatConstants;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class UIKitConstants {
+    public static String UNREAD_KEY = "";
 
     public static class AppInfo {
         public static String AUTH_KEY = "";
@@ -90,6 +92,9 @@ public class UIKitConstants {
         public static final String CONVERSATION_NAME = "conversation_name";
 
         public static final String INTENT_MEDIA_MESSAGE = "intent_media_message" ;
+        //ambika added
+        public static final List<File> INTENT_MEDIA_ARRAY_FILES =new ArrayList<File>();
+        //end
 
         public static final String IMAGE_MODERATION = "image_moderation" ;
 
@@ -140,6 +145,8 @@ public class UIKitConstants {
         public static final String IS_TITLE_VISIBLE = "IS_TITLE_VISIBLE";
 
         public static final String CREATE_GROUP_VISIBLE = "IS_CREATE_GROUP_VISIBLE";
+
+        public static final String ALLOW_CAPTION = "allow_caption";
 
         public static String POLL_QUESTION = "poll_question";
 

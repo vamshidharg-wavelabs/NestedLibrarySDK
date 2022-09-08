@@ -32,14 +32,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+
     <ImageView
+        android:id="@+id/iv_reply_media"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:id="@+id/iv_reply_media"
-        tools:src="@tools:sample/avatars"
-        android:layout_alignParentEnd="true"
-        android:layout_width="70dp"
-        android:layout_height="70dp"/>
+        tools:src="@tools:sample/avatars" />
     <ImageView
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"

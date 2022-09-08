@@ -3,6 +3,7 @@ package com.cometchat.pro.uikit.ui_components.shared.cometchatComposeBox;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -93,6 +94,12 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
 
     public ImageView liveReactionBtn;
 
+    //ambika added
+    private SharedPreferences sharedpreferences;
+    private SharedPreferences.Editor editor;
+    private String id="";
+    //end
+
     private Bundle bundle = new Bundle();
 
     public boolean isGalleryVisible = true,isAudioVisible = true,isCameraVisible = true,
@@ -113,9 +120,17 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
         super(context, attrs, defStyleAttr);
         initViewComponent(context,attrs,defStyleAttr,-1);
     }
+    //ambika added
+    public void setReceiverId(String id){
+        this.id=id; etComposeBox.setText(sharedpreferences.getString(id,""));
+    }
+    //end
 
     private void initViewComponent(Context context,AttributeSet attributeSet,int defStyleAttr,int defStyleRes){
-
+        //ambika added
+        sharedpreferences = context.getSharedPreferences("CometChat", Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
+        //end
         View view =View.inflate(context, R.layout.cometchat_compose_box,null);
 
         TypedArray a = getContext().getTheme().obtainStyledAttributes(attributeSet, R.styleable.ComposeBox, 0, 0);
@@ -230,6 +245,10 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             public void afterTextChanged(Editable editable) {
                 if (composeActionListener!=null){
                     composeActionListener.afterTextChanged(editable);
+                    //ambika added
+                    editor.putString(id, editable.toString());
+                    editor.commit();
+                    //end
                 }
             }
         });
@@ -383,7 +402,10 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
                 voiceMessage = false;
                 ivMic.setImageResource(R.drawable.ic_microphone_grey_selected);
             }
-
+            //ambika added
+            editor.putString(id,"");
+            editor.commit();
+            //end
         }
         if(view.getId()==R.id.ivArrow) {
 //            if (isOpen) {
@@ -425,7 +447,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
                 }
                 if (!isRecording) {
                     startRecord();
-                    ivMic.setImageDrawable(getResources().getDrawable(R.drawable.ic_stop_24dp));
+                    ivMic.setImageResource(R.drawable.ic_stop_24dp);
                     isRecording = true;
                     isPlaying = false;
                 } else {
@@ -433,17 +455,23 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
                         isPlaying = true;
                         stopRecording(false);
                         recordTime.stop();
+                        ivMic.setImageResource(R.drawable.ic_pause_24dp);
+                        audioRecordView.setVisibility(GONE);
+                        ivSend.setVisibility(View.VISIBLE);
+                        ivDelete.setVisibility(View.VISIBLE);
+                        voiceSeekbar.setVisibility(View.VISIBLE);
+                        voiceMessage = true;
+                        if (audioFileNameWithPath != null)
+                            startPlayingAudio(audioFileNameWithPath);
+                        else
+                            Toast.makeText(getContext(), "No File Found. Please", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        isPlaying = false;
+                        recordTime.stop();
+                        ivMic.setImageResource(R.drawable.ic_play_arrow_24);
+                        stopPlayingAudio();
                     }
-                    ivMic.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_24dp));
-                    audioRecordView.setVisibility(GONE);
-                    ivSend.setVisibility(View.VISIBLE);
-                    ivDelete.setVisibility(View.VISIBLE);
-                    voiceSeekbar.setVisibility(View.VISIBLE);
-                    voiceMessage = true;
-                    if (audioFileNameWithPath != null)
-                        startPlayingAudio(audioFileNameWithPath);
-                    else
-                        Toast.makeText(getContext(), "No File Found. Please", Toast.LENGTH_LONG).show();
                 }
             } else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -475,15 +503,15 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
 //    }
 
     public void startRecord() {
-            etComposeBox.setVisibility(GONE);
-            recordTime.setBase(SystemClock.elapsedRealtime());
-            recordTime.start();
-            ivArrow.setVisibility(GONE);
-            voiceSeekbar.setVisibility(GONE);
-            voiceMessageLayout.setVisibility(View.VISIBLE);
-            audioRecordView.recreate();
-            audioRecordView.setVisibility(View.VISIBLE);
-            startRecording();
+        etComposeBox.setVisibility(GONE);
+        recordTime.setBase(SystemClock.elapsedRealtime());
+        recordTime.start();
+        ivArrow.setVisibility(GONE);
+        voiceSeekbar.setVisibility(GONE);
+        voiceMessageLayout.setVisibility(View.VISIBLE);
+        audioRecordView.recreate();
+        audioRecordView.setVisibility(View.VISIBLE);
+        startRecording();
     }
 
     private void startPlayingAudio(String path) {
@@ -538,11 +566,10 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             });
 
         } catch (Exception e) {
-            Log.e( "playAudioError: ",e.getMessage());
+            Log.e( "playAudioError: ","Error:"+e.getMessage());
             stopPlayingAudio();;
         }
     }
-
 
     private void stopPlayingAudio() {
         if (mediaPlayer != null)

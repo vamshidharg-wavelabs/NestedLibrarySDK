@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,7 +22,6 @@ import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.Group;
 import com.cometchat.pro.uikit.R;
-import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
 import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
@@ -69,7 +67,6 @@ public class CometChatCreateGroup extends Fragment {
     private String groupType;
 
     String TAG = "CometChatCreateGroup";
-    private ImageView iv_home;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,8 +89,10 @@ public class CometChatCreateGroup extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!etGroupPassword.getText().toString().isEmpty() && s.toString().equals(etGroupPassword.getText().toString())) {
-                    groupCnfPasswordLayout.setEndIconDrawable(getResources().getDrawable(R.drawable.ic_baseline_check_circle_24));
-                    groupCnfPasswordLayout.setEndIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.green_600)));
+                    groupCnfPasswordLayout.setStartIconDrawable(getResources().getDrawable(R.drawable.ic_baseline_check_circle_24));
+                    groupCnfPasswordLayout.setStartIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.green_600)));
+                } else {
+                    groupCnfPasswordLayout.setStartIconDrawable(null);
                 }
             }
 
@@ -172,26 +171,14 @@ public class CometChatCreateGroup extends Fragment {
         createGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createGroup();
-            }
-        });
-        checkDarkMode();
-        iv_home = view.findViewById(R.id.iv_home);
-        if(CometChatUI.isEnableHomeScreen){
-            iv_home.setVisibility(View.VISIBLE);
-        }else {
-            iv_home.setVisibility(View.GONE);
-        }
-        iv_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(CometChatUI.activityHomeScren!=null) {
-                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    getActivity().startActivity(intent);
+                if (etGroupName.getText().length()>100) {
+                    etGroupName.setError(getString(R.string.name_length_error));
+                } else {
+                    createGroup();
                 }
             }
         });
+        checkDarkMode();
         return view;
     }
 
@@ -255,9 +242,9 @@ public class CometChatCreateGroup extends Fragment {
                     createGroup(group);
                 }
                 else
-                    if (etGroupPassword!=null)
-                        CometChatSnackBar.show(getContext(),etGroupCnfPassword.getRootView(),
-                                getResources().getString(R.string.password_not_matched),CometChatSnackBar.WARNING);
+                if (etGroupPassword!=null)
+                    CometChatSnackBar.show(getContext(),etGroupCnfPassword.getRootView(),
+                            getResources().getString(R.string.password_not_matched),CometChatSnackBar.WARNING);
             }
         }
         else {
@@ -292,8 +279,6 @@ public class CometChatCreateGroup extends Fragment {
             public void onError(CometChatException e) {
                 CometChatSnackBar.show(getContext(),etGroupName.getRootView(),
                         CometChatError.localized(e), CometChatSnackBar.ERROR);
-                if (progressDialog!=null)
-                    progressDialog.dismiss();
                 Log.e(TAG, "onError: "+e.getMessage() );
             }
         });

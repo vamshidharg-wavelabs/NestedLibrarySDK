@@ -7,25 +7,48 @@
 
 
     <RelativeLayout
-        android:layoutDirection="ltr"
         android:id="@+id/rl_message"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layoutDirection="ltr">
+        <!--Delli Added-->
+        <LinearLayout
+            android:id="@+id/ll_unread"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/menu_background_grey"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/tv_un_read_msg"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/cc_rounded_date_button"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="unread messages" />
+        </LinearLayout>
+        <!--Delli Code Ended  and also added text below to text view-->
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
             android:id="@+id/iv_user"
             android:layout_width="24dp"
-            app:corner_radius="12dp"
             android:layout_height="24dp"
             android:layout_alignTop="@id/sticker_view"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
+            app:corner_radius="12dp"
             tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_unread"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/iv_user"
@@ -33,11 +56,11 @@
             tools:text="Iron Man" />
 
         <ImageView
-            android:layout_below="@+id/tv_user"
-            android:layout_toEndOf="@+id/iv_user"
             android:id="@+id/sticker_view"
             android:layout_width="128dp"
             android:layout_height="128dp"
+            android:layout_below="@+id/tv_user"
+            android:layout_toEndOf="@+id/iv_user"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_defaulf_image" />
 
@@ -46,50 +69,54 @@
             android:id="@+id/txt_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/sticker_view"
             android:layout_alignBottom="@id/sticker_view"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            tools:drawableStart="@drawable/ic_message_read"
+            android:layout_toRightOf="@id/sticker_view"
             android:textSize="12sp"
             android:textStyle="bold"
             android:visibility="gone"
+            tools:drawableStart="@drawable/ic_message_read"
             tools:text="11:00 PM"
             tools:visibility="visible" />
+
         <HorizontalScrollView
-            android:layout_alignStart="@id/sticker_view"
-            android:layout_below="@+id/sticker_view"
             android:id="@+id/reaction_group"
-            android:scrollbars="none"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sticker_view"
+            android:layout_alignStart="@id/sticker_view"
+            android:scrollbars="none">
+
             <com.google.android.material.chip.ChipGroup
-                android:layout_gravity="start"
-                android:visibility="gone"
-                app:singleLine="true"
-                android:orientation="horizontal"
                 android:id="@+id/reactions_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:singleLine="true" />
         </HorizontalScrollView>
+
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginBottom="16dp"
             android:layout_width="wrap_content"
-            android:gravity="start"
-            android:layout_alignStart="@+id/sticker_view"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/reaction_group"
-            android:layout_height="wrap_content">
+            android:layout_alignStart="@+id/sticker_view"
+            android:layout_marginBottom="16dp"
+            android:gravity="start"
+            android:orientation="vertical">
+
             <TextView
-                android:clickable="true"
-                android:foreground="?selectableItemBackground"
                 android:id="@+id/thread_reply_count"
-                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
-                tools:text="2 replies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:textColor="@color/colorPrimary"
+                tools:text="2 replies" />
         </LinearLayout>
     </RelativeLayout>
 

@@ -1,5 +1,7 @@
 package com.cometchat.pro.uikit.ui_resources.utils;
 
+import static android.os.Environment.DIRECTORY_DOCUMENTS;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
@@ -70,6 +72,7 @@ public class MediaUtils {
     public static Uri uri;
 
     static String TAG = "MediaUtils";
+
     public static Intent getPickImageChooserIntent(Activity a) {
         activity = a;
         // Determine Uri of camera image to save.
@@ -125,12 +128,14 @@ public class MediaUtils {
         Intent intent = new Intent();
         intent.setType("*/*");
         intent.putExtra(Intent.EXTRA_MIME_TYPES, type);
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
         return intent;
     }
 
     /**
      * This method is used to open file from url.
+     *
      * @param url is Url of file.
      */
     public static void openFile(String url, Context context) {
@@ -152,7 +157,7 @@ public class MediaUtils {
         try {
             app = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = app.metaData;
-            provider=bundle.getString(BuildConfig.LIBRARY_PACKAGE_NAME);
+            provider = bundle.getString(BuildConfig.LIBRARY_PACKAGE_NAME);
             Log.d("openCamera", "openCamera:  " + provider);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -170,9 +175,9 @@ public class MediaUtils {
             outputFileUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
             uri = outputFileUri;
 
-        }  else if (Build.VERSION.SDK_INT<=23){
-            outputFileUri=Uri.fromFile(file);
-            uri=outputFileUri;
+        } else if (Build.VERSION.SDK_INT <= 23) {
+            outputFileUri = Uri.fromFile(file);
+            uri = outputFileUri;
         }
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -186,8 +191,12 @@ public class MediaUtils {
         List<Intent> allIntents = new ArrayList();
         PackageManager packageManager = activity.getPackageManager();
         Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/* video/*");
-//        galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES,new String[]{"image/*", "video/*"});
+        galleryIntent.setType("image/*");
+//        galleryIntent.setType("image/* video/*");
+        //ambika added
+        galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        //end
+        galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"image/*", "video/*"});
         List<ResolveInfo> listGallery = packageManager.queryIntentActivities(galleryIntent, 0);
         for (ResolveInfo res : listGallery) {
             Intent intent = new Intent(galleryIntent);
@@ -213,12 +222,14 @@ public class MediaUtils {
         return chooserIntent;
     }
 
-    public static Intent openAudio(Activity a)
-    {
+    public static Intent openAudio(Activity a) {
         activity = a;
         List<Intent> allIntents = new ArrayList();
         PackageManager packageManager = activity.getPackageManager();
         Intent audioIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        // Delli Added
+        audioIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        // Delli End
         audioIntent.setType("audio/*");
         List<ResolveInfo> listGallery = packageManager.queryIntentActivities(audioIntent, 0);
         for (ResolveInfo res : listGallery) {
@@ -244,6 +255,7 @@ public class MediaUtils {
 
         return chooserIntent;
     }
+
     private static Uri getCaptureImageOutputUri() {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = timeStamp + ".jpg";
@@ -307,28 +319,36 @@ public class MediaUtils {
         return f;
     }
 
-    public static File makeEmptyFileWithTitle(String title) {
-        String root;
-        if (Build.VERSION.SDK_INT < 29) {
-            root = Environment.getExternalStorageDirectory().getAbsolutePath();
-        } else  {
-            root = Environment.DIRECTORY_DOWNLOADS;
-        }
-        return new File(root, title);
+    public static File makeEmptyFileWithTitle(Context context, String title) {
+       //Todo: String dir;
+        String dir="newDir";
+//        if (Build.VERSION_CODES.R > Build.VERSION.SDK_INT) {
+//            dir = Environment.getExternalStorageDirectory() + "/" + context.getResources().getString(R.string.app_name) + "/"
+//                    + "shared/";
+//        } else {
+//            if (Environment.isExternalStorageManager()) {
+//                dir = Environment.getExternalStorageState() + "/" + context.getResources().getString(R.string.app_name) + "/"
+//                        + "shared/";
+//            } else {
+//                dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath() + "/" + context.getResources().getString(R.string.app_name) + "/"
+//                        + "shared/";
+//            }
+//        }
+//        Utils.createDirectory(dir);
+        return new File(dir, title);
     }
 
-    public static File getRealPath(Context context, Uri fileUri,boolean isThirdParty) {
+    public static File getRealPath(Context context, Uri fileUri, boolean isThirdParty) {
         Log.d("", "getRealPath: " + fileUri.getPath());
         String realPath;
         if (isGoogleDrive(fileUri) || isThirdParty) {
             return downloadFile(context, fileUri);
         }
         // SDK > 19 (Android 4.4) and up
-        else if (Build.VERSION.SDK_INT < 28){
+        else if (Build.VERSION.SDK_INT < 28) {
             realPath = getRealPathFromURI(context, fileUri);
-        }
-        else {
-            realPath = getFilePathForN(fileUri,context);
+        } else {
+            realPath = getFilePathForN(fileUri, context);
         }
 
         return new File(realPath);
@@ -339,7 +359,7 @@ public class MediaUtils {
         File file = null;
         try {
             if (imageUri != null) {
-                file = new File(context.getCacheDir(), getFileName(context,imageUri));
+                file = new File(context.getCacheDir(), getFileName(context, imageUri));
                 InputStream inputStream = context.getContentResolver().openInputStream(imageUri);
                 try {
 
@@ -362,7 +382,7 @@ public class MediaUtils {
                 }
             }
         } catch (Exception e) {
-            Toast.makeText(context,"File Uri is null",Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "File Uri is null", Toast.LENGTH_LONG).show();
         }
         return file;
     }
@@ -471,12 +491,12 @@ public class MediaUtils {
 
                 String id = DocumentsContract.getDocumentId(uri);
 
-                if (id != null){
-                    if(id.startsWith("raw:")) {
+                if (id != null) {
+                    if (id.startsWith("raw:")) {
                         return id.substring(4);
                     }
-                    if (id.startsWith("msf:")){
-                        id=id.substring(4);
+                    if (id.startsWith("msf:")) {
+                        id = id.substring(4);
                     }
                 }
 
@@ -523,7 +543,7 @@ public class MediaUtils {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
 
-                final String selection = MediaStore.Images.Media._ID+"=?";
+                final String selection = MediaStore.Images.Media._ID + "=?";
                 final String[] selectionArgs = new String[]{
                         split[1]
                 };
@@ -649,21 +669,18 @@ public class MediaUtils {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
-    public static Camera openFrontCam()
-    {
-        int camCount=0;
-        Camera camera=null;
-        Camera.CameraInfo cameraInfo=new Camera.CameraInfo();
-        camCount=Camera.getNumberOfCameras();
+    public static Camera openFrontCam() {
+        int camCount = 0;
+        Camera camera = null;
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        camCount = Camera.getNumberOfCameras();
         for (int i = 0; i < camCount; i++) {
-            Camera.getCameraInfo(i,cameraInfo);
-            if (cameraInfo.facing==Camera.CameraInfo.CAMERA_FACING_FRONT)
-            {
+            Camera.getCameraInfo(i, cameraInfo);
+            if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
                 try {
-                    camera= Camera.open(i);
+                    camera = Camera.open(i);
                     camera.setDisplayOrientation(90);
-                }catch (RuntimeException re)
-                {
+                } catch (RuntimeException re) {
 
                 }
             }
@@ -671,7 +688,7 @@ public class MediaUtils {
         return camera;
     }
 
-    public static void playSendSound(Context context ,int ringId) {
+    public static void playSendSound(Context context, int ringId) {
         FeatureRestriction.isMessagesSoundEnabled(new FeatureRestriction.OnSuccessListener() {
             @Override
             public void onSuccess(Boolean booleanVal) {
@@ -694,15 +711,15 @@ public class MediaUtils {
             }
         });
     }
-    public static void vibrate(Context context)
-    {
-        Vibrator vibrator= (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
+    public static void vibrate(Context context) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(100);
 
     }
 
     public static void downloadAndShareFile(Context context, MediaMessage mediaMessage) {
-        if (mediaMessage.getAttachment()!=null) {
+        if (mediaMessage.getAttachment() != null) {
             mProgressDialog = new ProgressDialog(context);
             mProgressDialog.setMessage(context.getString(R.string.downloading));
             mProgressDialog.setIndeterminate(true);
@@ -760,7 +777,7 @@ public class MediaUtils {
 
                 // download the file
                 input = connection.getInputStream();
-                File file = MediaUtils.makeEmptyFileWithTitle(fileName);
+                File file = MediaUtils.makeEmptyFileWithTitle(context, fileName);
                 output = new FileOutputStream(file);
                 byte data[] = new byte[4096];
                 long total = 0;
@@ -779,7 +796,7 @@ public class MediaUtils {
                 }
                 return file.getAbsolutePath();
             } catch (Exception e) {
-                Log.e(TAG, "doInBackground:Exception "+e );
+                Log.e(TAG, "doInBackground:Exception " + e);
                 return e.toString();
             } finally {
                 try {
@@ -823,12 +840,16 @@ public class MediaUtils {
             try {
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(result));
-                shareIntent.setType(((MediaMessage)baseMessage).getAttachment().getFileMimeType());
+                // Delli commented
+                //      shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(result));
+                // Delli Added
+                shareIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", new File(result)));
+                // Delli Code ended
+                shareIntent.setType(((MediaMessage) baseMessage).getAttachment().getFileMimeType());
                 Intent intent = Intent.createChooser(shareIntent, context.getResources().getString(R.string.share_message));
                 context.startActivity(intent);
             } catch (Exception e) {
-                Toast.makeText(context, context.getString(R.string.error) +":"+ e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getString(R.string.error) + ":" + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }

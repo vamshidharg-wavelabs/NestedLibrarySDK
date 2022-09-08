@@ -108,24 +108,23 @@ public class CometChatUI extends AppCompatActivity implements
     private boolean isSettingsVisible;
     private boolean isCallsListVisible;
     private boolean isGroupsListVisible;
-    public static boolean isEnableHomeScreen=false;
 
     @VisibleForTesting
     public static AppCompatActivity activity;
-    public static Class activityHomeScren=null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         activity = this;
+        CometChat.connect();
         CometChatError.init(this);
         if (!CometChatCallListener.isInitialized)
             CometChatCallListener.addCallListener(TAG,this);
 
         EmojiCompat.Config config = new BundledEmojiCompatConfig(getApplicationContext());
         EmojiCompat.init(config);
+
         activityCometChatUnifiedBinding = DataBindingUtil.setContentView(this, R.layout.activity_cometchat_unified);
         initViewComponent();
         // It performs action on click of user item in CometChatUserListScreen.
@@ -240,14 +239,14 @@ public class CometChatUI extends AppCompatActivity implements
             }
         });
 
-//        FeatureRestriction.isCallListEnabled(new FeatureRestriction.OnSuccessListener() {
-//            @Override
-//            public void onSuccess(Boolean booleanVal) {
-//                isCallsListVisible = booleanVal;
-//                activityCometChatUnifiedBinding.bottomNavigation.getMenu().findItem(R.id.menu_call)
-//                        .setVisible(booleanVal);
-//            }
-//        });
+        FeatureRestriction.isCallListEnabled(new FeatureRestriction.OnSuccessListener() {
+            @Override
+            public void onSuccess(Boolean booleanVal) {
+                isCallsListVisible = booleanVal;
+                activityCometChatUnifiedBinding.bottomNavigation.getMenu().findItem(R.id.menu_call)
+                        .setVisible(booleanVal);
+            }
+        });
 
         FeatureRestriction.isUserSettingsEnabled(new FeatureRestriction.OnSuccessListener() {
             @Override
@@ -476,10 +475,9 @@ public class CometChatUI extends AppCompatActivity implements
           fragment = new CometChatConversationList();
         } else if (itemId == R.id.menu_more) {
             fragment = new CometChatUserProfile();
+        } else if (itemId == R.id.menu_call) {
+            fragment = new CometChatCallList();
         }
-//        else if (itemId == R.id.menu_call) {
-//            fragment = new CometChatCallList();
-//        }
 
         return loadFragment(fragment);
     }
@@ -539,11 +537,6 @@ public class CometChatUI extends AppCompatActivity implements
     @VisibleForTesting
     public static AppCompatActivity getCometChatUIActivity() {
         return activity;
-    }
-
-    public static void setHomeActivity(Class homeActivity,boolean isHomeScreenEnable){
-        activityHomeScren = homeActivity;
-        isEnableHomeScreen = isHomeScreenEnable;
     }
 
     public static void setLocale(Activity activity, String languageCode) {

@@ -63,7 +63,7 @@ public class WavelabsChatActivity extends AppCompatActivity {
         isHomeScreenEnable = isEnableHomeScreen;
         homeScreenActivities = homeScreenActivity;
         context = MainActivity.getBaseContext();
-        CometChatUI.setHomeActivity(homeScreenActivity,isEnableHomeScreen);
+        //CometChatUI.setHomeActivity(homeScreenActivity,isEnableHomeScreen);
         try {
             CometChat.login(UID, AppConfig.AUTH_KEY, new CometChat.CallbackListener<User>() {
 

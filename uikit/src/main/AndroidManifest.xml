@@ -39,7 +39,7 @@
         android:usesCleartextTraffic="true"
         tools:node="merge"
         tools:targetApi="m">
-        <activity android:name=".ui_components.chats.CometChatStartConversation"/>
+        <activity android:name=".ui_components.chats.CometChatStartConversation" />
         <activity android:name=".ui_components.messages.extensions.Collaborative.CometChatWebViewActivity" />
         <activity android:name=".ui_components.messages.extensions.Reactions.CometChatReactionInfoActivity" />
         <activity android:name=".ui_components.messages.media_view.CometChatMediaViewActivity" />
@@ -59,13 +59,17 @@
         <activity
             android:name=".ui_components.calls.call_list.CometChatNewCallList"
             android:screenOrientation="portrait" />
+        <!--Delli Added exported true to enable sharing from external apps -->
         <activity
             android:name=".ui_components.messages.forward_message.CometChatForwardMessageActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
                 <data android:mimeType="image/*" />
                 <data android:mimeType="video/*" />
@@ -113,6 +117,7 @@
             android:parentActivityName=".ui_components.cometchat_ui.CometChatUI"
             android:screenOrientation="portrait" />
 
+        <!-- Delli Added below file provider to enable file sharing from external apps-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${file_provider}.provider"

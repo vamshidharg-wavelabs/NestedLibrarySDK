@@ -59,44 +59,37 @@
             android:layout_centerVertical="true"
             android:id="@+id/toolbar_controls"
             android:layout_alignParentEnd="true"
-            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-<!--            <ImageView-->
-<!--                android:visibility="gone"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:padding="8dp"-->
-<!--                android:clickable="true"-->
-<!--                android:focusable="true"-->
-<!--                android:id="@+id/video_call_action"-->
-<!--                android:tint="@color/colorPrimary"-->
-<!--                android:src="@drawable/ic_videocall"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"/>-->
-<!--            <ImageView-->
-<!--                android:padding="8dp"-->
-<!--                android:clickable="true"-->
-<!--                android:focusable="true"-->
-<!--                android:id="@+id/ic_home"-->
-<!--                app:tint="@color/colorPrimary"-->
-<!--                android:src="@drawable/homeic"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"/>-->
-
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
+                android:layout_gravity="center"
+                android:padding="8dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp"
+                android:id="@+id/video_call_action"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_videocall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/audio_call_action"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_audiocall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
                 android:id="@+id/info_action"
-                app:tint="@color/colorPrimary"
+                android:tint="@color/colorPrimary"
                 android:src="@drawable/ic_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
-            <include layout="@layout/layout_toolbar"/>
-
         </LinearLayout>
     </RelativeLayout>
 

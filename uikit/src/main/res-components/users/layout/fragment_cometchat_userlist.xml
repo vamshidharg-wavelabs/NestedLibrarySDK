@@ -15,10 +15,6 @@
         android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <include
-        android:id="@+id/home"
-        layout="@layout/layout_toolbar"/>
-
     <RelativeLayout
         android:id="@+id/rl_search_box"
         android:visibility="gone"
@@ -88,7 +84,7 @@
             android:layout_height="match_parent"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <include layout="@layout/user_shimmer" />
+    <include layout="@layout/user_shimmer"/>
 
 
 

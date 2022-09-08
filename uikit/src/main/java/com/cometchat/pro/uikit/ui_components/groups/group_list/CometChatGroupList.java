@@ -35,7 +35,6 @@ import com.cometchat.pro.models.Action;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.models.Group;
-import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatGroups.CometChatGroups;
 
@@ -89,7 +88,7 @@ public class CometChatGroupList extends Fragment  {
     private boolean isPublicGroupEnabled;
     private boolean isPrivateGroupEnabled;
     private boolean isPasswordGroupEnabled;
-    private ImageView iv_home;
+
     public CometChatGroupList() {
         // Required empty public constructor
     }
@@ -183,22 +182,7 @@ public class CometChatGroupList extends Fragment  {
 
             }
         });
-        iv_home = view.findViewById(R.id.iv_home);
-        if(CometChatUI.isEnableHomeScreen){
-            iv_home.setVisibility(View.VISIBLE);
-        }else {
-            iv_home.setVisibility(View.GONE);
-        }
-        iv_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(CometChatUI.activityHomeScren!=null) {
-                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    getActivity().startActivity(intent);
-                }
-            }
-        });
+
         if(Utils.isDarkMode(getContext())) {
             title.setTextColor(getResources().getColor(R.color.textColorWhite));
         } else {

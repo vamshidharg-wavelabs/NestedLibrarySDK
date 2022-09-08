@@ -17,7 +17,6 @@ package com.cometchat.pro.uikit.ui_components.users.user_list;
  */
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -45,7 +44,6 @@ import com.cometchat.pro.core.UsersRequest;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.models.User;
-import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
 import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
@@ -54,6 +52,7 @@ import com.cometchat.pro.uikit.ui_settings.enums.UserMode;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.cometchat.pro.uikit.ui_components.shared.cometchatUsers.CometChatUsers;
@@ -112,8 +111,6 @@ public class CometChatUserList extends Fragment {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private ImageView iv_home;
-
     public CometChatUserList() {
         // Required empty public constructor
     }
@@ -158,22 +155,7 @@ public class CometChatUserList extends Fragment {
                     etSearch.setVisibility(View.GONE);
             }
         });
-        iv_home = view.findViewById(R.id.iv_home);
-        if(CometChatUI.isEnableHomeScreen){
-            iv_home.setVisibility(View.VISIBLE);
-        }else {
-            iv_home.setVisibility(View.GONE);
-        }
-        iv_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(CometChatUI.activityHomeScren!=null) {
-                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    getActivity().startActivity(intent);
-                }
-            }
-        });
+
         isTitleVisible();
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override

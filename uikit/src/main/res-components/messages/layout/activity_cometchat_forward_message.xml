@@ -34,19 +34,20 @@
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
-                android:focusedByDefault="false"
                 android:id="@+id/search_bar"
-                android:hint="@string/search"
-                android:imeOptions="actionSearch"
-                android:maxLines="1"
-                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_box"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="5dp"
-                android:padding="8dp"
-                android:background="@drawable/search_box"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:focusedByDefault="false"
+                android:hint="@string/search"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="8dp" />
             <ImageView
                 android:visibility="gone"
                 android:clickable="true"
