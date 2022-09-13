@@ -83,6 +83,7 @@ import com.cometchat.pro.models.TransientMessage;
 import com.cometchat.pro.models.TypingIndicator;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.groups.group_details.CometChatGroupDetailActivity;
 import com.cometchat.pro.uikit.ui_components.messages.extensions.ExtensionResponseListener;
 import com.cometchat.pro.uikit.ui_components.messages.extensions.Extensions;
@@ -329,10 +330,12 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 
     boolean hideDeleteMessage;
 
-    private TextView noMessageText;
+    //private TextView noMessageText;
     private ImageView infoAction;
-    private ImageView audioCallAction;
-    private ImageView videoCallAction;
+
+    private ImageView iv_home;
+//    private ImageView audioCallAction;
+//    private ImageView videoCallAction;
 
     private ImageView backIcon;
     private BaseMessage repliedMessage;
@@ -401,16 +404,16 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         setHasOptionsMenu(true);
 
         CometChatError.init(getContext());
-        noMessageText = view.findViewById(R.id.no_message_text);
+        //noMessageText = view.findViewById(R.id.no_message_text);
         backIcon = view.findViewById(R.id.back_action);
         infoAction = view.findViewById(R.id.info_action);
-        audioCallAction = view.findViewById(R.id.audio_call_action);
-        videoCallAction = view.findViewById(R.id.video_call_action);
+//        audioCallAction = view.findViewById(R.id.audio_call_action);
+//        videoCallAction = view.findViewById(R.id.video_call_action);
 
         backIcon.setOnClickListener(this);
         infoAction.setOnClickListener(this);
-        audioCallAction.setOnClickListener(this);
-        videoCallAction.setOnClickListener(this);
+//        audioCallAction.setOnClickListener(this);
+//        videoCallAction.setOnClickListener(this);
 
         bottomLayout = view.findViewById(R.id.bottom_layout);
         messageShimmer = view.findViewById(R.id.shimmer_layout);
@@ -449,6 +452,20 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 }
             });
         }
+
+        iv_home = view.findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(view1 -> {
+            if(CometChatUI.activityHomeScren!=null) {
+                Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().startActivity(intent);
+            }
+        });
 
         container = view.findViewById(R.id.reactions_container);
         composeBox.liveReactionBtn.setOnClickListener(new View.OnClickListener() {
@@ -618,52 +635,52 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         checkOnGoingCall();
     }
 
-    private void checkOnGoingCall(String callType) {
-        if (CometChat.getActiveCall() != null) {
-            if (CometChat.getActiveCall().getCallStatus().equals(CometChatConstants.CALL_STATUS_ONGOING) && CometChat.getActiveCall().getSessionId() != null) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                alert.setTitle(getResources().getString(R.string.ongoing_call))
-                        .setMessage(getResources().getString(R.string.ongoing_call_message))
-                        .setPositiveButton(getResources().getString(R.string.join), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                CallUtils.joinOnGoingCall(context, CometChat.getActiveCall());
-                            }
-                        }).setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                audioCallAction.setClickable(true);
-                                videoCallAction.setClickable(true);
-                            }
-                        }).create().show();
-            }
-        } else {
-            Call call = null;
-            if (type.equalsIgnoreCase(CometChatConstants.RECEIVER_TYPE_GROUP))
-                call = new Call(Id, CometChatConstants.RECEIVER_TYPE_GROUP, callType);
-            else
-                call = new Call(Id, CometChatConstants.RECEIVER_TYPE_USER, callType);
-            CometChat.initiateCall(call, new CometChat.CallbackListener<Call>() {
-                @Override
-                public void onSuccess(Call call) {
-                    CallUtils.startCallIntent(context,
-                            ((User) call.getCallReceiver()), call.getType(), true,
-                            call.getSessionId());
-                }
-
-                @Override
-                public void onError(CometChatException e) {
-                    audioCallAction.setClickable(true);
-                    videoCallAction.setClickable(true);
-                    Log.e(TAG, "onError: " + e.getMessage());
-                    CometChatSnackBar.show(context,
-                            rvChatListView,
-                            CometChatError.localized(e), CometChatSnackBar.ERROR);
-                }
-            });
-        }
-    }
+//    private void checkOnGoingCall(String callType) {
+//        if (CometChat.getActiveCall() != null) {
+//            if (CometChat.getActiveCall().getCallStatus().equals(CometChatConstants.CALL_STATUS_ONGOING) && CometChat.getActiveCall().getSessionId() != null) {
+//                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+//                alert.setTitle(getResources().getString(R.string.ongoing_call))
+//                        .setMessage(getResources().getString(R.string.ongoing_call_message))
+//                        .setPositiveButton(getResources().getString(R.string.join), new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                CallUtils.joinOnGoingCall(context, CometChat.getActiveCall());
+//                            }
+//                        }).setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                                audioCallAction.setClickable(true);
+//                                videoCallAction.setClickable(true);
+//                            }
+//                        }).create().show();
+//            }
+//        } else {
+//            Call call = null;
+//            if (type.equalsIgnoreCase(CometChatConstants.RECEIVER_TYPE_GROUP))
+//                call = new Call(Id, CometChatConstants.RECEIVER_TYPE_GROUP, callType);
+//            else
+//                call = new Call(Id, CometChatConstants.RECEIVER_TYPE_USER, callType);
+//            CometChat.initiateCall(call, new CometChat.CallbackListener<Call>() {
+//                @Override
+//                public void onSuccess(Call call) {
+//                    CallUtils.startCallIntent(context,
+//                            ((User) call.getCallReceiver()), call.getType(), true,
+//                            call.getSessionId());
+//                }
+//
+//                @Override
+//                public void onError(CometChatException e) {
+//                    audioCallAction.setClickable(true);
+//                    videoCallAction.setClickable(true);
+//                    Log.e(TAG, "onError: " + e.getMessage());
+//                    CometChatSnackBar.show(context,
+//                            rvChatListView,
+//                            CometChatError.localized(e), CometChatSnackBar.ERROR);
+//                }
+//            });
+//        }
+//    }
 
     /**
      * This method is used to check if the app has ongoing call or not and based on it show the view
@@ -1148,7 +1165,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             @Override
             public void onSuccess(CustomMessage customMessage) {
                 Log.e(TAG, "onSuccessCustomMesage: " + customMessage.toString());
-                noMessageText.setVisibility(GONE);
+                //noMessageText.setVisibility(GONE);
                 if (customType.equalsIgnoreCase(UIKitConstants.IntentStrings.GROUP_CALL)) {
                     rvSmartReply.setVisibility(GONE);
                     if (CometChat.getActiveCall() == null)
@@ -1356,7 +1373,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
      * @see MessagesRequest#fetchPrevious(CometChat.CallbackListener)
      */
     private void fetchMessage() {
-
+        infoAction.setVisibility(GONE);
         if (messagesRequest == null) {
             if (type != null) {
 
@@ -1377,12 +1394,13 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             @Override
             public void onSuccess(List<BaseMessage> baseMessages) {
                 isInProgress = false;
+                infoAction.setVisibility(GONE);
 //                List<BaseMessage> filteredMessageList = filterBaseMessages(baseMessages);
 //                initMessageAdapter(filteredMessageList);
                 Log.e(TAG, "onSuccess:fetchMessage " + baseMessages);
                 initMessageAdapter(baseMessages);
                 if (baseMessages.size() != 0) {
-                    noMessageText.setVisibility(GONE);
+                    //noMessageText.setVisibility(GONE);
                     stopHideShimmer();
                     BaseMessage baseMessage = baseMessages.get(baseMessages.size() - 1);
                     markMessageAsRead(baseMessage);
@@ -1396,6 +1414,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 
             @Override
             public void onError(CometChatException e) {
+                infoAction.setVisibility(GONE);
                 Log.d(TAG, "onError: " + e.getMessage());
             }
         });
@@ -1454,20 +1473,20 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         } else {
             messageAdapter.updateList(messageList);
         }
-        checkForNoMessage();
+        //checkForNoMessage();
         if (!isBlockedByMe && rvSmartReply.getAdapter().getItemCount() == 0) {
             BaseMessage lastMessage = messageAdapter.getLastMessage();
             checkSmartReply(lastMessage);
         }
     }
 
-    private void checkForNoMessage() {
-        if (messageAdapter.getItemCount() == 0) {
-            noMessageText.setVisibility(View.VISIBLE);
-        } else {
-            noMessageText.setVisibility(GONE);
-        }
-    }
+//    private void checkForNoMessage() {
+//        if (messageAdapter.getItemCount() == 0) {
+//            noMessageText.setVisibility(View.VISIBLE);
+//        } else {
+//            noMessageText.setVisibility(GONE);
+//        }
+//    }
 
     /**
      * This method is used to send typing indicator to other users and groups.
@@ -1845,7 +1864,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         CometChat.sendMediaMessage(mediaMessage, new CometChat.CallbackListener<MediaMessage>() {
             @Override
             public void onSuccess(MediaMessage mediaMessage) {
-                noMessageText.setVisibility(GONE);
+                //noMessageText.setVisibility(GONE);
                 if (messageAdapter != null) {
                     messageAdapter.addMessage(mediaMessage);
                     scrollToBottom();
@@ -1898,7 +1917,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         CometChat.sendMediaMessage(mediaMessage, new CometChat.CallbackListener<MediaMessage>() {
             @Override
             public void onSuccess(MediaMessage mediaMessage) {
-                noMessageText.setVisibility(GONE);
+                //noMessageText.setVisibility(GONE);
                 Log.d(TAG, "sendMediaMessage onSuccess: " + mediaMessage.toString());
                 if (messageAdapter != null) {
                     messageAdapter.updateChangedMessage(mediaMessage);
@@ -2067,7 +2086,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 editor.remove(Id);
                 editor.apply();
                 editor.commit();
-                noMessageText.setVisibility(GONE);
+                //noMessageText.setVisibility(GONE);
                 if (messageAdapter != null)
                     messageAdapter.updateChangedMessage(textMessage);
             }
@@ -2189,7 +2208,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             CometChat.sendMessage(textMessage, new CometChat.CallbackListener<TextMessage>() {
                 @Override
                 public void onSuccess(TextMessage textMessage) {
-                    noMessageText.setVisibility(GONE);
+                    //noMessageText.setVisibility(GONE);
                     if (messageAdapter != null) {
                         MediaUtils.playSendSound(context, R.raw.outgoing_message);
                         messageAdapter.updateChangedMessage(textMessage);
@@ -2475,8 +2494,8 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
     }
 
     private void onMessageReceived(BaseMessage message) {
-        if (noMessageText != null)
-            noMessageText.setVisibility(GONE);
+//        if (noMessageText != null)
+//            noMessageText.setVisibility(GONE);
         MediaUtils.playSendSound(context, R.raw.incoming_message);
         if (message.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
             if (Id != null && Id.equalsIgnoreCase(message.getSender().getUid())) {
@@ -2650,8 +2669,8 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         }
         addMessageListener();
 
-        audioCallAction.setClickable(true);
-        videoCallAction.setClickable(true);
+//        audioCallAction.setClickable(true);
+//        videoCallAction.setClickable(true);
 
         if (messageActionFragment != null && messageActionFragment.getFragmentManager() != null)
             messageActionFragment.dismiss();
@@ -2736,23 +2755,25 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 intent.putExtra(UIKitConstants.IntentStrings.GROUP_PASSWORD, groupPassword);
                 startActivityForResult(intent, UIKitConstants.RequestCode.DELETE_GROUP);
             }
-        } else if (id == R.id.audio_call_action) {
-            audioCallAction.setClickable(false);
-            checkOnGoingCall(CometChatConstants.CALL_TYPE_AUDIO);
-        } else if (id == R.id.video_call_action) {
-            if (type.equalsIgnoreCase(CometChatConstants.RECEIVER_TYPE_GROUP)) {
-                JSONObject customData = new JSONObject();
-                try {
-                    customData.put("callType", CometChatConstants.CALL_TYPE_VIDEO);
-                    customData.put("sessionID", Id);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                sendCustomMessage(UIKitConstants.IntentStrings.GROUP_CALL, customData);
-            } else {
-                checkOnGoingCall(CometChatConstants.CALL_TYPE_VIDEO);
-            }
-        } else if (id == R.id.back_action) {
+        }
+//        else if (id == R.id.audio_call_action) {
+////            audioCallAction.setClickable(false);
+////            checkOnGoingCall(CometChatConstants.CALL_TYPE_AUDIO);
+//        } else if (id == R.id.video_call_action) {
+//            if (type.equalsIgnoreCase(CometChatConstants.RECEIVER_TYPE_GROUP)) {
+//                JSONObject customData = new JSONObject();
+//                try {
+//                    customData.put("callType", CometChatConstants.CALL_TYPE_VIDEO);
+//                    customData.put("sessionID", Id);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                sendCustomMessage(UIKitConstants.IntentStrings.GROUP_CALL, customData);
+//            } else {
+//                //checkOnGoingCall(CometChatConstants.CALL_TYPE_VIDEO);
+//            }
+//        }
+        else if (id == R.id.back_action) {
             if (getActivity() != null)
                 getActivity().onBackPressed();
         }
@@ -3416,7 +3437,8 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 String message = "";
                 for (BaseMessage bMessage : baseMessages) {
                     if (bMessage.getDeletedAt() == 0 && bMessage instanceof TextMessage) {
-                        message = message + "[" + Utils.getLastMessageDate(context, bMessage.getSentAt()) + "] " + bMessage.getSender().getName() + ": " + ((TextMessage) bMessage).getText();
+                        //message = message + "[" + Utils.getLastMessageDate(context, bMessage.getSentAt()) + "] " + bMessage.getSender().getName() + ": " + ((TextMessage) bMessage).getText();
+                        message = message + ((TextMessage) bMessage).getText();
                     }
                 }
                 Log.e(TAG, "onCopy: " + message);
@@ -3740,43 +3762,43 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
     private void fetchSettings() {
         if (type.equalsIgnoreCase(CometChatConstants.RECEIVER_TYPE_GROUP)) {
 
-            FeatureRestriction.isGroupVideoCallEnabled(new FeatureRestriction.OnSuccessListener() {
-                @Override
-                public void onSuccess(Boolean booleanVal) {
-                    if (booleanVal)
-                        videoCallAction.setVisibility(View.VISIBLE);
-                    else
-                        videoCallAction.setVisibility(View.GONE);
-                }
-            });
-            audioCallAction.setVisibility(View.GONE);
+//            FeatureRestriction.isGroupVideoCallEnabled(new FeatureRestriction.OnSuccessListener() {
+//                @Override
+//                public void onSuccess(Boolean booleanVal) {
+//                    if (booleanVal)
+//                        videoCallAction.setVisibility(View.VISIBLE);
+//                    else
+//                        videoCallAction.setVisibility(View.GONE);
+//                }
+//            });
+//            audioCallAction.setVisibility(View.GONE);
         } else {
-            FeatureRestriction.isOneOnOneVideoCallEnabled(new FeatureRestriction.OnSuccessListener() {
-                @Override
-                public void onSuccess(Boolean booleanVal) {
-                    if (booleanVal)
-                        videoCallAction.setVisibility(View.VISIBLE);
-                    else
-                        videoCallAction.setVisibility(View.GONE);
-                }
-            });
+//            FeatureRestriction.isOneOnOneVideoCallEnabled(new FeatureRestriction.OnSuccessListener() {
+//                @Override
+//                public void onSuccess(Boolean booleanVal) {
+//                    if (booleanVal)
+//                        videoCallAction.setVisibility(View.VISIBLE);
+//                    else
+//                        videoCallAction.setVisibility(View.GONE);
+//                }
+//            });
 
-            FeatureRestriction.isOneOnOneAudioCallEnabled(new FeatureRestriction.OnSuccessListener() {
-                @Override
-                public void onSuccess(Boolean booleanVal) {
-                    if (booleanVal)
-                        audioCallAction.setVisibility(View.VISIBLE);
-                    else
-                        audioCallAction.setVisibility(View.GONE);
-                }
-            });
+//            FeatureRestriction.isOneOnOneAudioCallEnabled(new FeatureRestriction.OnSuccessListener() {
+//                @Override
+//                public void onSuccess(Boolean booleanVal) {
+//                    if (booleanVal)
+//                        audioCallAction.setVisibility(View.VISIBLE);
+//                    else
+//                        audioCallAction.setVisibility(View.GONE);
+//                }
+//            });
         }
 
         if (UIKitSettings.getColor() != null) {
-            audioCallAction.setImageTintList(ColorStateList.valueOf(
-                    Color.parseColor(UIKitSettings.getColor())));
-            videoCallAction.setImageTintList(ColorStateList.valueOf(
-                    Color.parseColor(UIKitSettings.getColor())));
+//            audioCallAction.setImageTintList(ColorStateList.valueOf(
+//                    Color.parseColor(UIKitSettings.getColor())));
+//            videoCallAction.setImageTintList(ColorStateList.valueOf(
+//                    Color.parseColor(UIKitSettings.getColor())));
             infoAction.setImageTintList(ColorStateList.valueOf(
                     Color.parseColor(UIKitSettings.getColor())));
         }

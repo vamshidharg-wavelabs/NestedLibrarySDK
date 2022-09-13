@@ -378,7 +378,7 @@ public class CometChatMessageActions extends BottomSheetDialogFragment {
         super.onCancel(dialog);
         Activity activity = getActivity();
         if (activity!=null)
-            if (type!=null && type== CometChatMessageListActivity.class.getName())
+            if (type!=null && type.equals(CometChatMessageListActivity.class.getName()))
                 ((CometChatMessageListActivity)activity).handleDialogClose(dialog);
             else
                 ((CometChatThreadMessageListActivity)activity).handleDialogClose(dialog);

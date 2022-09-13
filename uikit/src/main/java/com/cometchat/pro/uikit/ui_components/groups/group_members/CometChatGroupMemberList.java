@@ -1,6 +1,7 @@
 package com.cometchat.pro.uikit.ui_components.groups.group_members;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,6 +26,7 @@ import com.cometchat.pro.core.GroupMembersRequest;
 import com.cometchat.pro.exceptions.CometChatException;
 import com.cometchat.pro.models.GroupMember;
 import com.cometchat.pro.uikit.R;
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_resources.utils.CometChatError;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -70,6 +72,7 @@ public class CometChatGroupMemberList extends Fragment {
     private Context context;
 
     private boolean transferOwnerShip;
+    private ImageView iv_home;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -191,6 +194,23 @@ public class CometChatGroupMemberList extends Fragment {
 
         fetchGroupMembers();
 
+        iv_home = view.findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
+
         return view;
     }
 
@@ -278,6 +298,17 @@ public class CometChatGroupMemberList extends Fragment {
                 groupMembersRequest = new GroupMembersRequest.GroupMembersRequestBuilder(guid)
                         .setScopes(Arrays.asList(CometChatConstants.SCOPE_PARTICIPANT))
                         .setLimit(10).build();
+
+            else if (transferOwnerShip)
+                groupMembersRequest = new GroupMembersRequest.GroupMembersRequestBuilder(guid)
+                        .setScopes(Arrays.asList(
+                                        CometChatConstants.SCOPE_PARTICIPANT,
+                                        CometChatConstants.SCOPE_MODERATOR,
+                                        CometChatConstants.SCOPE_ADMIN
+                                )
+                        )
+                        .setLimit(10).build();
+
             else
                 groupMembersRequest = new GroupMembersRequest.GroupMembersRequestBuilder(guid)
                         .setScopes(Arrays.asList(CometChatConstants.SCOPE_PARTICIPANT,

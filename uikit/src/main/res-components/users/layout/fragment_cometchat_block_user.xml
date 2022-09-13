@@ -7,11 +7,45 @@
     android:layout_height="match_parent">
 
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_blocked_user"
+<!--    <com.google.android.material.appbar.MaterialToolbar-->
+<!--        android:id="@+id/toolbar_blocked_user"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:title="@string/blocked_users"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    <RelativeLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        app:title="@string/blocked_users"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_blocked_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/groups"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/primaryTextColor"
+            android:textDirection="locale"
+            android:textStyle="bold"
+            app:title="@string/blocked_users" />
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/toolbar_controls"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <include layout="@layout/layout_toolbar"/>
+        </LinearLayout>
+    </RelativeLayout>
+
     <RelativeLayout
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"

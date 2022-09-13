@@ -24,7 +24,7 @@
             android:text="@string/create_group"
             android:textSize="32sp"
             android:textStyle="bold" />
-
+        <include layout="@layout/layout_toolbar"/>
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

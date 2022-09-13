@@ -9,20 +9,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_message_list"
+        android:clipToPadding="false"
+        android:layout_below="@+id/chatList_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_layout"
-        android:layout_below="@+id/chatList_toolbar"
-        android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    <TextView
-        android:visibility="gone"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="@string/no_messages_found"
-        android:id="@+id/no_message_text"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_above="@+id/bottom_layout"/>
+
     <include layout="@layout/new_message_layout"
         android:layout_width="wrap_content"
         android:visibility="gone"
@@ -32,10 +25,11 @@
         android:layout_above="@id/bottom_layout"
         android:id="@+id/new_message_layout"/>
 
-    <include layout="@layout/cometchat_messagelist_toolbar"
+    <include
         android:id="@+id/chatList_toolbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        layout="@layout/cometchat_messagelist_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <include layout="@layout/messages_shimmer"
         android:layout_above="@+id/bottom_layout"

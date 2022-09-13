@@ -6,12 +6,42 @@
     android:layout_height="match_parent"
     android:scrollbars="none">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/groupDetailToolbar"
+    <RelativeLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:navigationIcon="@drawable/ic_back_arrow_selected"
-        app:title="@string/details" />
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/groupDetailToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_back_arrow_selected"
+            app:title="@string/details"/>
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/toolbar_controls"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <include layout="@layout/layout_toolbar"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+<!--    <com.google.android.material.appbar.MaterialToolbar-->
+<!--        android:id="@+id/groupDetailToolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:navigationIcon="@drawable/ic_back_arrow_selected"-->
+<!--        app:title="@string/details" />-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

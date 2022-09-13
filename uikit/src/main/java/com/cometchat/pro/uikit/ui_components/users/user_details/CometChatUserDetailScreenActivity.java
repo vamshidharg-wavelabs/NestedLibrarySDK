@@ -32,6 +32,7 @@ import com.cometchat.pro.models.Group;
 import com.cometchat.pro.models.GroupMember;
 import com.cometchat.pro.models.User;
 
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.messages.extensions.Collaborative.CometChatWebViewActivity;
 import com.cometchat.pro.uikit.ui_components.messages.message_list.CometChatMessageListActivity;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
@@ -52,10 +53,13 @@ import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_settings.FeatureRestriction;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     private CometChatAvatar userAvatar;
 
-    private TextView userStatus, userName, addBtn;
+    private TextView userStatus, userName, addBtn, tv_email;
 
     private String name;
 
@@ -106,6 +110,8 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     private View divider1,divider2,divider3;
 
     private LinearLayout preferenceLayout;
+
+    private ImageView iv_home;
 
     private List<BaseMessage> callList = new ArrayList<>();
 
@@ -204,6 +210,44 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
                 if (!booleanVal) {
                     blockUserLayout.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        iv_home = findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(CometChatUserDetailScreenActivity.this, CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        tv_email = findViewById(R.id.tv_email);
+        CometChat.getUser(uid, new CometChat.CallbackListener<User>() {
+            @Override
+            public void onSuccess(User user) {
+                if (!(user.getMetadata() == null)) {
+                    JSONObject jsonObject = user.getMetadata();
+                    try {
+                        tv_email.setText(jsonObject.getString("email"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(CometChatException e) {
+                tv_email.setText("");
             }
         });
 

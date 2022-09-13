@@ -3,12 +3,14 @@ package com.cometchat.pro.uikit.ui_components.chats;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,7 @@ import com.cometchat.pro.models.Group;
 import com.cometchat.pro.models.MessageReceipt;
 import com.cometchat.pro.models.TypingIndicator;
 import com.cometchat.pro.models.User;
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatConversations.CometChatConversations;
 import com.cometchat.pro.uikit.R;
@@ -56,6 +59,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.cometchat.pro.uikit.ui_resources.utils.item_clickListener.OnItemClickListener;
 import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
@@ -93,12 +97,12 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
     private LinearLayout noConversationView;
 
     private static final String TAG = "ConversationList";
-
+    private ImageView iv_home;
     private View view;
 
     private List<Conversation> conversationList = new ArrayList<>();
 
-    private ImageView startConversation;
+    //private ImageView startConversation;
 
     public CometChatConversationList() {
         // Required empty public constructor
@@ -119,33 +123,54 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
 
         tvTitle = view.findViewById(R.id.tv_title);
 
+        iv_home = view.findViewById(R.id.iv_home);
+        if(CometChatUI.isEnableHomeScreen){
+            iv_home.setVisibility(View.VISIBLE);
+        }else {
+            iv_home.setVisibility(View.GONE);
+        }
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(CometChatUI.activityHomeScren!=null) {
+                    Intent intent = new Intent(new Intent(getActivity(), CometChatUI.activityHomeScren));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
+
         tvTitle.setTypeface(FontUtils.getInstance(getActivity()).getTypeFace(FontUtils.robotoMedium));
 
         rlSearchBox = view.findViewById(R.id.rl_search_box);
 
         conversationShimmer = view.findViewById(R.id.shimmer_layout);
 
+        iv_home = view.findViewById(R.id.iv_home);
+        iv_home.setOnClickListener(view ->
+                ActivityCompat.finishAffinity(Objects.requireNonNull(getActivity())));
+
         checkDarkMode();
 
         CometChatError.init(getContext());
 
-        startConversation = view.findViewById(R.id.start_conversation);
-        FeatureRestriction.isStartConversationEnabled(new FeatureRestriction.OnSuccessListener() {
-            @Override
-            public void onSuccess(Boolean booleanVal) {
-                if (booleanVal)
-                    startConversation.setVisibility(View.VISIBLE);
-                else
-                    startConversation.setVisibility(View.GONE);
-            }
-        });
-
-        startConversation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CometChatStartConversation.launch(getContext());
-            }
-        });
+//        startConversation = view.findViewById(R.id.start_conversation);
+//        FeatureRestriction.isStartConversationEnabled(new FeatureRestriction.OnSuccessListener() {
+//            @Override
+//            public void onSuccess(Boolean booleanVal) {
+//                if (booleanVal)
+//                    startConversation.setVisibility(View.VISIBLE);
+//                else
+//                    startConversation.setVisibility(View.GONE);
+//            }
+//        });
+//
+//        startConversation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                CometChatStartConversation.launch(getContext());
+//            }
+//        });
         searchEdit.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_SEARCH) {
                 if (!textView.getText().toString().isEmpty()) {
@@ -197,6 +222,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
                     events.OnItemClick(conversation,position);
             }
         });
+
 
         RecyclerViewSwipeListener swipeHelper = new RecyclerViewSwipeListener(getContext()) {
             @Override

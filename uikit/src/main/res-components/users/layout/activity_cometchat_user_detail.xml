@@ -5,12 +5,42 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.google.android.material.appbar.MaterialToolbar
+<!--    <com.google.android.material.appbar.MaterialToolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:id="@+id/user_detail_toolbar"-->
+<!--        app:title="@string/user_title"-->
+<!--        app:navigationIcon="@drawable/ic_back_arrow_selected"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    <RelativeLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:id="@+id/user_detail_toolbar"
-        app:title="@string/user_title"
-        app:navigationIcon="@drawable/ic_back_arrow_selected"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/user_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_back_arrow_selected"
+            app:title="@string/user_title" />
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/toolbar_controls"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <include layout="@layout/layout_toolbar"/>
+        </LinearLayout>
+    </RelativeLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -156,6 +186,21 @@
 
             <!--Privacy_Support_Layout - This layout provides privacy and
             support option like block user-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:padding="16dp"
+                    android:text="Email" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"

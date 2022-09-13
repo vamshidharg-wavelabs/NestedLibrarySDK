@@ -15,6 +15,21 @@
         <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res-components/users/layout/activity_cometchat_user_detail.xml" value="0.1" />
         <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res/layout/layout_toolbar.xml" value="0.1" />
         <entry key="..\:/FlutterProjects/data/NestedLibrarySDK/uikit/src/main/res/menu/cometchat_navigation_bottom.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/chats/layout/fragment_cometchat_conversationlist.xml" value="0.17074275362318841" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/groups/layout/activity_cometchat_ban_members.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/groups/layout/activity_cometchat_group_detail.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/groups/layout/fragment_cometchat_add_member.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/groups/layout/fragment_cometchat_admin_moderator_list.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/groups/layout/fragment_cometchat_create_group.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/groups/layout/fragment_cometchat_grouplist.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/cometchat_messagelist_toolbar.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/fragment_cometchat_messagelist.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/userprofile/layout/fragment_cometchat_user_profile.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/users/layout/activity_cometchat_user_detail.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/users/layout/fragment_cometchat_block_user.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/users/layout/fragment_cometchat_userlist.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res/layout/layout_toolbar.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res/menu/cometchat_navigation_bottom.xml" value="0.1" />
       </map>
     </option>
   </component>

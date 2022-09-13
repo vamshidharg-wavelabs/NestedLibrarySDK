@@ -24,6 +24,7 @@ public class CometChatAdminModeratorListActivity extends AppCompatActivity {
 
     private boolean showModerator;
 
+
     private String loggedInUserScope;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
