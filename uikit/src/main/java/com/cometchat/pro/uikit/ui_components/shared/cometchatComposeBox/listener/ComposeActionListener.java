@@ -13,6 +13,8 @@ public abstract class ComposeActionListener {
 
     public void onPollActionClicked() {}
 
+    public void onGalleryVideoPicked() {}
+
     public void onCameraActionClicked() {}
 
     public void onGalleryActionClicked() {}

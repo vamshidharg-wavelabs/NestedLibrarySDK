@@ -113,7 +113,7 @@ public class CometChatNewCallList extends AppCompatActivity {
                     Color.parseColor(UIKitSettings.getColor())));
         } else
             imageView.setImageTintList(
-                    ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+                    ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
 
         imageView.setClickable(true);
         imageView.setPadding(8,8,8,8);

@@ -68,14 +68,14 @@ public class CometChatUserPresence extends MaterialCardView {
 
     private void setValues() {
         if (status == Presence.ONLINE)
-            setCardBackgroundColor(getResources().getColor(R.color.online_green));
+            setCardBackgroundColor(getResources().getColor(R.color.online_greenuikit));
         else {
             setCardBackgroundColor(getResources().getColor(R.color.offline));
         }
         if (Utils.isDarkMode(getContext())) {
-            setStrokeColor(getResources().getColor(R.color.darkModeBackground));
+            setStrokeColor(getResources().getColor(R.color.darkModeBackgroundUikit));
         } else {
-            setStrokeColor(getResources().getColor(R.color.textColorWhite));
+            setStrokeColor(getResources().getColor(R.color.textColorWhiteuikit));
         }
         setStrokeWidth(2);
         invalidate();

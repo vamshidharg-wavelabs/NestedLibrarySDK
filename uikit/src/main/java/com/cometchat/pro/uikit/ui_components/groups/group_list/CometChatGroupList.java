@@ -204,9 +204,9 @@ public class CometChatGroupList extends Fragment  {
         });
 
         if(Utils.isDarkMode(getContext())) {
-            title.setTextColor(getResources().getColor(R.color.textColorWhite));
+            title.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
-            title.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            title.setTextColor(getResources().getColor(R.color.colorPrimaryuikit));
         }
 
         FeatureRestriction.isPublicGroupEnabled(new FeatureRestriction.OnSuccessListener() {

@@ -399,7 +399,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private void setAudioData(AudioMessageViewHolder viewHolder, int i) {
         BaseMessage baseMessage = messageList.get(i);
         if (baseMessage!=null&&baseMessage.getDeletedAt()==0) {
-            viewHolder.playBtn.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
+            viewHolder.playBtn.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
             setAvatar(viewHolder.ivUser, baseMessage.getSender().getAvatar(), baseMessage.getSender().getName());
             viewHolder.tvUser.setText(baseMessage.getSender().getName());
 
@@ -731,7 +731,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         if (baseMessage.getDeletedAt()!=0) {
             viewHolder.txtMessage.setText(R.string.this_message_deleted);
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.secondaryTextColor));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.secondaryTextColoruikit));
             viewHolder.txtMessage.setTypeface(null, Typeface.ITALIC);
         }
         showMessageTime(viewHolder, baseMessage);
@@ -907,7 +907,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             viewHolder.txtMessage.setText(message);
             viewHolder.txtMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoRegular));
 
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
             PatternUtils.setHyperLinkSupport(context,viewHolder.txtMessage);
             showMessageTime(viewHolder, baseMessage);
@@ -961,7 +961,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             viewHolder.txtMessage.setText(context.getResources().getString(R.string.custom_message));
             viewHolder.txtMessage.setTypeface(fontUtils.getTypeFace(FontUtils.robotoLight));
-            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            viewHolder.txtMessage.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
 
             showMessageTime(viewHolder, baseMessage);
             if (messageList.get(messageList.size()-1).equals(baseMessage))
@@ -1037,9 +1037,9 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         if (!longselectedItemList.contains(baseMessage))
         {
-            view.getBackground().setColorFilter(context.getResources().getColor(R.color.message_bubble_grey), PorterDuff.Mode.SRC_ATOP);
+            view.getBackground().setColorFilter(context.getResources().getColor(R.color.message_bubble_greyuikit), PorterDuff.Mode.SRC_ATOP);
         } else {
-            view.getBackground().setColorFilter(context.getResources().getColor(R.color.secondaryTextColor), PorterDuff.Mode.SRC_ATOP);
+            view.getBackground().setColorFilter(context.getResources().getColor(R.color.secondaryTextColoruikit), PorterDuff.Mode.SRC_ATOP);
         }
 
     }

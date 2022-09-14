@@ -99,8 +99,8 @@ public class CometChatSharedMedia extends RelativeLayout {
                 tabLayout.setSelectedTabIndicatorColor(Color.parseColor(UIKitSettings.getColor()));
             } else {
                 tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).
-                        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
+                        view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
+                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryuikit));
             }
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
@@ -112,7 +112,7 @@ public class CometChatSharedMedia extends RelativeLayout {
                         tab.view.setBackground(wrappedDrawable);
                     }
                     else
-                        tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
                 }
 
                 @Override
@@ -127,11 +127,11 @@ public class CometChatSharedMedia extends RelativeLayout {
             });
 
             if(Utils.isDarkMode(context)) {
-                tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
-                tabLayout.setTabTextColors(getResources().getColor(R.color.light_grey),getResources().getColor(R.color.textColorWhite));
+                tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.greyUikit)));
+                tabLayout.setTabTextColors(getResources().getColor(R.color.light_greyuikit),getResources().getColor(R.color.textColorWhiteuikit));
             } else {
-                tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-                tabLayout.setTabTextColors(getResources().getColor(R.color.primaryTextColor),getResources().getColor(R.color.textColorWhite));
+                tabLayout.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+                tabLayout.setTabTextColors(getResources().getColor(R.color.primaryTextColoruikit),getResources().getColor(R.color.textColorWhiteuikit));
             }
 
         }

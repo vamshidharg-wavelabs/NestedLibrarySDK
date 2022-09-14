@@ -374,19 +374,19 @@ public class CometChatGroupDetailActivity extends AppCompatActivity {
 
     private void checkDarkMode() {
         if (Utils.isDarkMode(this)) {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorWhite));
-            tvGroupName.setTextColor(getResources().getColor(R.color.textColorWhite));
-            dividerAdmin.setBackgroundColor(getResources().getColor(R.color.grey));
-            dividerModerator.setBackgroundColor(getResources().getColor(R.color.grey));
-            dividerBan.setBackgroundColor(getResources().getColor(R.color.grey));
-            divider2.setBackgroundColor(getResources().getColor(R.color.grey));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            tvGroupName.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            dividerAdmin.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            dividerModerator.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            dividerBan.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            divider2.setBackgroundColor(getResources().getColor(R.color.greyUikit));
         } else {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.primaryTextColor));
-            tvGroupName.setTextColor(getResources().getColor(R.color.primaryTextColor));
-            dividerAdmin.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            dividerModerator.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            dividerBan.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            divider2.setBackgroundColor(getResources().getColor(R.color.light_grey));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            tvGroupName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            dividerAdmin.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            dividerModerator.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            dividerBan.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            divider2.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
         }
     }
 

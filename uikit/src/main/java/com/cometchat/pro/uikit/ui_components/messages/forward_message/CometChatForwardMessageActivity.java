@@ -111,6 +111,8 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
+    private int pendingUploadUserListCount = 0;
+
     //Delli Added
     private RelativeLayout searchbar_view;
     // Delli Code Ended
@@ -371,6 +373,7 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 progressDialog = ProgressDialog
                         .show(CometChatForwardMessageActivity.this, "", getString(R.string.updating));
+                pendingUploadUserListCount =  userList.size();
                 if (messageCategory.equals(CometChatConstants.CATEGORY_MESSAGE)) {
                     if (messageType != null && messageType.equals(CometChatConstants.MESSAGE_TYPE_TEXT)) {
                         new Thread(() -> {

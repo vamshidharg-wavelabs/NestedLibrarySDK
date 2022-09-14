@@ -66,9 +66,9 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
 
     private String audioFileNameWithPath;
 
-    private boolean isOpen,isRecording,isPlaying,voiceMessage;
+    private boolean isOpen, isRecording, isPlaying, voiceMessage;
 
-    public ImageView ivSend,ivArrow,ivMic,ivDelete;
+    public ImageView ivSend, ivArrow, ivMic, ivDelete;
 
     private SeekBar voiceSeekbar;
 
@@ -97,55 +97,56 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
     //ambika added
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
-    private String id="";
+    private String id = "";
     //end
 
     private Bundle bundle = new Bundle();
 
-    public boolean isGalleryVisible = true,isAudioVisible = true,isCameraVisible = true,
-            isFileVisible = true,isLocationVisible = true,isPollVisible = true,isStickerVisible = true,
+    public boolean isGalleryVisible = true, isAudioVisible = true, isVideoVisible = true, isCameraVisible = true,
+            isFileVisible = true, isLocationVisible = true, isPollVisible = true, isStickerVisible = true,
             isWhiteBoardVisible = true, isWriteBoardVisible = true, isGroupCallVisible = true;
 
     public CometChatComposeBox(Context context) {
         super(context);
-        initViewComponent(context,null,-1,-1);
+        initViewComponent(context, null, -1, -1);
     }
 
     public CometChatComposeBox(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initViewComponent(context,attrs,-1,-1);
+        initViewComponent(context, attrs, -1, -1);
     }
 
     public CometChatComposeBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initViewComponent(context,attrs,defStyleAttr,-1);
+        initViewComponent(context, attrs, defStyleAttr, -1);
     }
+
     //ambika added
-    public void setReceiverId(String id){
-        this.id=id; etComposeBox.setText(sharedpreferences.getString(id,""));
+    public void setReceiverId(String id) {
+        this.id = id;
+        etComposeBox.setText(sharedpreferences.getString(id, ""));
     }
     //end
 
-    private void initViewComponent(Context context,AttributeSet attributeSet,int defStyleAttr,int defStyleRes){
+    private void initViewComponent(Context context, AttributeSet attributeSet, int defStyleAttr, int defStyleRes) {
         //ambika added
         sharedpreferences = context.getSharedPreferences("CometChat", Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
         //end
-        View view =View.inflate(context, R.layout.cometchat_compose_box,null);
+        View view = View.inflate(context, R.layout.cometchat_compose_box, null);
 
         TypedArray a = getContext().getTheme().obtainStyledAttributes(attributeSet, R.styleable.ComposeBox, 0, 0);
-        color = a.getColor(R.styleable.ComposeBox_color,getResources().getColor(R.color.colorPrimary));
+        color = a.getColor(R.styleable.ComposeBox_color, getResources().getColor(R.color.primaryTextColoruikit));
         addView(view);
 
-        this.context=context;
+        this.context = context;
 
-        ViewGroup viewGroup=(ViewGroup)view.getParent();
+        ViewGroup viewGroup = (ViewGroup) view.getParent();
         viewGroup.setClipChildren(false);
 
         mediaPlayer = new MediaPlayer();
-        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-        if(audioManager.isMusicActive())
-        {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager.isMusicActive()) {
             audioManager.requestAudioFocus(new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
@@ -159,17 +160,17 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
         }
 
         liveReactionBtn = view.findViewById(R.id.live_reaction_btn);
-        composeBox=this.findViewById(R.id.message_box);
-        flBox=this.findViewById(R.id.flBox);
-        ivMic=this.findViewById(R.id.ivMic);
-        ivDelete=this.findViewById(R.id.ivDelete);
-        audioRecordView=this.findViewById(R.id.record_audio_visualizer);
-        voiceMessageLayout=this.findViewById(R.id.voiceMessageLayout);
-        recordTime=this.findViewById(R.id.record_time);
-        voiceSeekbar=this.findViewById(R.id.voice_message_seekbar);
-        ivArrow=this.findViewById(R.id.ivArrow);
-        etComposeBox=this.findViewById(R.id.etComposeBox);
-        ivSend=this.findViewById(R.id.ivSend);
+        composeBox = this.findViewById(R.id.message_box);
+        flBox = this.findViewById(R.id.flBox);
+        ivMic = this.findViewById(R.id.ivMic);
+        ivDelete = this.findViewById(R.id.ivDelete);
+        audioRecordView = this.findViewById(R.id.record_audio_visualizer);
+        voiceMessageLayout = this.findViewById(R.id.voiceMessageLayout);
+        recordTime = this.findViewById(R.id.record_time);
+        voiceSeekbar = this.findViewById(R.id.voice_message_seekbar);
+        ivArrow = this.findViewById(R.id.ivArrow);
+        etComposeBox = this.findViewById(R.id.etComposeBox);
+        ivSend = this.findViewById(R.id.ivSend);
 
         ivArrow.setImageTintList(ColorStateList.valueOf(color));
         ivSend.setImageTintList(ColorStateList.valueOf(color));
@@ -208,10 +209,14 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             }
 
             @Override
-            public void onPollClick() { composeActionListener.onPollActionClicked(); }
+            public void onPollClick() {
+                composeActionListener.onPollActionClicked();
+            }
 
             @Override
-            public void onStickerClick() { composeActionListener.onStickerClicked(); }
+            public void onStickerClick() {
+                composeActionListener.onStickerClicked();
+            }
 
             @Override
             public void onWhiteBoardClick() {
@@ -227,8 +232,8 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
         etComposeBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (composeActionListener!=null){
-                    composeActionListener.beforeTextChanged(charSequence,i,i1,i2);
+                if (composeActionListener != null) {
+                    composeActionListener.beforeTextChanged(charSequence, i, i1, i2);
                 }
 
             }
@@ -236,14 +241,14 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                if (composeActionListener!=null){
-                    composeActionListener.onTextChanged(charSequence,i,i1,i2);
+                if (composeActionListener != null) {
+                    composeActionListener.onTextChanged(charSequence, i, i1, i2);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (composeActionListener!=null){
+                if (composeActionListener != null) {
                     composeActionListener.afterTextChanged(editable);
                     //ambika added
                     editor.putString(id, editable.toString());
@@ -264,21 +269,21 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
 
 
         if (Utils.isDarkMode(context)) {
-            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackground));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.darkModeBackgroundUikit));
             ivMic.setImageDrawable(getResources().getDrawable(R.drawable.ic_microphone_white_selected));
-            flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            etComposeBox.setTextColor(getResources().getColor(R.color.textColorWhite));
-            ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
-            ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhite)));
+            flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            etComposeBox.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
+            ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.textColorWhiteuikit)));
         } else {
-            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhite));
+            composeBox.setBackgroundColor(getResources().getColor(R.color.textColorWhiteuikit));
             ivMic.setImageDrawable(getResources().getDrawable(R.drawable.ic_microphone_grey_selected));
-            etComposeBox.setTextColor(getResources().getColor(R.color.primaryTextColor));
-            ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
-            flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
-            ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
+            etComposeBox.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            ivSend.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryuikit)));
+            flBox.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.greyUikit)));
+            ivArrow.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.greyUikit)));
         }
-        if (UIKitSettings.getColor()!=null) {
+        if (UIKitSettings.getColor() != null) {
             int settingsColor = Color.parseColor(UIKitSettings.getColor());
             ivSend.setImageTintList(ColorStateList.valueOf(settingsColor));
         }
@@ -355,23 +360,23 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
         });
     }
 
-    public void setText(String text)
-    {
+    public void setText(String text) {
         etComposeBox.setText(text);
     }
-    public void setColor(int color)
-    {
+
+    public void setColor(int color) {
 
         ivSend.setImageTintList(ColorStateList.valueOf(color));
         ivArrow.setImageTintList(ColorStateList.valueOf(color));
     }
-    public void setComposeBoxListener(ComposeActionListener composeActionListener){
-        this.composeActionListener=composeActionListener;
+
+    public void setComposeBoxListener(ComposeActionListener composeActionListener) {
+        this.composeActionListener = composeActionListener;
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==R.id.ivDelete) {
+        if (view.getId() == R.id.ivDelete) {
             stopRecording(true);
             stopPlayingAudio();
             voiceMessageLayout.setVisibility(GONE);
@@ -385,7 +390,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             ivDelete.setVisibility(GONE);
             ivSend.setVisibility(View.GONE);
         }
-        if (view.getId()==R.id.ivSend){
+        if (view.getId() == R.id.ivSend) {
             if (!voiceMessage) {
                 composeActionListener.onSendActionClicked(etComposeBox);
             } else {
@@ -403,44 +408,44 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
                 ivMic.setImageResource(R.drawable.ic_microphone_grey_selected);
             }
             //ambika added
-            editor.putString(id,"");
+            editor.putString(id, "");
             editor.commit();
             //end
         }
-        if(view.getId()==R.id.ivArrow) {
+        if (view.getId() == R.id.ivArrow) {
 //            if (isOpen) {
 //               closeActionContainer();
 //            } else {
 //                openActionContainer();
 //            }
-            FragmentManager fm = ((AppCompatActivity)getContext()).getSupportFragmentManager();
-            bundle.putBoolean("isGalleryVisible",isGalleryVisible);
-            bundle.putBoolean("isCameraVisible",isCameraVisible);
-            bundle.putBoolean("isFileVisible",isFileVisible);
-            bundle.putBoolean("isAudioVisible",isAudioVisible);
-            bundle.putBoolean("isLocationVisible",isLocationVisible);
-            bundle.putBoolean("isGroupCallVisible",isGroupCallVisible);
+            FragmentManager fm = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+            bundle.putBoolean("isGalleryVisible", isGalleryVisible);
+            bundle.putBoolean("isCameraVisible", isCameraVisible);
+            bundle.putBoolean("isFileVisible", isFileVisible);
+            bundle.putBoolean("isAudioVisible", isAudioVisible);
+            bundle.putBoolean("isLocationVisible", isLocationVisible);
+            bundle.putBoolean("isGroupCallVisible", isGroupCallVisible);
             if (CometChat.isExtensionEnabled("document")) {
-                bundle.putBoolean("isWriteBoardVisible",isWriteBoardVisible);
+                bundle.putBoolean("isWriteBoardVisible", isWriteBoardVisible);
             }
 
             if (CometChat.isExtensionEnabled("whiteboard")) {
-                bundle.putBoolean("isWhiteBoardVisible",isWhiteBoardVisible);
+                bundle.putBoolean("isWhiteBoardVisible", isWhiteBoardVisible);
             }
 
             if (CometChat.isExtensionEnabled("stickers")) {
-                bundle.putBoolean("isStickerVisible",isStickerVisible);
+                bundle.putBoolean("isStickerVisible", isStickerVisible);
             }
 
             if (CometChat.isExtensionEnabled("polls")) {
-                bundle.putBoolean("isPollsVisible",isPollVisible);
+                bundle.putBoolean("isPollsVisible", isPollVisible);
             }
 
             composeBoxActionFragment.setArguments(bundle);
-            composeBoxActionFragment.show(fm,composeBoxActionFragment.getTag());
+            composeBoxActionFragment.show(fm, composeBoxActionFragment.getTag());
         }
-        if (view.getId()==R.id.ivMic) {
-            if (Utils.hasPermissions(context, new String[]{Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE})) {
+        if (view.getId() == R.id.ivMic) {
+            if (Utils.hasPermissions(context, new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE})) {
 
                 if (isOpen) {
 //                    closeActionContainer();
@@ -475,7 +480,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
                 }
             } else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    ((Activity)context).requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    ((Activity) context).requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             UIKitConstants.RequestCode.RECORD);
                 }
             }
@@ -483,7 +488,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
     }
 
     public void usedIn(String className) {
-        bundle.putString("type",className);
+        bundle.putString("type", className);
     }
 
 //    public void openActionContainer() {
@@ -523,12 +528,12 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             }
 
             mediaPlayer.reset();
-            if (Utils.hasPermissions(context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE})) {
+            if (Utils.hasPermissions(context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})) {
                 mediaPlayer.setDataSource(path);
                 mediaPlayer.prepare();
                 mediaPlayer.start();
             } else {
-                ((Activity)context).requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                ((Activity) context).requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         UIKitConstants.RequestCode.READ_STORAGE);
             }
 
@@ -566,8 +571,9 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
             });
 
         } catch (Exception e) {
-            Log.e( "playAudioError: ","Error:"+e.getMessage());
-            stopPlayingAudio();;
+            Log.e("playAudioError: ", "Error:" + e.getMessage());
+            stopPlayingAudio();
+            ;
         }
     }
 
@@ -575,6 +581,7 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
         if (mediaPlayer != null)
             mediaPlayer.stop();
     }
+
     private void startRecording() {
         try {
             mediaRecorder = new MediaRecorder();
@@ -596,12 +603,13 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
                     try {
                         currentMaxAmp = mediaRecorder != null ? mediaRecorder.getMaxAmplitude() : 0;
                         audioRecordView.update(currentMaxAmp);
-                        if (mediaRecorder==null)
+                        if (mediaRecorder == null)
                             timer = null;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }}, 0, 100);
+                }
+            }, 0, 100);
             mediaRecorder.start();
 
         } catch (Exception e) {
@@ -624,15 +632,25 @@ public class CometChatComposeBox extends RelativeLayout implements View.OnClickL
         }
     }
 
-    public void setAudioButtonVisible(boolean result) { isAudioVisible = result; }
+    public void setAudioButtonVisible(boolean result) {
+        isAudioVisible = result;
+    }
 
-    public void setGalleryButtonVisible(boolean result) { isGalleryVisible = result; }
+    public void setGalleryButtonVisible(boolean result) {
+        isGalleryVisible = result;
+    }
 
-    public void setCameraButtonVisible(boolean result) { isCameraVisible = result; }
+    public void setCameraButtonVisible(boolean result) {
+        isCameraVisible = result;
+    }
 
-    public void setFileButtonVisible(boolean result) { isFileVisible = result; }
+    public void setFileButtonVisible(boolean result) {
+        isFileVisible = result;
+    }
 
-    public void setLocationButtonVisible(boolean result) { isLocationVisible = result; }
+    public void setLocationButtonVisible(boolean result) {
+        isLocationVisible = result;
+    }
 
     public void hideGroupCallOption(boolean b) {
         isGroupCallVisible = !b;

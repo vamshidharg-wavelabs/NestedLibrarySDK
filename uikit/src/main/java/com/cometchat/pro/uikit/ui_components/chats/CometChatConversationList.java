@@ -235,7 +235,7 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
                             underlayButtons.add(new RecyclerViewSwipeListener.UnderlayButton(
                                     "Delete",
                                     deleteBitmap,
-                                    getResources().getColor(R.color.red),
+                                    getResources().getColor(R.color.redUikit),
                                     new RecyclerViewSwipeListener.UnderlayButtonClickListener() {
                                         @Override
                                         public void onClick(final int pos) {
@@ -366,9 +366,9 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
     }
     private void checkDarkMode() {
         if(Utils.isDarkMode(getContext())) {
-            tvTitle.setTextColor(getResources().getColor(R.color.textColorWhite));
+            tvTitle.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
-            tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            tvTitle.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
     }
 
@@ -587,6 +587,11 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
+        try {
+            Thread.sleep(500);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         conversationsRequest = null;
         searchEdit.addTextChangedListener(this);
         rvConversationList.clearList();

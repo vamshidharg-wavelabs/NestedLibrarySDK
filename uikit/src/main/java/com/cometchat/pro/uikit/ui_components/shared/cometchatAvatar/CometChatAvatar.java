@@ -106,10 +106,10 @@ public class CometChatAvatar extends MaterialCardView {
         drawable = a.getDrawable(R.styleable.Avatar_image);
         radius = a.getDimension(R.styleable.Avatar_corner_radius,16);
         backgroundColor = a.getColor(R.styleable.Avatar_background_color,
-                getResources().getColor(R.color.colorPrimary));
+                getResources().getColor(R.color.colorPrimaryuikit));
         avatarUrl = a.getString(R.styleable.Avatar_avatar);
 //            borderRadius = a.getInteger(R.styleable.Avatar_cornerRadius,8);
-        borderColor = a.getColor(R.styleable.Avatar_border_color,getResources().getColor(R.color.colorPrimary));
+        borderColor = a.getColor(R.styleable.Avatar_border_color,getResources().getColor(R.color.colorPrimaryuikit));
         //          backgroundColor = a.getColor(R.styleable.Avatar_backgroundColor,getResources().getColor(R.color.colorPrimary));
         borderWidth = a.getDimension(R.styleable.Avatar_border_width,1f);
 

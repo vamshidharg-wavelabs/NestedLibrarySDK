@@ -92,9 +92,9 @@ public class BlockedListAdapter extends RecyclerView.Adapter<BlockedListAdapter.
         }
 
         if(Utils.isDarkMode(context))
-            blockedViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhite));
+            blockedViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.textColorWhiteuikit));
         else
-            blockedViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColor));
+            blockedViewHolder.userListRowBinding.txtUserName.setTextColor(context.getResources().getColor(R.color.primaryTextColoruikit));
     }
 
     @Override

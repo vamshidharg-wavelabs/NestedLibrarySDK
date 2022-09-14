@@ -59,11 +59,11 @@ public class CometChatMorePrivacyActivity extends AppCompatActivity {
             Utils.changeToolbarFont(toolbar).setTypeface(FontUtils.getInstance(this).getTypeFace(FontUtils.robotoMedium));
         }
         if(Utils.isDarkMode(this)) {
-            divider.setBackgroundColor(getResources().getColor(R.color.grey));
-            blockUserTv.setTextColor(getResources().getColor(R.color.textColorWhite));
+            divider.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            blockUserTv.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
-            divider.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            blockUserTv.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            divider.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            blockUserTv.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
         getBlockCount();
     }

@@ -117,7 +117,7 @@ public class CometChatAddMembers extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                searchUser(etSearch.getText().toString());
             }
         });
 
@@ -208,9 +208,9 @@ public class CometChatAddMembers extends Fragment {
 
     private void checkDarkMode() {
         if(Utils.isDarkMode(getContext())) {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorWhite));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
-            toolbar.setTitleTextColor(getResources().getColor(R.color.primaryTextColor));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
     }
 

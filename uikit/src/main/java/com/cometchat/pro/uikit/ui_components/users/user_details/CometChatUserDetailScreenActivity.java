@@ -115,6 +115,8 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
 
     private List<BaseMessage> callList = new ArrayList<>();
 
+    private View progressbarBG;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +139,8 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
         divider1 = findViewById(R.id.divider_1);
         divider2 = findViewById(R.id.divider_2);
         divider3 = findViewById(R.id.divider_3);
+
+        //progressbarBG = findViewById(R.id.bg_progressbar);
 
         CometChatError.init(this);
         viewProfile = findViewById(R.id.tv_view_profile);
@@ -259,17 +263,26 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
         });
     }
 
+    private void setLoaderVisibility(boolean bool){
+        if (bool) {
+            progressbarBG.setVisibility(View.VISIBLE);
+        } else {
+            progressbarBG.setVisibility(View.GONE);
+        }
+        progressbarBG.setOnClickListener(null);
+    }
+
     private void checkDarkMode() {
         if (Utils.isDarkMode(this)) {
-            userName.setTextColor(getResources().getColor(R.color.textColorWhite));
-            divider1.setBackgroundColor(getResources().getColor(R.color.grey));
-            divider2.setBackgroundColor(getResources().getColor(R.color.grey));
-            divider3.setBackgroundColor(getResources().getColor(R.color.grey));
+            userName.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
+            divider1.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            divider2.setBackgroundColor(getResources().getColor(R.color.greyUikit));
+            divider3.setBackgroundColor(getResources().getColor(R.color.greyUikit));
         } else {
-            userName.setTextColor(getResources().getColor(R.color.primaryTextColor));
-            divider1.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            divider2.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            divider3.setBackgroundColor(getResources().getColor(R.color.light_grey));
+            userName.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
+            divider1.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            divider2.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
+            divider3.setBackgroundColor(getResources().getColor(R.color.light_greyuikit));
         }
     }
 
@@ -313,7 +326,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
             String status = getIntent().getStringExtra(UIKitConstants.IntentStrings.STATUS);
 
             if (status != null && status.equals(CometChatConstants.USER_STATUS_ONLINE))
-                userStatus.setTextColor(getResources().getColor(R.color.colorPrimary));
+                userStatus.setTextColor(getResources().getColor(R.color.colorPrimaryuikit));
 
             userStatus.setText(status);
         }
@@ -379,11 +392,11 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
 
     private void setBlockUnblock() {
         if (isBlocked) {
-            tvBlockUser.setTextColor(getResources().getColor(R.color.online_green));
+            tvBlockUser.setTextColor(getResources().getColor(android.R.color.holo_orange_dark));
             tvBlockUser.setText(getResources().getString(R.string.unblock_user));
         } else{
             tvBlockUser.setText(getResources().getString(R.string.block_user));
-            tvBlockUser.setTextColor(getResources().getColor(R.color.red));
+            tvBlockUser.setTextColor(getResources().getColor(R.color.redUikit));
         }
     }
 
@@ -392,6 +405,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
                 String.format(getResources().getString(R.string.user_added_to_group),
                         userName.getText().toString(), groupName));
         List<GroupMember> userList = new ArrayList<>();
+        setLoaderVisibility(true);
         userList.add(new GroupMember(uid, CometChatConstants.SCOPE_PARTICIPANT));
         CometChat.addMembersToGroup(guid, userList, null, new CometChat.CallbackListener<HashMap<String, String>>() {
             @Override

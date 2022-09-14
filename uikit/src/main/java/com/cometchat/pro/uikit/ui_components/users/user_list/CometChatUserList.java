@@ -145,9 +145,9 @@ public class CometChatUserList extends Fragment {
         shimmerFrameLayout=view.findViewById(R.id.shimmer_layout);
 
         if(Utils.isDarkMode(getContext())) {
-            title.setTextColor(getResources().getColor(R.color.textColorWhite));
+            title.setTextColor(getResources().getColor(R.color.textColorWhiteuikit));
         } else {
-            title.setTextColor(getResources().getColor(R.color.primaryTextColor));
+            title.setTextColor(getResources().getColor(R.color.primaryTextColoruikit));
         }
 
         FeatureRestriction.isUserSearchEnabled(new FeatureRestriction.OnSuccessListener() {

@@ -26,6 +26,7 @@ import com.cometchat.pro.uikit.R;
 import java.util.List;
 import java.util.Locale;
 
+import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.cometchat.pro.uikit.ui_resources.constants.UIKitConstants;
 import com.cometchat.pro.uikit.ui_components.messages.message_actions.listener.MessageActionCloseListener;
 import com.cometchat.pro.uikit.ui_components.messages.message_actions.listener.OnMessageLongClick;
@@ -120,6 +121,12 @@ public class CometChatMessageListActivity extends AppCompatActivity implements M
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        if(isTaskRoot()){
+            startActivity(new Intent(CometChatMessageListActivity.this, CometChatUI.class));
+            finish();
+        }else{
+            super.onBackPressed();
+        }
     }
 
     @Override

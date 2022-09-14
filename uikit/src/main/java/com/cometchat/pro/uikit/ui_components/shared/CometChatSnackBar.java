@@ -38,31 +38,31 @@ public class CometChatSnackBar {
         ImageView iconImage = dialogView.findViewById(R.id.iv_icon);
         if (type.equalsIgnoreCase(ERROR)) {
             iconImage.setImageResource(R.drawable.ic_error);
-            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            dialogView.setBackgroundColor(context.getResources().getColor(R.color.red));
+            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            dialogView.setBackgroundColor(context.getResources().getColor(R.color.redUikit));
         } else if (type.equalsIgnoreCase(INFO)) {
             snackbar.setDuration(Snackbar.LENGTH_LONG);
             iconImage.setImageResource(R.drawable.ic_info);
-            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            dialogView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            dialogView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryuikit));
         } else if (type.equalsIgnoreCase(WARNING)) {
             snackbar.setDuration(Snackbar.LENGTH_LONG);
             iconImage.setImageResource(R.drawable.ic_report);
-            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            dialogView.setBackgroundColor(context.getResources().getColor(R.color.orange));
+            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            dialogView.setBackgroundColor(context.getResources().getColor(android.R.color.holo_orange_dark));
         } else {
             snackbar.setDuration(Snackbar.LENGTH_LONG);
             iconImage.setImageResource(R.drawable.ic_baseline_check_circle_24);
-            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
-            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
+            iconImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
+            closeImage.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
             dialogView.setBackgroundColor(context.getResources().getColor(R.color.green_600));
-            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhite)));
+            messageTv.setTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
         }
         closeImage.setOnClickListener(v-> {
             snackbar.dismiss();

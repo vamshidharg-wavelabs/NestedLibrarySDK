@@ -185,6 +185,44 @@ public class MediaUtils {
         return intent;
     }
 
+    public static Intent openGallery(Activity a, String type) {
+
+        activity = a;
+        List<Intent> allIntents = new ArrayList();
+        PackageManager packageManager = activity.getPackageManager();
+        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("video/*");
+//        galleryIntent.setType("image/* video/*");
+        //ambika added
+        galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        //end
+        galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"image/*", "video/*"});
+        List<ResolveInfo> listGallery = packageManager.queryIntentActivities(galleryIntent, 0);
+        for (ResolveInfo res : listGallery) {
+            Intent intent = new Intent(galleryIntent);
+            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
+            intent.setPackage(res.activityInfo.packageName);
+            allIntents.add(intent);
+        }
+        Intent mainIntent = allIntents.get(allIntents.size() - 1);
+        for (Intent intent : allIntents) {
+            if (intent.getComponent().getClassName().equals("com.android.documentsui.DocumentsActivity")) {
+                mainIntent = intent;
+                break;
+            }
+        }
+        allIntents.remove(mainIntent);
+
+        // Create a chooser from the main intent
+        Intent chooserIntent = Intent.createChooser(mainIntent, "Select source");
+
+        // Add all other intents
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, allIntents.toArray(new Parcelable[allIntents.size()]));
+
+        return chooserIntent;
+    }
+
+
     public static Intent openGallery(Activity a) {
 
         activity = a;
@@ -320,8 +358,8 @@ public class MediaUtils {
     }
 
     public static File makeEmptyFileWithTitle(Context context, String title) {
-       //Todo: String dir;
-        String dir="newDir";
+        //Todo: String dir;
+        String dir = "newDir";
 //        if (Build.VERSION_CODES.R > Build.VERSION.SDK_INT) {
 //            dir = Environment.getExternalStorageDirectory() + "/" + context.getResources().getString(R.string.app_name) + "/"
 //                    + "shared/";
@@ -343,6 +381,15 @@ public class MediaUtils {
         String realPath;
         if (isGoogleDrive(fileUri) || isThirdParty) {
             return downloadFile(context, fileUri);
+        } else if (
+                !isExternalStorageDocument(fileUri) &&
+                        !isGoogleDrive(fileUri) &&
+                        !isDownloadsDocument(fileUri) &&
+                        !isMediaDocument(fileUri) &&
+                        !isGooglePhotosUri(fileUri) &&
+                        isThirdPartyAppMedia(fileUri)
+        ) {
+            return getThirdPartyAppMedia(context, fileUri);
         }
         // SDK > 19 (Android 4.4) and up
         else if (Build.VERSION.SDK_INT < 28) {
@@ -353,6 +400,23 @@ public class MediaUtils {
 
         return new File(realPath);
     }
+
+    public static boolean isThirdPartyAppMedia(Uri uri) {
+        return !uri.getAuthority().equals("media");//media for within chat-app; third-party app have their own (ex- com.whatsapp.provider.media)
+    }
+
+    public static File getThirdPartyAppMedia(Context context, Uri uri) {
+        // path could not be retrieved using ContentResolver, therefore copy file to accessible cache using streams
+        String fileName = getFileName(context, uri);
+        File cacheDir = getDocumentCacheDir(context);
+        File file = generateFileName(fileName, cacheDir);
+        if (file != null) {
+            String destinationPath = file.getAbsolutePath();
+            saveFileFromUri(context, uri, destinationPath);
+        }
+        return file;
+    }
+
 
     public static File downloadFile(Context context, Uri imageUri) {
 //        Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);

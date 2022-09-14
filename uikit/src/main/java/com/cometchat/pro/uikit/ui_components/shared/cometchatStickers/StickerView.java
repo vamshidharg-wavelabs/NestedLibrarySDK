@@ -107,8 +107,8 @@ public class StickerView extends RelativeLayout implements StickerClickListener 
                 tabLayout.setSelectedTabIndicatorColor(Color.parseColor(UIKitSettings.getColor()));
             } else {
                 tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).
-                        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
+                        view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
+                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryuikit));
             }
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
@@ -120,7 +120,7 @@ public class StickerView extends RelativeLayout implements StickerClickListener 
                         tab.view.setBackground(wrappedDrawable);
                     }
                     else
-                        tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        tab.view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryuikit));
                 }
 
                 @Override

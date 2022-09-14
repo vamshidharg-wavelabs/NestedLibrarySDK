@@ -15,15 +15,16 @@ public class UIKitConstants {
 
         public static String APP_ID = "";
     }
+
     public static class IntentStrings {
 
         public static final String IMAGE_TYPE = "image/*";
 
-        public static final String UID="uid";
+        public static final String UID = "uid";
 
-        public static final String AVATAR="avatar";
+        public static final String AVATAR = "avatar";
 
-        public static final String STATUS="status";
+        public static final String STATUS = "status";
 
         public static final String NAME = "name";
 
@@ -33,7 +34,7 @@ public class UIKitConstants {
 
         public static final String tabBar = "tabBar";
 
-        public static final String[] EXTRA_MIME_DOC=new String[]{"text/plane","text/html","application/pdf","application/msword","application/vnd.ms.excel", "application/mspowerpoint","application/docs","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","application/zip"};
+        public static final String[] EXTRA_MIME_DOC = new String[]{"text/plane", "text/html", "application/pdf", "application/msword", "application/vnd.ms.excel", "application/mspowerpoint", "application/docs", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/zip"};
 
         public static final String MEMBER_COUNT = "member_count";
 
@@ -47,7 +48,7 @@ public class UIKitConstants {
 
         public static final String ID = "id";
 
-        public static final String IS_ADD_MEMBER ="is_add_member" ;
+        public static final String IS_ADD_MEMBER = "is_add_member";
 
         public static final String IS_BLOCKED_BY_ME = "is_blocked_by_me";
 
@@ -55,13 +56,13 @@ public class UIKitConstants {
 
         public static final String INCOMING = "incoming";
 
-        public static final String FROM_CALL_LIST = "from_call_list" ;
+        public static final String FROM_CALL_LIST = "from_call_list";
 
         public static final String JOIN_ONGOING = "join_ongoing_call";
 
-        public static final String MESSAGE_TYPE_IMAGE_NAME = "file_name" ;
+        public static final String MESSAGE_TYPE_IMAGE_NAME = "file_name";
 
-        public static final String MESSAGE_TYPE_IMAGE_URL = "file_url" ;
+        public static final String MESSAGE_TYPE_IMAGE_URL = "file_url";
 
         public static final String MESSAGE_TYPE_IMAGE_MIME_TYPE = "file_mime";
 
@@ -75,15 +76,15 @@ public class UIKitConstants {
 
         public static final String GROUP_DESC = "group_description";
 
-        public static final String GROUP_PASSWORD = "group_password" ;
+        public static final String GROUP_PASSWORD = "group_password";
 
-        public static final String GROUP_TYPE = "group_type" ;
+        public static final String GROUP_TYPE = "group_type";
 
         public static final String TEXTMESSAGE = "text_message";
 
         public static final String SENTAT = "sent_at";
 
-        public static final String MESSAGE_TYPE = "message_type" ;
+        public static final String MESSAGE_TYPE = "message_type";
 
         public static final String PARENT_ID = "parent_id";
 
@@ -91,20 +92,20 @@ public class UIKitConstants {
 
         public static final String CONVERSATION_NAME = "conversation_name";
 
-        public static final String INTENT_MEDIA_MESSAGE = "intent_media_message" ;
+        public static final String INTENT_MEDIA_MESSAGE = "intent_media_message";
         //ambika added
-        public static final List<File> INTENT_MEDIA_ARRAY_FILES =new ArrayList<File>();
+        public static final List<File> INTENT_MEDIA_ARRAY_FILES = new ArrayList<File>();
         //end
 
-        public static final String IMAGE_MODERATION = "image_moderation" ;
+        public static final String IMAGE_MODERATION = "image_moderation";
 
-        public static final String CUSTOM_MESSAGE = "custom_message" ;
+        public static final String CUSTOM_MESSAGE = "custom_message";
 
-        public static final String LOCATION = "location" ;
+        public static final String LOCATION = "location";
 
         public static final String LOCATION_LATITUDE = "latitude";
 
-        public static final String LOCATION_LONGITUDE = "longitude" ;
+        public static final String LOCATION_LONGITUDE = "longitude";
 
         public static final String MESSAGE_CATEGORY = "message_category";
 
@@ -126,7 +127,7 @@ public class UIKitConstants {
 
         public static final String WRITEBOARD = "extension_document";
 
-        public static final String GROUP_CALL = "meeting" ;
+        public static final String GROUP_CALL = "meeting";
 
         public static final String GROUP_CALL_TYPE = "group_call_type";
 
@@ -156,7 +157,7 @@ public class UIKitConstants {
 
         public static String POLL_ID = "poll_id";
 
-        public static final String MEDIA_SIZE = "media_size" ;
+        public static final String MEDIA_SIZE = "media_size";
     }
 
     public static class Tab {
@@ -166,9 +167,11 @@ public class UIKitConstants {
 
         public static final String Group = "groups";
     }
-    public static class RequestCode{
 
-        public static final int GALLERY=1;
+    public static class RequestCode {
+
+        public static final int GALLERY = 1;
+        public static final int VIDEO = 444;
 
         public static final int CAMERA = 2;
 
@@ -186,11 +189,12 @@ public class UIKitConstants {
 
         public static final int LOCATION = 14;
     }
-    public static class MapUrl{
+
+    public static class MapUrl {
 
         public static final String MAPS_URL = "https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=380x220&markers=color:red|";
 
-        public static String MAP_ACCESS_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+        public static String MAP_ACCESS_KEY = "AIzaSyB86jLls5nE4S09IGjH-T2PEGHyEClTf6M";
     }
 
 
@@ -209,7 +213,7 @@ public class UIKitConstants {
                 UIKitConstants.IntentStrings.STICKERS,
                 UIKitConstants.IntentStrings.WHITEBOARD,
                 UIKitConstants.IntentStrings.WRITEBOARD
-        )) ;
+        ));
         public static List<String> messageTypesForGroup = new ArrayList<>(Arrays.asList(
                 CometChatConstants.MESSAGE_TYPE_CUSTOM,
                 CometChatConstants.MESSAGE_TYPE_AUDIO,
