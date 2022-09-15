@@ -388,9 +388,39 @@ public class CometChatConversationsAdapter extends RecyclerView.Adapter<CometCha
         }
         notifyDataSetChanged();*/
         // Delli Added
+//        if (filterConversationList.contains(conversation)) {
+//            Conversation oldConversation = filterConversationList.get(filterConversationList.indexOf(conversation));
+//            filterConversationList.remove(oldConversation);
+//            JSONObject metadata = conversation.getLastMessage().getMetadata();
+//            boolean incrementUnreadCount = false;
+//            boolean isCategoryMessage = conversation.getLastMessage().getCategory()
+//                    .equalsIgnoreCase(CometChatConstants.CATEGORY_MESSAGE);
+//            try {
+//                if (metadata.has("incrementUnreadCount"))
+//                    incrementUnreadCount = metadata.getBoolean("incrementUnreadCount");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//            if (!conversation.getLastMessage().getSender().getUid().equalsIgnoreCase(CometChat.getLoggedInUser().getUid())) {
+//                if (incrementUnreadCount || isCategoryMessage) {
+//                    if ((oldConversation.getLastMessage().getId() != conversation.getLastMessage().getId())) {
+//                        conversation.setUnreadMessageCount(oldConversation.getUnreadMessageCount() + 1);
+//                    } else {
+//                        conversation.setUnreadMessageCount(oldConversation.getUnreadMessageCount());
+//                    }
+//                }
+//            }
+//            filterConversationList.add(0, conversation);
+//        } else {
+//            filterConversationList.add(0, conversation);
+//        }
+//        notifyDataSetChanged();
+
+        //Delli Code started
+
         if (filterConversationList.contains(conversation)) {
             Conversation oldConversation = filterConversationList.get(filterConversationList.indexOf(conversation));
-            filterConversationList.remove(oldConversation);
             JSONObject metadata = conversation.getLastMessage().getMetadata();
             boolean incrementUnreadCount = false;
             boolean isCategoryMessage = conversation.getLastMessage().getCategory()
@@ -405,21 +435,24 @@ public class CometChatConversationsAdapter extends RecyclerView.Adapter<CometCha
             if (!conversation.getLastMessage().getSender().getUid().equalsIgnoreCase(CometChat.getLoggedInUser().getUid())) {
                 if (incrementUnreadCount || isCategoryMessage) {
                     if ((oldConversation.getLastMessage().getId() != conversation.getLastMessage().getId())) {
+                        if (conversation.getLastMessage().getEditedAt() != 0 || conversation.getLastMessage().getDeletedAt() != 0) {
+                            return;
+                        }
                         conversation.setUnreadMessageCount(oldConversation.getUnreadMessageCount() + 1);
                     } else {
                         conversation.setUnreadMessageCount(oldConversation.getUnreadMessageCount());
                     }
+                    filterConversationList.remove(oldConversation);
+                    filterConversationList.add(0, conversation);
+                    notifyDataSetChanged();
                 }
             }
-            filterConversationList.add(0, conversation);
         } else {
+            conversation.setUnreadMessageCount(1);
             filterConversationList.add(0, conversation);
+            notifyDataSetChanged();
         }
-        notifyDataSetChanged();
-
-        //Delli Code Ended
-
-
+        // Delli Code ended
     }
 
     /**
