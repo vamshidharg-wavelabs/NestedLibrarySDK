@@ -493,6 +493,16 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case LEFT_TEXT_MESSAGE:
             case LEFT_REPLY_TEXT_MESSAGE:
                 ((TextMessageViewHolder) viewHolder).ivUser.setVisibility(View.GONE);
+                // Delli Added
+                if (baseMessage.getUpdatedAt() == 1234) {
+                    ((TextMessageViewHolder) viewHolder).ll_unread.setVisibility(View.VISIBLE);
+                    ((TextMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.VISIBLE);
+                    ((TextMessageViewHolder) viewHolder).tv_un_read_msg.setText("Unread Messages");
+                } else {
+                    ((TextMessageViewHolder) viewHolder).tv_un_read_msg.setText("");
+                    ((TextMessageViewHolder) viewHolder).ll_unread.setVisibility(View.GONE);
+                    ((TextMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.GONE);
+                }
             case RIGHT_TEXT_MESSAGE:
             case RIGHT_REPLY_TEXT_MESSAGE:
                 setTextData((TextMessageViewHolder) viewHolder, i);
@@ -521,6 +531,17 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 break;
             case LEFT_FILE_MESSAGE:
                 ((FileMessageViewHolder) viewHolder).ivUser.setVisibility(View.GONE);
+                // Delli Added
+                if (baseMessage.getUpdatedAt() == 1234) {
+                    ((FileMessageViewHolder) viewHolder).ll_unread.setVisibility(View.VISIBLE);
+                    ((FileMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.VISIBLE);
+                    ((FileMessageViewHolder) viewHolder).tv_un_read_msg.setText("Unread Messages");
+                } else {
+                    ((FileMessageViewHolder) viewHolder).tv_un_read_msg.setText("");
+                    ((FileMessageViewHolder) viewHolder).ll_unread.setVisibility(View.GONE);
+                    ((FileMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.GONE);
+                }
+                // Delli Code Ended
             case RIGHT_FILE_MESSAGE:
                 setFileData((FileMessageViewHolder) viewHolder, i);
                 break;
@@ -738,6 +759,19 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void setGroupCallMessageData(GroupCallMessageViewHolder viewHolder, int i) {
         BaseMessage baseMessage = messageList.get(i);
+
+        // Delli Added
+        if (baseMessage.getUpdatedAt() == 1234) {
+            viewHolder.ll_unread.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setText("Unread Messages");
+        } else {
+            viewHolder.tv_un_read_msg.setText("");
+            viewHolder.ll_unread.setVisibility(View.GONE);
+            viewHolder.tv_un_read_msg.setVisibility(View.GONE);
+        }
+//Dello Code Ended
+
         if (baseMessage != null) {
             if (!baseMessage.getSender().getUid().equals(loggedInUser.getUid())) {
                 if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
@@ -1062,6 +1096,19 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      */
     private void setLocationData(LocationMessageViewHolder viewHolder, int i) {
         BaseMessage baseMessage = messageList.get(i);
+
+        // Delli Added
+        if (baseMessage.getUpdatedAt() == 1234) {
+            viewHolder.ll_unread.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setText("Unread Messages");
+        } else {
+            viewHolder.tv_un_read_msg.setText("");
+            viewHolder.ll_unread.setVisibility(View.GONE);
+            viewHolder.tv_un_read_msg.setVisibility(View.GONE);
+        }
+        // Delli Code Ended
+
         if (!baseMessage.getSender().getUid().equals(loggedInUser.getUid())) {
             if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
                 viewHolder.tvUser.setVisibility(View.GONE);
@@ -1203,6 +1250,19 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      */
     private void setAudioData(AudioMessageViewHolder viewHolder, int i) {
         BaseMessage baseMessage = messageList.get(i);
+
+        // Delli Added
+        if (baseMessage.getUpdatedAt() == 1234) {
+            viewHolder.ll_unread.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setText("Unread Messages");
+        } else {
+            viewHolder.tv_un_read_msg.setText("");
+            viewHolder.ll_unread.setVisibility(View.GONE);
+            viewHolder.tv_un_read_msg.setVisibility(View.GONE);
+        }
+        // Delli Code Ended
+
         if (baseMessage != null && baseMessage.getDeletedAt() == 0) {
             if (!baseMessage.getSender().getUid().equals(loggedInUser.getUid())) {
                 viewHolder.playBtn.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.textColorWhiteuikit)));
@@ -1436,6 +1496,38 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
         BaseMessage baseMessage = messageList.get(i);
+
+        // Delli Added
+        if (baseMessage.getUpdatedAt() == 1234) {
+            viewHolder.ll_unread.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setText("Unread Messages");
+        } else {
+            viewHolder.tv_un_read_msg.setText("");
+            viewHolder.ll_unread.setVisibility(View.GONE);
+            viewHolder.tv_un_read_msg.setVisibility(View.GONE);
+        }
+ /*       if (baseMessage.getReadAt() == 0) {
+            if (TextUtils.isEmpty(strUnreadIndex)) {
+                viewHolder.ll_unread.setVisibility(View.VISIBLE);
+                viewHolder.tv_un_read_msg.setVisibility(View.VISIBLE);
+                viewHolder.tv_un_read_msg.setText("Unread Messages");
+                strUnreadIndex = "X";
+            } else {
+                viewHolder.tv_un_read_msg.setText("");
+                viewHolder.ll_unread.setVisibility(View.GONE);
+                viewHolder.tv_un_read_msg.setVisibility(View.GONE);
+            }
+
+
+        } else {
+            strUnreadIndex = "";
+            viewHolder.tv_un_read_msg.setText("");
+            viewHolder.ll_unread.setVisibility(View.GONE);
+            viewHolder.tv_un_read_msg.setVisibility(View.GONE);
+        }*/
+        // Delli Code Ended
+
         if (!baseMessage.getSender().getUid().equals(loggedInUser.getUid())) {
             if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
                 viewHolder.tvUser.setVisibility(View.GONE);
@@ -1624,6 +1716,18 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
         BaseMessage baseMessage = messageList.get(i);
+
+        // Delli Added
+        if (baseMessage.getUpdatedAt() == 1234) {
+            viewHolder.ll_unread.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setText("Unread Messages");
+        } else {
+            viewHolder.tv_un_read_msg.setText("");
+            viewHolder.ll_unread.setVisibility(View.GONE);
+            viewHolder.tv_un_read_msg.setVisibility(View.GONE);
+        }
+
         if (!baseMessage.getSender().getUid().equals(loggedInUser.getUid())) {
             if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
                 viewHolder.tvUser.setVisibility(View.GONE);
@@ -1714,6 +1818,19 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
         BaseMessage baseMessage = messageList.get(i);
+
+        //Delli added
+        if (baseMessage.getUpdatedAt() == 1234) {
+            viewHolder.ll_unread.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setVisibility(View.VISIBLE);
+            viewHolder.tv_un_read_msg.setText("Unread Messages");
+        } else {
+            viewHolder.tv_un_read_msg.setText("");
+            viewHolder.ll_unread.setVisibility(View.GONE);
+            viewHolder.tv_un_read_msg.setVisibility(View.GONE);
+        }
+        //Delli end
+
         if (!baseMessage.getSender().getUid().equals(loggedInUser.getUid())) {
             if (baseMessage.getReceiverType().equals(CometChatConstants.RECEIVER_TYPE_USER)) {
                 viewHolder.tvUser.setVisibility(View.GONE);
@@ -2811,6 +2928,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if (baseMessage.getReadAt() == 0) {
                 int index = messageList.indexOf(baseMessage);
                 messageList.get(index).setReadAt(messageReceipt.getReadAt());
+                //Delli Added
+                messageList.get(index).setUpdatedAt(2345);
+                //Delli Code Added
             }
         }
 
@@ -2914,6 +3034,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private RelativeLayout sensitiveLayout;
         private ChipGroup reactionLayout;
 
+        // Delli Added
+        private TextView tv_un_read_msg;
+        private LinearLayout ll_unread;
+        // Delli Ended
+
         public ImageMessageViewHolder(@NonNull View view) {
             super(view);
             int type = (int) view.getTag();
@@ -2928,6 +3053,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             sensitiveLayout = view.findViewById(R.id.sensitive_layout);
             reactionLayout = view.findViewById(R.id.reactions_layout);
             progressBar = view.findViewById(R.id.progress_bar);
+            // Delli Added
+            tv_un_read_msg = itemView.findViewById(R.id.tv_un_read_msg);
+            ll_unread = itemView.findViewById(R.id.ll_unread);
+            // Delli Code Ended
         }
     }
 
@@ -2954,6 +3083,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private TextView tvThreadReplyCount;
         private ChipGroup reactionLayout;
 
+        // Delli Added
+        private TextView tv_un_read_msg;
+        private LinearLayout ll_unread;
+        // Delli Ended
+
         public VideoMessageViewHolder(@NonNull View view) {
             super(view);
             int type = (int) view.getTag();
@@ -2967,6 +3101,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             rlMessageBubble = view.findViewById(R.id.rl_message);
             tvThreadReplyCount = view.findViewById(R.id.thread_reply_count);
             reactionLayout = view.findViewById(R.id.reactions_layout);
+            // Delli Added
+            tv_un_read_msg = itemView.findViewById(R.id.tv_un_read_msg);
+            ll_unread = itemView.findViewById(R.id.ll_unread);
+            // Delli Code Ended
         }
     }
 
@@ -2985,6 +3123,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private ChipGroup reactionLayout;
         private ProgressBar progressBar;
 
+        // Delli Added
+        private TextView tv_un_read_msg;
+        private LinearLayout ll_unread;
+        // Delli Ended
+
         FileMessageViewHolder(@NonNull View itemView) {
             super(itemView);
             fileSize = itemView.findViewById(R.id.tvFileSize);
@@ -2998,6 +3141,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             tvThreadReplyCount = itemView.findViewById(R.id.thread_reply_count);
             reactionLayout = itemView.findViewById(R.id.reactions_layout);
             progressBar = itemView.findViewById(R.id.progress_bar);
+            // Delli Added
+            tv_un_read_msg = itemView.findViewById(R.id.tv_un_read_msg);
+            ll_unread = itemView.findViewById(R.id.ll_unread);
+            // Delli Code Ended
             this.view = itemView;
         }
     }
@@ -3059,6 +3206,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         private ProgressBar progressBar;        //ProgressBar to show message status;
 
+        // Delli Added
+        private TextView tv_un_read_msg;
+        private LinearLayout ll_unread;
+        // Delli Ended
+
         TextMessageViewHolder(@NonNull View view) {
             super(view);
 
@@ -3078,6 +3230,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             viewSentimentMessage = view.findViewById(R.id.view_sentiment);
             reactionLayout = view.findViewById(R.id.reactions_layout);
             progressBar = view.findViewById(R.id.progress_bar);
+            // Delli Added
+            tv_un_read_msg = view.findViewById(R.id.tv_un_read_msg);
+            ll_unread = view.findViewById(R.id.ll_unread);
+            // Delli Code Ended
             this.view = view;
 
         }
@@ -3122,6 +3278,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public int type;
         public View view;
 
+        // Delli Added
+        private TextView tv_un_read_msg;
+        private LinearLayout ll_unread;
+
+        // Delli Ended
+
         public StickerMessageViewHolder(View itemView) {
             super(itemView);
 
@@ -3133,6 +3295,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             tvThreadReplyCount = itemView.findViewById(R.id.thread_reply_count);
             txtTime = itemView.findViewById(R.id.txt_time);
             reactionLayout = itemView.findViewById(R.id.reactions_layout);
+            // Delli Added
+            tv_un_read_msg = itemView.findViewById(R.id.tv_un_read_msg);
+            ll_unread = itemView.findViewById(R.id.ll_unread);
+            // Delli Code Ended
             this.view = itemView;
 
         }
@@ -3155,6 +3321,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public TextView tvUser;
         public CometChatAvatar ivUser;
 
+        // Delli Added
+        private TextView tv_un_read_msg;
+        private LinearLayout ll_unread;
+        // Delli Ended
+
         private ChipGroup reactionLayout;
 
         public LocationMessageViewHolder(View itemView) {
@@ -3173,6 +3344,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             senderTxt = itemView.findViewById(R.id.sender_location_txt);
             navigateBtn = itemView.findViewById(R.id.navigate_btn);
             reactionLayout = itemView.findViewById(R.id.reactions_layout);
+            // Delli Added
+            tv_un_read_msg = itemView.findViewById(R.id.tv_un_read_msg);
+            ll_unread = itemView.findViewById(R.id.ll_unread);
+            // Delli Edned
             this.view = itemView;
         }
     }
@@ -3232,6 +3407,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private TextView groupCallMessage;
         private MaterialButton joinBtn;
 
+        // Delli Added
+        private TextView tv_un_read_msg;
+        private LinearLayout ll_unread;
+        // Delli Ended
+
         GroupCallMessageViewHolder(@NonNull View view) {
             super(view);
 
@@ -3246,6 +3426,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             reactionLayout = view.findViewById(R.id.reactions_layout);
             groupCallMessage = view.findViewById(R.id.group_call_message);
             joinBtn = view.findViewById(R.id.join_call);
+            // Delli Added
+            tv_un_read_msg = itemView.findViewById(R.id.tv_un_read_msg);
+            ll_unread = itemView.findViewById(R.id.ll_unread);
+            // Delli Code Ended
             this.view = view;
 
         }
@@ -3332,6 +3516,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private ChipGroup reactionLayout;
         private ProgressBar progressBar;
 
+        // Delli Added
+        private TextView tv_un_read_msg;
+        private LinearLayout ll_unread;
+        // Delli Ended
+
         public AudioMessageViewHolder(@NonNull View itemView) {
             super(itemView);
             type = (int) itemView.getTag();
@@ -3344,6 +3533,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             tvThreadReplyCount = itemView.findViewById(R.id.thread_reply_count);
             reactionLayout = itemView.findViewById(R.id.reactions_layout);
             progressBar = itemView.findViewById(R.id.progress_bar);
+            // Delli Added
+            tv_un_read_msg = itemView.findViewById(R.id.tv_un_read_msg);
+            ll_unread = itemView.findViewById(R.id.ll_unread);
+            // Delli Code Ended
         }
     }
 

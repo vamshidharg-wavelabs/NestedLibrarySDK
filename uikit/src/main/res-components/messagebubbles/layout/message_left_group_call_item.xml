@@ -13,7 +13,46 @@
         android:animateLayoutChanges="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+<!--        <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar-->
+<!--            android:layout_width="24dp"-->
+<!--            android:id="@+id/iv_user"-->
+<!--            tools:src="@tools:sample/avatars"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            app:corner_radius="12dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_height="24dp"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_user"-->
+<!--            tools:text="Iron Man"-->
+<!--            android:textSize="12sp"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_toEndOf="@+id/iv_user"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+        <LinearLayout
+            android:id="@+id/ll_unread"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/menu_background_grey"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/tv_un_read_msg"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:background="@drawable/cc_rounded_date_button"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                tools:text="unread messages" />
+        </LinearLayout>
         <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
+            android:layout_below="@+id/ll_unread"
             android:layout_width="24dp"
             android:id="@+id/iv_user"
             tools:src="@tools:sample/avatars"
@@ -22,6 +61,7 @@
             android:layout_marginStart="4dp"
             android:layout_height="24dp"/>
         <TextView
+            android:layout_below="@+id/ll_unread"
             android:id="@+id/tv_user"
             tools:text="Iron Man"
             android:textSize="12sp"
@@ -29,6 +69,7 @@
             android:layout_toEndOf="@+id/iv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
         <RelativeLayout
             android:layout_below="@+id/tv_user"
             android:id="@+id/cv_message_container"
