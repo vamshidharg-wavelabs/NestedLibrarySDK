@@ -359,20 +359,20 @@ public class MediaUtils {
 
     public static File makeEmptyFileWithTitle(Context context, String title) {
         //Todo: String dir;
-        String dir = "newDir";
-//        if (Build.VERSION_CODES.R > Build.VERSION.SDK_INT) {
-//            dir = Environment.getExternalStorageDirectory() + "/" + context.getResources().getString(R.string.app_name) + "/"
-//                    + "shared/";
-//        } else {
-//            if (Environment.isExternalStorageManager()) {
-//                dir = Environment.getExternalStorageState() + "/" + context.getResources().getString(R.string.app_name) + "/"
-//                        + "shared/";
-//            } else {
-//                dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath() + "/" + context.getResources().getString(R.string.app_name) + "/"
-//                        + "shared/";
-//            }
-//        }
-//        Utils.createDirectory(dir);
+        String dir;
+        if (Build.VERSION_CODES.R > Build.VERSION.SDK_INT) {
+            dir = Environment.getExternalStorageDirectory() + "/" + context.getResources().getString(R.string.app_name) + "/"
+                    + "shared/";
+        } else {
+            if (Environment.isExternalStorageManager()) {
+                dir = Environment.getExternalStorageState() + "/" + context.getResources().getString(R.string.app_name) + "/"
+                        + "shared/";
+            } else {
+                dir = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS).getPath() + "/" + context.getResources().getString(R.string.app_name) + "/"
+                        + "shared/";
+            }
+        }
+        Utils.createDirectory(dir);
         return new File(dir, title);
     }
 

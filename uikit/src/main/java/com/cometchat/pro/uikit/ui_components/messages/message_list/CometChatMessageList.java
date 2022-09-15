@@ -1854,13 +1854,31 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 
 
                                     } else if (mimeType != null && mimeType.contains("video")) {
-                                        if (file.exists())
-                                            sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_VIDEO);
-                                        else
-                                            CometChatSnackBar.show(context, rvChatListView, getString(R.string.file_not_exist), CometChatSnackBar.WARNING);
+
+//                                        if (file.exists())
+//                                            sendMediaMessage(file, CometChatConstants.MESSAGE_TYPE_VIDEO);
+//                                        else
+//                                            CometChatSnackBar.show(
+//                                                    context,
+//                                                    rvChatListView,
+//                                                    getString(R.string.file_not_exist),
+//                                                    CometChatSnackBar.WARNING
+//                                            );
+                                        //issue fixed by Pratik
+                                        if(file1.exists()) {
+                                            Log.e(TAG, "I am sending file");
+                                            sendMediaMessage(file1, CometChatConstants.MESSAGE_TYPE_VIDEO);
+                                        } else {
+                                            CometChatSnackBar.show(
+                                                    context,
+                                                    rvChatListView,
+                                                    getString(R.string.file_not_exist),
+                                                    CometChatSnackBar.WARNING
+                                            );
+                                        }
                                     }
                                 }
-//                                sendMediaMessage(file1, CometChatConstants.MESSAGE_TYPE_FILE);
+                                //sendMediaMessage(file1, CometChatConstants.MESSAGE_TYPE_FILE);
                             }
 // Delli Ended Code
 
