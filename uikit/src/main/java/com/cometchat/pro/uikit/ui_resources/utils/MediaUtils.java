@@ -130,6 +130,7 @@ public class MediaUtils {
         intent.putExtra(Intent.EXTRA_MIME_TYPES, type);
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         return intent;
     }
 
