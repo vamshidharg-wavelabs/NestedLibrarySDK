@@ -542,6 +542,7 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
 
                                         // Delli Code added
 
+
                                         if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_IMAGE_MESSAGE)) {
                                             if (UIKitSettings.isImageCaptionAllowed()) {
                                                 // Delli COde ended
