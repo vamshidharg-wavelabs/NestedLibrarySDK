@@ -268,11 +268,8 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
             Utils.changeToolbarFont(toolbar).setTypeface(fontUtils.getTypeFace(FontUtils.robotoMedium));
         }
         selectedUsers = findViewById(R.id.selected_user);
-
         forwardBtn = findViewById(R.id.btn_forward);
-
         rvConversationList = findViewById(R.id.rv_conversation_list);
-
         etSearch = findViewById(R.id.search_bar);
         // Delli Added
         searchbar_view = findViewById(R.id.searchbar_view);
