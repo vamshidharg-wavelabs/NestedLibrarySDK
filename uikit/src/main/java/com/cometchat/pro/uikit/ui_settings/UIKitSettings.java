@@ -29,6 +29,21 @@ public class UIKitSettings {
     //style
     protected static String UIcolor = "#03A9F4";
     //BottomBar
+
+    // Delli Added
+
+    public static boolean isImageCaptionAllowed() {
+        return imageCaptionAllowed;
+    }
+
+    public static void setImageCaptionAllowed(boolean imageCaptionAllowed) {
+        UIKitSettings.imageCaptionAllowed = imageCaptionAllowed;
+    }
+
+
+    private static boolean imageCaptionAllowed = true;
+
+    // Delli Code Ended
     private static boolean users = true;
     private static boolean groups = true;
     private static boolean conversations = true;

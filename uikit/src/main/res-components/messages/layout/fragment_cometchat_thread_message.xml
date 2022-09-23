@@ -357,13 +357,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_message_list"
-                android:descendantFocusability="blocksDescendants"
-                android:clipToPadding="false"
-                android:layout_below="@+id/thread_action"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/thread_action"
+                android:clipToPadding="false"
+                android:descendantFocusability="blocksDescendants"
                 android:nestedScrollingEnabled="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </RelativeLayout>
@@ -394,7 +395,7 @@
     <FrameLayout
         android:id="@+id/reactions_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
     <RelativeLayout
         android:id="@+id/bottom_layout"
         android:layout_alignParentBottom="true"

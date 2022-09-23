@@ -115,7 +115,7 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
 
     private List<BaseMessage> callList = new ArrayList<>();
 
-    private View progressbarBG;
+    //private View progressbarBG;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -264,12 +264,14 @@ public class CometChatUserDetailScreenActivity extends AppCompatActivity {
     }
 
     private void setLoaderVisibility(boolean bool){
-        if (bool) {
-            progressbarBG.setVisibility(View.VISIBLE);
-        } else {
-            progressbarBG.setVisibility(View.GONE);
-        }
-        progressbarBG.setOnClickListener(null);
+        //Todo:
+//
+//        if (bool) {
+//            progressbarBG.setVisibility(View.VISIBLE);
+//        } else {
+//            progressbarBG.setVisibility(View.GONE);
+//        }
+//        progressbarBG.setOnClickListener(null);
     }
 
     private void checkDarkMode() {

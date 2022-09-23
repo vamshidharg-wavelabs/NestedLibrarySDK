@@ -75,6 +75,11 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
     private String TAG = CometChatMediaViewActivity.class.getName();
     private List<File> ltFiles = new ArrayList<File>();
 
+    // Delli Added
+    private String mStrCaption = "";
+    private int finalIndex = 0;
+    //Delli Code Ended
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +146,11 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
                 //ambika commented
 //                sendMediaMessage(mediaUrl,editText.getText());
                 //ambika added
-                sendMediaMessage(ltFiles, editText.getText());
+                //sendMediaMessage(ltFiles, editText.getText());
+
+                //Delli added
+                mStrCaption = editText.getText().toString();
+                sendMediaMessageOrderWise(ltFiles, editText.getText(), 0);
             }
         });
         composeBox.setPadding(16, 0, 16, 8);
@@ -203,6 +212,58 @@ public class CometChatMediaViewActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
+
+    // Delli Added
+    private void sendMediaMessageOrderWise(List<File> mediaFiles, Editable caption, int fileIndex) {
+
+
+        ProgressDialog progressDialog =
+                ProgressDialog.show(this, "", getString(R.string.media_in_progress));
+        String strLaunchIntent = "";
+      /*  try {
+            Collections.reverse(mediaFiles);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }*/
+//        for (int mF = 0; mF < mediaFiles.size(); mF++) {
+        File file = new File(mediaFiles.get(fileIndex).getPath());
+        MediaMessage mediaMessage = new MediaMessage(Id, file, mediaType, type);
+
+        if (fileIndex == 0) {
+            mediaMessage.setCaption(mStrCaption);
+//            mediaMessage.setCaption(caption.toString());
+        }
+        if (fileIndex == mediaFiles.size() - 1) {
+            strLaunchIntent = "X";
+        }
+        String finalStrLaunchIntent = strLaunchIntent;
+        CometChat.sendMediaMessage(mediaMessage, new CometChat.CallbackListener<MediaMessage>() {
+            @Override
+            public void onSuccess(MediaMessage mediaMessage) {
+                progressDialog.dismiss();
+                mStrCaption = "";
+                finalIndex++;
+                if (finalIndex == mediaFiles.size()) {
+                    finalIndex = 0;
+                    launchMessageList();
+                } else {
+                    sendMediaMessageOrderWise(mediaFiles,null,finalIndex);
+                }
+//                if (finalStrLaunchIntent.equalsIgnoreCase("X")) {
+
+//                }
+
+            }
+
+            @Override
+            public void onError(CometChatException e) {
+                CometChatSnackBar.show(CometChatMediaViewActivity.this,
+                        toolbar, e.getCode(), CometChatSnackBar.ERROR);
+            }
+        });
+
+    }
+    // Delli Code ended
 
     //ambika added
     private void sendMediaMessage(List<File> mediaFiles, Editable caption) {

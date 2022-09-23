@@ -273,7 +273,7 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
         etSearch = findViewById(R.id.search_bar);
         // Delli Added
         searchbar_view = findViewById(R.id.searchbar_view);
-        searchbar_view.setVisibility(View.GONE);
+        searchbar_view.setVisibility(View.VISIBLE);
         //Delli Code Ended
 
 
