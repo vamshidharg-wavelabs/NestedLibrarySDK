@@ -1534,7 +1534,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
                 initMessageAdapter(baseMessages);
                 if (baseMessages.size() != 0) {
                     //noMessageText.setVisibility(GONE);
-                    infoAction.setVisibility(GONE);
+                    //infoAction.setVisibility(GONE);
                     stopHideShimmer();
                     BaseMessage baseMessage = baseMessages.get(baseMessages.size() - 1);
                     markMessageAsRead(baseMessage);

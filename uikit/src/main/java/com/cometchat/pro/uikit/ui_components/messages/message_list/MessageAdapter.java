@@ -928,18 +928,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             });
 
-            viewHolder.rlMessageBubble.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-
-                    if (!isImageMessageClick && !isTextMessageClick) {
-                        isLongClickEnabled = true;
-                        setLongClickSelectedItem(baseMessage);
-                        messageLongClick.setLongMessageClick(longselectedItemList);
-                        notifyItemChanged(i);
-                    }
-                    return true;
+            viewHolder.rlMessageBubble.setOnLongClickListener(view -> {
+                if (!isImageMessageClick && !isTextMessageClick) {
+                    isLongClickEnabled = true;
+                    setLongClickSelectedItem(baseMessage);
+                    messageLongClick.setLongMessageClick(longselectedItemList);
+                    notifyItemChanged(i);
                 }
+                return true;
             });
             setReactionSupport(baseMessage, viewHolder.reactionLayout);
         }

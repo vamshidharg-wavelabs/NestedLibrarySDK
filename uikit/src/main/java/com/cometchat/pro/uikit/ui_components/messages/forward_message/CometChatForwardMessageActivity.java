@@ -42,7 +42,6 @@ import com.cometchat.pro.models.TextMessage;
 import com.cometchat.pro.models.User;
 import com.cometchat.pro.uikit.R;
 import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
-import com.cometchat.pro.uikit.ui_components.messages.media_view.CometChatMediaViewActivity;
 import com.cometchat.pro.uikit.ui_components.shared.CometChatSnackBar;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatConversations.CometChatConversations;
 import com.cometchat.pro.uikit.ui_components.shared.cometchatConversations.CometChatConversationsAdapter;
@@ -52,7 +51,6 @@ import com.cometchat.pro.uikit.ui_resources.utils.FontUtils;
 import com.cometchat.pro.uikit.ui_resources.utils.MediaUtils;
 import com.cometchat.pro.uikit.ui_resources.utils.Utils;
 import com.cometchat.pro.uikit.ui_resources.utils.item_clickListener.OnItemClickListener;
-import com.cometchat.pro.uikit.ui_settings.UIKitSettings;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
@@ -62,7 +60,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -113,8 +110,6 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
     private int mediaMessageSize;
 
     private ProgressDialog progressDialog;
-
-    private int pendingUploadUserListCount = 0;
 
     //Delli Added
     private RelativeLayout searchbar_view;
@@ -268,12 +263,15 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
             Utils.changeToolbarFont(toolbar).setTypeface(fontUtils.getTypeFace(FontUtils.robotoMedium));
         }
         selectedUsers = findViewById(R.id.selected_user);
+
         forwardBtn = findViewById(R.id.btn_forward);
+
         rvConversationList = findViewById(R.id.rv_conversation_list);
+
         etSearch = findViewById(R.id.search_bar);
         // Delli Added
         searchbar_view = findViewById(R.id.searchbar_view);
-        searchbar_view.setVisibility(View.VISIBLE);
+        searchbar_view.setVisibility(View.GONE);
         //Delli Code Ended
 
 
@@ -373,7 +371,6 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 progressDialog = ProgressDialog
                         .show(CometChatForwardMessageActivity.this, "", getString(R.string.updating));
-                pendingUploadUserListCount =  userList.size();
                 if (messageCategory.equals(CometChatConstants.CATEGORY_MESSAGE)) {
                     if (messageType != null && messageType.equals(CometChatConstants.MESSAGE_TYPE_TEXT)) {
                         new Thread(() -> {
@@ -483,201 +480,59 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
                                     String mimeType = cr.getType(getIntent().getClipData().getItemAt(0).getUri());
                                     String strLaunchIntent = "";
                                     if (files.size() > 0) {
-//                                        for (int j = 0; j < files.size(); j++) {
-//
-//                                            if (j == files.size() - 1) {
-//                                                strLaunchIntent = "X";
-//                                            }
-////                                            File multifile = MediaUtils.getRealPath(
-////                                                    CometChatForwardMessageActivity.this,
-////                                                    Uri.parse(files.get(j).getPath()), true);
-//                                            File multifile = new File(files.get(j).getPath());
-//                                            if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_IMAGE_MESSAGE))
-//                                                message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_IMAGE, type);
-//                                            else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_VIDEO_MESSAGE))
-//                                                message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_VIDEO, type);
-//                                            else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_AUDIO_MESSAGE))
-//                                                message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_AUDIO, type);
-//                                            else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_FILE_MESSAGE))
-//                                                message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_FILE, type);
-//                                            try {
-//                                                JSONObject jsonObject = new JSONObject();
-//                                                jsonObject.put("path", files.get(j).getPath());
-//                                                message.setMetadata(jsonObject);
-//                                            } catch (Exception e) {
-//                                                Log.e(TAG, "onError: " + e.getMessage());
-//                                            }
-//
-//                                            String finalStrLaunchIntent = strLaunchIntent;
-//                                            String finalUserCount = strUserCount;
-//                                            // Delli Commented
-////                                            sendMediaMessage(new MediaMessage(), i, progressDialog);
-//                                            // Delli Ended
-//                                            CometChat.sendMediaMessage(message, new CometChat.CallbackListener<MediaMessage>() {
-//
-//                                                @Override
-//                                                public void onSuccess(MediaMessage mediaMessage) {
-//                                                    if (finalStrLaunchIntent.equalsIgnoreCase("X")) {
-//                                                        if (finalUserCount.equalsIgnoreCase("X")) {
-//                                                            if (progressDialog != null)
-//                                                                progressDialog.dismiss();
-//                                                            Intent intent = new Intent(CometChatForwardMessageActivity.this, CometChatUI.class);
-//                                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                                            startActivity(intent);
-//                                                        }
-//
-//                                                    }
-//
-//                                                }
-//
-//                                                @Override
-//                                                public void onError(CometChatException e) {
-//
-//                                                }
-//                                            });
-//                                        }
+                                        for (int j = 0; j < files.size(); j++) {
 
-                                        // Delli Code added
-
-
-                                        if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_IMAGE_MESSAGE)) {
-                                            if (UIKitSettings.isImageCaptionAllowed()) {
-                                                // Delli COde ended
-                                                Intent intent = new Intent(CometChatForwardMessageActivity.this, CometChatMediaViewActivity.class);
-                                                intent.putExtra(UIKitConstants.IntentStrings.ID, uid);
-                                                intent.putExtra(UIKitConstants.IntentStrings.NAME, name);
-                                                intent.putExtra(UIKitConstants.IntentStrings.TYPE, type);
-                                                intent.putExtra(UIKitConstants.IntentStrings.INTENT_MEDIA_MESSAGE, files.get(0).getPath());
-                                                //ambika added
-                                                intent.putExtra("MediaFiles", (Serializable) files);
-                                                //end
-
-                                                if (mimeType != null && mimeType.contains("image"))
-                                                    intent.putExtra(UIKitConstants.IntentStrings.MESSAGE_TYPE,
-                                                            CometChatConstants.MESSAGE_TYPE_IMAGE);
-                                                else if (mimeType != null && mimeType.contains("video"))
-                                                    intent.putExtra(UIKitConstants.IntentStrings.MESSAGE_TYPE,
-                                                            CometChatConstants.MESSAGE_TYPE_VIDEO);
-                                                intent.putExtra(UIKitConstants.IntentStrings.ALLOW_CAPTION, true);
-                                                startActivity(intent);
-                                                CometChatForwardMessageActivity.this.finish();
-                                            } else {
-
-                                                for (int j = 0; j < files.size(); j++) {
-
-                                                    if (j == files.size() - 1) {
-                                                        strLaunchIntent = "X";
-                                                    }
+                                            if (j == files.size() - 1) {
+                                                strLaunchIntent = "X";
+                                            }
 //                                            File multifile = MediaUtils.getRealPath(
 //                                                    CometChatForwardMessageActivity.this,
 //                                                    Uri.parse(files.get(j).getPath()), true);
-                                                    File multifile = new File(files.get(j).getPath());
-                                                    if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_IMAGE_MESSAGE))
-                                                        message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_IMAGE, type);
-                                              /*else
-                                                   if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_VIDEO_MESSAGE))
-                                                        message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_VIDEO, type);
-                                                    else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_AUDIO_MESSAGE))
-                                                        message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_AUDIO, type);
-                                                    else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_FILE_MESSAGE))
-                                                        message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_FILE, type);*/
-                                                    try {
-                                                        JSONObject jsonObject = new JSONObject();
-                                                        jsonObject.put("path", files.get(j).getPath());
-                                                        message.setMetadata(jsonObject);
-                                                    } catch (Exception e) {
-                                                        Log.e(TAG, "onError: " + e.getMessage());
-                                                    }
-
-                                                    String finalStrLaunchIntent = strLaunchIntent;
-                                                    String finalUserCount = strUserCount;
-                                                    // Delli Commented
-//                                            sendMediaMessage(new MediaMessage(), i, progressDialog);
-                                                    // Delli Ended
-                                                    CometChat.sendMediaMessage(message, new CometChat.CallbackListener<MediaMessage>() {
-
-                                                        @Override
-                                                        public void onSuccess(MediaMessage mediaMessage) {
-                                                            if (finalStrLaunchIntent.equalsIgnoreCase("X")) {
-                                                                if (finalUserCount.equalsIgnoreCase("X")) {
-                                                                    if (progressDialog != null)
-                                                                        progressDialog.dismiss();
-                                                                    Intent intent = new Intent(CometChatForwardMessageActivity.this, CometChatUI.class);
-                                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                                    startActivity(intent);
-                                                                }
-
-                                                            }
-
-                                                        }
-
-                                                        @Override
-                                                        public void onError(CometChatException e) {
-
-                                                        }
-                                                    });
-                                                }
-
+                                            File multifile = new File(files.get(j).getPath());
+                                            if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_IMAGE_MESSAGE))
+                                                message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_IMAGE, type);
+                                            else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_VIDEO_MESSAGE))
+                                                message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_VIDEO, type);
+                                            else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_AUDIO_MESSAGE))
+                                                message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_AUDIO, type);
+                                            else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_FILE_MESSAGE))
+                                                message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_FILE, type);
+                                            try {
+                                                JSONObject jsonObject = new JSONObject();
+                                                jsonObject.put("path", files.get(j).getPath());
+                                                message.setMetadata(jsonObject);
+                                            } catch (Exception e) {
+                                                Log.e(TAG, "onError: " + e.getMessage());
                                             }
 
-                                        } else {
-                                            for (int j = 0; j < files.size(); j++) {
-
-                                                if (j == files.size() - 1) {
-                                                    strLaunchIntent = "X";
-                                                }
-//                                            File multifile = MediaUtils.getRealPath(
-//                                                    CometChatForwardMessageActivity.this,
-//                                                    Uri.parse(files.get(j).getPath()), true);
-                                                File multifile = new File(files.get(j).getPath());
-                                               /* if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_IMAGE_MESSAGE))
-                                                    message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_IMAGE, type);
-                                                else*/
-                                                if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_VIDEO_MESSAGE))
-                                                    message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_VIDEO, type);
-                                                else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_AUDIO_MESSAGE))
-                                                    message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_AUDIO, type);
-                                                else if (messageType.equalsIgnoreCase(UIKitConstants.IntentStrings.INTENT_MEDIA_FILE_MESSAGE))
-                                                    message = new MediaMessage(uid, multifile, CometChatConstants.MESSAGE_TYPE_FILE, type);
-                                                try {
-                                                    JSONObject jsonObject = new JSONObject();
-                                                    jsonObject.put("path", files.get(j).getPath());
-                                                    message.setMetadata(jsonObject);
-                                                } catch (Exception e) {
-                                                    Log.e(TAG, "onError: " + e.getMessage());
-                                                }
-
-                                                String finalStrLaunchIntent = strLaunchIntent;
-                                                String finalUserCount = strUserCount;
-                                                // Delli Commented
+                                            String finalStrLaunchIntent = strLaunchIntent;
+                                            String finalUserCount = strUserCount;
+                                            // Delli Commented
 //                                            sendMediaMessage(new MediaMessage(), i, progressDialog);
-                                                // Delli Ended
-                                                CometChat.sendMediaMessage(message, new CometChat.CallbackListener<MediaMessage>() {
+                                            // Delli Ended
+                                            CometChat.sendMediaMessage(message, new CometChat.CallbackListener<MediaMessage>() {
 
-                                                    @Override
-                                                    public void onSuccess(MediaMessage mediaMessage) {
-                                                        if (finalStrLaunchIntent.equalsIgnoreCase("X")) {
-                                                            if (finalUserCount.equalsIgnoreCase("X")) {
-                                                                if (progressDialog != null)
-                                                                    progressDialog.dismiss();
-                                                                Intent intent = new Intent(CometChatForwardMessageActivity.this, CometChatUI.class);
-                                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                                startActivity(intent);
-                                                            }
-
+                                                @Override
+                                                public void onSuccess(MediaMessage mediaMessage) {
+                                                    if (finalStrLaunchIntent.equalsIgnoreCase("X")) {
+                                                        if (finalUserCount.equalsIgnoreCase("X")) {
+                                                            if (progressDialog != null)
+                                                                progressDialog.dismiss();
+                                                            Intent intent = new Intent(CometChatForwardMessageActivity.this, CometChatUI.class);
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            startActivity(intent);
                                                         }
 
                                                     }
 
-                                                    @Override
-                                                    public void onError(CometChatException e) {
+                                                }
 
-                                                    }
-                                                });
-                                            }
+                                                @Override
+                                                public void onError(CometChatException e) {
+
+                                                }
+                                            });
                                         }
-// Delli Code ended
-
                                     }
 
                                 } else {
@@ -808,8 +663,6 @@ public class CometChatForwardMessageActivity extends AppCompatActivity {
             @Override
             public void onError(CometChatException e) {
                 Log.e(TAG, "onErrorMedia: " + e.getMessage());
-                if (progressDialog!=null)
-                    progressDialog.dismiss();
             }
         });
     }

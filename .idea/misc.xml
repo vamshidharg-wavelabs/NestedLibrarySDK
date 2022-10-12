@@ -26,6 +26,7 @@
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/groups/layout/fragment_cometchat_grouplist.xml" value="0.1" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/message_left_group_call_item.xml" value="0.1" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/message_left_text_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/message_right_location_item.xml" value="0.17028985507246377" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/message_right_reply_item.xml" value="0.1" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messagebubbles/layout/message_right_text_item.xml" value="0.1" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/activity_cometchat_forward_message.xml" value="0.1" />
@@ -33,8 +34,9 @@
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/activity_cometchat_message_list.xml" value="0.1" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/cometchat_messagedate_header.xml" value="0.1308876811594203" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/cometchat_messagelist_toolbar.xml" value="0.1" />
-        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/fragment_cometchat_messagelist.xml" value="0.1" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/fragment_cometchat_messagelist.xml" value="0.18" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/messages/layout/fragment_cometchat_thread_message.xml" value="0.21851851851851853" />
+        <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/others/layout/group_list_row.xml" value="0.17028985507246377" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/userprofile/layout/fragment_cometchat_user_profile.xml" value="0.1" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/users/layout/activity_cometchat_user_detail.xml" value="0.1" />
         <entry key="..\:/flutter resources himanshu/NestedLibrarySDK/uikit/src/main/res-components/users/layout/fragment_cometchat_block_user.xml" value="0.1" />
